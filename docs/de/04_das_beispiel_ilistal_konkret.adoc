@@ -1,0 +1,876 @@
+// Kapitel 4: Das Beispiel Ilistal konkret
+[[kapitel-4]]
+== Das Beispiel Ilistal konkret
+
+
+
+<!-- Seite 31 -->
+4. Das Beispiel Ilistal konkret 31
+4. Das Beispiel Ilistal konkret
+== 4.1 Das Datenmodell im Überblick
+
+image::kap4-000.png[]
+.Abbildung 21: Das Datenmodell in der *UML*-Darstellung. Der Übersichtlichkeit halber sind Themen,
+Strukturen, Wertebereiche und Attribute nicht abgebildet. Hierzu wird auf Kapitel 6
+verwiesen, das auf Einzelheiten näher eingeht.
+
+<!-- Seite 32 -->
+32 Modellieren raumbezogener Daten
+== 4.2 Das Datenmodell in INTERLIS
+
+Nachfolgend sind das nationale Grundlagenmodell, das Modell des nationalen Tourismus-
+verbandes sowie das Ilistaler Tourismus-Modell vollständig abgedruckt. Die Modelle sind
+ausgiebig kommentiert. Zudem verweisen Kästchen auf die Abschnitte im Text, in welchem
+ausführlicher auf ein Thema eingegangen wird.
+Es wird empfohlen, das Beispiel-Datenmodell nur grob zu überfliegen und dann Kapitel 5 bis
+8 zu lesen, wo verschiedene Aspekte dieses Datenmodells im Detail besprochen werden.
+=== 4.2.1 Ahland.ili – Das nationale Grundlagenmodell
+
+!! Das nachfolgende Modell ist in der Version 2.3 von *INTERLIS* geschrieben.
+[source,interlis]
+----
+INTERLIS 2.3;
+----
+
+!! Das nationale Grundlagen-Modell umfasst keine Daten, sondern definiert
+!! lediglich einige Typen und Einheiten, damit sich andere Modelle darauf
+!! beziehen koennen.
+TYPE MODEL Ahland AT "http://www.interlis.ch/models/ahland"
+VERSION "2008-01" =
+[source,interlis]
+----
+IMPORTS UNQUALIFIED INTERLIS;
+----
+
+!! Das nationale Grundlagen-Modell baut auf folgenden
+!! Grundlagen-Modellen von *INTERLIS* auf.
+!! Units: Einheiten wie beispielsweise Grad Celsius
+!! CoordSys: Grundlagen für Koordinatensysteme
+[source,interlis]
+----
+IMPORTS Units;
+IMPORTS CoordSys;
+----
+
+!! Das Ilistal liegt in Ahland, in welchem mit Talern bezahlt wird.
+!! Der Taler ist eine Einheit (UNIT) fuer Geld (MONEY). Zwar definiert
+!! das Einheiten-Modell (Units) bereits einige Waehrungen - beispielsweise
+!! Schweizerfranken, Euro und US-Dollar -, nicht aber den Ahlaender Taler.
+UNIT
+Taler EXTENDS MONEY; Einheiten → 6.1.2
+!! Die Zeit wird in Ahland gemäss der lokalen Zeitzone Ahlandzeit
+!! festgehalten.
+REFSYSTEM BASKET TimeSystems ~ *INTERLIS*.TIMESYSTEMS
+OBJECTS OF TIMEOFDAYSYS: AZ; !! Ahlandzeit
+!! Das Landeskoordinatensystem von Ahland.
+Koord.-Systeme → 6.7.3
+REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+OBJECTS OF GeoCartesian2D: AhlandSys
+OBJECTS OF GeoHeight: AhlandHoehenSys;
+Wertebereiche → 6.6
+DOMAIN
+LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
+== 700.00 .. 23000.00 [m] {CoordSystems.AhlandSys[2]},
+
+ROTATION 2 -> 1;
+Koordinaten → 6.7
+LandesKoord3 = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
+== 700.00 .. 23000.00 [m] {CoordSystems.AhlandSys[2]},
+
+-200.00 .. 14000.00 [m] {CoordSystems.AhlandHoehenSys[1]},
+ROTATION 2 -> 1;
+3D-Koordinaten → 6.7.5
+
+<!-- Seite 33 -->
+4. Das Beispiel Ilistal konkret 33
+[source,interlis]
+----
+STRUCTURE Zeitdauer (ABSTRACT) = Zeitdauer → 6.12
+END Zeitdauer;
+STRUCTURE ZeitdauerImplizit EXTENDS Zeitdauer =
+----
+
+Vererbung → 5
+Dauer: MANDATORY (Tag, Woche, Monat, Jahr);
+[source,interlis]
+----
+END ZeitdauerImplizit;
+STRUCTURE ZeitdauerExplizit (ABSTRACT) EXTENDS Zeitdauer =
+----
+
+Dauer (ABSTRACT): MANDATORY NUMERIC [TIME];
+[source,interlis]
+----
+END ZeitdauerExplizit;
+STRUCTURE ZeitdauerInMinuten EXTENDS ZeitdauerExplizit =
+----
+
+Dauer (EXTENDED): MANDATORY 0 .. 200 [Units.min];
+[source,interlis]
+----
+END ZeitdauerInMinuten;
+STRUCTURE ZeitdauerInTagen EXTENDS ZeitdauerExplizit =
+----
+
+Dauer (EXTENDED): MANDATORY 0 .. 1000 [Units.d];
+[source,interlis]
+----
+END ZeitdauerInTagen;
+STRUCTURE Zeitpunkt (ABSTRACT) = Zeitpunkte → 6.12.5
+END Zeitpunkt;
+STRUCTURE AhlandTageszeit EXTENDS INTERLIS.TimeOfDay =
+----
+
+Hours (EXTENDED): 0..23 CIRCULAR [INTERLIS.h];
+[source,interlis]
+----
+END AhlandTageszeit;
+----
+
+DOMAIN
+AhlandXMLTageszeit = FORMAT BASED ON AhlandTageszeit
+( Hours/2 ":" Minutes ":" Seconds );
+[source,interlis]
+----
+END Ahland.
+=== 4.2.2 Adressen.ili – Das Modell für Gebäudeadressen
+
+----
+
+Das Modell für Gebäudeadressen wird nicht abgedruckt, denn es würde mehrere Seiten
+umfassen und ist im Zusammenhang des Ilistals nicht im Detail von Interesse. Das Ilistaler
+Tourismus-Modell etabliert jedoch eine Beziehung zwischen Gasthäusern und den im
+Adressmodell definierten Hauseingängen.
+Bezug auf Gebäude-
+[source,interlis]
+----
+INTERLIS 2.3; adressen → 2.3.4
+MODEL Adressen AT "http://www.interlis.ch/models/ahland"
+----
+
+VERSION "2008-01" =
+[source,interlis]
+----
+TOPIC Gebaeude =
+CLASS Hauseingang =
+----
+
+!! ...
+[source,interlis]
+----
+END Hauseingang;
+END Gebaeude;
+END Adressen.
+
+----
+
+<!-- Seite 34 -->
+34 Modellieren raumbezogener Daten
+=== 4.2.3 NatTour.ili – Das Modell des Nationalen Tourismus-Verbands
+
+[source,interlis]
+----
+INTERLIS 2.3;
+----
+
+CONTRACTED MODEL NatTour AT "http://www.interlis.ch/models/ahland"
+VERSION "2008-01" =
+!! Das Modell des nationalen Tourismus-Verbands baut seinerseits
+!! auf dem nationalen Grundlagen-Modell von Ahland auf.
+Vorhandene Modelle
+[source,interlis]
+----
+IMPORTS Units, CoordSys, Ahland;
+----
+
+nutzen → 6.16
+[source,interlis]
+----
+FUNCTION Multiply(factor1 : NUMERIC; factor2 : NUMERIC) : NUMERIC;
+----
+
+!! Eine Bezeichnung umfasst einen Namen und
+Mehrsprachige Objekt-
+!! zusaetzlich die Sprache, in welcher der Name
+eigenschaften → 6.11
+!! geschrieben ist.
+[source,interlis]
+----
+STRUCTURE Bezeichnung =
+----
+
+!! Der Name darf beliebig lang sein.
+Zeichenketten → 6.4
+Name: TEXT;
+!! Der aus zwei Zeichen bestehende Sprachcode nach ISO 639.
+!! Beispiele: de = Deutsch, fr = Franzoesisch,
+!! it = Italienisch, rm = Raetoromanisch, en = Englisch.
+Sprache: TEXT*2;
+[source,interlis]
+----
+END Bezeichnung;
+TOPIC Bergbahnen =
+----
+
+!! Eine Bahnbezeichnung ist wie eine gewoehnliche
+Sprachabhängige Be-
+!! Bezeichnung (aber mit höchstens 100 Zeichen),
+zeichnungen als Struk-
+!! umfasst aber zusaetzlich noch eine Kurzform des Namens,
+turelemente → 6.11.2
+!! zum Beispiel "IhB" fuer die Ilishornbahnen.
+[source,interlis]
+----
+STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung =
+----
+
+Name (EXTENDED): TEXT*100;
+Kurzbezeichnung: TEXT*10;
+[source,interlis]
+----
+END Bahnbezeichnung;
+----
+
+!! Eine Bahngesellschaft betreibt Bahnen.
+[source,interlis]
+----
+CLASS Bahngesellschaft =
+----
+
+!! Die Namen dieser Bahngesellschaft, allenfalls in unterschiedlichen
+!! Sprachen. Es muss mindestens ein (1) Name bekannt sein, jedoch
+!! gibt es nach oben keine (*) Beschraenkung der Anzahl der Namen.
+Namen: BAG {1..*} OF Bahnbezeichnung;
+!! Es soll pro Sprache nur eine einzige Bahnbezeichnung
+Eindeutigkeitsbedingungen
+!! geben koennen: Die Ilishornbahnen duerfen somit nur
+→ 6.14.3
+!! eine einzige italienische Bezeichnung besitzen.
+!! Allerdings gilt diese Einschraenkung nur lokal, also
+!! pro Bahngesellschaft. Auch den Blaubergbahnen soll es
+!! ja gestattet sein, einen italienischen Namen zu tragen.
+UNIQUE
+(LOCAL) Namen : Sprache;
+[source,interlis]
+----
+END Bahngesellschaft;
+CLASS Bergbahn =
+----
+
+!! Die Namen dieser Bergbahn, allenfalls in unterschiedlichen
+!! Sprachen. Es muss mindestens ein (1) Name bekannt sein, jedoch
+
+<!-- Seite 35 -->
+4. Das Beispiel Ilistal konkret 35
+!! gibt es nach oben keine Beschraenkung (*) der Anzahl der Namen.
+Namen: BAG {1..*} OF Bezeichnung;
+LageTalstation: Ahland.LandesKoord;
+Koordinaten → 6.7
+LageBergstation: Ahland.LandesKoord;
+Fahrzeit: Ahland.ZeitdauerInMinuten;
+!! Die genaue Art der Bergbahn.
+Art: (Zahnradbahn,
+Standseilbahn, Arten → 6.2
+Lufseilbahn,
+Skilift,
+Sessellift,
+Gondelbahn);
+[source,interlis]
+----
+END Bergbahn;
+ASSOCIATION =
+----
+
+!! Gibt an, welche Bahnen eine konkrete Bahngesellschaft
+!! betreibt. Beispiel: Die "Ilishornbahnen" betreiben die
+!! Standseilbahn "Ilisdorf-Ilishorn", die Gondelbahn
+!! "Ilisbad-Ilisegg" und den Skilift "Ilisegg-Ilishorn".
+!! Eine Bahngesellschaft kann beliebig viele {*} Bergbahnen
+!! betreiben und es gibt immer genau eine {1} Betreiberin
+!! je Bahn.
+!! Das Zeichen -- steht fuer eine gewoehnliche
+!! Beziehung, -<> besagt, dass die Beziehung etwas Stärke der Beziehung
+!! staerker als gewoehnlich ist, naemlich eine → 6.13.2
+!! sogenannte Aggregation.
+Betreiberin -<> {1} Bahngesellschaft;
+Bahn -- {*} Bergbahn;
+END;
+[source,interlis]
+----
+ASSOCIATION =
+----
+
+Rollennamen → 6.13.1
+Tochter -- {*} Bahngesellschaft;
+Mutter -- {0..1} Bahngesellschaft;
+END;
+[source,interlis]
+----
+END Bergbahnen;
+TOPIC Billette =
+----
+
+DEPENDS ON Bergbahnen;
+!! Die national definierten impliziten Zeitdauern sind
+Zeitdauer → 6.12
+!! Tag, Woche, Monat und Jahr. Bei Billetten gibt es
+!! eine weitere implizite Zeitdauer, naemlich die Saison
+!! (fuer Saisonpaesse).
+[source,interlis]
+----
+STRUCTURE ZeitdauerImplizit EXTENDS Ahland.ZeitdauerImplizit =
+----
+
+Dauer (EXTENDED): (Saison);
+[source,interlis]
+----
+END ZeitdauerImplizit;
+----
+
+!! Ein Bereich, in dem eine bestimmte Billettart gueltig
+Abstrakte Klassen → 5.3
+!! ist.
+[source,interlis]
+----
+CLASS Tarifbereich (ABSTRACT) =
+END Tarifbereich;
+CLASS TarifbereichExplizit EXTENDS Tarifbereich =
+END TarifbereichExplizit;
+----
+
+!! Eine Art Billet, zum Beispiel der "Ilosaurus-Wochenpass".
+
+<!-- Seite 36 -->
+36 Modellieren raumbezogener Daten
+[source,interlis]
+----
+CLASS Billettart =
+----
+
+!! Die Namen dieser Billettart, allenfalls in unterschiedlichen
+!! Sprachen. Es muss mindestens ein (1) Name bekannt sein, jedoch
+!! gibt es nach oben keine Beschraenkung (*) der Anzahl der Namen.
+Namen: BAG {1..*} OF Bezeichnung;
+!! Der Preis eines Billetts in Talern. Die Waehrung
+Numerische Datentypen
+!! wird im nationalen Basismodell von Ahland definiert.
+→ 6.1
+Preis: MANDATORY 0.00 .. 9999.99 [Ahland.Taler];
+!! Die Gueltigkeitsdauer eines Billets. Sie kann explizit sein,
+!! z.B. fuer Billette, die 120 Minuten gueltig sind, oder
+!! implizit, beispielsweise fuer Wochen- oder Saisonpaesse.
+Gueltigkeitsdauer: MANDATORY Ahland.Zeitdauer;
+[source,interlis]
+----
+END Billettart;
+ASSOCIATION =
+----
+
+Tarifbereich -- {1} Tarifbereich;
+Billettart -- {*} Billettart;
+END;
+[source,interlis]
+----
+ASSOCIATION Gueltigkeit (ABSTRACT) =
+----
+
+Bergbahn (EXTERNAL) -- {*} NatTour.Bergbahnen.Bergbahn;
+Tarifbereich -- {*} Tarifbereich;
+[source,interlis]
+----
+END Gueltigkeit;
+----
+
+!! Eine Beziehung zwischen Bergbahn und Tarifbereich,
+!! die nicht abgeleitet, sondern manuell eingegeben wurde.
+[source,interlis]
+----
+ASSOCIATION GueltigkeitExplizit EXTENDS Gueltigkeit =
+----
+
+Tarifbereich (EXTENDED) -- TarifbereichExplizit;
+[source,interlis]
+----
+END GueltigkeitExplizit;
+ASSOCIATION Anteil =
+----
+
+Beteiligter (EXTERNAL) -- {*} NatTour.Bergbahnen.Bahngesellschaft;
+Billettart -- {*} Billettart;
+Beziehungsklassen
+ATTRIBUTE
+→ 6.13.3
+Anteil: 0.0 .. 100.0 [Units.Percent];
+[source,interlis]
+----
+END Anteil;
+CLASS Verkaufsstelle =
+----
+
+Namen: BAG {1..*} OF Bezeichnung;
+[source,interlis]
+----
+END Verkaufsstelle;
+CLASS Saison =
+----
+
+Anfang: FORMAT INTERLIS.XMLDate "1900-1-1" .. "2299-12-31";
+Ende: FORMAT *INTERLIS*.XMLDate "1900-1-1" .. "2299-12-31";
+[source,interlis]
+----
+END Saison;
+ASSOCIATION Verkauf = Mehrgliedrige
+----
+
+Verkaufsstelle -- {*} Verkaufsstelle; Beziehungsklassen
+Saison -- {*} Saison; → 6.13.4
+Billettart -- {*} Billettart;
+ATTRIBUTE
+Anzahl: 1 .. 999999 [Units.CountedObjects];
+Betrag: 0.00 .. 9999999.99 [Ahland.Taler]
+:= Multiply(Anzahl, Billettart -> Preis);
+[source,interlis]
+----
+END Verkauf;
+END Billette;
+
+----
+
+<!-- Seite 37 -->
+4. Das Beispiel Ilistal konkret 37
+[source,interlis]
+----
+END NatTour.
+=== 4.2.4 IlisTour.ili – Das Ilistaler Tourismus-Modell
+
+INTERLIS 2.3;
+----
+
+CONTRACTED MODEL IlisTour AT "http://www.interlis.ch/models/ahland"
+VERSION "2008-01" =
+!! Um dieses Modell zu implementieren, muss ein Programmpaket
+Kontrakte → 7.2
+!! die Funktion AhlandToWGS84 unterstuetzen. Dies kann nicht
+!! einfach vorausgesetzt werden, sondern ist vertraglich mit
+!! dem Hersteller zu vereinbaren. Die Notwendigkeit eines solchen
+!! Kontrakts wird mit CONTRACTED angemerkt.
+[source,interlis]
+----
+IMPORTS UNQUALIFIED INTERLIS;
+IMPORTS Units, CoordSys, Ahland, Adressen, NatTour;
+----
+
+!! Touristen mit einfachen GPS-Empfaengern soll ein besonderer Service
+!! geboten werden. Ihre Empfaenger zeigen Koordinaten im Koordinatensystem
+!! WGS84 an. Es arbeitet mit Winkeln in Grad, Minuten und Sekunden; die
+!! entsprechende Winkel-Einheit ist im *INTERLIS*-Einheitenmodell bereits
+!! definiert.
+REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+OBJECTS OF GeoEllipsoidal: WGS84
+OBJECTS OF GeoHeight: WGS84H;
+DOMAIN
+WGS84Koord = COORD -90.00000 .. 90.00000 [Units.Angle_Degree] {WGS84[1]},
+== 0.00000 .. 359.99999 CIRCULAR [Units.Angle_Degree]
+
+{WGS84[2]},
+-2000.00 .. 9000.00 [m] {WGS84H[1]};
+Geometrietypen → 6.9
+AhlandLinie (ABSTRACT) = POLYLINE VERTEX Ahland.LandesKoord;
+AhlandLinieNormal EXTENDS AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS);
+AhlandLinieGerichtet EXTENDS AhlandLinieNormal = DIRECTED POLYLINE;
+AhlandFlaeche = SURFACE WITH (STRAIGHTS, ARCS) VERTEX Ahland.LandesKoord
+WITHOUT OVERLAPS > 0.02;
+AhlandGebietseinteilung EXTENDS AhlandFlaeche = AREA;
+!! Die Umrechnung von Ahlaendern Landeskoordinaten zu WGS84.
+Funktionen → 7.2
+[source,interlis]
+----
+FUNCTION AhlandToWGS84 (Ah: Ahland.LandesKoord): WGS84Koord;
+FUNCTION InSurface (Lage: Ahland.LandesKoord;
+----
+
+Gegend: AhlandFlaeche): BOOLEAN;
+[source,interlis]
+----
+TOPIC IhBBergbahnen EXTENDS NatTour.Bergbahnen =
+CLASS IhBBergbahn EXTENDS NatTour.Bergbahnen.Bergbahn =
+----
+
+!! Im Ilistal gibt es neben den national
+Aufzählungen erweitern
+!! ueblichen Bergbahn-Arten auch den Schneebus.
+→ 6.3.2
+Art (EXTENDED): (Schneebus);
+!! Der nationale Tourismusverband interessiert sich nicht fuer
+!! die Hoehen. In einem Wintersportgebiet wie dem Ilistal sind
+!! sie aber von grosser Bedeutung. Daher werden die Lagen im
+!! Ilistal als dreidimensionale Koordinaten (inklusive Hoehen)
+
+<!-- Seite 38 -->
+38 Modellieren raumbezogener Daten
+!! erfasst, sind also im Vergleich zum nationalen Modell erweitert.
+LageTalstation (EXTENDED): Ahland.LandesKoord3;
+LageBergstation (EXTENDED): Ahland.LandesKoord3;
+LageTalstationWGS: WGS84Koord := AhlandToWGS84(LageTalstation);
+LageBergstationWGS: WGS84Koord := AhlandToWGS84(LageBergstation);
+!! Manche Bahnen haben eine Web-Kamera installiert, die laufend die
+!! Umgebung der Bergstation aufnimmt, damit interessierte Touristen
+!! sehen, ob sich die Reise lohnt. Der Eintrag zur Bergbahn besagt
+!! ueber einen Uniform Resource Identifier (URI, eine
+!! Adresse auf dem Internet), wo das aktuelle Bild
+!! verfuegbar ist.
+Internet-Adressen → 6.4
+BildBergstation: URI;
+Trasseeverlauf: AhlandLinieNormal;
+Aus organisatorischen
+WandererSchlittler: (ungeeignet, geeignet);
+Gründen erben → 5.6
+[source,interlis]
+----
+END IhBBergbahn;
+VIEW CheckTrasseeStartAndEndPoint
+----
+
+INSPECTION OF Trassee ~ IhBBergbahn -> Trasseeverlauf;
+MANDATORY CONSTRAINT
+Konsistenzbedingungen
+!! Der erste Punkt des Trasseeverlaufs muss die Tal-,
+→ 6.14
+!! der letzte Punkt die Bergstation sein.
+Trassee -> Segments[FIRST] -> SegmentEndPoint == PARENT -> LageTalstation
+AND
+Trassee -> Segments[LAST] -> SegmentEndPoint == PARENT -> LageBergstation;
+[source,interlis]
+----
+END CheckTrasseeStartAndEndPoint;
+----
+
+!! Ein besonderer Tarifbereich, an dem alle Bahnen teilnehmen,
+!! die in einer raeumlich umgrenzten Gegend liegen.
+[source,interlis]
+----
+CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich =
+----
+
+Gegend: AhlandFlaeche;
+[source,interlis]
+----
+END TarifbereichInGegend;
+----
+
+!! Eine Sicht, die alle Bahnen umfasst, deren Tal- und Bergstation
+!! innerhalb der Gegend eines Tarifsbereichs liegt. Natuerlich koennen
+!! nur jene Tarifbereiche beruecksichtigt werden, die als Gegend beschrieben
+!! sind (TarifbereichInGegend); ein expliziter Tarifbereich wuerde hier
+!! keinen Sinn machen.
+[source,interlis]
+----
+VIEW BergbahnenInGegend
+----
+
+Sichten → 6.17
+JOIN OF Bb ~ NatTour.Bergbahnen.Bergbahn,
+T ~ TarifbereichInGegend;
+WHERE InSurface(Bb -> LageTalstation, T -> Gegend) AND
+InSurface(Bb -> LageBergstation, T -> Gegend);
+
+[source,interlis]
+----
+END BergbahnenInGegend;
+----
+
+!! Eine Beziehung zwischen Billettart und Tarifbereich,
+Ableitbare Beziehungen
+!! die nicht manuell eingegeben, sondern automatisch
+→ 6.13.7
+!! aufgrund der Lage von Tal- und Bergstation abgeleitet
+!! wurde.
+[source,interlis]
+----
+ASSOCIATION GueltigkeitInGegend EXTENDS NatTour.Billette.Gueltigkeit
+----
+
+DERIVED FROM BiG ~ BergbahnenInGegend
+=
+Bergbahn (EXTENDED) -- Bergbahn := BiG -> Bb;
+Tarifbereich (EXTENDED) -- TarifbereichInGegend := BiG -> T;
+[source,interlis]
+----
+END GueltigkeitInGegend;
+END IhBBergbahnen;
+
+----
+
+<!-- Seite 39 -->
+4. Das Beispiel Ilistal konkret 39
+[source,interlis]
+----
+TOPIC Gasthaeuser =
+----
+
+DEPENDS ON Adressen.Gebaeude;
+[source,interlis]
+----
+CLASS Gasthaus =
+----
+
+!! Die Namen dieses Gasthauses, allenfalls in unterschiedlichen
+!! Sprachen. Es muss mindestens ein (1) Name bekannt sein, jedoch
+!! gibt es nach oben keine Beschraenkung (*) der Anzahl der Namen.
+Namen: BAG {1..*} OF NatTour.Bezeichnung;
+!! Die Internet-Adresse (Uniform Resource Identifier,
+Internet-Adressen → 6.4
+!! abgekuerzt URI) eines Fotos des Gasthauses.
+Bild: URI;
+[source,interlis]
+----
+END Gasthaus;
+----
+
+!! Die Ilistaler definieren nicht selbst, was sie unter einer Adresse
+!! verstehen. Stattdessen etablieren sie eine Beziehung zwischen Gasthaus
+!! und seinem Eingang. Dadurch koennen sie die Koordinaten der Gasthaeuser
+!! aus den Daten der amtlichen Vermessung uebernehmen und brauchen sie
+!! nicht selber zu erfassen.
+[source,interlis]
+----
+ASSOCIATION =
+----
+
+Gasthaus -- Gasthaus;
+Eingang (EXTERNAL) -- Adressen.Gebaeude.Hauseingang;
+END;
+[source,interlis]
+----
+END Gasthaeuser;
+TOPIC IhBPlanung =
+----
+
+DEPENDS ON IlisTour.IhBBergbahnen;
+[source,interlis]
+----
+CLASS Betriebszeit =
+----
+
+Startdatum: INTERLIS.XMLDate;
+Beginn: Ahland.AhlandXMLTageszeit;
+Schluss: Ahland.AhlandXMLTageszeit;
+[source,interlis]
+----
+END Betriebszeit;
+----
+
+Komposition → 6.13.2
+[source,interlis]
+----
+ASSOCIATION =
+----
+
+Bahn (EXTERNAL) -<#> {1} IlisTour.IhBBergbahnen.IhBBergbahn;
+Betriebszeit -- {*} Betriebszeit;
+END;
+[source,interlis]
+----
+END IhBPlanung;
+TOPIC IhBBetrieb =
+----
+
+DEPENDS ON IlisTour.IhBBergbahnen;
+[source,interlis]
+----
+CLASS Betriebsentscheid =
+----
+
+Zeitpunkt: INTERLIS.XMLDateTime;
+Entscheid: (ja, nein);
+[source,interlis]
+----
+END Betriebsentscheid;
+ASSOCIATION =
+----
+
+Bahn (EXTERNAL) -<#> {1} IlisTour.IhBBergbahnen.IhBBergbahn;
+Betriebsentscheid -- {*} Betriebsentscheid;
+END;
+
+<!-- Seite 40 -->
+40 Modellieren raumbezogener Daten
+[source,interlis]
+----
+END IhBBetrieb;
+TOPIC IhBAktuell =
+----
+
+DEPENDS ON IlisTour.IhBBergbahnen;
+Strukturen
+→ 6.10
+[source,interlis]
+----
+STRUCTURE Windangabe =
+----
+
+Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+Windgeschwindigkeit: MANDATORY 0 .. 200 [Units.kmh];
+Zyklische Aufzählungen
+[source,interlis]
+----
+END Windangabe;
+----
+
+→ 6.3.1
+[source,interlis]
+----
+CLASS Zustandsmeldung =
+----
+
+!! Die Temperatur ist in Grad Celsius angegeben. Diese
+Fakultative und obligato-
+!! Einheit wird vom *INTERLIS*-Einheitenmodell (Units)
+rische Attribute → 6.5
+!! definiert. MANDATORY besagt, dass die Temperatur
+!! bekannt sein muss.
+Temperatur: MANDATORY -50 .. 50 [Units.oC];
+!! Das Attribut Wind bezieht sich auf obige Struktur
+!! Windangabe.
+Wind: Windangabe;
+Wartezeit: Ahland.ZeitdauerInMinuten;
+Erfasst: MANDATORY *INTERLIS*.XMLDateTime;
+[source,interlis]
+----
+END Zustandsmeldung;
+ASSOCIATION =
+----
+
+Bahn (EXTERNAL) -<#> {1} IlisTour.IhBBergbahnen.IhBBergbahn;
+Zustandsmeldung -- {*} Zustandsmeldung;
+END;
+[source,interlis]
+----
+END IhBAktuell;
+TOPIC Pisten =
+----
+
+Aufzählungen → 6.3.1
+[source,interlis]
+----
+CLASS Piste =
+----
+
+Schwierigkeitsgrad: (blau, rot, schwarz: FINAL) ORDERED;
+Verlauf: AhlandLinieGerichtet;
+Linien → 6.9
+[source,interlis]
+----
+END Piste;
+END Pisten;
+TOPIC Pistenzustaende =
+CLASS Pistenzustand =
+----
+
+PraeparierteFlaeche: AhlandGebietseinteilung;
+Gebietseinteilung → 6.9.4
+[source,interlis]
+----
+END Pistenzustand;
+END Pistenzustaende;
+END IlisTour.
+== 4.3 Transferdaten
+
+----
+
+Wollen die Ilistaler ihre gesamten Daten an den nationalen Tourismusverband schicken,
+erstellen sie (mit ihrem Softwarepaket) eine Transferdatei. Diese wird zwar normalerweise
+
+<!-- Seite 41 -->
+4. Das Beispiel Ilistal konkret 41
+von einem anderen Computersystem eingelesen und muss nicht in dieser Form von einem
+Menschen betrachtet werden. Dennoch ist ein kleiner Teil der Transferdatei nachfolgend
+abgedruckt, um eine Vorstellung von ihrem Aufbau zu vermitteln.
+Drei Punkte (...) zeigen die Auslassungen an; die Kästchen rechts sind lediglich Anmer-
+kungen und gehören nicht zur Transferdatei.
+image::kap4-001.png[]
+.Abbildung 22: Die Bergbahnen auf das Ilishorn sind ein Teil der Daten, die in einer Transferdatei
+enthalten sind (Wiederholung von Abbildung 11). Die nachfolgende Datei enthält
+einige Daten für den Ponylift Ilisdorf.
+<?xml version="1.0" encoding="utf-8"?>
+Vorspann
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
+<HEADERSECTION VERSION="2.3" SENDER="AHTOUIHB0">
+<ALIAS>...</ALIAS>
+</HEADERSECTION>
+<DATASECTION>
+<BASKET BID="xAHTOUIHB01234567" TOPICS="IliTour.IhBBergbahnen">
+<IlisTour.IhBBergbahnen.IhBBergbahn TID="xAHTOUIHB04231336">
+<Namen>
+<NatTour.Bezeichnung> Namen
+<Name>Ponylift Ilisdorf</Name>
+<Sprache>de</Sprache>
+</NatTour.Bezeichnung>
+</Namen>
+<LageTalstation>
+<P> Lage der Talstation
+<C1>7931.11</C1>
+<C2>13171.23</C2>
+<C3>1771.34</C3>
+</P>
+</LageTalstation>
+<LageBergstation>
+<P>
+Lage der Bergstation
+<C1>8020.60</C1>
+<C2>13188.62</C2>
+<C3>1789.04</C3>
+</P>
+</LageBergstation>
+Fahrzeit
+
+<!-- Seite 42 -->
+42 Modellieren raumbezogener Daten
+<Fahrzeit>
+<Ahland.ZeitdauerInMinuten>
+<Dauer>3</Dauer>
+</Ahland.ZeitdauerInMinuten>
+</Fahrzeit>
+Art
+<Art>Skilift</Art>
+<LageTalstationWGS>
+<P>
+<C1>23.68611</C1>
+<C2>44.20278</C2>
+Lage Talstation (WGS84)
+<C3>1771.34</C3>
+</P>
+</LageTalstationWGS>
+<LageBergstationWGS>
+<P>...</P>
+</LageBergstationWGS>
+Bild von der Bergstation
+<BildBergstation>
+http://www.ilishornbahnen.com/webcam?bahn=pony4
+</BildBergstation>
+<Trasseeverlauf>...</Trasseeverlauf>
+<WandererSchlittler>ungeeignet</WandererSchlittler>
+<Betriebszeit>...</Betriebszeit>
+<Betriebsentscheid>...</Betriebsentscheid>
+<Zustandsmeldung>
+Zustandsmeldung
+<Ilistour.IhBAktuell.Zustandsmeldung>
+<Temperatur>13</Temperatur>
+<Wind>
+<Ilistour.IhBAktuell.Windangabe>
+<Windrichtung>NE</Windrichtung>
+<Windgeschwindigkeit>13</Windgeschwindigkeit>
+</Ilistour.IhBAktuell.Windangabe>
+</Wind>
+<Wartezeit>
+<Ahland.ZeitdauerInMinuten>
+<Dauer>8</Dauer>
+</Ahland.ZeitdauerInMinuten>
+</Wartezeit>
+<Erfasst>2002-11-25T15:11:00</Erfasst>
+</Ilistour.IhBAktuell.Zustandsmeldung>
+</Zustandsmeldung>
+</IlisTour.IhBBergbahnen.IhBBergbahn>
+</BASKET>
+</DATASECTION>
+</TRANSFER>

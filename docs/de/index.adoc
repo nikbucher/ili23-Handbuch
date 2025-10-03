@@ -1,0 +1,56 @@
+= INTERLIS 2.3 Handbuch
+:toc: left
+:toc-title: Inhalt
+:toclevels: 2
+:source-highlighter: highlight.js
+:sectnums:
+:sectnumlevels: 3
+:sectlinks:
+:sectanchors:
+:lang: de
+:icons: font
+:imagesdir: img
+
+[discrete]
+== Über dieses Handbuch
+
+Dieses Handbuch bietet eine Einführung in die Modellierung raumbezogener Daten unter Berücksichtigung von UML und INTERLIS 2.3.
+
+.Autoren
+* Joseph Dorfschmid (do@adasys.ch)
+* Sascha Brawer (sb@adasys.ch)
+
+.Herausgeber
+Koordination, Geo-Information und Services (KOGIS) +
+c/o swisstopo, Bundesamt für Landestopografie +
+Seftigenstrasse 264, CH – 3084 Wabern +
+https://www.kogis.ch
+
+include::01_lektüre_zwischen_dichtung_und_wahrheit.adoc[]
+
+include::02_überblick_am_beispiel_ilistal.adoc[]
+
+include::03_möglichkeiten_zur_beschreibung_von_daten.adoc[]
+
+include::04_das_beispiel_ilistal_konkret.adoc[]
+
+include::05_erben_wird_mode.adoc[]
+
+include::06_das_datenmodell_unter_der_lupe.adoc[]
+
+include::07_die_ilistaler_systeme_im_blickfeld.adoc[]
+
+include::08_die_ilistaler_daten_unterwegs.adoc[]
+
+include::09_datenmodellierung_über_das_ilistal_hinaus.adoc[]
+
+include::10_schlussbericht_für_behörden_und_management.adoc[]
+
+== Downloads
+
+* link:../assets/pdf/ili23_handbuch_de.pdf[PDF Version herunterladen]
+
+== Weiterführende Links
+
+* https://www.interlis.ch[INTERLIS Webseite]
+* https://www.kogis.ch[KOGIS - Koordination, Geo-Information und Services]

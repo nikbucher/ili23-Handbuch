@@ -1,0 +1,17 @@
+# Hidden files (but keep important ones)
+.*
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.github/
+
+/tools
+
+# Temporary files
+*.tmp
+*.temp
+*~
+*.db
+
+# Log files
+*.log

@@ -1,0 +1,102 @@
+name: Deploy INTERLIS 2.3 Handbuch
+
+# Controls when the action will run
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+# A workflow run is made up of one or more jobs
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v4
+
+    # Build German version (main language)
+    - name: Build German Documentation
+      uses: manoelcampos/asciidoctor-ghpages-action@v2
+      with:
+        # Main input document
+        input_doc: index.adoc
+        # AsciiDoctor parameters for optimal output
+        asciidoctor_params: >
+          --attribute=lang=de
+          --attribute=toc=left
+          --attribute=toc-title=Inhalt
+          --attribute=toclevels=3
+          --attribute=sectnums
+          --attribute=sectnumlevels=3
+          --attribute=source-highlighter=highlight.js
+          --attribute=icons=font
+          --attribute=nofooter
+          --attribute=reproducible
+        # Source directory contains German docs
+        source_dir: docs/de/
+        # Disable PDF generation
+        pdf_build: false
+        # Optional: Pre-build script for asset copying
+        pre_build: |
+          echo "Preparing assets..."
+          mkdir -p docs/de/assets
+          cp -r docs/assets/* docs/de/assets/ 2>/dev/null || true
+        # Post-build script for multi-language setup
+        post_build: |
+          echo "Setting up multi-language structure..."
+          # Copy German build to de subdirectory
+          mkdir -p gh-pages/de
+          cp -r * gh-pages/de/ 2>/dev/null || true
+
+          # Create language selector index
+          cat > gh-pages/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="de">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>INTERLIS 2.3 Handbuch</title>
+              <style>
+                  body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+                  .language-selector { text-align: center; margin: 40px 0; }
+                  .language-option { display: inline-block; margin: 10px; padding: 15px 30px;
+                                    background: #007cba; color: white; text-decoration: none;
+                                    border-radius: 5px; font-size: 18px; }
+                  .language-option:hover { background: #005a87; }
+                  .description { text-align: center; color: #666; margin-bottom: 30px; }
+                  .footer { text-align: center; margin-top: 50px; font-size: 14px; color: #999; }
+              </style>
+          </head>
+          <body>
+              <h1>INTERLIS 2.3 Handbuch</h1>
+              <p class="description">
+                  Modellieren raumbezogener Daten - Eine Einführung unter Berücksichtigung von UML und INTERLIS
+              </p>
+
+              <div class="language-selector">
+                  <a href="de/" class="language-option">🇩🇪 Deutsch</a>
+                  <!-- Future languages: -->
+                  <!-- <a href="fr/" class="language-option">🇫🇷 Français</a> -->
+                  <!-- <a href="it/" class="language-option">🇮🇹 Italiano</a> -->
+                  <!-- <a href="en/" class="language-option">🇬🇧 English</a> -->
+              </div>
+
+              <div class="footer">
+                  <p>Herausgeber: KOGIS - Koordination, Geo-Information und Services<br>
+                  <a href="https://www.kogis.ch">www.kogis.ch</a></p>
+              </div>
+          </body>
+          </html>
+          EOF
+
+          echo "Multi-language setup completed"
+          echo "Built site structure:"
+          find gh-pages -type f -name "*.html" | head -10
+
+        # Slide generation disabled
+        slides_build: false

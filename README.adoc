@@ -1,0 +1,58 @@
+ifndef::env-github[:toc: left]
+:toc-title: Inhalt
+:toclevels: 3
+:figure-caption: Figur
+:example-caption!:
+:table-caption: Tabelle
+:note-caption: Hinweis
+:source-highlighter: highlight.js
+:lang: de
+
+= INTERLIS 2.3 Handbuch
+:revdate: {docdate}
+:revnumber: 1.0.0
+
+// Die Verweise auf die Inhalte der Dokumentation sollen im README auf Github nicht angezeigt werden.
+ifndef::env-github[]
+include::docs/de/index.adoc[leveloffset=+1]
+endif::[]
+
+// Erklärung und Link auf Website
+ifdef::env-github[]
+
+== Über dieses Repository
+
+In diesem Repository wird die Online-Version des INTERLIS 2.3 Handbuchs **"Modellieren raumbezogener Daten"** gepflegt. Das Handbuch bietet eine umfassende Einführung in die Modellierung raumbezogener Daten unter Berücksichtigung von UML und INTERLIS.
+
+Die aktuelle Website ist unter https://nikbucher.github.io/ili23-Handbuch/ erreichbar.
+
+=== Autoren und Herausgeber
+
+**Autoren:**
+* Joseph Dorfschmid (do@adasys.ch)
+* Sascha Brawer (sb@adasys.ch)
+* Adasys AG, Dörflistrasse 67, CH – 8050 Zürich
+
+**Herausgeber:**
+Koordination, Geo-Information und Services (KOGIS) +
+c/o swisstopo, Bundesamt für Landestopografie +
+Seftigenstrasse 264, CH – 3084 Wabern +
+https://www.kogis.ch
+
+=== Beitrag leisten
+
+Ergänzungen und Korrekturen bitte als Issue oder Pull Request erfassen.
+
+=== Download
+
+* 📖 **Online lesen:** https://nikbucher.github.io/ili23-Handbuch/
+* 📄 **PDF herunterladen:** link:docs/assets/pdf/ili23_handbuch_de.pdf[Original-PDF]
+* 🌐 **Original-Quelle:** https://www.interlis.ch/download/interlis2/ili23_handbuch_final_d.pdf
+
+=== Weiterführende Links
+
+* https://www.interlis.ch[INTERLIS Webseite]
+* https://www.kogis.ch[KOGIS - Koordination, Geo-Information und Services]
+* https://geostandards-ch.github.io/doc_refhb24/[INTERLIS 2.4 Referenzhandbuch]
+
+endif::[]

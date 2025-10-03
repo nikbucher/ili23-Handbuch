@@ -1,0 +1,261 @@
+// Kapitel 10: Schlussbericht für Behörden und Management
+[[kapitel-10]]
+== Schlussbericht für Behörden und Management
+
+
+
+<!-- Seite 115 -->
+10. Schlussbericht für Behörden und Management 115
+10. Schlussbericht für Behörden und Management
+Natürlich hat man das gute Funktionieren der neuen Lösung im Ilistal gebührend gefeiert.
+Die Gemeindepräsidentin legte aber Wert darauf, über die technischen Dinge doch etwas
+genauer Bescheid zu wissen. Was hat zum Erfolg beigetragen? Warum konnte man die gan-
+ze Aufgabe unter Beibehaltung der bisherigen Systeme lösen? Warum wird die Gefahr als
+klein eingeschätzt, dass eine grosse Überarbeitung nötig ist, wenn eines der beteiligten
+Systeme durch etwas Neues ersetzt wird? Zur Vorbereitung ihrer kurzen Ansprache hat sie
+darum den Bericht gelesen, den der Bausekretär und der technische Leiter der Ilishorn-
+bahnen verfasst haben.
+* * * * *
+
+I. Erinnerungen an den Startschuss
+Noch ist die Startpräsentation, wie man sich eine neue Ilistaler Webpage vorstellen könnte, in
+bester Erinnerung. Nach einigen imposanten Demonstrationen geriet man sich fast in die
+Haare. Zum Glück waren verschiedene Fachleute anwesend. Sonst hätten wir Laien gar
+nicht gemerkt, wie kontrovers die Meinungen unter den Fachleuten sind, wie schlecht
+Argumente und Gegenargumente – oder besser Schlagworte und Gegenschlagworte –
+wirklich zusammenpassen. Dank der Diskussion, die fast zu einem Disput wurde, sind wir
+hellhörig geworden.
+II. Sachen, Abbilder und der Zahn der Zeit
+Der Beizug eines weiteren Fachmanns hat sich gelohnt. Die ersten Gespräche waren dann
+zwar etwas überraschend. Technische Schlagworte fehlten oder wurden wieder vom Tisch
+gefegt. Dafür folgte eine gründliche Auseinandersetzung mit der Sache.
+Erste Erkenntnis: Sache ist nicht, was im Computer drinnen steckt oder gar, was er als
+Bilder, Tabellen und andere Präsentationen ausspuckt, sondern was in der Realität existiert
+und passiert.
+Das, was im Computer drin ist, kann mit einem Holzmodell oder einem Sandkasten
+verglichen werden. Die Fotos, die wir davon aus verschiedenen Richtungen und mit
+verschiedener Beleuchtung machen, können mit dem Bildschirm oder mit Ausdrucken
+verglichen werden. Und eines ist ja auch bei Holzmodellen oder Sandkasten offensichtlich:
+Die Realität zum ersten Mal abzubilden ist eine Riesenarbeit. Bis da all die Häuser, Strassen,
+Bahnen, die in der Realität existieren, auch im Abbild in vereinfachter Form aufgebaut sind!
+Noch schlimmer als die Ersterfassung ist dann die Nachführung: Schon nach kurzer Zeit
+müssen Änderungen gemacht werden, um das Abbild aktuell zu halten. Und der Zahn der
+Zeit nagt an den Sand- und Gipsstrukturen. Da hat man es mit dem Computer schon besser!
+
+<!-- Seite 116 -->
+116 Modellieren raumbezogener Daten
+Natürlich muss auch hier nachgetragen werden, wenn sich die Realität ändert, aber
+wenigstens veralten die verbleibenden Informationen nicht.
+Wirklich? Nein, wirklich nicht so schnell wie im Sandkasten. Aber nach wenigen Jahren
+möchten wir wieder einen neuen, leistungsfähigeren Computer kaufen, und nach nochmals
+etwas längerer Zeit ist auch die Software für die Bearbeitung nicht das Beste, was es gibt.
+Man möchte neue Programme einsetzen. Und wie bringt man jetzt das elektronische Abbild
+der Realität vom alten System aufs Neue? Wie bringt man quasi den Sand vom alten in den
+neuen Sandkasten, ohne dass er zwischen den Händen zerrieselt und das Werk neu aufge-
+baut werden muss?
+III. Systemunabhängige Beschreibung der Struktur der Daten
+Damit man elektronische Abbilder der Realität – also Daten – von einem System auf ein
+anderes übertragen kann, braucht es klare Vorstellungen darüber, wie die Daten aussehen,
+wie sie strukturiert sind. Die Knacknuss dabei: Auch diese Strukturbeschreibungen müssen
+unabhängig von konkreten Systemen sein. Sie müssen so gemacht sein, dass sie von den
+Anwendungsfachleuten und von den technischen Fachleuten aller beteiligtenrStellen gleich
+interpretiert und verstanden werden. Im idealen Fall ist die Beschreibung sogar so
+aufgebaut, dass nicht nur Menschen, sondern auch Computerprogramme etwas damit an-
+fangen können. Es braucht ein formalisiertes Esperanto der Datenbeschreibung.
+In der Alltagssprache ist Esperanto ohne Bedeutung geblieben. Das Lebendigere, vielleicht
+auch das für den Stärkeren Bequemere hat sich durchgesetzt. Im technischen Bereich liegt
+die Sache aber etwas anders: Wer sich nicht um Systemunabhängigkeit bemüht, wird von
+Systemen abhängig. Und Systeme sind nun einmal relativ kurzlebig. Daher hat sich die Er-
+kenntnis, dass es ein Esperanto im Sinne von systemunabhängigen Normen braucht, trotz
+vieler De-facto-Standards etabliert. Mit der Unified Modeling Language (*UML*) hat eine
+graphische Sprache im Bereich der Datenmodellierung weltweit eine recht grosse
+Verbreitung gefunden.
+In intensiven Gesprächen wurde ein Modell der Realität entworfen. Dabei galt es zunächst
+zu klären, welches überhaupt die massgeblichen Gegenstände sind, wie man sie am ver-
+ständlichsten benennt, wie sie zueinander in Beziehung stehen und welche weiteren Eigen-
+schaften sie haben. Das Protokoll dieser Gespräche hielt die Erkenntnisse immer in der
+*UML*-Bildersprache fest und ergänzte sie mit Erklärungen und Kommentaren. Da es sich
+zeigte, dass die Bilder durch viele Details überladen werden und zum Teil auch nicht die
+nötige Präzision aufweisen konnten, wurde mit *INTERLIS* noch ein zusätzliches Beschrei-
+bungsmittel eingesetzt: Ähnlich wie in einer Programmiersprache können damit die Daten-
+strukturen präzis beschrieben werden.
+Eine wichtige Eigenschaft, die durch *UML* und *INTERLIS* 2 unterstützt wird, besteht darin,
+dass auch Datenbeschreibungen, die anderswo gemacht wurden, genutzt werden können.
+So konnte man von Festlegungen der amtlichen Vermessung profitieren, zum Beispiel bei
+den Gebäudeadressen. Die Datenbeschreibung des nationalen Tourismusverbandes wurden
+nicht nur genutzt, sondern zusätzlich auch entsprechend den lokalen Bedürfnissen ergänzt.
+
+<!-- Seite 117 -->
+10. Schlussbericht für Behörden und Management 117
+IV. Systemunabhängiger Datentransfer
+Ähnlich wie bei der Beschreibung der Struktur der Daten verhält es sich mit den Daten
+selbst. Es braucht also nicht nur eine Norm für die Datenbeschreibung, sondern auch eine
+Norm für den Datentransfer. Beim Übertragen der Daten von einem System auf ein anderes
+wird quasi Esperanto gesprochen, innerhalb der einzelnen Systeme dagegen die jeweilige
+Muttersprache.
+Nachdem man sich so intensiv mit dem Aufbau der Daten auseinandergesetzt hat, möchte
+man sich eigentlich nicht mehr um diese Details kümmern. Hier hat sich der Einsatz von
+[source,interlis]
+----
+INTERLIS gleich nochmals gelohnt: Mit der Beschreibung der Datenstruktur ist nämlich auch
+----
+
+gleich festgelegt, wie die zugehörigen Daten transferiert werden.
+Wichtig ist dabei, dass die Datenbeschreibung nicht nur von Menschen gelesen und
+verstanden werden kann. Wegen der formalen Sprachdefinition kann sie auch durch Com-
+puterprogramme gelesen werden. Aufgrund von Datenbeschreibung und Transferregeln ist
+klar, wie in der Folge der Datentransfer aufgebaut sein muss.
+V. Unterschiedliche Auswirkungen auf die beteiligten Systeme
+Im Rahmen der Gesamtlösung wurden verschiedene Computersysteme eingesetzt. Ins-
+besondere konnten die bisherigen Systeme weiterhin genutzt werden. *UML* und *INTERLIS*
+schreiben nämlich nicht vor, wie die Systeme aufgebaut sein sollen, sondern nur, wie die
+Daten letztlich geliefert werden, damit sie der konzeptuellen Vorstellung entsprechen.
+Das System des Bauamtes war direkt in der Lage, die zu transferierenden Daten zu erstellen
+und empfangene Daten zu lesen. Beim System der Ilishornbahnen wurde ein Konverter
+eingesetzt, also ein Programm, welches die system-spezifischen Daten in ein neutrales
+Transferformat umsetzte. Bei den kleinen Erfassungssystemen an den Talstationen konnte
+mit einfachsten Programmen dafür gesorgt werden, dass auf Grund der Messung jeweils ein
+korrekter Datensatz als inkrementelle Nachlieferung an die Zentrale gesendet wird.
+Interessant ist auch ein Blick auf das System des nationalen Verbandes. Diesem konnten
+nämlich Dateien geschickt werden, die auch die durch uns definierten Zusätze enthalten.
+Dank dem Prinzip des polymorphen Lesens störte das überhaupt nicht.
+Ein Grund, dass dies alles möglich war, lag wohl auch daran, dass *INTERLIS* 2 auf dem
+internationalen Standard der Extensible Markup Language (*XML*) aufbaut.
+VI. Ausblick
+Auf Grund der gemachten Erfahrungen mit all den beteiligten Systemen sind wir zuversicht-
+lich, dass auch neue Wünsche und neue Systeme in unsere Lösung integriert werden kön-
+nen, ohne das Ganze zu gefährden. Damit können wir ein wichtiges Ziel erreichen: Unsere
+Lösungen sind keine Eintagsfliegen, sondern nachhaltig.
+* * * * *
+
+Die Gemeindepräsidentin flocht die wichtigsten Dinge in ihr Referat ein und erkannte richtig,
+dass der technische Erfolg nicht zuletzt dank der anfänglichen Distanz zur Technik zustande
+kam. Und beim Apéro freute sie sich insgeheim ganz besonders: Sie hatte wieder einmal
+
+<!-- Seite 118 -->
+118 Modellieren raumbezogener Daten
+eine gute Nase gehabt, als sie sich damals bei der ersten Präsentation im Gemeindehaus an
+das Gespräch mit ihrer Kollegin erinnerte und sich für ein sorgfältiges Vorgehen entschloss.
+
+<!-- Seite 119 -->
+Register 119
+Register
+Verweise auf das ausführliche Beispiel in Kapitel 4 sind in Schrägschrift gesetzt.
+und Vererbung....................83
+A Bézierkurve...........................103 F
+Bezugssystem
+Abstrakt.............................35, 46 von Koordinaten..................65 Feld.........................................13
+Adresse...........................29, 116 von Zeitpunkten..................77 Fläche.....................................67
+auf dem Internet......Siehe URI Bildungsgesetz..........Siehe Sicht Fliesskommazahl.....................51
+Aggregation.............................97 Booch......................................27 Föderalismus.............28, 47, 117
+bei Beziehungen...........35, 79 Funktion..........................37, 102
+bei Sichten..........................97 C
+Allgemeiner FallSiehe Vererbung G
+Amtliche Vermessung......29, 116 Codierung................................24
+Area.......Siehe Gebietseinteilung Compiler....................30, 99, 109 Ganzzahl.................................51
+Arten..................................35, 53 Gebietseinteilung...............40, 68
+Assoziation........................35, 79 D Genauigkeit
+Attribut.....................................13 von Linien...................66, 104
+bei Beziehungen.................80 Datenaustausch...Siehe Transfer von numerischen Werten....52
+fakultativ.............................57 Datenbeschreibung.................27 Geoid.......................................62
+obligatorisch.......................57 Datenmodell.....................11, 115 Geradenstück..................66, 103
+Attributtyp............Siehe Datentyp Darstellung..........................27 GML........................................30
+Aufbau auf Vorhandenem........17 mehrsprachig......................99 Grafik.......................................25
+Aufschlüsselung......................97 standardisiert................29, 93 Grössenordnung......................51
+Aufzählung........................35, 54 Datensatz................................12
+abgeschlossen....................56 Datentyp......................14, 32, 58 H
+geordnet.......................40, 55 geometrisch........................65
+strukturiert...........................56 numerisch.....................36, 52 Hilfspunkt..............................104
+und Vererbung..............37, 54 strukturiert...........................76 Höhe........................................62
+zyklisch.........................40, 56
+Ausprägung.............................12
+E I
+B Eigenschaft..............................13 Identifikation
+abstrakt...............................53 beim Transfer............106, 108
+Basisklasse......Siehe Vererbung erben...........Siehe Vererbung mit Attributen.......................88
+Behälter...........................92, 107 Eindeutigkeit..............34, 88, 108 Vergabe............................107
+BeschreibungSiehe Datenmodell Einheit...............................32, 52 Inkrementelle Nachlieferung....16
+Beziehung...................11, 35, 78 Einschränkung..Siehe Vererbung Inspection................................97
+abgeleitet......................38, 85 Ellipsoid...................................59 Integer.....................................51
+Aggregation........................79 Ellipsoidhöhe...........................62 Internet-Adresse..........Siehe URI
+Assoziation.........................79 Enklave...................................68 ISO 19100...............................29
+Beziehungsklasse...............36 Entitätsmenge.........................11 ISO 3166...............................107
+geordnet.............................82 Erben................Siehe Vererbung
+Komposition..................39, 79 Erweiterung......Siehe Vererbung
+J
+mehrgliedrig..................36, 81 Exemplar.................................12
+Stärke...........................79, 85 Existenzerfordernis..................90
+Join..........................................95
+themenübergreifend............92
+
+<!-- Seite 120 -->
+120 Modellieren raumbezogener Daten
+K P mit Konversionsprogramm.24,
+Kardinalität..............................13 Package..................................17 modellbasiert..............22, 117
+Klassendiagramm....................11 Paket.......................................17 polymorphes Lesen...........107
+Klothoide...............................103 Parameter.............................102 systemspezifisch.................23
+Kolonne...................................13 Plausibilität..............................87 systemunabhängig............117
+Komposition......................39, 79 Polymorphes Lesen.24, 107, 117 und Mehrsprachigkeit........109
+Konsistenzbedingung........38, 86 Polymorphismus......................47 vollständig...................16, 108
+für Stützpunkte....................91 beim Transfer......24, 107, 117 von Linien.........................104
+und Vererbung....................91 Projektion Tupel.......................................12
+Kontrakt.................................102 bei Sichten..........................95 Typ......................Siehe Datentyp
+Koordinaten.................32, 35, 58 von Koordinaten..................59
+im Raum.......................32, 62 Proxy-Objekt..........................107 Ü
+zum Etablieren von
+Beziehungen..................85 R Überlappung
+Koordinatensystem..................59 bei Flächen....................Siehe
+Kreisbogen......................66, 104 Radius...................................104 Gebietseinteilung
+Real (Fliesskommazahl)..........51 bei Linien............................66
+L Replikat.................................107
+Richtung..................................64 U
+Leitungsnetz............................29 Rolle..................................35, 78
+Linie........................................65 Umlaute...................................24
+Aufbau..................66, 72, 103 S Undefiniertheit.........................57
+gerichtet..............................67 Unified Modeling Language....27,
+im Raum.............................69 Schema.........Siehe Datenmodell 116
+speziell geformt.................103 Schwerehöhe..........................62 *UML*-Editor..........................30
+Segment..................................66 Union.......................................97
+M Sicht............................25, 38, 93 Unteraufzählung......................56
+Aufschlüsselung..................97 Unterklasse......Siehe Vererbung
+Mehrfachvererbung.................49 Bildungsgesetz...................94 URI....................................38, 57
+Mehrsprachigkeit.....................72 schrittweiser Aufbau............97
+bei Objekteigenschaften.....34 und Vererbung....................98 V
+beim Transfer....................109 Verbindung..........................95
+von Datenmodellen.............99 Vereinigung.........................97 Verbindung..............................95
+Metadaten...............................60 Zusammenfassung.............97 Vereinigung.............................97
+Modell............Siehe Datenmodell Spezialfall.........Siehe Vererbung Vererbung
+Modellbasierter Ansatz............30 Spline....................................103 im Grossen...................20, 47
+Modul......................................17 Stellvertreter..........................107 mehrfach.............................49
+Struktur....................................71 Prinzipien............................43
+N als Aufschlüsselung............97 übertrieben detailliert..........44
+als Zusammenfassung........97 von Aufzählungen.........37, 55
+Nachführung..........................115 und Vererbung....................71 von Beziehungen................83
+Nachhaltigkeit........................106 Subklasse.........Siehe Vererbung von Konsistenzbedingungen
+Nachlieferung..........................16 Superklasse......Siehe Vererbung .......................................91
+Numerischer Datentyp.......36, 52 Systemneutralität...................101 von numerischen
+Wertebereichen..............52
+O T von Sichten.........................98
+von Strukturen.....................71
+Oberklasse.......Siehe Vererbung Tabelle.....................................11 von Themen..................20, 47
+Object Management Group.....30 Text....................................34, 57 Verknüpfung.....Siehe Beziehung
+Objekt......................................12 Thema...............................19, 91 Vermessung....................29, 116
+Objektidentifikation.............Siehe Topic.......................Siehe Thema Verträglichkeit..........................47
+Identifikation Transfer...........................16, 105 Verweis.............Siehe Beziehung
+Objektkatalog..........................11 an übergeordnete Stellen....24 View..........................Siehe Sicht
+Objektklasse............................11 der Beispieldaten................41 Volltransfer..............................16
+OMG........................................30 Format................................22
+OMT........................................27 Identifikation......................106 W
+OOSE......................................27 inkrementell..............107, 108
+Währung..........................52, 102
+
+<!-- Seite 121 -->
+Register 121
+Wertebereich...............14, 32, 58 X Zeichenkette......................34, 57
+geometrisch........................65 Zeichenvorrat..........................24
+numerisch.....................36, 52 *XML*.........................29, 105, 117 Zeiger...............Siehe Beziehung
+strukturiert...........................76 Zeitdauer.....................33, 35, 74
+Winkel.....................................64 Zeitpunkt...........................33, 77
+Z
+Zusammenfassung..................97
+Zeichencodierung....................24
