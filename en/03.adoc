@@ -1,0 +1,59 @@
+[#_3]
+== Possibilities for the description of data
+
+[#_3_1]
+=== Description as a graphic: The Unified Modeling Language UML
+
+A diagram is well suited to supply oneself or others with an overview to a model. That is why in information technology already since the mid 1970's graphic notation has been used to visualize models. Though for a long time it seemed impossible to agree on a uniform representation so that dozens of notations were in use at the same time. Finally at the beginning of the 1990's three methods (Booch, OMT and OOSE) prevailed. In 1995/96 their creators, the so-called «three amigos», agreed on one single modeling language the _Unified Modeling Language (UML)_. Since 1997 UML as a standard is being administered and maintained by an industrial syndicate, the _Object Management Group_.
+
+UML is flexible and versatile. Whoever is familiar with its notation may grasp at first sight models from the most varied application ranges. By the way this language is not only suitable for the modeling of data (by means of the class diagrams presented in this paper). It also comprises elements for other aspects of a system for example the division in components or scenarios for its utilization.
+
+An important factor for the success of UML is its adaptability: For many applications this language provides a sufficient infrastructure, nevertheless at any given moment it is possible to adapt this language to your proper needs by means of clearly defined equally standardized mechanisms of extension.
+
+A visual language such as UML has its many advantages, however it is not the ideal tool for all applications. As soon as it is a matter of determining details of a large and complex model a drawing may become badly arranged and confusing. Besides, a graphic representation is rather unpractical e.g. where the arranging of computer systems is concerned. Hence in some cases a text form would be more suited: The models are formulated as a text in a standard language and thus become comprehensible for humans and computers likewise. Naturally enough the picture may still serve as a rough overview. At present suggestions for a purely textual notation of UML is being discussed, but until now no corresponding standard has been decided on.
+
+[#_3_2]
+=== Description as text: INTERLIS
+
+In Switzerland it has been known for a long time that a model-based concept has its considerable advantages. Within the scope of cadastral surveying the textual modeling language INTERLIS was developed in 1991. Towards the end of the 1990's INTERLIS 2 was drawn up, which expanded and modernized the previous version. Have a dozen of specialists out of research, administration and industry ensured that this language would meet all demands of practical operation. Furthermore great importance was attached to the support to some particularities that are a result of the application:
+
+* INTERLIS permits a precise and in the highest degree detailed description of data models. Hence an INTERLIS-model may directly become a component of an advertisement text, a contract or a decree and it is also possible to configure a program package based on an INTERLIS-model.
+* INTERLIS does not only comprise a language for the modeling of data but also a procedure which permits the derivation of a transfer format for the exchange of the modeled data from a model. This is of major importance because the collection of geographical data is extremely costly and hence very valuable. Furthermore their life span comprises decades, in other words it is distinctly longer than that of information technology systems, which generally become antiquated within a few years. Such expensively collected data can only be protected if they are maintained in a form independent from a concrete program.
+* Even though it is also possible to use INTERLIS in applications without any geographical reference whatsoever it is extremely well suited to space-related data. Already at the very core of the language geometry is supported. Moreover measures have been taken that permit the automatic examination of data supplied with regard to quality and plausibility.
+* INTERLIS-data models have a clear structure: A model is divided into topics, which then comprise object classes. The description of an object class features object-properties as well as consistency and plausibility restraints. On both levels, i.e. models as well as topics, it is possible to declare commonly employed constructs (e.g. units, value domains, auxiliary structures, etc.).
+* The federalist structure of Switzerland with its 26 cantons and semi-cantons, which are further divided into administrative units, makes high demands on a modeling language. INTERLIS 2 allows all parties concerned to use one, in its essence common data model, which then is expanded and refined according to regional needs. A smooth exchange of data is guaranteed even if locally different models are being used. Moreover INTERLIS permits that models and data can be drawn up in different languages. Thus each part of the country may use its own official language.
+
+INTERLIS and UML complement one another: UML-diagrams are easy to draw and ideal for providing a rough overview. By using INTERLIS details may be captured in a precise and nevertheless easy to comprehend form, furthermore special support is offered where requirements of the federalist geodata-practice are concerned. There are tools that permit automatic conversion of UML-class diagrams into INTERLIS-descriptions. The reverse is also possible: the representation of an INTERLIS-model in UML-notation may take place automatically.
+
+[#_3_3]
+=== Standardized data models
+
+There is little sense in establishing each data model completely from scratch. On the contrary predefined models can be used and refined. At different levels models have been and continue to be developed that may serve as a basis for applications:
+
+* *International* – Within the scope of international endeavors for standardization a very comprehensive model for base geometry types (ISO 19107) has been developed. Current activities aim at getting to the very core of things, which would meet the most important requirements of practical operation (ISO 19137). For this spatial concepts of several common modeling languages have been analyzed, amongst others also those of INTERLIS. For instance whoever is concerned with the modeling of surfaces of a conic section or triangular networks is well advised to read the standard documents respectively the corresponding drafts. The series ISO-19100 also comprises data models for time intervals (ISO 19108), meta data (ISO 19115), services (ISO 19119), and more. However many of these standards still remain at planning stage and little can be said about their suitability for practical operation.
+* *National* – In Switzerland standardized models exist for several fields of application. To some extent their use is prescribed in laws and regulations. Nation-wide valid models have been worked out for cadastral surveying,  underground cadastre and recently also for geo-coded addresses.
+* *Trade associations* – Trade associations are a further source of data models that serve as a basis for your own applications. For instance the Swiss Association of Engineers and Architects has developed an INTERLIS-model for the recording and registering of utility services (waste water, gas, water, electricity, telecom, cable communication).
+* *INTERLIS* – INTERLIS predefines standard models for a few basic domains. For instance along with the INTERLIS-tools a model with units (units.ili) is supplied which defines meters, Newton, decibel etc.
+
+As far as possible Swiss models are in keeping with ISO-standards. For example a national model for meta data concerning geographical data (e.g. origin, quality etc.) has been developed in accordance with ISO 19115. This model exists in the form of an INTERLIS-description.
+
+Thanks to INTERLIS and its refinement–mechanisms a concrete application may fall back on an already existing data model without having to accept it _as it is_.
+
+[#_3_4]
+=== Formats for data exchange
+
+At some point all data have to be memorized in a specific format so that they can be stored and exchanged between software packages. More recent transfer formats are all based upon the _Extensible Markup Language_ (XML), a widespread format because of its extremely simple structure, its affinity with HTML (the format of web sites) and its derivation from SGML (a formerly frequently used format).
+
+For instance the _Geographic Markup Language_ (GML) is a strictly defined XML dialect propagated by OpenGIS, a manufacturer consortium of GIS-Software. INTERLIS, on the contrary, does not prescribe any specific XML dialect but supplies rules that allow the automatic derivation of an exchange format from the respective data model.
+
+All things considered the question of the data format is secondary: As long as data to be transmitted are based upon similar models their conversion from one format into another requires little effort.
+
+[#_3_5]
+=== Important sources of information
+
+Amongst others the following sources may provide further information:
+
+* *http://www.interlis.ch[www.interlis.ch]* – The Internet portal to INTERLIS refers to documents, courses etc. in connection with INTERLIS. From the same address both the specification of this standard and the present text can be obtained electronically. Last but not least tools are also available on this web site. At present this is a computer program that permits the editing of INTERLIS-models in the graphic UML-notation («UML-Editor»), and a software library for the input, testing, altering and output of INTERLIS-models («INTERLIS-Compiler»).
+* *http://www.omg.org[www.omg.org]* – The web site of the Object Management Group supplies the definition of the Unified Modeling Language. You may also find general documents (such as training materials or press texts) concerned with the model-based approach.
+* *http://www.w3.org/[www.w3.org]* – Amongst others the _World Wide Web Consortium_ also supervises the specification of XML.
+

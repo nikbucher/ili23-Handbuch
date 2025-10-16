@@ -1,0 +1,62 @@
+[#_9]
+== Data modeling beyond Ilis Valley
+
+While in the preceding chapters we have examined many details of data modeling, this chapter takes up some of the more fundamental aspects. So its lecture might even be of interest to those who do not want to deal with full particulars.
+
+[#_9_1]
+=== There are many routes up to Mount Ilis – The correct model does not exist
+
+In Ilis Valley they are quite aware of the fact that their model is not above all criticism. Since in reality Ilis Valley does not exist we have not bothered to question the model again and again from different angels. It was our primary intention to introduce the different aspects of modeling and their corresponding tools.
+
+Nevertheless with every model the question arises: Is this model correct? Or actually the question might rather be: Is this model good enough?
+
+It is clearly short sighted to consider a model correct or good if it formally meets all the requirements of the description language. Just because a model is accepted by the INTERLIS-compiler does not mean that it is in actual fact good.
+
+Going by the proverb «Many roads lead to Rome» – or in our case to Mount Ilis – is more to the point. Evidently there are many possibilities of modeling one specific circumstance. But not every possible model is as satisfactory as another. After all there are also wide, narrow, steep, passable, rough and scenic paths up to Mount Ilis. Today the best way may be different from the one we took yesterday. Needs, opinions and criticisms can vary.
+
+In the following paragraphs we look at different verdict criteria for the modeling of data.
+
+[#_9_2]
+=== Mount Ilis seen from different angles – Original data and views
+
+If we only go by our immediate needs when modeling, we run the risk of collecting data in an unsuitable way. For instance it is not suitable to use the age of a person as an attribute since it will change continuously. It is preferable to define the date of birth as an attribute and then to derive the age by means of a view from the date of birth and the current date (cf. paragraph link:file:///Users/niklaus.bucher/dev/github/nikbucher/ili23-Handbuch/originale/6.17.2[6.17.2]).
+
+If the structure of a data model corresponds to the actual facts rather than to a certain point of view, we are more flexible with regard to concrete uses that can be derived from the original data. These data will contain Mount Ilis rather than the view from Ilis Ville or Ilis Bath. These and various other perspectives can be derived as views from our data.
+
+Sometimes the derivation of desirable views from «ideally» modeled data can be quite demanding. Above all views containing, die formation laws with geometrical calculations are not always easy to realize. The decision when to swerve from virtue and to adjust a data model to a view is not always an easy one and in general depends on various criteria. Even if you decide on a model that does not describe the actual data but a view on them, it is worthwhile considering which would be the «nice» model. It will be easier to return to this model at a given time and thus to overcome the disadvantages of a view-oriented model.
+
+The biggest disadvantage of a view-oriented model will become apparent in the collecting and above all in the up dating of data. For instance if for every house entrance we state the street name, the house number, the zip-code and town as a direct attribute, there is a certain risk that mistakes occur e.g. due to different spelling. Furthermore this in a major way increases the costs of collecting data. Worse still when it gets to incremental update, for instance if the new settlement Ilis Mill will be introduced as a village with its own zip code and the lower part of Ilis Ville will be classed with this new village. Do all house entrances have to be muted It would be much better if this new village with its validity domain could be introduced and then the validity domain of Ilis Ville was adjusted accordingly.
+
+Thanks to good models one modified fact in real life will lead to exactly one modification in our data. All the rest can be derived by means of views.
+
+[#_9_3]
+=== Time is ticking by at Mount Ilis – Life cycles
+
+Good, in other words adequate data models that are independent of any immediate use become more important the more durable and of general interest are the facts described by these data. Data that are intended for private purposes or for a project of clearly defined duration processed with a specific system, the data model is less important than with long-lived data.
+
+However as a rule data that describe real life are long-lived. The Mount Ilis itself only changes within geological periods. But even houses, railway companies and legal position have a life span of several years or decades. That is why real life objects will out-live the computer systems that describe their mappings.
+
+In order for these mappings of real life (i.e. the data objects) to out-live the specific computer systems (hardware and software) we need to have a clear perception of these data objects. We need a data model.
+
+This data model should be as system independent as possible because it is most likely that the next system will have different capacities. Maybe views will be generated automatically. Considering the relatively short life span of software packages, we should not be too concerned when structuring data with the present functionality of one specific software package.
+
+[#_9_4]
+=== Not seeing the wood for the trees – Degree of specification
+
+Beyond question we will not model real life as if the individual atoms that form real-life items were our data objects. That would be far too awkward. Nor should a building be composed of its individual bricks and tiles. But when do we speak of individual trees, and when of a forest without listing each tree as a data object?
+
+Of course this depends on what we want to achieve with the system. What is the use in finding the best possible model if it cannot be realized? Is the model comprehensible? Is it possible to define a dialog for both data-collection and update, which the people intended for the job, can handle?
+
+Especially in this respect a simple model whose object classes are not overly tangled up, may have a positive impact.
+
+The more complicated a model, the more important an intuitively understandable user surface becomes. In such situations it is dangerous to extend a basic model in such a way that not only attributes are added but new relationships are defined as well. There is a considerable risk that the user dialog designed for the basic model loses its elegance and comprehensibility.
+
+Once again we should keep in mind: «As simple as possible, as complex as necessary». But as we all know the adequate realization of this maxim is not quite as easy.
+
+[#_9_5]
+=== The Kurorchestra of Ilis Bath strikes up – Data modeling is tricky
+
+When drums and trumpets, violins and flutes all combine to offer us a musical treat, we tend to forget all the effort that has been put into this performance. Just imagine all these years of hard work, dating back to the first attempts on a recorder, until finally they reached the stage of virtuosity. And even now daily practice is the order, alone or with the orchestra.
+
+It is to be hoped that as much serious work goes into data modeling. Whoever wants to understand models must at least have a passive knowledge of the different instruments. Whoever wants to define models is well advised to keep on practicing until he or she is quite familiar with the effects of the instruments (classes, attribute types, relationships, inheritance etc.). Even if the result seems perfect it is worthwhile thinking it overt, obtaining other people's opinions and reconsidering it from different angles. This is the only way to achieve good models that are sufficiently simple and comprehensible to stand the test of time.
+

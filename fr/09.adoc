@@ -1,0 +1,62 @@
+[#_9]
+== La modélisation de données au-delà du Val d'Ili
+
+Après que bon nombre de questions de détail relatives à la modélisation de données ont été abordés au cours des chapitres précédents, celui-ci va se pencher sur certains aspects plus fondamentaux. En conséquence, sa lecture devrait également intéresser ceux que les détails techniques rebutent ou ne préoccupent guère.
+
+[#_9_1]
+=== Tous les chemins mènent à la Dent d'Ili – Il n'existe pas de modèle parfait
+
+Les Ilinois savent bien que leur modèle de données peut prêter le flanc à la critique. Le Val d'Ili étant par ailleurs purement imaginaire et ne servant qu'aux besoins de la cause, il n'a pas paru opportun de scruter tous les aspects du modèle de données pour en déceler les failles. L'objectif était avant tout de présenter les différentes facettes de la modélisation et les instruments développés à cette fin.
+
+Il n'en reste pas moins qu'aucun modèle ne peut échapper à la question de sa justesse, ou pour être plus précis, de sa pertinence.
+
+Il est assurément très insuffisant d'estimer qu'un modèle est correct ou exact pour la simple raison qu'il satisfait aux exigences purement formelles du language de description utilisé. L'acceptation d'un modèle par le compilateur INTERLIS ne préjuge en rien de la pertinence de son contenu.
+
+Le proverbe selon lequel « tous les chemins mènent à Rome » – ou dans le cas d'espèce, à la Dent d'Ili – reflète bien plus fidèlement la situation. Il existe manifestement de nombreuses possibilités pour modéliser un état de fait donné, ce qui ne signifie pas pour autant que tous les modèles envisageables soient de qualité égale. Toutes sortes de chemins mènent à la Dent d'Ili, certains sont larges et carrossables, d'autres étroits et cahoteux, il existe même des sentiers abrupts d'où la vue est exceptionnelle tout du long ! Et l'on ne choisit pas tous les jours le même chemin pour parvenir à sa destination. Enfin, les besoins et par suite les critères d'appréciation ne sont pas toujours identiques, eux non plus.
+
+C'est pourquoi différents critères d'appréciation d'une certaine importance pour la modélisation de données vont faire l'objet des paragraphes suivants.
+
+[#_9_2]
+=== La Dent d'Ili considérée depuis des points de vue différents – Données originales et vues
+
+Si, dans le cadre d'une modélisation de données, on se laisse guider par des besoins immédiats, il existe un risque réel que les données soient saisies d'une manière inadéquate. Il n'est par exemple pas judicieux d'envisager l'âge comme un attribut pour une personne puisqu'il change constamment. Mieux vaut définir la date de naissance comme attribut et dériver l'âge à partir de celle-ci et de la date actuelle (cf. § 6.17.2), au moyen d'une vue.
+
+Lorsque le modèle de données est constitué de telle façon qu'il corresponde à la réalité et non à une certaine vision des choses, il nous est possible de réagir avec souplesse pour les utilisations concrètes, en les dérivant des données originales. Les données contiennent alors la Dent d'Ili et non la vue que l'on en a depuis Ili-village ou Ili-les-Bains. Ces perspectives comme bien d'autres peuvent être déduites des données originales sous forme de vues.
+
+La dérivation des vues requises à partir de données modélisées de manière « idéale » peut parfois se montrer extrêmement exigeante. Les vues comprenant des lois de formation intégrant des calculs géométriques ne sont en particulier pas toujours aisées à mettre en œuvre. La décision de s'écarter du droit chemin pour orienter le modèle de données vers les vues est souvent difficile à prendre et dépend en règle générale de critères d'appréciation supplémentaires. Même si l'on opte pour un modèle ne décrivant pas les données effectives mais une vue de celles-ci, il reste judicieux de s'interroger sur ce que serait le « bon » modèle. Il est alors plus facile d'en revenir à ce modèle le moment voulu et de surmonter les inconvénients inhérents au modèle orienté vers les vues.
+
+Le principal inconvénient d'un modèle orienté vers les vues se fait jour à l'occasion de la saisie et plus encore de la mise à jour des données. Si, pour chaque entrée d'immeuble, on gère par exemple le nom de la rue, le numéro du bâtiment, le numéro postal d'acheminement et la localité comme des attributs, le risque de voir des erreurs telles que des orthographes différentes se glisser dans ces données est bien réel. Par ailleurs, le volume de travail requis par la saisie est notablement plus élevé. Et la situation ne fait qu'empirer au niveau de la mise à jour si le nouveau lotissement d'Ili-moulin est par exemple transformé en localité (dotée de son propre numéro postal d'acheminement) à laquelle les dernières maisons d'Ili-village sont rattachées. Que faire : procéder à la mutation de toutes les entrées d'immeubles concernées ? Il serait plus judicieux d'introduire la nouvelle localité avec les limites géographiques qui lui sont associées et d'adapter celles d'Ili-village en conséquence.
+
+Un modèle vraiment pertinent se distingue par le fait qu'un changement de situation dans la réalité ne conduit qu'à une seule modification dans les données. Le reste se déduit de vues.
+
+[#_9_3]
+=== Le temps produit-il son effet sur la Dent d'Ili ? – Cycles de vie
+
+Des modèles de données de qualité, autrement dit pertinents, non liés à une utilisation immédiate, sont d'autant plus importants que les situations décrites au moyen des données présentent une grande longévité et un caractère général. Dans le cas de données saisies à l'aide d'un système donné, dans l'optique d'un objectif de nature privée ou d'un projet clairement délimité, le modèle de données ne présente pas la même importance que s'il s'agit de données à longue durée de vie.
+
+Cependant, les données décrivant le monde réel se caractérisent généralement par leur longévité. La Dent d'Ili par exemple ne subit de modifications qu'à l'échelle géologique. Les bâtiments, les remontées mécaniques ou les statuts juridiques s'inscrivent dans une durée allant de quelques années à quelques décennies. Les objets du monde réel présentent donc des cycles de vie largement supérieurs à ceux des systèmes informatiques sur lesquels leurs représentations sont décrites.
+
+Pour que les représentations de la réalité, autrement dit les objets de données, aient une longévité supérieure à celle des systèmes informatiques (matériel et logiciels) sur lesquels elles sont installées, leur définition doit s'opérer avec le plus grand soin et un modèle de données est nécessaire à cette fin.
+
+Ce modèle de données doit être aussi indépendant que possible des systèmes, étant entendu que ces derniers possèdent des capacités aussi variées que différentes. La formation automatique de vues est même envisageable. Quoi qu'il en soit, les logiciels ayant une durée de vie relativement brève, il est déconseillé de se laisser trop fortement influencer par les fonctions qu'ils peuvent offrir, lors de la structuration des données.
+
+[#_9_4]
+=== Quand les arbres cachent la forêt – Degré de spécification
+
+Il serait illusoire de vouloir modéliser le monde réel de façon que les atomes composant ses éléments soient les objets de données effectifs. Le procédé serait du reste particulièrement laborieux. De même, on ne va pas décomposer un bâtiment jusqu'au niveau des briques et des tuiles dont il est fait. Mais quand alors parlons-nous d'arbres isolés et quand d'une forêt, sans répertorier les arbres dont elle se compose ?
+
+Cela dépend bien entendu de l'objectif assigné au système. Il ne s'agit pas uniquement de rechercher un modèle aussi pertinent que possible, il doit également être aisé à mettre en œuvre. Le modèle est-il compréhensible ? Est-il possible de définir un dialogue pour la saisie et la mise à jour des données que le personnel prévu pour ces tâches puisse facilement maîtriser ?
+
+Un modèle simple dont les différentes classes d'objets ne sont pas trop interdépendantes peut attirer l'attention de ce point de vue.
+
+Plus un modèle est compliqué, plus il est important que l'on parvienne à mettre en place une interface utilisateur intuitivement compréhensible. Il est dangereux dans de telles situations d'étendre un modèle de base en n'ajoutant pas simplement des attributs supplémentaires mais en définissant de nouvelles relations. Le risque qu'un dialogue d'interface conçu pour le modèle de base perde son élégance et sa clarté est très élevé.
+
+« Aussi simple que possible, aussi complexe que nécessaire», cette vérité s'applique une fois de plus. Mais nous savons tous que sa mise en pratique n'est pas toujours chose aisée.
+
+[#_9_5]
+=== L'orchestre d'Ili-les-Bains en concert – La modélisation de données est exigeante
+
+Lorsque les percussions, les cordes, les bois et les cuivres nous enchantent en jouant à l'unisson, nous oublions bien vite l'énorme travail fourni en amont. Que de gammes et de répétitions pour chacun des membres de l'orchestre, depuis l'époque où, enfant, il s'essayait maladroitement à la flûte traversière ! Et même aujourd'hui, alors que tous ont acquis une parfaite maîtrise de leur instrument, ils répètent inlassablement, ensemble et séparément.
+
+Il faut espérer que la modélisation de données s'effectue avec le même sérieux. Quiconque veut comprendre des modèles doit posséder une connaissance au moins passive des instruments. Quiconque veut définir des modèles est bien inspiré s'il répète ses gammes inlassablement jusqu'à maîtriser parfaitement ses instruments (classes, types d'attributs, relations, héritage, etc.). Et même si le résultat semble excellent, il n'est jamais inutile de repenser au modèle, de le soumettre au jugement d'autrui et de le considérer sous des angles différents. Ce n'est qu'ainsi que des modèles pertinents pourront être élaborés, des modèles simples et compréhensibles adaptés à la pratique et adoptés par les praticiens.
+

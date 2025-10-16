@@ -1,0 +1,34 @@
+= INTERLIS 2.3 Benutzerhandbuch
+:!toc:
+:icons: font
+
+== Sprachauswahl / Language Selection / Sélection de langue
+
+[.language-selection]
+--
+🇩🇪 link:de/[*Deutsch* - INTERLIS 2.3 Benutzerhandbuch]
+
+🇫🇷 link:fr/[*Français* - Manuel de l'utilisateur INTERLIS 2.3]
+
+🇬🇧 link:en/[*English* - INTERLIS 2.3 User Manual]
+--
+
+'''
+
+_Herausgegeben von / Published by / Publié par:_
+
+*KOGIS* - Koordination, Geo-Information und Services +
+c/o swisstopo, Bundesamt für Landestopografie +
+Seftigenstrasse 264, CH-3084 Wabern
+
+http://www.kogis.ch[www.kogis.ch]
+
+'''
+
+_Autoren / Authors / Auteurs:_
+
+Joseph Dorfschmid · do@adasys.ch +
+Sascha Brawer · sb@adasys.ch
+
+Adasys AG, Dörflistrasse 67, CH-8050 Zürich +
+http://www.adasys.ch/[www.adasys.ch]

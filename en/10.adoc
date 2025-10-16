@@ -1,0 +1,63 @@
+[#_10]
+== Conclusion for authorities and management
+
+Naturally enough the satisfactory outcome of this new solution was duly celebrated in Ilis Valley. Nevertheless the president of the town council insisted on receiving further information concerning technical details. What had promoted their success? Why had they been able to solve the problem using their old systems? Why should they run little risk of having to revise everything if one of the systems involved had to be? So when preparing her short speech she had been reading the report written by the secretary of the department of construction and the technical manager of the Mount Ilis Alpine Transports.
+
+++*++ ++*++ ++*++ ++*++ ++*++
+
+[#_10_1]
+=== I. Remembering the starting shot
+
+It is still easy to recall the day of the first representation of possible new Ilis Valley WebPages. After a few impressive demonstrations participants nearly got into each other's hair. Luckily enough several experts were present. Otherwise all the amateurs had never realized just how controversial were the opinions of specialists, just how badly matched their arguments and counter arguments – or rather their catchwords and counter catchword – actually were. Thanks to the ensuing discussion, which very nearly became a dispute, we have pricked our ears.
+
+[#_10_2]
+=== II. Items, mappings and the ravages of time
+
+To call in one more expert had definitely been a good move, even if the first talks had turned out to be quite surprising. Few technical catchwords were mentioned and mostly swept aside; instead a thorough analysis of the entire matter was conducted.
+
+First conclusion: Facts are not what is in a computer or even what it spits out in the way of pictures, tables or other presentations, facts are what exists and happens in real life.
+
+What is in the computer can be compared to a wooden model or a sandpit. The pictures we might take of them from different angles and with different lighting correspond to the screen or to prints. And one thing that is also obvious with wooden models or a sandpit: to copy real life for the first time is a giant task. Just what it takes to build a simplified version of all the houses, streets, railway companies that exist in reality! Even more complicated than the first input is the update of it all. Hardly completed, and already there are first alterations to be made in order to keep the representation up to date. And time is not kind to sand or plaster structures. Computers are comparatively easy to handle! Of course we have to make updates on changes of the reality, but at least the remaining information does not become antiquated.
+
+Really? No, definitely not as fast as in a sandpit. But after a few years we would like to buy a new, more powerful computer, and a little later still the software employed will no longer be the best on the market. Assuming one would like to use new programs, how would one transfer the electronic replica of real life from the old onto the new system? How would we shift the sand from the old pit to the new without it running through our fingers and all our work having to be recommenced?
+
+[#_10_3]
+=== III. System independent description of the data structure
+
+In order to transfer electronic mappings of real life – in other words data – from one system to another, we have to have a definite notion of what these data look like, how they are structured. The hard nut to be cracked being: These structure descriptions also have to be independent of any concrete system. They have to be conceived in such a way that they can be equally interpreted and understood by application experts as well as technical specialists of all authorities concerned. Ideally this description would even have a structure that not only human beings but also computer programs can deal with. What we need is a standardized Esperanto of data description.
+
+In everyday speech Esperanto has remained without the slightest significance. Something livelier, possible also more convenient prevailed. Matters are slightly different where technology is concerned. Who does not aspire to system independence will be ruled by systems. And systems are relatively short-lived. Hence the realization that in spite of many de facto-standards _Unified Modeling Language_ (UML), a graphic language within the scope of data modeling has spread worldwide.
+
+In intensive discussions a model of real life has been sketched. To start with we had to make clear what the relevant items were, how they had to be named in a comprehensible way, how they inter-acted and what other characteristics they possessed. The protocol of these discussions always recorded new findings in the UML-graphic language and added comments and explanations. Since it became apparent that the pictures were loaded with too many details and in some cases did not have the required precision and additional description-tool was used in the form of INTERLIS: Similarly to programming language it permits the precise description of data structure.
+
+An important characteristic supported by both UML and INTERLIS 2 is the possibility to also use data descriptions made at other locations. Thus it had been possible to profit from definitions of cadastral surveying for instance in the case of building addresses. Data descriptions of the National Tourist Office were not only used but complemented according to local needs, too.
+
+[#_10_4]
+=== IV. System independent data transfer
+
+The case of data as such is quite similar to that of the description of data structure. Consequently we do not only need standards for the description of data but also for their transfer. When transferring data from one system to another we kind of use Esperanto, within the individual systems the respective mother tongue is spoken.
+
+Having applied such intensive care to the data structure, one no longer wants to be bothered with these details. So INTERLIS serves a double purpose: Along with the description of data structure the transfer of the corresponding data has been defined as well.
+
+It is of utmost importance that this data description cannot only be read and understood by human beings. Because of its formal language definition computer programs can also read it. Based on data description and transfer rules it is evident how a subsequent data transfer will have to be structured.
+
+[#_10_5]
+=== V. Different effects on the systems concerned
+
+Within the scope of the global solution different computer systems were in use. Above all it was possible to continue using systems already installed. UML and INTERLIS do not prescribe the way systems have to be structured. They are only concerned with the final delivery of data, which has to be in accordance with their conceptual conception.
+
+The system of the department of construction was immediately capable of generating data that had to be transferred and of reading data received. With the system of the Mount Ilis Alpine Transports a converter was employed, in other words a program that converted system specific data into a neutral transfer format. With the small collecting systems at the bottom stations it was only a matter of introducing the simplest of programs, which ensured that based upon the measurements a correct data set was sent as an incremental update to the central office.
+
+It is also interesting to have a look at the system of the National Tourist Office. It was possible to send them files containing supplements defined by us. Thanks to the principle of polymorph reading this was of no consequence.
+
+One reason that rendered this practicable may have been the fact that  INTERLIS 2 is based upon the international standard of the _Extensible Markup Language_ (XML).
+
+[#_10_6]
+=== VI. Outlook
+
+Looking back on the experiences gained with all participating systems we are confident that it will be possible to also integrate new wishes and new systems without jeopardizing our entire solution. This will allow us to achieve an important goal: Our solution is no flash in the pan but of enduring value.
+
+++*++ ++*++ ++*++ ++*++ ++*++
+
+The president of the town council mentioned the most important points in her speech and stated quite appropriately that last but not least the technical success was due to their initial detachment from technology. And during the reception that followed she had every right to be pleased with herself: Once again she had had a good nose on the day of that first presentation at the town hall when she had remembered that discussion with her colleague and opted for a very careful procedure.
+

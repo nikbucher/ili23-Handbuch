@@ -1,0 +1,62 @@
+[#_9]
+== Datenmodellierung über das Ilistal hinaus
+
+Nachdem in den vorangehenden Kapiteln viele Einzelfragen der Datenmodellierung be­leuchtet worden sind, greift dieses Kapitel einige grundsätzliche Aspekte auf. Die Lektüre dürfte daher auch für jene von Interesse sein, die sich nicht mit den Details befassen wollen.
+
+[#_9_1]
+=== Viele Wege führen aufs Ilishorn – Das richtige Modell gibt es nicht
+
+Die Ilistaler sind sich natürlich bewusst, dass ihr Datenmodell nicht jeder Kritik standhält. Da es das Ilistal in der Realität gar nicht gibt, wurde auch darauf verzichtet, das Modell unter verschiedenen Gesichtspunkten immer wieder zu hinterfragen. Schliesslich ging es primär darum, die verschiedenen Aspekte der Modellierung und die entsprechenden Instrumente vorzustellen.
+
+Bei jedem Modell stellt sich aber die Frage: Ist das Modell richtig? Oder fragt man vielleicht besser: Ist das Modell gut?
+
+Sicher greift die Haltung zu kurz, die jedes Modell als richtig oder gut bezeichnet, das die Anforderungen der Beschreibungssprache rein formal erfüllt. Nur weil ein Modell vom INTER­LIS-Compiler akzeptiert wird, ist es sachlich noch nicht gut.
+
+Die Haltung entsprechend dem Sprichwort «Viele Wege führen nach Rom» – oder eben aufs Ilishorn – kommt der Sache schon näher. Es ist offensichtlich, dass es verschiedene Möglichkeit gibt, einen bestimmten Sachverhalt zu modellieren. Nicht alle möglichen Modelle sind aber gleich gut. Schliesslich gibt es auch breite, schmale, holprige, steile, befahrbare, aussichtsreiche Wege aufs Ilishorn. Nicht jeden Tag wählt man den gleichen Weg als den besten aus. Die Bedürfnisse und damit die Beurteilungskriterien sind schliesslich auch nicht immer die gleichen.
+
+In den nächsten Abschnitten werden deshalb verschiedene Beurteilungskriterien beleuchtet, die für die Datenmodellierung von einiger Bedeutung sind.
+
+[#_9_2]
+=== Das Ilishorn aus verschiedenen Blickwinkeln – Originaldaten und Sichten
+
+Orientiert man sich bei der Datenmodellierung am unmittelbaren Bedürfnis, besteht die Gefahr, dass die Daten ungeeignet erfasst werden. So ist es z.B. ungeeignet, bei einer Person das Alter als Attribut vorzusehen. Dieses ändert schliesslich dauernd. Besser ist es, das Geburtsdatum als Attribut festzulegen und das Alter mittels einer Sicht aus dem Geburts­datum und dem aktuellen Datum abzuleiten (vgl. Abschnitt 6.17.2).
+
+Wenn das Datenmodell so gebildet ist, dass es der eigentlichen Sache und nicht einer bestimmten Betrachtungsweise entspricht, können wir für die konkreten Nutzungen flexibel reagieren und sie aus den Originaldaten ableiten. Die Daten enthalten dann eben das Ilishorn und nicht den Blick von Ilisdorf oder Ilisbad aus. Diese und beliebige andere Per­spektiven können als Sichten aus den Daten abgeleitet werden.
+
+Manchmal ist die Ableitung der gewünschten Sichten aus «ideal» modellierten Daten aber recht anspruchsvoll. Insbesondere Sichten, die Bildungsgesetze mit geometrischen Berechnungen enthalten, sind nicht immer einfach realisierbar. Der Entscheid, wann von der Tugend abgewichen werden kann und das Datenmodell an der Sicht ausgerichtet wird, ist nicht immer einfach und hängt in der Regel von weiteren Beurteilungskriterien ab. Auch wenn man sich für ein Modell entscheidet, das nicht die eigentlichen Daten sondern eine Sicht auf sie beschreibt, lohnt es sich aber, zu überlegen, welches das «schöne» Modell wäre. Es fällt dann leichter, zu gegebener Zeit auf dieses Modell zurückzukommen und damit die Nachteile des sichtorientierten Modells zu überwinden.
+
+Der Hauptnachteil eines sichtorientierten Modells zeigt sich in der Erfassung und vor allem in der Nachführung der Daten. Führt man z.B. für jeden Gebäudeeingang den Strassennamen, die Hausnummer, die Postleitzahl und die Ortschaft als direktes Attribut, besteht die Gefahr, dass sich Fehler, z.B. unterschiedliche Schreibweisen, einschleichen. Zudem ist der Erfassungsaufwand wesentlich grösser. Noch schlimmer wird es in der Nachführung, wenn z.B. die neue Siedlung Ilismühle als Ortschaft mit eigener Postleitzahl eingeführt und der hintere Teil von Ilisdorf dieser neuen Ortschaft zugeordnet wird. Alle betroffenen Gebäudeeingänge mutieren? Besser wäre es, man könnte einfach die neue Ortschaft samt ihrem Gültigkeitsbereich einführen und den Gültigkeitsbereich von Ilisdorf entsprechend anpassen.
+
+Mit guten Modellen erreicht man, dass ein veränderter Sachverhalt in der Realität zu genau einer Änderung in den Daten führt. Alles Weitere kann mittels Sichten abgeleitet werden.
+
+[#_9_3]
+=== Nagt der Zahn der Zeit am Ilishorn? – Lebenszyklen
+
+Gute, d.h. sachgerechte, von der unmittelbaren Nutzung unabhängige Datenmodelle sind um so wichtiger, je langlebiger und allgemein brauchbarer die mit den Daten beschriebenen Sachverhalte sind. Bei Daten, die für einen privaten Zweck oder für ein zeitlich klar begrenztes Projekt, das mit einem bestimmten System abgewickelt wird, erhoben werden, ist das Datenmodell nicht so wichtig wie für Daten, die langlebig sind.
+
+Daten, die die reale Welt beschreiben, sind aber in der Regel langlebig. Das Ilishorn selbst verändert sich nur in geologischen Zeiträumen. Aber selbst Häuser, Bahnen, Rechtsverhält­nisse haben Lebensdauern von einigen Jahren bzw. Jahrzehnten. Die Objekte in der Realität werden darum die Computersysteme, auf denen ihre Abbilder beschrieben sind, überdauern.
+
+Damit auch die Abbilder der Realität, also die Datenobjekte die spezifischen Computer­systeme (Hardware und Software) überdauern können, braucht es eine klare Vorstellung über die Datenobjekte. Es braucht ein Datenmodell.
+
+Dieses Datenmodell soll möglichst systemunabängig sein. Denn das nächste System hat voraussichtlich andere Fähigkeiten. Vielleicht können dann Sichten automatisch gebildet werden. In Anbetracht der relativ kurzen Lebensdauer von Softwarepaketen sollte man sich beim Strukturieren der Daten nicht zu stark davon leiten lassen, welche Funktionalität ein bestimmtes Softwarepaket zurzeit besitzt.
+
+[#_9_4]
+=== Vor lauter Bäumen den Wald nicht mehr sehen – Detaillierungsgrad
+
+Es steht ausser Frage, dass die reale Welt nicht so modelliert wird, dass die einzelnen Atome, aus denen die Realweltdinge bestehen, die Datenobjekte sind. Das wäre viel zu mühsam. Ein Gebäude soll sich auch nicht aus den einzelnen Backsteinen und Ziegeln zusammensetzen. Aber wann sprechen wir von einzelnen Bäumen, wann von einem Wald, ohne die einzelnen Bäume als Datenobjekte aufzuführen?
+
+Natürlich hängt dies davon ab, was mit dem System erreicht werden soll. Wichtig dabei ist, dass es nicht nur darum geht, ein möglichst gutes Modell zu finden. Dieses muss auch umsetzbar sein. Ist das Modell verständlich? Ist es möglich, für die Datenerfassung und die Nachführung einen Dialog zu definieren, den die Menschen, die für die Arbeit vorgesehen sind, ohne Probleme bewältigen können?
+
+Ein einfaches Modell, dessen verschiedene Objektklassen nicht allzu sehr miteinander ver­flochten sind, kann sich gerade in dieser Hinsicht positiv bemerkbar machen.
+
+Je komplizierter ein Modell ist, desto wichtiger ist es, dass man dennoch eine Bedienungs­oberfläche findet, die intuitiv verständlich ist. In solchen Situationen ist es gefährlich, wenn ein Grundmodell so erweitert wird, dass nicht nur einzelne Attribute angefügt, sondern neue Beziehungen definiert werden. Die Gefahr, dass ein für das Grundmodell entworfener Bedienungsdialog seine Eleganz und Verständlichkeit verliert, ist gross.
+
+Einmal mehr gilt: «So einfach wie möglich, so komplex wie nötig». Die gute Umsetzung dieses Grundsatzes ist aber bekanntlich nicht einfach.
+
+[#_9_5]
+=== Das Kurorchester Ilisbad spielt auf – Datenmodellierung ist anspruchsvoll
+
+Wenn sich Pauken und Trompeten, Geigen und Flöten zu einem Ohrenschmaus vereinigen, vergessen wir verständlicherweise, wie viel Aufwand dahinter steckt. Was hat es nur ge­braucht, bis alle nach ersten Blockflötenversuchen in den Kindesjahren so virtuos mit ihrem Instrument umgehen konnten! Aber auch jetzt wird immer wieder geübt, allein und im Orchester.
+
+Es ist zu hoffen, dass bei der Datenmodellierung auch so ernsthaft gearbeitet wird. Wer Modelle verstehen will, muss die verschiedenen Instrumente mindestens passiv kennen. Wer Modelle definieren will, tut gut daran, immer wieder zu üben, bis die Instrumente (Klassen, Attributtypen, Beziehungen, Vererbung, usw.) in ihrer Wirkung klar sind. Auch wenn das Resultat noch so gut erscheint, es lohnt sich, nochmals darüber nachzudenken, das Modell der Kritik anderer Leute auszusetzen und es nochmals aus verschiedenen Richtungen zu beleuchten. Nur so können gute Modelle entstehen, Modelle, die so einfach und verständlich sind, dass sie sich in der Praxis bewähren.
+

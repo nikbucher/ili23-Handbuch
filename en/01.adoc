@@ -1,0 +1,14 @@
+[#_1]
+== Reading between fiction and truth
+
+Who would not know it, this impression: This is beyond me! And all these technical terms! Must it really be that complicated?
+
+That is why «Modeling of Space-Related Data» approaches the topic from an amateur's point of view and tries to embed it in a story: The successful story of Ilis Valley. Ilis Valley is nowhere because it is invented. At the same time Ilis Valley is everywhere because the story depicts typical situations and question that we all sometimes know only too well. In this document Ilis Valley lies in Ahland, also fictional. This coming and going between the fictional world of Ilis Valley and the tough facts of theory and reality repeatedly takes place, for different levels of interest and knowledge.
+
+* *Overview* – The overview in <<_2>> introduces the most important elements of data modeling and model-based data transfer.
+* *Modeling methods* – <<_3>> illustrates several known methods of modeling, presents the positions of both UML and INTERLIS and will show you where additional information is to be found.
+* *The example Ilis Valley* – In <<_4>> the example of Ilis Valley is represented in more detail, thereby modeling possible concerns within the range of tourism. However we do not claim to define an appropriate solution. Our main focus is the representation of modeling principle by means of examples. References to additional explanations in chapters 5 to 8 ought to familiarize you with theory. For all these that already have a certain knowledge of data modeling and model-based data transfer this chapter is likely to prove an ideal starting point.
+* *Discussion of the example* – Since inheritance is a central principle of the modeling method thus introduced, it is more closely treated in <<_5>>. The following chapters deal with data modeling in general terms (<<_6>>), with its effects on software packages in use (<<_7>>) and with the data transfer (<<_8>>). This may seem to you to be going too much into detail, in that case simply skip chapters 5 – 8. These chapters can also be read punctually. That is why the titles of the sub-chapters always composed of a part according to the story of Ilis Valley and of a technical term.
+* *General Considerations* – <<_9>> takes up some basic aspects that are to be considered when modeling. Thus its perusal may also be of interest to those that are less concerned with details.
+* *Final report for authorities and management* – The final <<_10>> compiles once more the most important points (to the attention of the authorities of Ilis Valley and the management of public transports and tourism organizations. For the busy manager of everyday-life it may be best to start with this chapter and thus obtain an entry into the problems and possibilities of the matter.
+

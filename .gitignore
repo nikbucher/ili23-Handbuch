@@ -1,0 +1,21 @@
+.*
+!.gitignore
+!.github
+
+# Temporary conversion files
+temp/
+
+# Generated HTML files
+*.html
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+~*
+
+DEPLOYMENT.md
+*.py

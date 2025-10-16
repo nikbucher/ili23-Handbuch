@@ -1,0 +1,59 @@
+[#_3]
+== Possibilités de description de données
+
+[#_3_1]
+=== Description sous forme graphique : Unified Modeling Language UML
+
+Un diagramme se prête particulièrement bien à l'obtention d'une vue d'ensemble sur un modèle, pour soi-même comme pour des tiers, raison pour laquelle on recourt à des notations graphiques en informatique depuis le milieu des années 1970 afin de visualiser des modèles. De nombreuses années s'écoulèrent toutefois avant que l'on finisse par s'accorder sur un mode de représentation unifié, si bien que des dizaines de notations différentes ont simultanément été en usage. Au début des années 1990, trois méthodes parvinrent à s'imposer : Booch, OMT et OOSE. Leurs concepteurs, que l'on appelait les « tres Amigos » convinrent en 1995/96 d'un langage de modélisation unique et unifié, l'_UML_ _(Unified Modeling Language)_. Depuis 1997, UML est géré comme une norme par un consortium d'industriels, intitulé l'_Object Management Group_.
+
+Le langage UML sait faire preuve de souplesse comme de polyvalence. Quiconque est familiarisé avec sa notation est capable de déchiffrer d'un coup d'oeil des modèles dans les domaines d'application les plus divers. Ce langage n'est du reste pas uniquement adapté à la modélisation de données (au moyen des diagrammes de classes présentés dans le cadre de ce document) mais englobe également des éléments permettant de couvrir d'autres aspects d'un système, par exemple sa subdivision en composants ou des scénarios d'utilisation.
+
+La faculté d'adaptation d'UML constitue une clé importante de son succès : l'infrastructure mise à disposition par le langage est suffisante pour bon nombre d'applications, mais il est possible à tout moment d'adapter le langage à ses propres besoins par l'intermédiaire de mécanismes d'extension clairement définis et également standardisés.
+
+Si un langage visuel tel qu'UML possède d'indéniables avantages, il n'en constitue pas pour autant la panacée. Dès lors qu'il s'agit de définir les détails d'un modèle complexe et de grande ampleur, un diagramme perd rapidement de sa clarté et pire, peut semer la confusion. Une représentation graphique se révèle par ailleurs assez peu pratique pour certaines tâches, par exemple pour configurer un système informatique. Dans certains cas, une forme textuelle semble donc plus appropriée : les modèles sont transcrits sous forme de texte dans un langage normalisé et peuvent de la sorte être compris par l'homme comme par la machine. Bien évidemment, l'image peut continuer à être utilisée pour obtenir une vue d'ensemble sommaire. Des propositions de notation purement textuelle d'UML sont actuellement en discussion, aucune norme correspondante n'ayant cependant été publiée à ce jour.
+
+[#_3_2]
+=== Description sous forme textuelle : INTERLIS
+
+En Suisse, il a été reconnu voilà bien longtemps qu'une méthode fondée sur un modèle comportait des avantages considérables. C'est ainsi que le langage de modélisation textuel INTERLIS a été développé en 1991 dans le cadre de la mensuration officielle. La fin des années 1990 a vu l'élaboration d'INTERLIS 2, étendant et modernisant la première version. Une demi-douzaine de spécialistes issus des milieux de la recherche, de l'administration et de l'industrie a scrupuleusement veillé à ce que le langage respecte les exigences concrètes de la pratique. Une grande valeur a par ailleurs été attachée au fait que certaines particularités résultant des applications elles-mêmes soient prises en compte :
+
+* Avec INTERLIS, les modèles de données peuvent être décrits avec précision et à un haut degré de spécification. Un modèle INTERLIS peut ainsi faire partie intégrante d'un appel d'offres, d'un contrat ou d'une ordonnance et il est également envisageable de configurer un logiciel à l'aide d'un modèle INTERLIS.
+* INTERLIS englobe non seulement un langage de modélisation de données, mais également une méthode grâce à laquelle le format de transfert utilisé pour l'échange des données modélisées peut être déduit du modèle. Cette propriété revêt une importance particulière en raison du volume de travail conséquent qu'implique la saisie de données géographiques et de la valeur très élevée qui y est attachée. La durée de validité de telles données étant par ailleurs de quelques décennies, elle dépasse très largement celle des systèmes informatiques, obsolètes au bout de quelques années à peine. Les données ainsi chèrement acquises ne peuvent être protégées que si elles sont conservées sous une forme totalement indépendante de tout logiciel.
+* Il va de soi qu'INTERLIS peut être utilisé pour des applications dénuées de toute référence géographique, mais ce langage est particulièrement bien adapté à des données à référence spatiale. La prise en compte de la géométrie est ancrée au cœur même du langage. Des mesures ont par ailleurs été prises visant à contrôler automatiquement la qualité et la plausibilité des données livrées.
+* Les modèles de données INTERLIS sont clairement structurés : un modèle est subdivisé en thèmes comprenant à leur tour des classes d'objets. La description d'une classe d'objets recourt aux propriétés de ces objets de même qu'à des règles d'intégrité et à des conditions de plausibilité. Il est possible, au niveau du modèle comme à celui des thèmes, de déclarer des éléments utilisables en toutes circonstances (exemple : des unités, des domaines de valeurs, des structures auxiliaires).
+* La structure fédérale de la Suisse avec ses 26 cantons et demi-cantons, eux-mêmes subdivisés en unités administratives plus petites, impose des exigences particulières à un langage de modélisation. INTERLIS 2 permet à l'ensemble des intervenants de partager un noyau de modèle commun qu'ils peuvent étendre ou affiner au gré des besoins qui leur sont propres. L'absence de tout problème durant l'échange des données reste ainsi garantie même si des modèles localement différents sont utilisés. INTERLIS est par ailleurs conçu pour permettre la rédaction des modèles dans des langues différentes. Ainsi, la langue usuelle dans chacune des régions linguistiques du pays pourra servir à l'élaboration des modèles.
+
+INTERLIS et UML se complètent mutuellement : les diagrammes UML, rapidement tracés, se prêtent idéalement à l'obtention d'une vue d'ensemble sommaire. INTERLIS permet quant à lui une plus grande précision dans le détail, sans pour autant recourir à une procédure excessivement complexe, et tient en outre compte des exigences propres aux pratiques fédérales en matière de géodonnées. Des outils ont été développés pour convertir automatiquement un diagramme de classe UML en description textuelle INTERLIS. Et réciproquement, la représentation d'un modèle INTERLIS en notation UML peut également s'effectuer automatiquement.
+
+[#_3_3]
+=== Modèles de données standardisés
+
+Recréer tout nouveau modèle de a à z n'est pas nécessairement la meilleure solution. Il est bien plus astucieux d'utiliser des modèles prédéfinis et de les affiner. Des modèles sur lesquels des applications peuvent s'appuyer ont été et sont encore développés à plusieurs niveaux :
+
+* *International* – Un modèle très complet couvrant les types géométriques de base courants (ISO 19107) a été développé dans le cadre d'une campagne de normalisation internationale. Des efforts sont par ailleurs déployés pour faire apparaître un noyau satisfaisant aux principales exigences de la pratique (ISO 19137). Les concepts spatiaux de plusieurs langages de modélisation répandus ont été analysés à cette fin, parmi lesquels ceux d'INTERLIS. Il est recommandé à quiconque se préoccupe de la manière dont des surfaces de sections coniques ou des réseaux de triangles sont à modéliser de consulter les documents normatifs ou les projets de documents correspondants. La série ISO 19100 comprend également des modèles de données concernant des intervalles de temps (ISO 19108), des métadonnées (ISO 19115), des services (ISO 19119) et d'autres sujets. Bon nombre de ces normes en sont encore au stade de l'élaboration et nous manquons par conséquent de recul pour apprécier leur aptitude à satisfaire aux exigences de la pratique.
+* *National* – Des modèles standardisés existent en Suisse pour plusieurs domaines d'application. Leur utilisation est en partie prescrite par des lois et des ordonnances. Des modèles applicables à l'échelle du pays entier ont été élaborés pour la mensuration officielle, les réseaux de conduites et plus récemment, les adresses géocodées.
+* *Associations professionnelles* – Elles constituent une source supplémentaire de modèles de données sur lesquels prendre appui. Ainsi, la Société suisse des ingénieurs et des architectes a-t-elle élaboré un modèle INTERLIS pour les cadastres de conduites (eaux usées, gaz, eau, chauffage à distance, électricité, télécommunications, communication par câble).
+* *INTERLIS* – Il existe des modèles INTERLIS standard prédéfinis pour un nombre restreint de domaines fondamentaux. Ainsi en va-t-il des unités, pour lesquelles un modèle définissant le mètre, le Newton, le décibel, etc. est fourni avec les outils INTERLIS.
+
+Dans la mesure du possible, les modèles suisses sont harmonisés avec les normes ISO. Pour citer un exemple, un modèle national pour les métadonnées de données géographiques (telles que la provenance, la qualité, etc.) a été élaboré dans le respect de la norme ISO 19115. Il est disponible sous forme de description INTERLIS.
+
+Les mécanismes d'affinage d'INTERLIS permettent à une application concrète de faire appel à un modèle de données existant, sans pour autant avoir à le reprendre _tel quel_.
+
+[#_3_4]
+=== Formats d'échange de données
+
+Toutes les données doivent tôt ou tard être enregistrées dans un format bien défini afin de pouvoir être stockées et échangées avec d'autres systèmes. Les formats d'échange les plus récents se basent tous sur XML (_Extensible Markup Language_), un format très largement répandu en raison de l'extrême simplicité de sa structure, de sa parenté avec HTML (le format des sites Internet) et de sa filiation directe avec SGML (un format autrefois très en vogue).
+
+GML (_Geographic Markup Language_) est par exemple un dialecte XML défini avec rigueur, diffusé par un consortium de producteurs de logiciels de SIG intitulé OpenGIS. INTERLIS ne prescrit en revanche aucun dialecte XML particulier, mais établit des règles à l'aide desquelles le format d'échange se déduit automatiquement du modèle de données concerné.
+
+La question du format de donnés est en fait secondaire : aussi longtemps que les données à transmettre reposent sur des modèles similaires, il est possible de convertir les données d'un format dans un autre moyennant un volume de travail restreint.
+
+[#_3_5]
+=== Sources documentaires importantes
+
+Vous pouvez obtenir des informations complémentaires sur les sites suivants :
+
+* *http://www.interlis.ch/[www.interlis.ch]* – Le portail Internet relatif à INTERLIS renvoie à des documents, des sessions de formation, etc. en rapport avec INTERLIS. Il est également possible, à partir de ce site, de télécharger les spécifications de la norme et le présent document. Des outils sont par ailleurs à votre disposition. Il s'agit actuellement d'un logiciel permettant l'édition en notation graphique UML (« éditeur UML ») de modèles INTERLIS et d'une bibliothèque de logiciels destinés à la lecture, au contrôle, à la modification et à la sortie de modèles INTERLIS (« compilateur INTERLIS »).
+* *http://www.omg.org/[www.omg.org]* – Le site Internet de l'Object Management Group permet d'accéder à la définition du langage UML (Unified Modeling Language). Vous y trouverez également une documentation générale (comprenant des documents de formation ou des communiqués de presse) relative à la méthode fondée sur un modèle.
+* *http://www.w3.org/[www.w3.org]* – Entre autres activités, le _World Wide Web Consortium_ gère les spécifications de XML.
+

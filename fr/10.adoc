@@ -1,0 +1,63 @@
+[#_10]
+== Rapport final pour les administrations et le management
+
+Le bon fonctionnement de la nouvelle solution mise en place dans le Val d'Ili a bien entendu été fêté comme il se doit. La syndic de la commune était toutefois désireuse d'en savoir un peu plus sur l'aspect technique de cette réalisation. Quelles ont été les clefs du succès ? Pourquoi a-t-il été possible de mener cette tâche à bien tout en conservant les systèmes existants ? Pourquoi évalue-t-on le risque d'être contraint à une révision importante en cas de remplacement de l'un des systèmes impliqués à un niveau aussi faible ? C'est pour trouver des réponses à ces questions et préparer sereinement la courte allocution qu'elle devait prononcer qu'elle s'est plongée dans la lecture du bref rapport rédigé par le secrétaire des constructions et le responsable technique des Remontées mécaniques de la Dent d'Ili.
+
+++*++ ++*++ ++*++ ++*++ ++*++
+
+[#_10_1]
+=== I. Petit retour en arrière
+
+La présentation initiale consacrée à la révision complète du site Internet du Val d'Ili est encore fraîche dans toutes les mémoires. Après quelques exposés de haut vol, les membres de l'assistance en sont quasiment venus aux mains. Par bonheur des spécialistes de différents domaines étaient dans la salle ce jour-là, sinon, les pauvres béotiens que nous sommes n'auraient pas pu se rendre compte du niveau exact des divergences les opposant et encore moins du mur d'incompréhension séparant les arguments des contre-arguments – ou plutôt des formules à l'emporte-pièce, proches de l'invective, qui en tenaient lieu. De la discussion a fini par jaillir la lumière, même si le pugilat n'était plus très loin.
+
+[#_10_2]
+=== II. Les choses, leur représentation et l'usure du temps
+
+L'appel à un spécialiste supplémentaire a porté ses fruits, en dépit de discussions initiales un peu surprenantes, dirons-nous. Le vocabulaire technique était absent ou très vite balayé cédant la place à une réflexion approfondie sur les choses à modéliser.
+
+Première conclusion : les choses ne sont pas enfouies dans les entrailles d'un ordinateur pas plus qu'il ne s'agit de ce qu'il est capable de recracher sous forme d'images, de tableaux voire de présentations. Les choses existent dans le monde réel et y interagissent.
+
+Ce que l'ordinateur contient, on peut le comparer à une maquette en bois ou à un moulage en plâtre. Les photos que l'on en fait sous des angles ou des éclairages différents peuvent être comparées à ce que l'on voit sur l'écran de l'ordinateur ou sur des sorties papier. Maquette en bois ou moulage en plâtre, une chose est sûre en tout cas : la reproduction initiale de la réalité est un travail de titan. Bien du temps et des efforts sont nécessaires  jusqu'à ce que tous les immeubles, toutes les routes et toutes les remontées mécaniques existant dans la réalité soient intégrés de manière simplifiée dans la représentation ! Et il y a pire que la saisie initiale : la mise à jour des données. Des modifications deviennent indispensables au bout de très peu de temps pour que la représentation conserve toute son actualité. Sans compter que le temps fait son oeuvre, érodant les structures en plâtre si friables… Autant dire que l'on est logé à meilleure enseigne avec l'informatique ! Des compléments sont bien entendu nécessaires lorsque la réalité change, mais le reste des informations conserve toute son actualité.
+
+Vraiment ? Non, même si la vitesse n'est pas aussi effrayante que dans le cas du moulage en plâtre. Mais au bout de quelques années à peine, le besoin d'un nouvel ordinateur plus performant se fait sentir et peu de temps après, le logiciel de traitement montre ses premiers signes de fatigue. Le moment est alors venu de passer à de nouveaux programmes. Comment alors transférer la représentation numérique de la réalité de l'ancien système vers le nouveau ? Comment pour ainsi dire faire entrer le moulage existant dans son nouveau moule sans lui faire subir de dégâts et être contraint à un remodelage complet ?
+
+[#_10_3]
+=== III. Description de la structure des données indépendante de tout système
+
+Pour qu'une représentation numérique de la réalité – des données en d'autres termes – puisse être transférée d'un système vers un autre, il est impératif que la structure et la présentation des données soient définies avec une parfaite clarté. Cerise sur le gâteau : ces descriptions de structure doivent elles aussi être indépendantes de tout système concret. Elles doivent être réalisées de telle façon à être comprises et interprétées à l'identique par les spécialistes en charge des applications et les services techniques de tous les intervenants impliqués dans le processus. Dans le cas idéal, la description est même conçue de manière à n'être pas uniquement comprise par des êtres humains mais également par des machines ou plus exactement par des programmes informatiques. Une sorte d'esperanto formalisé propre à la description de données est requis à cet effet.
+
+L'esperanto n'est jamais parvenu à s'imposer comme langue véhiculaire. D'autres, plus vivantes ou moins ardues et artificielles lui ont ravi la place. Les choses sont un peu différentes dans le domaine technique : quiconque ne cherche pas à s'affranchir des systèmes finit par s'en rendre dépendant. Et ceux-ci ont une durée de vie relativement limitée. D'où la conclusion qu'un esperanto, compris au sens de norme indépendante de tout système, est nécessaire en dépit de nombreuses normes de fait largement établies. Un langage graphique, le langage de modélisation unifié (_Unified Modeling Language, UML_), s'est assez largement diffusé au plan mondial dans le domaine de la modélisation de données.
+
+D'intenses discussions ont préludé à l'élaboration d'un modèle de la réalité. La première tâche a consisté à définir clairement les objets les plus importants, la manière de les désigner pour être compris de tous, les relations qu'ils entretenaient les uns avec les autres et les propriétés supplémentaires qu'ils possédaient. Le procès-verbal de ces discussions était toujours tenu dans le langage visuel UML et les complétait par des explications et des commentaires. Comme il s'est avéré que les images étaient surchargées de détails et qu'elles ne présentaient parfois plus la précision suffisante, un moyen de description supplémentaire a été introduit : INTERLIS. Les structures de données peuvent être décrites par ce moyen, de façon analogue à ce que permet un langage de programmation.
+
+Une propriété importante d'UML et d'INTERLIS 2 réside dans le fait que ces langages acceptent l'utilisation de descriptions de données provenant de tiers. Il a ainsi été possible de tirer avantage de définitions effectuées par la mensuration officielle, dans le domaine par exemple des adresses de bâtiments. La description de données de l'Association nationale des offices de tourisme a non seulement été utilisée mais a également été complétée pour l'adapter aux besoins locaux.
+
+[#_10_4]
+=== IV. Transfert de données indépendant de tout système
+
+Ce qui vaut pour la description de la structure des données vaut également pour les données elles-mêmes. Il ne faut donc pas uniquement normaliser la description de données, mais également leur transfert. Durant la transmission des données d'un système vers un autre, la communication s'effectue pour ainsi dire en esperanto tandis que la langue maternelle concernée reste en usage au sein de chacun des systèmes.
+
+Après une réflexion aussi approfondie que celle menée en vue de la structuration des données, on souhaiterait vivement ne plus à avoir à se préoccuper de détails de cet ordre. A nouveau, le recours à INTERLIS s'est pleinement justifié ici : la description de la structure de données définit en même temps la manière dont les données associées sont transférées. 
+
+Le point le plus important dans ce contexte est que la description de données ne puisse pas uniquement être lue et comprise par des êtres humains, mais que des logiciels informatiques parviennent également à la décrypter, grâce à la définition formalisée du langage. La description de données et les règles de transfert établissent alors clairement la manière dont le transfert de données consécutif doit être organisé.
+
+[#_10_5]
+=== V. Répercussions différentes sur les systèmes impliqués
+
+Plusieurs systèmes informatiques ont été mis en oeuvre dans le cadre de la solution globale et le recours aux systèmes utilisés jusqu'alors a par ailleurs pu se poursuivre. Ni UML ni INTERLIS ne prescrivent la manière dont les systèmes doivent être structurés, ils se contentent de régir la manière dont les données sont à livrer afin qu'elles se conforment à la représentation conceptuelle élaborée.
+
+Le système du service des constructions était directement en mesure de générer les données à transférer et de lire les données reçues. Un convertisseur a été mis en place sur le système des Remontées mécaniques de la Dent d'Ili, il s'agit d'un logiciel transformant les données spécifiques au système en un format de transfert neutre. En ce qui concerne les systèmes plus modestes utilisés pour la saisie aux stations inférieures, des programmes très simples ont permis de garantir la transmission d'un jeu de données toujours correct à la centrale sous forme d'une livraison incrémentielle assise sur la mesure réalisée.
+
+Qu'en est-il enfin du système de l'Association nationale ? Des fichiers intégrant les compléments définis par nos soins ont pu lui être transmis et, grâce au principe de la lecture polymorphe, ils ne lui ont posé aucun problème.
+
+Le fait qu'INTERLIS 2 se fonde sur le langage XML (_Extensible Markup Language_) n'est du reste pas étranger à la réussite de toute l'entreprise.
+
+[#_10_6]
+=== VI. Perspectives
+
+L'expérience acquise avec l'ensemble des systèmes impliqués nous incite à penser que la prise en compte de nouveaux souhaits et l'intégration de nouveaux systèmes dans notre solution pourront s'opérer sans que la solidité de l'ensemble en pâtisse le moins du monde. Un objectif important aura ainsi été atteint : nos solutions auront prouvé qu'elles sont durables et non éphémères.
+
+++*++ ++*++ ++*++ ++*++ ++*++
+
+La syndic de la commune reprit les points les plus importants dans son exposé et précisa fort justement que le succès enregistré au plan technique n'était peut-être pas étranger à la distance initialement prise par rapport à la technique. Lors du vin d'honneur faisant suite à la cérémonie, elle ressentit une intense joie intérieure : elle avait une fois de plus été bien inspirée le jour de la première présentation à la maison de la commune lorsqu'elle se souvint de l'entretien avec sa collègue et avait choisi d'opter pour une démarche rigoureuse.
+

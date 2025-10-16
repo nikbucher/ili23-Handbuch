@@ -1,0 +1,52 @@
+ifndef::env-github[:toc: left]
+:toc-title: Contents
+:toclevels: 5
+:figure-caption: Figure
+:example-caption!:
+:table-caption: Table
+:note-caption: Note
+:icons: font
+:data-uri:
+:source-highlighter: highlight.js
+:sectnums:
+:sectnumlevels: 5
+:sectlinks:
+:sectanchors:
+:xrefstyle: full
+:chapter-refsig: Chapter
+:section-refsig: Chapter
+
+= INTERLIS 2.3 User Manual
+Joseph Dorfschmid, Sascha Brawer
+:revdate: {docdate}
+:revnumber: 1.0
+:title-page:
+
+[.text-right]
+🌐 Language: link:../de/[Deutsch] | link:../fr/[Français] | *English* | link:../[⌂]
+
+// Content references should not be displayed on GitHub README
+ifndef::env-github[]
+
+include::00.adoc[]
+
+include::01.adoc[]
+include::02.adoc[]
+include::03.adoc[]
+include::04.adoc[]
+include::05.adoc[]
+include::06.adoc[]
+include::07.adoc[]
+include::08.adoc[]
+include::09.adoc[]
+include::10.adoc[]
+include::11.adoc[]
+
+endif::[]
+
+// Explanation and link to website
+ifdef::env-github[]
+This repository maintains the online version of the INTERLIS 2.3 User Manual. Please submit additions and corrections as issues or pull requests.
+
+The current website is available at https://nikbucher.github.io/ili23-handbuch/en/
+endif::[]
