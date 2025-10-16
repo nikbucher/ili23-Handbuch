@@ -17,7 +17,7 @@ Il était donc possible, dorénavant, d'envoyer un fichier comprenant toutes les
 [NOTE]
 Le type de transfert le plus simple est le *transfert intégral*, dans le cadre duquel toutes les données sont transmises.
 
-Le fait que le transfert puisse se dérouler sans le moindre accroc, même lorsque les intervenants n'utilisent pas exactement le même modèle de données, résulte des propriétés de l'héritage, exposées au paragraphe 5.5.
+Le fait que le transfert puisse se dérouler sans le moindre accroc, même lorsque les intervenants n'utilisent pas exactement le même modèle de données, résulte des propriétés de l'héritage, exposées au paragraphe <<_5_5>>.
 
 [#_8_2]
 === Des signes cabalistiques à profusion – Règles de transfert sur la base de XML
@@ -121,5 +121,5 @@ En plus, un tire-fesses y réjouit le coeur des enfants. Comment la durée de so
 
 Comment l'Association nationale des offices de tourisme gère-t-elle alors le fait que le fichier de transfert d'une vallée contient la ligne ++<++LapsTemps++>++3++<++/LapsTemps++>++ et que celui de la vallée voisine contient la ligne ++<++Dauer++>++3++<++/Dauer++>++?
 
-L'Association n'a pas besoin de faire l'acquisition d'un logiciel séparé pour chacune des langues nationales. INTERLIS veille à ce que le transfert se passe sans accroc, en dépit de son caractère multilingue. La seule condition à respecter est que la structure du modèle de données ne subisse aucune modification lors de la traduction. Comme évoqué au paragraphe 6.18, un outil (le compilateur INTERLIS) est à la disposition des utilisateurs pour vérifier si la structure d'un modèle de données traduit présente une structure identique à celle de l'original.
+L'Association n'a pas besoin de faire l'acquisition d'un logiciel séparé pour chacune des langues nationales. INTERLIS veille à ce que le transfert se passe sans accroc, en dépit de son caractère multilingue. La seule condition à respecter est que la structure du modèle de données ne subisse aucune modification lors de la traduction. Comme évoqué au paragraphe <<_6_18>>, un outil (le compilateur INTERLIS) est à la disposition des utilisateurs pour vérifier si la structure d'un modèle de données traduit présente une structure identique à celle de l'original.
 

@@ -48,7 +48,7 @@ CLASS Billettart =
 END Billettart;
 ----
 
-Taler (oder Schweizerfranken, Euro, Dollar, etc.) werden als Einheit definiert und können dann bei der Definition eines numerischen Typs benutzt werden. Die meisten gängigen Einheiten (darunter auch CHF, EUR, USD) müssen jedoch nicht selbst definiert werden, sondern stehen über das spezielle Einheiten-Modell (units.ili, vgl. Abschnitt 3.3) zur Verfügung.
+Taler (oder Schweizerfranken, Euro, Dollar, etc.) werden als Einheit definiert und können dann bei der Definition eines numerischen Typs benutzt werden. Die meisten gängigen Einheiten (darunter auch CHF, EUR, USD) müssen jedoch nicht selbst definiert werden, sondern stehen über das spezielle Einheiten-Modell (units.ili, vgl. Abschnitt <<_3_3>>) zur Verfügung.
 
 [WARNING]
 Im Interesse der Klarheit wird empfohlen, immer Einheiten anzugeben. Das INTERLIS-Einheitenmodell umfasst neben zahlreichen physikalischen Einheiten auch solche für verbreitete Währungen und für Anzahl, Prozente und Promille.
@@ -105,7 +105,7 @@ Vielleicht ist sogar die Einheit noch unklar. Man weiss erst, dass es sich z.B. 
 Preis (ABSTRACT): NUMERIC [MONEY];
 ----
 
-Damit ist immerhin der Charakter der Einheit festgelegt. In einer Erweiterung können damit nur noch Einheiten definiert werden, die Konkretisierungen der abstrakten Einheit MONEY sind (zu abstrakten Eigenschaften siehe auch Abschnitt 5.4).
+Damit ist immerhin der Charakter der Einheit festgelegt. In einer Erweiterung können damit nur noch Einheiten definiert werden, die Konkretisierungen der abstrakten Einheit MONEY sind (zu abstrakten Eigenschaften siehe auch Abschnitt <<_5_4>>).
 
 [source]
 ----
@@ -189,7 +189,7 @@ END Gondelbahn;
 
 Für die Sitzung wurde extra ein Eisenbahner eingeladen, der längere Zeit über Zahnrad­bahnen referierte. Die Anwesenden lernten viel darüber, was für Zahnstangensysteme welt­weit im Einsatz sind und welche Vor- und Nachteile sie jeweils besitzen. Schliesslich fragten sich die Ilistaler aber, was genau die Zahnstangensysteme eigentlich mit ihrem Projekt zu schaffen haben. Es konnte sich auch niemand vorstellen, wie diese und andere Angaben jemals in einem zukünftigen Ausbauschritt von Belang werden könnten. Daher wurde dieses Modell verworfen, weil es zu sehr ins Detail geht und am Ende lediglich Kosten für das Erfassen und Pflegen unnötiger Daten verursacht hätte.
 
-Siehe auch Abschnitt 5.1 zur Verlockung, beim Modellieren allzu sehr ins Detail zu gehen.
+Siehe auch Abschnitt <<_5_1>> zur Verlockung, beim Modellieren allzu sehr ins Detail zu gehen.
 
 [#_6_3]
 === Gibt es auch hellblaue Skipisten? – Strukturierte Aufzählungen
@@ -377,7 +377,7 @@ Eine brauchbare Annäherung der Erdoberfläche ist das Ellipsoid, also jene Flä
 .Dreht sich eine Ellipse um ihre eigene Achse, entsteht im Raum eine flachgedrückte Kugel. Mit einem solchen Ellipsoid kann die Form der Erdoberfläche angenähert werden. +
 image::img/image31.png[width=127,height=101] image:img/image32.png[width=290,height=55]
 
-(Alle Abbildungen in diesem Abschnitt und in Abschnitt 6.7.5 aus: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Teilweise wurden die Illustrationen vereinfacht. Ursprüngliche Bildquellen siehe dort).
+(Alle Abbildungen in diesem Abschnitt und in Abschnitt <<_6_7_5>> aus: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Teilweise wurden die Illustrationen vereinfacht. Ursprüngliche Bildquellen siehe dort).
 
 Je nach Weltgegend werden anders gelegene Ellipsoide benutzt, sonst würde die An­näherung zu ungenau. Beispielsweise verwendet die Schweiz das gleiche Ellipsoid wie Deutschland, aber ein leicht anderes als Schweden oder Frankreich.
 
@@ -408,7 +408,7 @@ Die erste Dimension der Koordinate entspricht der ersten Achse des Koordinatensy
 
 Ist «AhlandSys» ein kartesisches, ein ellipsoidisches System? Wie heissen die Achsen? Gibt es Zusammenhänge (z.B. Kartenprojektionen) zu anderen Koordinatensystemen? All diese Angaben können selbst wieder mittels Daten beschrieben werden. Damit klar ist, wie diese Daten strukturiert sind, wird dafür ebenfalls ein Datenmodell formuliert. Ein solches Modell heisst Metamodell, die zugehörigen Daten Metadaten, weil sie dazu dienen, die eigentlichen Daten zu beschreiben.
 
-Die Daten zu einem Metamodell sind in einem anderen, formaleren Sinn «meta» als Angaben zu Herkunft oder Preis (vgl. Abschnitt 3.3). Für beides ist jedoch unglücklicherweise dieselbe Bezeich­nung verbreitet.
+Die Daten zu einem Metamodell sind in einem anderen, formaleren Sinn «meta» als Angaben zu Herkunft oder Preis (vgl. Abschnitt <<_3_3>>). Für beides ist jedoch unglücklicherweise dieselbe Bezeich­nung verbreitet.
 
 In den einfachen Fällen, wo es auf Grund des Anwendungs- und Einsatzgebietes eines Datenmodells klar ist, zu welchem Koordinatensystem die Koordinaten gehören, kann auf die explizite Angabe des Koordinatensystems verzichtet werden. Es macht aber Sinn, das Koordinatensystem mindestens im Namen des Koordinatentyps anklingen zu lassen.
 
@@ -751,21 +751,21 @@ Das Attribut Wind umfasst also sechs Elemente (Messwerte je mit Windrichtung und
 [#_6_10_3]
 ==== Strukturen und Klassen
 
-Strukturen und (Objekt-)Klassen sind einander formal sehr ähnlich. Sachlich bestehen aber erhebliche Unterschiede. Eine Klasse (Bahngesellschaft, Windmesser) beschreibt, wie Objekte aufgebaut sind. Eine Struktur beschreibt, wie kompliziertere Eigenschaften von Objekten (Windangabe) aufgebaut sind. Eine Struktur dient also dem gleichen Zweck wie ein Wertebereich, nämlich der Beschreibung wie ein Attribut aufgebaut ist. Manchmal bedarf es nur dann einer Struktur, wenn die Eigenschaft detaillierter beschrieben werden soll, während bei einfacher Beschreibung die Angabe eines Wertebereichs genügt (vgl. Abschnitt 6.12).
+Strukturen und (Objekt-)Klassen sind einander formal sehr ähnlich. Sachlich bestehen aber erhebliche Unterschiede. Eine Klasse (Bahngesellschaft, Windmesser) beschreibt, wie Objekte aufgebaut sind. Eine Struktur beschreibt, wie kompliziertere Eigenschaften von Objekten (Windangabe) aufgebaut sind. Eine Struktur dient also dem gleichen Zweck wie ein Wertebereich, nämlich der Beschreibung wie ein Attribut aufgebaut ist. Manchmal bedarf es nur dann einer Struktur, wenn die Eigenschaft detaillierter beschrieben werden soll, während bei einfacher Beschreibung die Angabe eines Wertebereichs genügt (vgl. Abschnitt <<_6_12>>).
 
 Die Instanzen von Klassen sind Objekte mit einer Eigenständigkeit (Ilishornbahnen, Windmesser auf der Ilisegg). Die Instanzen von Strukturen sind Strukturelemente (Wind mit 180 km/h aus NE). Der Wert eines Strukturattributes kann genau ein Strukturelement oder eine Menge von Strukturelementen (BAG OF, LIST OF) umfassen.
 
 [NOTE]
 Eine *Struktur* ist formal einer Objektklasse, sachlich einem Wertebereich sehr ähnlich. Die entsprechenden Exemplare, die *Strukturelemente*, haben aber keine eigene Identität, sondern sind Werte von Attributen eines Objektes.
 
-Objekte können miteinander in Beziehung stehen (vgl. Abschnitt 6.13). Werte (von Wertebereichen oder Strukturen) können dies nicht. Man kann allerdings gleichartige Werte verschiedener Objekte (und verschiedener Klassen) miteinander vergleichen und so in eine Beziehung bringen (vgl. Abschnitt 6.17). So könnte man den Preis für den Wanderer-Pass mit dem Preis für das Holzfällersteak vergleichen, das man im Falle des Fussmarsches im Bergrestaurant Ilishorn essen würde. Deswegen besteht aber keine Beziehung zwischen dem Wanderer-Pass und dem Holzfällersteak.
+Objekte können miteinander in Beziehung stehen (vgl. Abschnitt <<_6_13>>). Werte (von Wertebereichen oder Strukturen) können dies nicht. Man kann allerdings gleichartige Werte verschiedener Objekte (und verschiedener Klassen) miteinander vergleichen und so in eine Beziehung bringen (vgl. Abschnitt <<_6_17>>). So könnte man den Preis für den Wanderer-Pass mit dem Preis für das Holzfällersteak vergleichen, das man im Falle des Fussmarsches im Bergrestaurant Ilishorn essen würde. Deswegen besteht aber keine Beziehung zwischen dem Wanderer-Pass und dem Holzfällersteak.
 
-Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf ein anderes Objekt verwiesen wird (vgl. Abschnitt 6.11.3). Auf einen Wert oder ein Strukturelement kann nie verwiesen werden, sie haben keine Identität.
+Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf ein anderes Objekt verwiesen wird (vgl. Abschnitt <<_6_11_3>>). Auf einen Wert oder ein Strukturelement kann nie verwiesen werden, sie haben keine Identität.
 
 [#_6_10_4]
 ==== Linien sind spezielle Strukturen
 
-Das Attribut Verlauf der Piste (vgl. Abschnitt 6.9.1) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt 6.9.2). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:
+Das Attribut Verlauf der Piste (vgl. Abschnitt <<_6_9_1>>) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt <<_6_9_2>>). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:
 
 [source]
 ----
@@ -853,7 +853,7 @@ Wäre dies nicht der Fall gewesen, hätte man ein Modell gewählt, bei dem die S
 image::img/image51.png[width=397,height=115]
 
 
-Die Bezeichnung verweist so auf die Sprache. Dieser Verweis ist aber nicht eine vollwertige Beziehung (vgl. Abschnitt 6.13), da die Bezeichnungen keine Identität haben. Aus Sicht des Sprachobjektes besteht darum auch kein direkter Zugang zu den Bezeichnungselementen. Dieser müsste über eine Sicht etabliert werden (vgl. Abschnitt ####6.17).
+Die Bezeichnung verweist so auf die Sprache. Dieser Verweis ist aber nicht eine vollwertige Beziehung (vgl. Abschnitt <<_6_13>>), da die Bezeichnungen keine Identität haben. Aus Sicht des Sprachobjektes besteht darum auch kein direkter Zugang zu den Bezeichnungselementen. Dieser müsste über eine Sicht etabliert werden (vgl. Abschnitt <<_6_17>>).
 
 [#_6_12]
 === Wie ticken die Ilistaler? – Modellierung von Zeit
@@ -1200,7 +1200,7 @@ CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich =
 END TarifbereichInGegend;
 ----
 
-Die Beziehung zwischen diesem speziellen Tarifbereich und den Bergbahnen in der zuge­hörigen Gegend kann mit Sichten (vgl. Abschnitt 6.17) automatisch etabliert werden.
+Die Beziehung zwischen diesem speziellen Tarifbereich und den Bergbahnen in der zuge­hörigen Gegend kann mit Sichten (vgl. Abschnitt <<_6_17>>) automatisch etabliert werden.
 
 [#_6_14]
 === Einzigartige Ilishornbahnen – Konsistenzbedingungen
@@ -1356,7 +1356,7 @@ CLASS Bahngesellschaft =
 END Bahngesellschaft;
 ----
 
-Wie aber erreicht man, dass die Kurzbezeichnungen der verschiedenen Bahnen nicht kolli­die­ren? Sowohl die Blaubergbahnen wie die Buntbergbahnen möchten doch primär einmal BBB heissen. In INTERLIS 2 können Konsistenzbedingungen nicht nur für Objektklassen bzw. lokale Strukturelemente, sondern auch für Sichten (vgl. Abschnitt 6.17) formuliert wer­den. Mit einer bestimmten Sicht können aus Strukturelementen quasi eigenständige Objekte gemacht werden. Für diese kann dann wieder eine Eindeutigkeitsbedingung formuliert wer­den.
+Wie aber erreicht man, dass die Kurzbezeichnungen der verschiedenen Bahnen nicht kolli­die­ren? Sowohl die Blaubergbahnen wie die Buntbergbahnen möchten doch primär einmal BBB heissen. In INTERLIS 2 können Konsistenzbedingungen nicht nur für Objektklassen bzw. lokale Strukturelemente, sondern auch für Sichten (vgl. Abschnitt <<_6_17>>) formuliert wer­den. Mit einer bestimmten Sicht können aus Strukturelementen quasi eigenständige Objekte gemacht werden. Für diese kann dann wieder eine Eindeutigkeitsbedingung formuliert wer­den.
 
 [#_6_14_4]
 ==== Existenzerfordernis
@@ -1387,7 +1387,7 @@ Solche Existenzbedingungen sind nicht nur im Zusammenhang mit Linien, sondern au
 
 Bereits bei der Bergbahn selbst wurde eine Konsistenzbedingung formuliert: Der Trassee­verlauf muss bei der Talstation beginnen und bei der Bergstation enden. Oder anders gesagt, der erste Punkt des Trasseeverlaufs (Trassee -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint) muss gleich der Lage der Talstation sein, und (AND) der letzte Punkt des Trasseeverlaufs (Trassee -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint) muss mit der Lage der Bergstation zusammenfallen.
 
-Abschnitt 7.3 erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.
+Abschnitt <<_7_3>> erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.
 
 [source]
 ----
@@ -1471,7 +1471,7 @@ Fehlende oder falsche Definitionen auf allgemeinerer (höherer) Stufe sollte man
 
 Es ist darum auch sinnvoll, dass grundlegende Typen auf verschiedenen Stufen vordefiniert werden. INTERLIS selbst stellt einige Basismodelle zur Verfügung. Andere Modelle werden durch Anwendergemeinschaften (z.B. Verbände) bereitgestellt. Nochmals andere sind sehr spezifisch, wie etwa dasjenige der Ilishornbahnen.
 
-Abschnitt 3.3 nennt einige Bezugsquellen für standardisierte Datenmodelle.
+Abschnitt <<_3_3>> nennt einige Bezugsquellen für standardisierte Datenmodelle.
 
 [#_6_17]
 === Tarifbereiche interessieren nicht – Sichten
@@ -1485,7 +1485,7 @@ In der Analogie entsprechen die Objektklassen, Strukturen und Beziehungen eines 
 
 Aber warum sollen dann solche Sichten Bestandteil des Modells sein? Im Modell soll doch nicht vorweggenommen werden, ob die Aussicht quasi vom Ilishorn, dem Krummhorn, vom Schwarzen Zahn oder vom Sprudelbecken im Garten des Kurhauses Ilisbad aus genossen wird.
 
-Vor allem für spezielle Konsistenzbedingungen (vgl. Abschnitt 6.14.3) und für ableitbare Be­ziehungen (vgl. Abschnitt 6.13.7) machen Sichten auch im Bereich des Modells Sinn. Sichten sind aber auch nützlich, wenn die Daten für einen bestimmten Zweck in einer aufbereiteten Form geliefert werden müssen, wie das bei der Datenabgabe zuhanden des Ilistaler Web­dienstes der Fall ist. INTERLIS 2 bietet zudem noch die Möglichkeit, Grafiken zu definieren. Die Grundlage für die Grafikdefinition bilden in vielen Fällen nicht die Originaldaten, sondern Sichten.
+Vor allem für spezielle Konsistenzbedingungen (vgl. Abschnitt <<_6_14_3>>) und für ableitbare Be­ziehungen (vgl. Abschnitt <<_6_13_7>>) machen Sichten auch im Bereich des Modells Sinn. Sichten sind aber auch nützlich, wenn die Daten für einen bestimmten Zweck in einer aufbereiteten Form geliefert werden müssen, wie das bei der Datenabgabe zuhanden des Ilistaler Web­dienstes der Fall ist. INTERLIS 2 bietet zudem noch die Möglichkeit, Grafiken zu definieren. Die Grundlage für die Grafikdefinition bilden in vielen Fällen nicht die Originaldaten, sondern Sichten.
 
 [NOTE]
 *Sichten* bauen auf Objektklassen oder anderen Sichten auf und kombinieren die Ausgangsobjekte auf verschiedene Arten zu neuen Sichtobjekten.
@@ -1582,7 +1582,7 @@ END StationsKoordinaten;
 
 Die Menge der Sichtobjekte ist hier gleich der doppelten Menge der Bergbahnen. Einmal werden sie unter dem Aspekt Talstation, einmal unter dem Aspekt Bergstation ausgewertet. Das Attribut wird je nachdem gemäss dem Lageattribut von Tal- bzw. Bergstation gesetzt.
 
-*Zusammenfassung (AGGREGATION)* und *Aufschlüsselung (INSPECTION)* haben mit Strukturattributen zu tun. Eine Zusammenfassung fasst Objekte, die bestimmte gleiche Eigenschaften aufweisen, zu einem einzigen Objekt zusammen. Im Rahmen des Sichtobjekts stehen die bisherigen Objekte als Elemente eines Strukturattributes zur Verfügung (vgl. Abschnitt 6.17.3). Eine Aufschlüsselung sorgt umgekehrt dafür, dass aus Strukturelementen eigenständige Sichtobjekte werden (vgl. Abschnitt 6.14.3).
+*Zusammenfassung (AGGREGATION)* und *Aufschlüsselung (INSPECTION)* haben mit Strukturattributen zu tun. Eine Zusammenfassung fasst Objekte, die bestimmte gleiche Eigenschaften aufweisen, zu einem einzigen Objekt zusammen. Im Rahmen des Sichtobjekts stehen die bisherigen Objekte als Elemente eines Strukturattributes zur Verfügung (vgl. Abschnitt <<_6_17_3>>). Eine Aufschlüsselung sorgt umgekehrt dafür, dass aus Strukturelementen eigenständige Sichtobjekte werden (vgl. Abschnitt <<_6_14_3>>).
 
 [#_6_17_3]
 ==== Schrittweiser Aufbau von Sichten

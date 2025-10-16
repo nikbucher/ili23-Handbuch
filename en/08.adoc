@@ -17,7 +17,7 @@ From now on it would be possible to send one file with all the Ilis Valley data 
 [NOTE]
 The simplest type of transfer is the *full transfer*, whereby all data are transferred as a whole.
 
-The fact that a transfer goes smoothly even if not all the parties concerned use the same data model is due to inheritance as explained in paragraph  5.5.
+The fact that a transfer goes smoothly even if not all the parties concerned use the same data model is due to inheritance as explained in paragraph <<_5_5>>.
 
 [#_8_2]
 === Brackets as pointed as Mount Ilis – Transfer rules based on XML
@@ -124,5 +124,5 @@ Above all their local pony lift is also an all-time favorite with the kids. But 
 
 So how does the National Tourist Office handles the fact that for instance the transfer file from one valley contains the line ++<++Duration++>++3++<++/Duration++>++, but the one from the neighboring valley says ++<++Dauer++>++3++<++/Dauer++>++?
 
-The National Tourist Office does not have to buy separate software for everyone of the native languages. INTERLIS makes sure that in spite of multilingual applications a smooth transfer is guaranteed, on the sole condition that due to translation the data model has not undergone any changes in its structure. As already mentioned in paragraph 6.18 a tool (the so-called INTERLIS-Compiler) is available that checks the translation of a data model with regard to its structural conformity with the original.
+The National Tourist Office does not have to buy separate software for everyone of the native languages. INTERLIS makes sure that in spite of multilingual applications a smooth transfer is guaranteed, on the sole condition that due to translation the data model has not undergone any changes in its structure. As already mentioned in paragraph <<_6_18>> a tool (the so-called INTERLIS-Compiler) is available that checks the translation of a data model with regard to its structural conformity with the original.
 

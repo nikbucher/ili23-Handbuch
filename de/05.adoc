@@ -182,7 +182,7 @@ Dank der Vererbung liess sich der Konflikt auflösen. Die Bahnen werden im Ilist
 ====
 Vererbung kann auch dazu benutzt werden, föderalistische Eigenheiten zu unter­stützen.
 
-_Genau genommen liegt es am Polymorphismus, der durch die Vererbung ermöglicht wird: Jedes Exemplar einer Unterklasse kann immer auch als zur Oberklasse gehörend betrachtet werden (vgl. Abschnitt 5.5). Damit kann der nationale Verband die Daten von jeder Bergbahn im Land verarbei­ten, auch wenn es eigentlich sich um ein Exemplar einer örtlichen Unterklasse von «Bergbahn» handelt, die der nationale Verband gar nicht kennt._
+_Genau genommen liegt es am Polymorphismus, der durch die Vererbung ermöglicht wird: Jedes Exemplar einer Unterklasse kann immer auch als zur Oberklasse gehörend betrachtet werden (vgl. Abschnitt <<_5_5>>). Damit kann der nationale Verband die Daten von jeder Bergbahn im Land verarbei­ten, auch wenn es eigentlich sich um ein Exemplar einer örtlichen Unterklasse von «Bergbahn» handelt, die der nationale Verband gar nicht kennt._
 ====
 
 Die Vererbung geht bei INTERLIS sehr weit: Nicht nur Klassen und Themen, sondern auch Wertebereiche (Typen), Sichten, Grafikdefinitionen, in einem gewissen Sinn sogar Einheiten können übernommen und präzisiert werden.

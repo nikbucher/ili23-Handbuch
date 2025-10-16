@@ -171,7 +171,7 @@ L'héritage a permis de résoudre ce conflit. Dans le Val d'Ili, les lignes / re
 ====
 L'héritage peut également se révéler précieux dans le cadre d'une structure fédérale où abondent les particularismes locaux.
 
-_Pour être tout à fait précis, cette caractéristique découle du polymorphisme rendu possible par l'héritage : tout exemplaire d'une sous-classe peut être considéré comme faisant partie de la sur-classe (cf. § 5.5) associée. Ainsi, l'Association nationale peut-elle traiter les données de chaque remontée mécanique du pays, même s'il s'agit en fait d'un exemplaire d'une sous-classe locale de « remontée mécanique » dont l'Association nationale n'a même pas connaissance._
+_Pour être tout à fait précis, cette caractéristique découle du polymorphisme rendu possible par l'héritage : tout exemplaire d'une sous-classe peut être considéré comme faisant partie de la sur-classe (cf. § <<_5_5>>) associée. Ainsi, l'Association nationale peut-elle traiter les données de chaque remontée mécanique du pays, même s'il s'agit en fait d'un exemplaire d'une sous-classe locale de « remontée mécanique » dont l'Association nationale n'a même pas connaissance._
 ====
 
 L'héritage va très loin dans le cas d'INTERLIS : il ne concerne pas uniquement des classes et des thèmes mais également des domaines de valeurs (types), des vues, des définitions graphiques et, dans une certaine mesure, des unités qu'il est possible de reprendre et de préciser.

@@ -48,7 +48,7 @@ CLASS TypeBillet =
 END TypeBillet;
 ----
 
-Les couronnes (ou francs suisses, euros, dollars, etc.) sont définies comme unité et peuvent être utilisées lors de la définition d'un type numérique. La plupart des unités courantes (parmi lesquelles CHF, EUR, USD) n'ont cependant pas à être définies directement puisqu'elles existent déjà dans le modèle spécifique des unités (units.ili, cf. § 3.3).
+Les couronnes (ou francs suisses, euros, dollars, etc.) sont définies comme unité et peuvent être utilisées lors de la définition d'un type numérique. La plupart des unités courantes (parmi lesquelles CHF, EUR, USD) n'ont cependant pas à être définies directement puisqu'elles existent déjà dans le modèle spécifique des unités (units.ili, cf. § <<_3_3>>).
 
 [WARNING]
 Par souci de clarté, nous recommandons de toujours indiquer des unités. Outre de très nombreuses unités physiques, le modèle des unités d'INTERLIS comprend également des unités monétaires de même que des unités de dénombrement ou des pourcentages.
@@ -105,7 +105,7 @@ Et peut-être que l'unité elle-même reste floue. On sait seulement qu'il s'agi
 Prix (ABSTRACT): NUMERIC [MONEY];
 ----
 
-L'unité est caractérisée si l'on procède de la sorte. Seules des unités concrétisant l'unité abstraite MONEY peuvent encore être définies dans le cadre d'une extension (cf. également § 5.4 pour ce qui concerne les propriétés abstraites).
+L'unité est caractérisée si l'on procède de la sorte. Seules des unités concrétisant l'unité abstraite MONEY peuvent encore être définies dans le cadre d'une extension (cf. également § <<_5_4>> pour ce qui concerne les propriétés abstraites).
 
 [source]
 ----
@@ -189,7 +189,7 @@ END Telecabine;
 
 Un cheminot, tout spécialement convié à la réunion, a présenté un long exposé sur les chemins de fer à crémaillère. L'assistance a été abreuvée d'informations sur les différents systèmes de crémaillères en usage de par le monde, agrémentées d'un comparatif détaillé de leurs avantages et inconvénients respectifs. Les Ilinois en vinrent finalement à se demander quel rapport existait entre les systèmes de crémaillères et leur projet. Personne ne parvenait à s'imaginer l'importance que pourraient prendre ces informations un jour, même à l'occasion d'une éventuelle extension. En conséquence, le modèle proposé a été rejeté parce que jugé trop détaillé et générateur de coûts superflus, causés par la saisie et la gestion de données en fin de compte inutiles.
 
-Cf. également § 5.1 pour la tentation d'aller trop loin dans les détails au niveau de la modélisation.
+Cf. également § <<_5_1>> pour la tentation d'aller trop loin dans les détails au niveau de la modélisation.
 
 [#_6_3]
 === Existe-t-il également des pistes de ski bleu clair ? – Enumérations structurées
@@ -377,7 +377,7 @@ Une approximation bien plus probante de la forme de la Terre est livrée par une
 .Une ellipse en rotation autour de son axe principal donne naissance à une figure géométrique en trois dimensions que l'on appelle un ellipsoïde et qui ressemble à une sphère aplatie. Cette figure fournit une bonne approximation de la forme de la Terre. +
 image::img/image31.png[./media/image31,width=127,height=101] image:img/image32.png[./media/image32,width=292,height=55]
 
-(Toutes les figures de ce paragraphe et du paragraphe 6.7.5 sont tirées de : K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bil­dern. Zurich, 1988. Certaines des illustrations ont été simplifiées. Veuillez donc vous reporter à cet ouvrage pour les sources originales).
+(Toutes les figures de ce paragraphe et du paragraphe <<_6_7_5>> sont tirées de : K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bil­dern. Zurich, 1988. Certaines des illustrations ont été simplifiées. Veuillez donc vous reporter à cet ouvrage pour les sources originales).
 
 Selon les régions du monde considérées, les ellipsoïdes utilisés sont positionnés de manière différente, l'approximation devenant sinon trop imprécise. La Suisse recourt par exemple au même ellipsoïde que l'Allemagne, légèrement différent de celui utilisé en Suède ou en France.
 
@@ -408,7 +408,7 @@ La première coordonnée correspond au premier axe du système de coordonnées i
 
 « SysBeotie » est-il un système cartésien ? Ellipsoïdique ? Comment s'appellent ses axes ? Existe-t-il des liens (tels que des projections cartographiques) vers d'autres systèmes de coordonnées ? Toutes ces informations peuvent à leur tour être décrites au moyen de données. Un modèle de données est également formulé les concernant, afin que la manière dont elles sont structurées soit claire. Un tel modèle de données est appelé un métamodèle et les données associées des métadonnés parce qu'elles ont pour fonction de décrire les données effectives.
 
-Les données relatives à un métamodèle sont dites « méta- » englobantes en quelque sorte, mais le sens donné ici à cette désignation est différent et plus formel que lorsqu'il s'agit du prix ou de la provenance (cf. § 3.3). Malheureusement, la même désignation est indistinctement utilisée dans les deux cas.
+Les données relatives à un métamodèle sont dites « méta- » englobantes en quelque sorte, mais le sens donné ici à cette désignation est différent et plus formel que lorsqu'il s'agit du prix ou de la provenance (cf. § <<_3_3>>). Malheureusement, la même désignation est indistinctement utilisée dans les deux cas.
 
 Dans les cas les plus simples, où le système de coordonnées auquel se réfèrent les coordonnées est sans ambiguïté, en raison du champ d'application et du domaine d'utilisation du modèle de données, il peut être renoncé à l'indication explicite de cette information. Il est toutefois judicieux de laisser transparaître le système de coordonnées, ne serait-ce que dans le nom du type des coordonnées.
 
@@ -749,21 +749,21 @@ L'attribut Vent englobe donc six éléments (valeurs de mesure incluant à chaqu
 [#_6_10_3]
 ==== Structures et classes
 
-Du point de vue formel, les structures et les classes (d'objets) sont très similaires. Des différences considérables existent cependant en pratique. Une classe (société de remontées mécaniques, anémomètre) décrit la manière dont les objets sont constitués tandis qu'une structure décrit la manière dont des propriétés plus complexes d'objets (InfoVent) sont constituées. Une structure sert donc au même but qu'un domaine de valeurs : décrire la manière dont un attribut est constitué. Parfois, une structure n'est requise que lorsque la propriété considérée doit être décrite de façon plus détaillée alors que la seule indication d'un domaine de valeurs suffit dans le cas d'une description plus simple (cf. § 6.12).
+Du point de vue formel, les structures et les classes (d'objets) sont très similaires. Des différences considérables existent cependant en pratique. Une classe (société de remontées mécaniques, anémomètre) décrit la manière dont les objets sont constitués tandis qu'une structure décrit la manière dont des propriétés plus complexes d'objets (InfoVent) sont constituées. Une structure sert donc au même but qu'un domaine de valeurs : décrire la manière dont un attribut est constitué. Parfois, une structure n'est requise que lorsque la propriété considérée doit être décrite de façon plus détaillée alors que la seule indication d'un domaine de valeurs suffit dans le cas d'une description plus simple (cf. § <<_6_12>>).
 
 Les instances de classes sont des objets autonomes (Remontées mécaniques de la Dent d'Ili, anémomètre de la Crête d'Ili). Les instances de structures sont des éléments structurés (vent de 180 km/h soufflant du NE). La valeur d'un attribut de structure peut se limiter à un seul élément structuré ou en englober tout un ensemble (BAG OF, LIST OF).
 
 [NOTE]
 Une *structure* est très proche d'une classe d'objets sur le plan formel et d'un domaine de valeurs sur le plan pratique. Les exemplaires correspondants, les *éléments structurés*, ne possèdent cependant pas d'identité propre, ce sont des valeurs d'attributs d'un objet.
 
-Les objets peuvent être en relation les uns avec les autres (cf. § 6.13). Les valeurs (de domaines de valeurs ou de structures) ne le peuvent pas. Il est toutefois possible de comparer entre elles des valeurs semblables d'objets différents (et de classes différentes) et les mettre ainsi en relation (cf. § 6.17). On pourrait donc comparer le prix du forfait du randonneur avec celui du steak du bûcheron que l'on mangerait de bon coeur au restaurant de la Crête d'Ili le jour de cette randonnée pédestre. Il n'en existe pas pour autant de relation entre le forfait du randonneur et le steak du bûcheron.
+Les objets peuvent être en relation les uns avec les autres (cf. § <<_6_13>>). Les valeurs (de domaines de valeurs ou de structures) ne le peuvent pas. Il est toutefois possible de comparer entre elles des valeurs semblables d'objets différents (et de classes différentes) et les mettre ainsi en relation (cf. § <<_6_17>>). On pourrait donc comparer le prix du forfait du randonneur avec celui du steak du bûcheron que l'on mangerait de bon coeur au restaurant de la Crête d'Ili le jour de cette randonnée pédestre. Il n'en existe pas pour autant de relation entre le forfait du randonneur et le steak du bûcheron.
 
-Il est nécessaire, dans certains cas, de renvoyer vers un autre objet pour la description d'une propriété (cf. § 6.11.3). Un renvoi vers une valeur ou un élément structuré est impossible puisqu'ils sont dépourvus d'identité.
+Il est nécessaire, dans certains cas, de renvoyer vers un autre objet pour la description d'une propriété (cf. § <<_6_11_3>>). Un renvoi vers une valeur ou un élément structuré est impossible puisqu'ils sont dépourvus d'identité.
 
 [#_6_10_4]
 ==== Les lignes sont des structures spécifiques
 
-L'attribut du tracé de la piste (cf. § 6.9.1) est défini comme LigneBeotie, laquelle est à son tour définie comme une polyligne (POLYLINE). Une polyligne peut être comprise comme un ensemble de tronçons de lignes (cf. § 6.9.2). La définition en tant que polyligne n'est en fait qu'une notation abrégée pour un ensemble ordonné de structures, les éléments structurés correspondant à une définition spécifique :
+L'attribut du tracé de la piste (cf. § <<_6_9_1>>) est défini comme LigneBeotie, laquelle est à son tour définie comme une polyligne (POLYLINE). Une polyligne peut être comprise comme un ensemble de tronçons de lignes (cf. § <<_6_9_2>>). La définition en tant que polyligne n'est en fait qu'une notation abrégée pour un ensemble ordonné de structures, les éléments structurés correspondant à une définition spécifique :
 
 [source]
 ----
@@ -850,7 +850,7 @@ Si tel n'avait pas été le cas, on aurait sans doute opté pour un modèle dans
 image::img/image51.png[./media/image51,width=408,height=115]
 
 
-La désignation renvoie ainsi à la langue. Ce renvoi n'en constitue pas pour autant une relation de plein droit (cf. § 6.13), les désignations ne possédant pas d'identité propre. Du point de vue de l'objet linguistique, il n'existe donc pas non plus d'accès direct aux éléments de désignation, lequel devrait être établi par l'intermédiaire d'une vue (cf. § 6.17).
+La désignation renvoie ainsi à la langue. Ce renvoi n'en constitue pas pour autant une relation de plein droit (cf. § <<_6_13>>), les désignations ne possédant pas d'identité propre. Du point de vue de l'objet linguistique, il n'existe donc pas non plus d'accès direct aux éléments de désignation, lequel devrait être établi par l'intermédiaire d'une vue (cf. § <<_6_17>>).
 
 [#_6_12]
 === A l'heure ilinoise – Modélisation du temps
@@ -1200,7 +1200,7 @@ CLASS ZoneTarifaireDansSecteur EXTENDS NatTour.Billets.ZoneTarifaire =
 END ZoneTarifaireDansSecteur;
 ----
 
-La relation entre cette zone tarifaire spéciale et les remontées mécaniques du secteur considéré peut être automatiquement établie au moyen de vues (cf. § 6.17).
+La relation entre cette zone tarifaire spéciale et les remontées mécaniques du secteur considéré peut être automatiquement établie au moyen de vues (cf. § <<_6_17>>).
 
 [#_6_14]
 === Exceptionnelles Remontées mécaniques de la Dent d'Ili – Règles d'intégrité
@@ -1356,7 +1356,7 @@ CLASS SocieteRemonteesMecaniques =
 END SocieteRemonteesMecaniques;
 ----
 
-Comment alors parvenir à éviter tout conflit entre les noms abrégés des différentes entreprises ? Les Remontées mécaniques des montagnes bleues tout comme les Remontées mécaniques des montagnes blanches revendiquent le nom abrégé RMB. Dans INTERLIS 2, il est possible de formuler des règles d'intégrité valant non seulement pour les classes d'objets ou des éléments structurés locaux, mais également pour des vues (cf. § 6.17). Une vue donnée permet de faire d'éléments structurés des objets quasi indépendants, pour lesquels une nouvelle condition d'unicité peut à son tour être formulée.
+Comment alors parvenir à éviter tout conflit entre les noms abrégés des différentes entreprises ? Les Remontées mécaniques des montagnes bleues tout comme les Remontées mécaniques des montagnes blanches revendiquent le nom abrégé RMB. Dans INTERLIS 2, il est possible de formuler des règles d'intégrité valant non seulement pour les classes d'objets ou des éléments structurés locaux, mais également pour des vues (cf. § <<_6_17>>). Une vue donnée permet de faire d'éléments structurés des objets quasi indépendants, pour lesquels une nouvelle condition d'unicité peut à son tour être formulée.
 
 [#_6_14_4]
 ==== Condition d'existence
@@ -1387,7 +1387,7 @@ De telles conditions d'existence ne peuvent pas uniquement être formulées en l
 
 Une règle d'intégrité a déjà été formulée pour la remontée mécanique elle-même : le tracé doit débuter à la station inférieure pour s'achever à la station supérieure. Autrement dit, le premier point du tracé (Tracee -> Segments[FIRST] -> SegmentEndPoint) doit correspondre à la position de la station inférieure et (AND) le dernier point du tracé (Tracee -> Segments[LAST] -> SegmentEndPoint) doit coïncider avec la position de la station supérieure.
 
-Le paragraphe 7.3 expose la manière dont les lignes sont construites et présente l'attribut SegmentEndPoint, symbolisant le point final d'un segment de ligne.
+Le paragraphe <<_7_3>> expose la manière dont les lignes sont construites et présente l'attribut SegmentEndPoint, symbolisant le point final d'un segment de ligne.
 
 [source]
 ----
@@ -1471,7 +1471,7 @@ Il ne faudrait pas simplement accepter l'absence de certaines définitions voire
 
 C'est pourquoi il est également judicieux que des types de base soient prédéfinis à différents niveaux. INTERLIS met un certain nombre de modèles de base à la disposition des utilisateurs. D'autres modèles sont proposés par des communautés d'utilisateurs (par exemple des associations professionnelles). Certains enfin sont très spécifiques, comme celui des Remontées mécaniques de la Dent d'Ili.
 
-Un certain nombre de sources diffusant des modèles de données standardisés sont mentionnées au paragraphe 3.3.
+Un certain nombre de sources diffusant des modèles de données standardisés sont mentionnées au paragraphe <<_3_3>>.
 
 [#_6_17]
 === Les zones tarifaires ne suscitent guère d'intérêt – Vues
@@ -1485,7 +1485,7 @@ Dans notre analogie, les classes d'objets, les structures et les relations d'un 
 
 Mais pourquoi de telles vues doivent-elles alors faire partie intégrante du modèle ? Le modèle ne doit tout de même pas anticiper à ce point sur le lieu depuis lequel on profite du panorama, qu'il s'agisse de la Dent d'Ili, de la Dent Cambrée, de l'Aiguille Noire voire du bord du grand bassin, au cœur du jardin des thermes d'Ili-les-Bains.
 
-Dans le contexte d'un modèle, les vues sont avant tout pertinentes pour des règles d'intégrité particulières (cf. § 6.14.3) et des relations dérivables (cf. § 6.13.7). Les vues sont également utiles lorsque les données sont à livrer sous une forme traitée pour un but bien spécifique, cas par exemple des données à fournir au service Internet du Val d'Ili. INTERLIS 2 offre de surcroît la possibilité de définir des graphiques. Il est fréquent que des vues et non les données originales elles-mêmes constituent la base de la définition graphique.
+Dans le contexte d'un modèle, les vues sont avant tout pertinentes pour des règles d'intégrité particulières (cf. § <<_6_14_3>>) et des relations dérivables (cf. § <<_6_13_7>>). Les vues sont également utiles lorsque les données sont à livrer sous une forme traitée pour un but bien spécifique, cas par exemple des données à fournir au service Internet du Val d'Ili. INTERLIS 2 offre de surcroît la possibilité de définir des graphiques. Il est fréquent que des vues et non les données originales elles-mêmes constituent la base de la définition graphique.
 
 [NOTE]
 Les *vues* s'appuient sur des classes d'objets ou sur d'autres vues et combinent les objets initiaux de différentes manières pour en faire de nouveaux objets-vues.
@@ -1582,7 +1582,7 @@ END CoordonneesStations;
 
 L'ensemble des objets-vues est ici deux fois plus étendu que celui des remontées mécaniques puisqu'il intègre la totalité des stations inférieures plus la totalité des stations supérieures. Ainsi, l'attribut est défini dans le respect de l'attribut de position de la station inférieure ou de la station supérieure, selon le cas.
 
-L'*agrégation (AGGREGATION)* et l'*inspection (INSPECTION)* sont liées aux attributs de structures. Une agrégation regroupe des objets présentant certaines propriétés identiques au sein d'un objet unique. Les objets considérés jusqu'alors dans l'objet-vue sont disponibles en tant qu'éléments d'un attribut de structure (cf. § 6.17.3). Une inspection veille au contraire à ce que des éléments structurés donnent naissance à des objets-vues indépendants (cf. § 6.14.3).
+L'*agrégation (AGGREGATION)* et l'*inspection (INSPECTION)* sont liées aux attributs de structures. Une agrégation regroupe des objets présentant certaines propriétés identiques au sein d'un objet unique. Les objets considérés jusqu'alors dans l'objet-vue sont disponibles en tant qu'éléments d'un attribut de structure (cf. § <<_6_17_3>>). Une inspection veille au contraire à ce que des éléments structurés donnent naissance à des objets-vues indépendants (cf. § <<_6_14_3>>).
 
 [#_6_17_3]
 ==== Constitution de vues pas à pas

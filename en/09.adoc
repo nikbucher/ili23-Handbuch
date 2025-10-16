@@ -19,7 +19,7 @@ In the following paragraphs we look at different verdict criteria for the modeli
 [#_9_2]
 === Mount Ilis seen from different angles – Original data and views
 
-If we only go by our immediate needs when modeling, we run the risk of collecting data in an unsuitable way. For instance it is not suitable to use the age of a person as an attribute since it will change continuously. It is preferable to define the date of birth as an attribute and then to derive the age by means of a view from the date of birth and the current date (cf. paragraph link:file:///Users/niklaus.bucher/dev/github/nikbucher/ili23-Handbuch/originale/6.17.2[6.17.2]).
+If we only go by our immediate needs when modeling, we run the risk of collecting data in an unsuitable way. For instance it is not suitable to use the age of a person as an attribute since it will change continuously. It is preferable to define the date of birth as an attribute and then to derive the age by means of a view from the date of birth and the current date (cf. paragraph <<_6_17_2>>).
 
 If the structure of a data model corresponds to the actual facts rather than to a certain point of view, we are more flexible with regard to concrete uses that can be derived from the original data. These data will contain Mount Ilis rather than the view from Ilis Ville or Ilis Bath. These and various other perspectives can be derived as views from our data.
 

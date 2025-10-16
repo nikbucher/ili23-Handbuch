@@ -19,7 +19,7 @@ C'est pourquoi différents critères d'appréciation d'une certaine importance p
 [#_9_2]
 === La Dent d'Ili considérée depuis des points de vue différents – Données originales et vues
 
-Si, dans le cadre d'une modélisation de données, on se laisse guider par des besoins immédiats, il existe un risque réel que les données soient saisies d'une manière inadéquate. Il n'est par exemple pas judicieux d'envisager l'âge comme un attribut pour une personne puisqu'il change constamment. Mieux vaut définir la date de naissance comme attribut et dériver l'âge à partir de celle-ci et de la date actuelle (cf. § 6.17.2), au moyen d'une vue.
+Si, dans le cadre d'une modélisation de données, on se laisse guider par des besoins immédiats, il existe un risque réel que les données soient saisies d'une manière inadéquate. Il n'est par exemple pas judicieux d'envisager l'âge comme un attribut pour une personne puisqu'il change constamment. Mieux vaut définir la date de naissance comme attribut et dériver l'âge à partir de celle-ci et de la date actuelle (cf. § <<_6_17_2>>), au moyen d'une vue.
 
 Lorsque le modèle de données est constitué de telle façon qu'il corresponde à la réalité et non à une certaine vision des choses, il nous est possible de réagir avec souplesse pour les utilisations concrètes, en les dérivant des données originales. Les données contiennent alors la Dent d'Ili et non la vue que l'on en a depuis Ili-village ou Ili-les-Bains. Ces perspectives comme bien d'autres peuvent être déduites des données originales sous forme de vues.
 

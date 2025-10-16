@@ -180,7 +180,7 @@ Thanks to inheritance this conflict could be solved. In Ilis Valley all railways
 ====
 Inheritance can also be used to support federal characteristics.
 
-_To be exact it is due to polymorphism that is rendered possible by inheritance: Each entity of a sub class can be regarded as part of the super class (cf. paragraph 5.5). Thus the National Tourist Office can process data from each alpine transport in the country even if it is an example of a local sub class of «alpine transport» unknown to the National Tourist Office._
+_To be exact it is due to polymorphism that is rendered possible by inheritance: Each entity of a sub class can be regarded as part of the super class (cf. paragraph <<_5_5>>). Thus the National Tourist Office can process data from each alpine transport in the country even if it is an example of a local sub class of «alpine transport» unknown to the National Tourist Office._
 ====
 
 Inheritance does not go very far with INTERLIS: Not only classes and topics, but also domains (types), views, graphic definitions, in a certain sense even units can be inherited and specified.

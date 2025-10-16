@@ -45,7 +45,7 @@ CLASS TicketType =
 END TicketType;
 ----
 
-Sovereigns (or Swiss francs, Euro, dollars, etc.) are defined as units and can then be used when defining a numeric type. However most common units (amongst others also CHF, EUR, USD) actually need not be defined but are available via the specific units model (units.ili, cf. paragraph 3.3).
+Sovereigns (or Swiss francs, Euro, dollars, etc.) are defined as units and can then be used when defining a numeric type. However most common units (amongst others also CHF, EUR, USD) actually need not be defined but are available via the specific units model (units.ili, cf. paragraph <<_3_3>>).
 
 [WARNING]
 In the interest of clarity we recommend indicating units at any time. The INTERLIS-units-model comprises, besides numerous physical units, such units for common currencies and for number, percent and per mille.
@@ -102,7 +102,7 @@ Maybe even the unit is still uncertain. It would only be known that e deal with 
 Price (ABSTRACT): NUMERIC [MONEY];
 ----
 
-Thus at least the character of the unit would be settled. Therefore in an extension only such units could be defined as would figure as concretes of the abstract unit MONEY (for further information concerning abstract properties also see paragraph 5.4).
+Thus at least the character of the unit would be settled. Therefore in an extension only such units could be defined as would figure as concretes of the abstract unit MONEY (for further information concerning abstract properties also see paragraph <<_5_4>>).
 
 [source]
 ----
@@ -185,7 +185,7 @@ END Gondola;
 
 For the meeting a railway person had been invited especially who then did a lengthy speech on cog rails. All present learnt a lot about what cog systems are in use world-­wide and about their respective advantages and disadvantages. However at the end of the day the people in Ilis Valley asked themselves what, after all, did these cog systems have to do with their project. Nobody could imagine of what possible interest these or other pieces of information would be in a future extension. Thus this model was rejected because it went too much into detail and finally would incur unnecessary costs for the input and maintenance of data.
 
-See also paragraph 5.1 which deals with the temptation to enter into too many details when modeling.
+See also paragraph <<_5_1>> which deals with the temptation to enter into too many details when modeling.
 
 [#_6_3]
 === Is there such a thing as light blue ski runs? – Structured enumeration
@@ -373,7 +373,7 @@ A useful approximation of the earth surface is the Ellipsoid, in other words the
 .When an ellipse revolves around its own axis, a flattened sphere results in space. Thanks to such an ellipsoid an approximation of the shape of the earth surface can be attempted. +
 image::img/image31.png[./media/image31,width=128,height=101] image:img/image32.png[./media/image32,width=292,height=54]
 
-(All figures in this paragraph and in paragraph 6.7.5 from: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Illustrations have been partially simplified. Original sources as stated above).
+(All figures in this paragraph and in paragraph <<_6_7_5>> from: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Illustrations have been partially simplified. Original sources as stated above).
 
 Depending on the part of the world, different ellipsoids are used, otherwise the approximation would become too imprecise. For instance Switzerland uses the same ellipsoid as Germany, but one slightly different from Sweden or France.
 
@@ -404,7 +404,7 @@ The first dimension of the coordinate corresponds to the first axis of the coord
 
 Is «AhlandSys» a Cartesian, an ellipsoid system? What are the names of the axes? Are there any common features (e.g. map projections) with other coordinate systems? All this information can be described by means of data. In order to make it clear ho such data is structured, a corresponding data model is formulated for it. Such a model is called meta model, the appertaining data meta data because they serve to describe the actual data.
 
-Data belonging to a meta model are «meta» in another more formal sense an information concerning origin or price (cf. paragraph 3.3). Unfortunately the same term is commonly used for both of them.
+Data belonging to a meta model are «meta» in another more formal sense an information concerning origin or price (cf. paragraph <<_3_3>>). Unfortunately the same term is commonly used for both of them.
 
 In simple cases here the application range of a data model will make it quite clear what coordinate system the coordinates actually belong to, you may omit the explicit indication of the coordinate system. Nevertheless it does make sense to make at least some sort of mention of the coordinate system in the name of the coordinate type.
 
@@ -747,21 +747,21 @@ Therefore the attribute wind comprises six elements (six values each with speed 
 [#_6_10_3]
 ==== Structures and classes
 
-From a formal point of view structures and (object) classes are quite similar, however with regard to their content there are considerable differences. A class (railway company, wind-meter) describes how objects are formed, organized. A structure describes more complex characteristics such as indication of wind. Hence a structure serves the same goal as a domain, it describes the organization of an attribute. Sometimes a structure only becomes necessary, if a characteristic must be described more in detail; for simple descriptions indicating a domain is sufficient (cf. paragraph 6.12).
+From a formal point of view structures and (object) classes are quite similar, however with regard to their content there are considerable differences. A class (railway company, wind-meter) describes how objects are formed, organized. A structure describes more complex characteristics such as indication of wind. Hence a structure serves the same goal as a domain, it describes the organization of an attribute. Sometimes a structure only becomes necessary, if a characteristic must be described more in detail; for simple descriptions indicating a domain is sufficient (cf. paragraph <<_6_12>>).
 
 Instances of classes are objects in their own right (Mount Ilis Alpine Transports, wind-meter at Ilis Rock). The instances of structures are structure elements (wind with a speed of 180km/h, blowing from a north-easterly direction). The value of a structure attribute can comprise exactly one structure element or a set of structure elements (BAG OF, LIST OF).
 
 [NOTE]
 While formally a *structure* closely resembles an object class, with regard to its contents it resembles a domain. However its corresponding items, its *structure elements,* do not have an identity of their own, they merely are values of attributes of an object. 
 
-Whereas relationships may exist between objects (cf. paragraph 6.13), the same is not possible between values (of domains or structures). However it is possible to compare similar values of distinct objects (and distinct classes) and thus establish a kind of relationship (cf. paragraph 6.17). For instance one might compare the price of a hiker's pass with the price of a steak one intends to order at the restaurant on top of Mount Ilis. Nevertheless there is no relationship between the hiker's pass and the steak.
+Whereas relationships may exist between objects (cf. paragraph <<_6_13>>), the same is not possible between values (of domains or structures). However it is possible to compare similar values of distinct objects (and distinct classes) and thus establish a kind of relationship (cf. paragraph <<_6_17>>). For instance one might compare the price of a hiker's pass with the price of a steak one intends to order at the restaurant on top of Mount Ilis. Nevertheless there is no relationship between the hiker's pass and the steak.
 
-In some cases it is necessary to refer to another object in order to describe a particular characteristic (cf. paragraph 6.11.3). Yet it will never be possible to refer to a value or a structure element, as they have no identity.
+In some cases it is necessary to refer to another object in order to describe a particular characteristic (cf. paragraph <<_6_11_3>>). Yet it will never be possible to refer to a value or a structure element, as they have no identity.
 
 [#_6_10_4]
 ==== Lines are special structures
 
-The attribute course of a ski run (cf. paragraph 6.9.1) is defined as AhlandLine, which in turn is defined as POLYLINE. A POLYLINE may be understood as a set of segments of a line (cf. paragraph 6.9.2). Thus the definition as POLYLINE is nothing but a shortened notation for an ordered set of structures, the structures elements corresponding to a certain structure definition:
+The attribute course of a ski run (cf. paragraph <<_6_9_1>>) is defined as AhlandLine, which in turn is defined as POLYLINE. A POLYLINE may be understood as a set of segments of a line (cf. paragraph <<_6_9_2>>). Thus the definition as POLYLINE is nothing but a shortened notation for an ordered set of structures, the structures elements corresponding to a certain structure definition:
 
 [source]
 ----
@@ -849,7 +849,7 @@ If this were not the case, a model would have been chosen where languages would 
 image::img/image51.png[./media/image51,width=414,height=113]
 
 
-Thus the designation refers to the language. However this reference is not a full relationship (cf. paragraph 6.13), since these designations have no identity. Consequently from the point of view of a language object there is no direct access to the designation elements. This would first have to be established by means of a view (cf. paragraph ####6.17).
+Thus the designation refers to the language. However this reference is not a full relationship (cf. paragraph <<_6_13>>), since these designations have no identity. Consequently from the point of view of a language object there is no direct access to the designation elements. This would first have to be established by means of a view (cf. paragraph <<_6_17>>).
 
 [#_6_12]
 === How do clocks tick in Ilis Valley? – Modeling time
@@ -1207,7 +1207,7 @@ CLASS TariffZoneInRegion EXTENDS NatTour.TicketsZone = +
 Area: AhlandSurface; +
 END TariffZoneInRegion;
 
-The relationship between this special tariff zone and the alpine transports in the corresponding tariff zone can be automatically established by means of views (cf. paragraph 6.17).
+The relationship between this special tariff zone and the alpine transports in the corresponding tariff zone can be automatically established by means of views (cf. paragraph <<_6_17>>).
 
 [#_6_14]
 === Unique MountIlisAlpineTransports – Consistency constraints
@@ -1362,7 +1362,7 @@ CLASS RailwayCompany =
 END RailwayCompany;
 ----
 
-But how can we avoid collisions between the abbreviations of various railway companies? Both the Blue Mountain Alpine Transport as well as the Black Mountain Alpine Transports would in the first place like to be known as BMT. In INTERLIS 2 consistency constraints cannot only be formulated for object classes respectively local structure elements but also for views (cf. paragraph 6.17). By means of a certain view we can make structure elements into basically independent objects. Then in turn we can formulate uniqueness constraints for them.
+But how can we avoid collisions between the abbreviations of various railway companies? Both the Blue Mountain Alpine Transport as well as the Black Mountain Alpine Transports would in the first place like to be known as BMT. In INTERLIS 2 consistency constraints cannot only be formulated for object classes respectively local structure elements but also for views (cf. paragraph <<_6_17>>). By means of a certain view we can make structure elements into basically independent objects. Then in turn we can formulate uniqueness constraints for them.
 
 [#_6_14_4]
 ==== Existence constraints
@@ -1390,7 +1390,7 @@ Such existence constraints cannot only be formulated in connection with lines bu
 
 Already with the alpine transport itself a consistency constraint had been formulated: The course of the track has to start at the bottom station and end at the top station. In other words, the first point of the course of a track (Tracks -> Segments[FIRST] -> SegmentEndPoint) must coincide with the position of the bottom station and (AND) the last point of the course of a track (Tracks -> Segments[LAST] -> SegmentEndPoint) must coincide with the position of the top station.
 
-Paragraph 7.3 explains the structure of polylines. It also deals with the attribute SegmentEndPoint, which stands for the end point of a line segment.
+Paragraph <<_7_3>> explains the structure of polylines. It also deals with the attribute SegmentEndPoint, which stands for the end point of a line segment.
 
 [source]
 ----
@@ -1474,7 +1474,7 @@ Missing or incorrect definitions at a more general (higher) level should not sim
 
 This is why it is also sensible to predefine fundamental types at various levels. INTERLIS itself puts some basic models at your disposal. Other models will be provided by user communities (e.g. associations). There are others that are very specific such as the model of the Mount Ilis Alpine Transports.
 
-Paragraph 3.3 names some sources for standardized data models.
+Paragraph <<_3_3>> names some sources for standardized data models.
 
 [#_6_17]
 === Tariff zones are of no interest – Views
@@ -1488,7 +1488,7 @@ In analogy object classes, structures and relationships of a model correspond to
 
 But then why should such views be part of the model? We do not want to anticipate in the model whether the view should be enjoyed so to speak from Mount Ills, Twisted Peak, the Black Tooth or from the spa in the garden of the kurhaus.
 
-Above all for special consistency constraints (cf. paragraph 6.14.3) and or derivable relationships (cf. paragraph 6.13.7) views will make sense even within the scope of the model. But views are also helpful when processed data for a specific purpose have to be supplied, for instance in the case of the data transfer to the Ilis Valley web service. Moreover INTERLIS 2 offers you the possibility to define graphics. In many cases such graphic definitions will not be based upon original data but upon views.
+Above all for special consistency constraints (cf. paragraph <<_6_14_3>>) and or derivable relationships (cf. paragraph <<_6_13_7>>) views will make sense even within the scope of the model. But views are also helpful when processed data for a specific purpose have to be supplied, for instance in the case of the data transfer to the Ilis Valley web service. Moreover INTERLIS 2 offers you the possibility to define graphics. In many cases such graphic definitions will not be based upon original data but upon views.
 
 [NOTE]
 *Views* are built upon object classes or other views and combine in different ways primary objects into new view objects.
@@ -1583,7 +1583,7 @@ END StationCoordinates;
 
 Here the set of all view objects equals the double set of all alpine transports. Once they are evaluated under the aspect of bottom station, and once under the aspect of top station. The attribute is selected according to the position attribute of either bottom or top station.
 
-*Aggregation (AGGREGATION)* and *inspection (INSPECTION)* deal with structure attributes. An aggregation unites objects that have the same characteristics into one single object. Within the scope of the view object already existing objects are available as elements of a structure attribute (cf. paragraph 6.17.3). On the other hand an inspection makes sure that structure elements become independent view objects (cf. paragraph 6.14.3).
+*Aggregation (AGGREGATION)* and *inspection (INSPECTION)* deal with structure attributes. An aggregation unites objects that have the same characteristics into one single object. Within the scope of the view object already existing objects are available as elements of a structure attribute (cf. paragraph <<_6_17_3>>). On the other hand an inspection makes sure that structure elements become independent view objects (cf. paragraph <<_6_14_3>>).
 
 [#_6_17_3]
 ==== Building views step by step

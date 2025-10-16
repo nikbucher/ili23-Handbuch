@@ -17,7 +17,7 @@ Neu war es also möglich, dem nationalen Verband eine Datei mit sämtlichen Date
 [NOTE]
 Die einfachste Transferart ist der *Volltransfer*, bei dem alle Daten vollständig übermittelt werden.
 
-Dass der Transfer auch dann reibungslos abläuft, wenn die Beteiligten nicht genau dasselbe Daten­modell benutzen, hängt mit der Vererbung zusammen, die in Abschnitt 5.5 erläutert wird.
+Dass der Transfer auch dann reibungslos abläuft, wenn die Beteiligten nicht genau dasselbe Daten­modell benutzen, hängt mit der Vererbung zusammen, die in Abschnitt <<_5_5>> erläutert wird.
 
 [#_8_2]
 === Klammern so spitz wie das Ilishorn – Transferregeln auf Basis XML
@@ -121,5 +121,5 @@ Insbesondere erfreut auch hier ein Ponylift die Kinderherzen. Wie erfährt nun a
 
 Wie geht also der nationale Tourismusverband zum Beispiel damit um, dass die Transfer­datei aus dem einen Tal die Zeile ++<++Dauer++>++3++<++/Dauer++>++ enthält, jene aus dem Nachbartal aber ++<++LapsTemps++>++3++<++/LapsTemps++>++?
 
-Der Verband muss nun nicht für jede Landessprache eine separate Software einkaufen. IN­TERLIS sorgt dafür, dass trotz der Mehrsprachigkeit ein reibungsloser Transfer gewährleistet ist. Die einzige Bedingung ist, dass sich das Datenmodell beim Übersetzen nicht in seiner Struktur verändert hat. Wie in Abschnitt 6.18 angesprochen wurde, steht ein Werkzeug (der so genannte INTERLIS-Compiler) zur Verfügung, mit dem ein übersetztes Datenmodell daraufhin überprüft werden kann, ob es strukturell gleich wie das Original ist.
+Der Verband muss nun nicht für jede Landessprache eine separate Software einkaufen. IN­TERLIS sorgt dafür, dass trotz der Mehrsprachigkeit ein reibungsloser Transfer gewährleistet ist. Die einzige Bedingung ist, dass sich das Datenmodell beim Übersetzen nicht in seiner Struktur verändert hat. Wie in Abschnitt <<_6_18>> angesprochen wurde, steht ein Werkzeug (der so genannte INTERLIS-Compiler) zur Verfügung, mit dem ein übersetztes Datenmodell daraufhin überprüft werden kann, ob es strukturell gleich wie das Original ist.
 
