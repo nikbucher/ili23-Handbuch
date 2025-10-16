@@ -24,7 +24,7 @@ Les hostilités cessèrent alors et l'on se souvint de la devise de la Rome anti
 * Qui les saisit et les met à jour ?
 
 .Les différents intervenants et les flux de données.
-image::img/image1.png[width=285,height=185]
+image::img/image1.png[]
 
 
 Mais comment les données sont-elles transmises par ceux qui les traitent à ceux qui les utilisent ? Courrier électronique, FTP, DXF, ASCII – et nous voilà repartis pour un tour. L'informaticien recommanda de faire glisser cette question vers l'arrière-plan pour s'intéresser à la manière dont les données étaient modélisées. Modélisées ? Nous cherchons à bâtir une solution informatique pour notre beau Val d'Ili, pas une maquette… La question de savoir ce qu'était un modèle de données dépassait de loin le cadre de notre première réunion mais nous apprîmes cependant ceci : il doit décrire la manière dont les données sont organisées. Quelles sont les propriétés des différents objets ? Quels objets sont en relation avec quels autres objets ? Et ce modèle ne doit pas se présenter sous une forme rédigée en langage courant mais dans un langage formel ou figuratif, clair et précis !
@@ -53,7 +53,7 @@ Si l'on décrit cependant toutes les propriétés des éléments par du texte, i
 Un tel diagramme permet de saisir l'essentiel d'un coup d'oeil :
 
 .La première ébauche d'un modèle de données
-image::img/image3.png[width=176,height=48]
+image::img/image3.png[]
 
 
 [NOTE]
@@ -79,13 +79,13 @@ _Notions apparentées aux objets : exemplaire, instance, empreinte, jeu de donn
 Toute remontée mécanique est exploitée par une société, laquelle propose un certain nombre de types de billets. On suppose que ces derniers sont valables sur l'ensemble des lignes de l'entreprise, en l'absence de toute information supplémentaire. Mais on ne peut pas se satisfaire de cette hypothèse dans la mesure où les sociétés d'une certaine taille émettent des types de billets uniquement valables sur une partie de leur réseau. La première idée venant à l'esprit consiste à introduire une relation supplémentaire entre la remontée mécanique et le type de billet. On doit donc indiquer, pour chacun des types de billets, les lignes sur lesquelles il est valable :
 
 .Le modèle de données a été étendu par une relation entre la remontée mécanique et le type de billet.
-image::img/image6.png[width=175,height=48]
+image::img/image6.png[]
 
 
 Il est cependant fréquent que plusieurs types de billets (exemple : forfait à la journée, hebdomadaire, etc.) soient valables dans une même zone. Le modèle tel qu'il est formulé pour l'instant imposerait de générer les affectations séparément pour chaque type de billet ce qui serait non seulement fastidieux mais également porteur de risques d'erreurs importants. C'est pourquoi l'Association nationale des offices de tourisme a choisi de recourir à un modèle un peu plus élaboré :
 
 .Modèle de données révisé. Aucune signification particulière n'est attachée au coude dans le trait de liaison entre la société de remontées mécaniques et le type de billet.
-image::img/image7.png[width=310,height=71]
+image::img/image7.png[]
 
 
 [WARNING]
@@ -102,7 +102,7 @@ La *cardinalité* fixe le nombre d'objets d'un autre type pouvant être affecté
 Sur la représentation graphique, les valeurs admissibles (minimum et maximum) du nombre d'autres objets sont indiquées aux extrémités des traits de relation, à proximité des cases de classes. Si aucune limite supérieure n'est fixée à cette valeur, l'indication d'un astérisque (++*++) ou l'absence de toute valeur le signale.
 
 .Une remontée mécanique est exploitée par une (1) société. Inversement, une société peut exploiter un nombre quelconque (++*++) de remontées mécaniques.
-image::img/image9.png[width=310,height=71]
+image::img/image9.png[]
 
 
 [#_2_2_3]
@@ -111,7 +111,7 @@ image::img/image9.png[width=310,height=71]
 Il est bien évident que l'application prévue requiert de décrire plus en détail ce qu'est une remontée mécanique, une société de remontées mécaniques, etc. Un nom et généralement un nom abrégé (exemple : les Remontées mécaniques de la Dent d'Ili ou RDI) sont associés à une société de remontées mécaniques.
 
 .La classe d'objets de la société de remontées mécaniques avec le nom et le nom abrégé qui lui sont associés.
-image::img/image10.png[width=147,height=31]
+image::img/image10.png[]
 
 
 [NOTE]
@@ -212,7 +212,7 @@ Les Remontées mécaniques de la Dent d'Ili regroupent les lignes suivantes :
 * Tire-fesses à Ili-village et Ili-les-Bains.
 
 .Le réseau de lignes exploité par les Remontées mécaniques de la Dent d'Ili.
-image::img/image11.png[width=450,height=185]
+image::img/image11.png[]
 
 
 Les Remontées mécaniques de la Dent d'Ili émettent les billets des types suivants :
@@ -271,7 +271,7 @@ _Notions apparentées au modèle de données, du point de vue de son organisatio
 ====
 
 .Le modèle de données de l'office du tourisme du Val d'Ili (IlisTour) n'a nul besoin de tout redéfinir. Il peut prendre appui sur des modèles préexistants et utiliser certaines parties du modèle de l'Association nationale des offices de tourisme (NatTour), des bases nationales béotiennes, de la mensuration officielle, des adresses de bâtiments ou d'autres bases à caractère général. Les lignes pointillées se terminant par des flèches pleines désignent des relations de dépendance. Il est fréquent que la base à caractère général soit représentée dans la partie supérieure du graphique et le cas particulier dans la partie inférieure, quoique l'inverse soit également très répandu.
-image::img/image12.png[width=268,height=267]
+image::img/image12.png[]
 
 
 [#_2_3_3]
@@ -282,7 +282,7 @@ Les Ilinois ne veulent toutefois pas utiliser le modèle de l'Association nation
 Par chance, l'héritage existe et permet de dénouer de telles situations.
 
 .La Remontee++_++RDI est une remontée mécanique d'un genre particulier, intégrant des attributs supplémentaires : tracé de la ligne et ouverture aux randonneurs et aux lugeurs. La ligne en trait plein à flèche évidée signale une spécialisation.
-image::img/image13.png[width=106,height=99]
+image::img/image13.png[]
 
 
 [NOTE]
@@ -295,7 +295,7 @@ _Notions apparentées à l'extension : spécialisation, sous-classe, ..._
 Serait-il judicieux d'intégrer à présent les attributs que sont les horaires de service et les délais d'attente actuels dans la classe Remontee++_++RDI du Val d'Ili ? Si l'horaire était un attribut direct de la classe Remontee++_++RDI, on pourrait imaginer la définition d'un horaire unique pour chacune des lignes, à savoir celui actuellement en service. Le responsable de l'exploitation fixe cependant les horaires au début de chaque nouvelle saison : certaines remontées ne sont pas en service en début de saison, d'autres sont arrêtées durant la pause déjeuner ; à Noël, les remontées tournent en continu de 9h00 à 15h30 ; à partir de la mi-février, lorsque les journées commencent à rallonger, l'exploitation est progressivement prolongée jusqu'à 16h30. Enfin, les conditions météorologiques et le niveau d'enneigement peuvent contraindre l'exploitant à fermer temporairement certaines lignes.
 
 .Les horaires sont désormais définis comme des objets indépendants.
-image::img/image14.png[width=298,height=186]
+image::img/image14.png[]
 
 
 Si l'on impose en outre qu'un horaire spécifique peut s'appliquer à plusieurs lignes, le volume de travail requis par la saisie s'en trouve encore un peu plus réduit. Une telle démarche est en revanche dénuée de sens pour les délais d'attente. En effet, un délai d'attente observé à un moment donné doit être affecté à la ligne à laquelle il s'applique. Et pourquoi alors ne pas fixer le délai d'attente directement dans la classe Remontee++_++RDI ? Les raisons suivantes militent en défaveur de cette option :
@@ -318,7 +318,7 @@ Le modèle du Val d'Ili étend par conséquent le thème des remontées mécaniq
 La saisie des horaires, des décisions relatives à l'exploitation et des messages d'état ne relevant pas de la compétence d'un seul service et s'effectuant surtout à des rythmes très différents, un thème spécifique a été défini pour chacune de ces informations (Planification++_++RDI, Exploitation++_++RDI, Actualite++_++RDI).
 
 .Le modèle du Val d'Ili (IlisTour) étend le modèle de l'Association nationale des offices de tourisme (NatTour). IlisTour hérite du thème des remontées mécaniques de NatTour, étend la classe RemonteeMecanique en Remontee++_++RDI et y adjoint plusieurs thèmes dévolus à la planification, à l'exploitation et à l'actualité.
-image::img/image15.png[width=354,height=359]
+image::img/image15.png[]
 
 
 [NOTE]
@@ -330,7 +330,7 @@ L'héritage peut s'effectuer à petite échelle (classes d'objets) comme à plus
 Les Ilinois souhaiteraient de plus décrire les pistes et les auberges. C'est pourquoi ils complètent leur modèle par des thèmes supplémentaires.
 
 .Le modèle de l'office du tourisme du Val d'Ili est complété par des thèmes supplémentaires.
-image::img/image16.png[width=257,height=255]
+image::img/image16.png[]
 
 
 De nouvelles questions apparaissent lorsque vient le tour des auberges. Comment par exemple faire figurer le snack INTERLUNCH ? On connaît son adresse, au 27 de la rue principale. Mais cela ne nous indique pas le symbole par lequel le représenter ! La solution réside dans l'utilisation des adresses de bâtiments qui comportent une classe d'entrée d'immeuble intégrant également un attribut de position (exprimée en coordonnées nationales). Ainsi, on ne fera figurer aucune adresse dans la classe des auberges mais on définira une relation avec l'entrée de l'immeuble. Concrètement, l'objet correspondant à l'hôtel des Cimes sera mis en relation avec l'objet d'entrée d'immeuble décrivant le 27 de la rue principale.
@@ -341,7 +341,7 @@ De nouvelles questions apparaissent lorsque vient le tour des auberges. Comment 
 Une modélisation tient compte des exigences posées, mais ne gère pas leur traduction concrète, laquelle offre en principe une totale liberté. Les Remontées mécaniques de la Dent d'Ili se sont décidées pour un logiciel standardisé (LiftSys) qui ne peut toutefois traiter des données qu'en conformité avec le modèle étendu. Il est bien entendu possible de renoncer à la classe des remontées mécaniques et d'intégrer ses attributs à la classe Remontee++_++RDI.
 
 .Le logiciel envisagé par l'office du tourisme du Val d'Ili peut se contenter de respecter le modèle conceptuel dans ses grandes lignes. Il peut par exemple fusionner en interne deux classes d'objets au sein d'une classe unique. La seule chose importante est que le logiciel soit en mesure de livrer les données dans le format correspondant aux exigences posées par le modèle conceptuel.
-image::img/image17.png[width=380,height=99]
+image::img/image17.png[]
 
 
 Diverses autres questions se posent, analogues au problème soulevé par le traitement concret des classes conformément au concept défini, concernant la manière dont un système informatique traduit concrètement les représentations liées au modèle conceptuel.
@@ -366,13 +366,13 @@ Si LiftSys était en mesure d'organiser directement le modèle de données inter
 Le logiciel du service des constructions (ConstSys) permet par exemple la génération de fichiers en conformité avec INTERLIS 2. Mais il ne reconnaît que des tables isolées pouvant chacune comporter plusieurs colonnes. Les règles de format d'INTERLIS étant conçues de telle façon que la structure d'héritage ne se reflète pas directement dans le fichier de transfert, ConstSys pourrait permettre de créer directement des fichiers corrects. La conversion des données internes en données externes peut être représentée comme suit :
 
 .Les données internes du logiciel A sont converties dans un fichier de transfert dont l'organisation se déduit du modèle de données, en conformité avec les règles de format d'INTERLIS. Les données peuvent ensuite être importées dans le logiciel B. La condition à cela étant que les logiciels impliqués dans l'opération aient été configurés dans le respect du modèle de données.
-image::img/image18.png[width=298,height=381]
+image::img/image18.png[]
 
 
 LiftSys n'accepte pas INTERLIS. Et maintenant ? Les Remontées mécaniques de la Dent d'Ili doivent-elles se mettre en quête d'un nouveau logiciel ? La solution est beaucoup plus simple : LiftSys exporte les données dans un format différent et celles-ci sont reformatées pour se conformer aux règles d'INTERLIS à l'aide d'un logiciel de conversion. Ce dernier peut soit être développé spécifiquement pour notre modèle de données concret, soit être développé dans une optique plus générale en tant qu'outil fondé sur un modèle.
 
 .Un convertisseur génère des fichiers INTERLIS à partir d'un format spécifique à un système informatique donné.
-image::img/image19.png[width=212,height=84]
+image::img/image19.png[]
 
 
 Après que tout ait parfaitement fonctionné, le fichier est transmis à l'Association nationale. Leur réponse ne tarde pas : « Bien, à une exception près, il y a un problème au niveau du nom du télésiège de la Crête d'Ili ! » Ouf – et pourtant, nous aurions dû le savoir ! Combien de fois n'avons-nous pas été confrontés au sempiternel problème des accents dans le courrier électronique : « Crête d'Ili ».
@@ -427,7 +427,7 @@ La vue requise relie les horaires, les décisions d'exploitation et les délais 
 Du point de vue de l'utilisation, les objets-vues peuvent être interprétés comme des objets de données, raison pour laquelle les vues sont également décrites au moyen de classes.
 
 .L'état de la ligne n'est pas une classe d'objets indépendante mais se déduit d'une vue de Remontee++_++RDI. La vue regroupe l'ensemble des données nécessaires pour la représentation sur un site Internet.
-image::img/image20.png[width=120,height=111]
+image::img/image20.png[]
 
 
 [#_2_4_3]

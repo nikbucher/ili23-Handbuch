@@ -24,7 +24,7 @@ At this point it was agreed to call a halt. Remembering the old Roman saying «D
 * Who is in charge of their recording and update?
 
 .Parties concerned and flow of information.
-image::img/image1.png[width=264,height=185]
+image::img/image1.png[]
 
 
 But how are these data transferred from processor to user? E-mail, FTP, DXF, ASCII – and discussion started again. The information technologist recommended to put this question aside for the time being and to consider the modeling of these data instead. Modeling? What on earth had modeling to do with an IT-solution for Ilis Valley? The question what a data model actually is definitely was beyond the scope of their first meeting. Only that much be said: A data model describes the structure of data. What are the properties of the individual objects? Are there any relationships between objects? And this not as a literary work but in a clear, precise figurative or formal language!
@@ -53,7 +53,7 @@ If all characteristics of all items are to be described in words it will soon be
 Such a diagram will depict quite well the essential:
 
 .A first attempt of a data model.
-image::img/image3.png[width=164,height=48]
+image::img/image3.png[]
 
 
 [NOTE]
@@ -79,13 +79,13 @@ _Terms related to object are: example, instance, property, data set, line, tuple
 Each means of alpine transport is run by a company. This company issues certain types of tickets. Without further specific information they must be valid on all railway companies. This however cannot always be satisfactory, because it is quite conceivable that bigger companies will issue types of tickets that are only valid on some of their lines. Thus it suggests itself that also a relationship between means of transport and ticket type be introduced. Hence we list for each ticket type the means of alpine transport it is valid for.
 
 .The data model has been expanded by the relationship means of alpine transport – TicketType.
-image::img/image4.png[width=164,height=48]
+image::img/image4.png[]
 
 
 However often several ticket types (e.g. day ticket, weekly season ticket, etc.) will be valid in the same area. With the model defined so far all assignations for each ticket type would have to be established individually. This is rather awkward and prone to errors. Most likely this is why the National Tourist Office has chosen a subtler model:
 
 .Revised data model. The bend in the connecting line between RailwayCompany and TicketType has no signification.
-image::img/image5.png[width=302,height=70]
+image::img/image5.png[]
 
 
 [WARNING]
@@ -102,7 +102,7 @@ Several means of alpine transport may be attributed to one company and vice vers
 In the graphic both the minimum and maximum number of admissible other objects at the end of the connecting line is noted with the class of the other objects. If its number is unlimited we either add a (++*++) or omit an indication.
 
 .One AlpineTransport is rune by exactly one (1) company. On the other hand a company may run any number of (++*++) alpine transports.
-image::img/image7.png[width=302,height=70]
+image::img/image7.png[]
 
 
 [#_2_2_3]
@@ -111,7 +111,7 @@ image::img/image7.png[width=302,height=70]
 Of course it is necessary for the application as it is planned to describe more in detail a means of alpine transport, company etc. A company will have a name and (typical with railway companies) an abbreviation (e.g. MountIlisAlpineTransport, MIT).
 
 .The object class Company with name and abbreviation.
-image::img/image8.png[width=85,height=32]
+image::img/image8.png[]
 
 
 [NOTE]
@@ -212,7 +212,7 @@ The following means of alpine transports form the Mount Ilis Alpine Transports:
 * Pony lifts in Ilis Ville and Ilis Bath.
 
 .The Mount Ilis Alpine Transports operate several lines.
-image::img/image10.png[width=448,height=186]
+image::img/image10.png[]
 
 
 The Mount Ilis Alpine Transports issue the following ticket types:
@@ -267,7 +267,7 @@ _Terms related to data model in the sense of building-up are : Modules, packages
 ====
 
 .The tourism data model of Ilis Valley (IlisTour) need not make its own definitions. Instead it builds upon other models: It uses parts of the national tourism-model (NatTour), of the national basis of Ahland, of the cadastral surveying, of the addresses of buildings as well as common fundamentals. The dotted line with filled-in arrow means dependency. As in our example very often the common base is placed at the top, the special case at the bottom. However the opposite is also found.
-image::img/image11.png[width=248,height=266]
+image::img/image11.png[]
 
 
 [#_2_3_3]
@@ -278,7 +278,7 @@ Somehow the authorities of Ilis Valley did not want to use the model of the Nati
 Luckily there is a thing called inheritance for such cases.
 
 .A MITAlpineTransport is a special means of AlpineTransport with additional attributes: TrackCourse as well as usability for HikersToboggans. The traced line with a white arrow means specialization.
-image::img/image12.png[width=98,height=98]
+image::img/image12.png[]
 
 
 [NOTE]
@@ -291,7 +291,7 @@ _Terms related to extension are: Specialization, sub class, ..._
 Now would it be correct to also add the attributes OperatingHours and current WaitingTime to the class MITAlpineTransport? If the OperatingHours were a direct attribute of MITAlpineTransport, then for each line one, typically the current operating hour, could be noted. However the managing director fixes the operating hours at the beginning of the season: In early season some lifts do not run yet, others take a lunch break; around the Christmas-holidays they run non-stop from 9a.m. until 3.30p.m.; starting in mid February – when days begin to lengthen – then operating hours gradually are extended until 4.30 p.m. Then again depending on snow and weather conditions some lines will shut down temporarily.
 
 .OperatingHours are not defined as independent objects.
-image::img/image13.png[width=366,height=188]
+image::img/image13.png[]
 
 
 If we define moreover that certain operating hours apply to several railway companies, then the costs of data collection can be reduced even further. Of course this does not make sense with waiting times. A waiting time noticed at a certain moment must be assigned to the line where passengers have to wait accordingly. Then why not recording the waiting time directly on the MITAlpineTransport? The following arguments explain why:
@@ -314,7 +314,7 @@ That is why the Ilis Valley model extends the topic predefined by the National T
 Since operating hours, operating decisions and information on conditions are not only registered by different agencies but also at completely different intervals, they each are defined in individual topics (MITPlanning, MITOperation, MITCurrentEvents).
 
 .The Ilis Valley model (IlisTour) extends the model of the National Tourist Office (NatTour). IlisTour inherits the topic AlpineTransports from NatTour, extends the class AlpineTransport to MITAlpineTransport and adds further topics for planning, operation and current events.
-image::img/image14.png[width=376,height=358]
+image::img/image14.png[]
 
 
 [NOTE]
@@ -326,7 +326,7 @@ Inheritance does not only exist on a smaller scale (object classes), but also on
 The authorities of Ilis Valley would also like to describe ski runs and restaurants. Hence they add further topics to the Ilis Valley model.
 
 .Further topics extend the Ilis Valley model of tourism.
-image::img/image15.png[width=262,height=254]
+image::img/image15.png[]
 
 
 Mainly with regard to the restaurants further questions arise. For example how is the fast-food INTERLUNCH to be represented graphically when it is well known that it is situated on 27, Village Road? But this does not permit the placing of a symbol on the map! The solution lies in the utilization of the building addresses. There the class HouseEntrance can be found that also features a position attribute (in national coordinates). That is why in the class Hotel no address is introduced; instead a relationship with the HouseEntrance is defined. To be concrete, the object that corresponds to the hotel Sun is linked to the house entrance object which describes 27, Village Road.
@@ -337,7 +337,7 @@ Mainly with regard to the restaurants further questions arise. For example how i
 A concept settles requirements but not their implementation. Where implementation is concerned we are basically free. The Mount Ilis Alpine Transports have decided on a standardized program package (LiftSys), this however can only process data in accordance with the extended model. Then again it is quite admissible to do without the class AlpineTransport and to insert its attributes directly in the class MITAlpineTransport.
 
 .The program package for Ilis Valley tourism only has to roughly observe the conceptual model. For example it can combine two object classes into one, as long as the package is capable of supplying data in the format that corresponds to the conceptual model.
-image::img/image16.png[width=390,height=98]
+image::img/image16.png[]
 
 
 Analogous to the processing of classes according to the concept other questions arise as to how a certain computer system realizes ideas connected with the conceptual model.
@@ -362,14 +362,14 @@ If LiftSys were capable of establishing the internal data model directly and in 
 The program package of the department of construction (ConstSys) for example supports the generating of INTERLIS 2-conforming files. However it only knows some few tables which each consists of maybe several tables. Since the formatting rules of INTERLIS are organized in such a way that inheritance structure is not directly reflected in the transfer file so, it would be possible to directly generate correct files by using ConstSys. The conversion of internal to external data may be imagined in the following way:
 
 .The internal data of program package A will be converted into a transfer file whose structure depends on the data model according to the INTERLIS format rules.
-image::img/image17.png[width=328,height=382]
+image::img/image17.png[]
 
 These data then will be imported into program package B, provided the program packages concerned have been configured in accordance with the data model.
 
 However LiftSys does not support INTERLIS. What is to be done? Must MITAlpine Transport contemplate buying a new program package? There is an obvious alternative: LiftSys exports the data in another format, and then they will be with a conversion program according to INTERLIS. This conversion program can either be realized specifically for this concrete data model or more neutrally as a model-based tool.
 
 .A converter generates INTERLIS-files from a format, which is specific for a certain computer system.
-image::img/image18.png[width=204,height=85]
+image::img/image18.png[]
 
 
 Once all seemed to go smoothly the file was sent to the National Tourist Office. The response: «Almost perfect – however there is a problem with the ski lift up to Ilis Rock!» Uff – somehow this is familiar and occurs repeatedly in e-mails: «Ilistäli» (Ilis Dale in German); these umlauts again.
@@ -424,7 +424,7 @@ The view demanded links operating hours, operating decisions and waiting times w
 From the standpoint of the application view objects can be considered in much the same way as data-objects. That is why views can also be described by means of view classes.
 
 .The condition of railways is not an independent object class, but is derived via a view from MITAlpineTransport. The view comprises such data as is necessary for the representation on an internet site.
-image::img/image19.png[width=141,height=110]
+image::img/image19.png[]
 
 
 [#_2_4_3]

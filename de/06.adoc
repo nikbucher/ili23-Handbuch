@@ -149,7 +149,7 @@ Da jetzt alle zulässigen Möglichkeiten aufgezählt sind, herrscht Ordnung. Oft
 Wenn die verschiedenen Arten jeweils eigene Eigenschaften (Attribute oder Beziehungen) aufweisen, ist es sinnvoll, eigene Klassen zu definieren, welche die Basisklasse beerben (vgl. <<_5>>).
 
 .Zahnradbahnen, Standseilbahnen, etc. sind spezielle Bergbahnen. Es gibt jedoch keine Bergbahnen an und für sich: Alle «konkreten» Bergbahnen gehören immer zu einer der Unterklassen. _Bergbahn_ ist damit eine abstrakte Klasse, was im Diagramm mittels Schrägschrift bezeichnet wird.
-image::img/image30.png[width=427,height=63]
+image::img/image30.png[]
 
 
 Es gibt aber keine Bergbahnen, die ausschliesslich Bergbahn sind und nicht gleichzeitig auch einer Unterklasse angehören. Die Klasse Bergbahn wird dann als «abstrakt» deklariert. Eine konkrete Bergbahn muss dann immer eine Zahnradbahn, eine Luftseilbahn, usw. sein.
@@ -375,7 +375,7 @@ Schon für Ptolemäus war die Erde eine Kugel. Die Vermesser (oder die Geodäten
 Eine brauchbare Annäherung der Erdoberfläche ist das Ellipsoid, also jene Fläche, die entsteht, wenn sich eine Ellipse um ihre zentrale Achse dreht.
 
 .Dreht sich eine Ellipse um ihre eigene Achse, entsteht im Raum eine flachgedrückte Kugel. Mit einem solchen Ellipsoid kann die Form der Erdoberfläche angenähert werden. +
-image::img/image31.png[width=127,height=101] image:img/image32.png[width=290,height=55]
+image::img/image31.png[] image:img/image32.png[]
 
 (Alle Abbildungen in diesem Abschnitt und in Abschnitt <<_6_7_5>> aus: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Teilweise wurden die Illustrationen vereinfacht. Ursprüngliche Bildquellen siehe dort).
 
@@ -384,13 +384,13 @@ Je nach Weltgegend werden anders gelegene Ellipsoide benutzt, sonst würde die A
 Als räumliche Gebilde sind Ellipsoide jedoch etwas mühselig zu handhaben. Aus diesem Grund bilden Geodäten das Ellipsoid auf eine Fläche ab. Hierzu legen sie einen Zylinder oder Kegel an das Ellipsoid an und beleuchten es von innen, so dass das Landschaftsbild auf den Zylinder oder den Kegel projiziert wird.
 
 .Das Ellipsoid wird in einen Zylinder (links) oder Kegel (rechts) gewickelt. Anschliessend wird es von innen beleuchtet.
-image::img/image33.png[width=119,height=93] image:img/image34.png[width=77,height=83]
+image::img/image33.png[] image:img/image34.png[]
 
 
 Als nächstes wird der Zylinder oder Kegel mit einer Schere aufgeschnitten, abgerollt und flach auf den Tisch gelegt – fertig ist die Karte!
 
 .Nach erfolgter Projektion wird der Zylinder (bzw. Kegel) aufgeschnitten und abgerollt. Ein gewölbter Körper wie etwa ein Ellipsoid oder eine Kugel könnte zwar aufgeschnitten, aber nicht flach abgerollt werden.
-image::img/image35.png[width=217,height=189]
+image::img/image35.png[]
 
 
 Zuletzt werden feine, rechtwinklig aufeinander stehende Linien über die Karte gelegt: Das *Koordinatensystem* der Karte. Bei jedem Koordinatentyp muss darum auch festgelegt werden, welches Koordinatensystem ihm zu Grunde liegt.
@@ -489,20 +489,20 @@ WGS84Koord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
 Bei den Höhen stellt sich noch ein besonderes Problem. Wo ist eigentlich die Höhe 0? Wie kann man die Höhe eines Punktes gegenüber dieser Höhe 0 bestimmen? Die Geodäten unterscheiden vor allem zwischen den Höhen gemäss dem Schwerefeld der Erde (Schwere- oder Geoid-Höhe; 0 ist die Höhe der gedachten Fortsetzung des Meeres unter den Kontinenten) und Höhen gemäss der geometrischen Annäherung der Erde (Ellipsoid-Höhe; 0 ist die Oberfläche des Ellipsoids).
 
 .Das Schwerefeld der Erde: Beim Geoid wird die Meeresoberfläche in Gedanken unter den Kontinenten fortgesetzt. Gebirgsmassive, Meeresgräben etc. beeinflussen das Schwerefeld und verformen so die gedachte Wasseroberfläche. Diese Zeichnung ist sehr stark überhöht.
-image::img/image36.png[width=160,height=153]
+image::img/image36.png[]
 
 
 .Je nach gewähltem Bezugssystem besitzt Punkt Q eine andere Höhe.
-image::img/image37.png[width=309,height=119]
+image::img/image37.png[]
 
 
 Die Landeskoordinatensysteme verwenden typischerweise Geoidhöhen. Darum bezieht sich die dritte Dimension der Landeskoordinaten auch nicht einfach auf die dritte Achse des Landessystems, sondern auf die erste Achse eines speziellen Höhen­systems.
 
 Dagegen werden die Koordinaten bei GPS-Messungen rein geometrisch aus Satelliten­positionen bestimmt, ohne dass das Schwerefeld der Erde eine Rolle spielen würde. WGS84-Höhen sind also Ellipsoidhöhen.
 
-image::img/image38.png[width=245,height=155] +
+image::img/image38.png[] +
 .Die Schwerehöhe kann bis zu einigen Metern von der Ellipsoidhöhe abweichen. Gezeigt sind die Abweichungen zum jeweils üblichen Ellipsoid der Schweiz, von Frankreich und dem ehemaligen West-Deutschland.
-image::img/image39.png[width=251,height=266] image:img/image40.png[width=193,height=270]
+image::img/image39.png[] image:img/image40.png[]
 
 
 Die Umrechnung zwischen Schwerehöhen und Ellipsoidhöhen kann vor allem dort ein Problem sein, wo der Bereich der zulässigen Koordinaten ein Gebiet abdeckt, dessen Schwerefeld nicht mehr homogen ist. Zum Glück sind diese Fragen bei der Modellierung nur von geringer Bedeutung. Einen kleinen Gedanken sind sie aber dennoch wert.
@@ -522,14 +522,14 @@ DOMAIN
 Wenn wir auf dem Ilishorn stehen, möchten wir vielleicht wissen, in welche Richtung wir schauen müssen, um das Krummhorn zu sehen. 50 Grad? 40 Grad? 310 Grad?
 
 .Wer das Ilishorn besteigt, wird für die Mühen mit einer prächtigen Bergsicht belohnt. +
-image::img/image41.png[width=408,height=156]
+image::img/image41.png[]
 
 Aber in welchem Winkel ist das Krummhorn zu sehen? Ist nicht klar, auf welches Koordinatensystem sich die Frage bezieht, lässt sich keine Antwort geben.
 
 Es kommt eben drauf an, wo die Nullrichtung ist und wie die Richtungen drehen. Wenn von Richtungen gesprochen wird, muss darum immer auch von einem Bezugssystem ge­sprochen werden. Richtungen stehen darum in engem Zusammenhang mit Koordinaten­typen. Es macht ja auch Sinn, die Distanz und die Richtung zwischen zwei über Koordinaten definierten Punkten zu bestimmen.
 
 .Die Angabe von Achsen und Drehsinn gehört zur Definition eines Koordinatensystems.
-image::img/image42.png[width=406,height=156]
+image::img/image42.png[]
 
 
 [source]
@@ -575,7 +575,7 @@ Es ist offensichtlich: Die Piste vom Ilishorn zur Ilisegg ist eine komplizierte 
 Diesen Sachverhalt könnte man im konzeptuellen Modell auch darstellen. Das wäre aber eher eine überflüssige Belastung. Wenn man einmal weiss, dass Linien immer so aufgebaut sind, muss dies ja nicht mehr dargestellt werden.
 
 .Der Verlauf einer Piste ist eine Linie. Diese bestehen ihrerseits aus einzelnen Linienstücken, von denen es verschiedene Arten gibt: Geradenstücke, Kreisbogen­stücke, etc.
-image::img/image43.png[width=360,height=69]
+image::img/image43.png[]
 
 
 Es macht aber durchaus Sinn anzugeben, welche Arten von Linienstücken bei einem be­stimmten Linientyp vorkommen dürfen.
@@ -599,7 +599,7 @@ AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS)
 ----
 
 .Kleine Überschneidungen sind manchmal nicht vermeidbar. Es ist Teil des Modells, +
-image::img/image44.png[width=233,height=105]
+image::img/image44.png[]
 
 wie gross die Überlappung (im Bild die Pfeilhöhe) höchstens sein darf.
 
@@ -640,7 +640,7 @@ END Piste;
 Kurz vor der Ilisegg steht mitten in der Piste ein grosser Baum – oder anders gesagt, die Piste geht links und rechts am Baum vorbei.
 
 .Mitten in der Piste steht ein grosser Baum. Für Skifahrer mag die Lage brenzlig sein, aber um das Datenmodell braucht man sich nicht zu sorgen: Trotz der Enklave ist die Piste eine einzige Fläche.
-image::img/image45.png[width=277,height=117]
+image::img/image45.png[]
 
 
 Ist die zu präparierende Fläche noch eine einzige Fläche? Mit Flächen – mindestens im Sinne von INTERLIS – sind immer zusammenhängende Bereiche gemeint. Auch wenn sie im Innern Aussparungen (Löcher, Enklaven) haben, sind es immer noch zusammen­hängende Bereiche und können damit als eine Fläche beschrieben werden.
@@ -666,7 +666,7 @@ END Pistenzustand;
 Da solche überlappungsfreien Flächen recht häufig vorkommen, wurde dafür in INTERLIS ein eigener Typ (AREA) eingeführt. Statt von Flächen wird von Gebietseinteilungen gesprochen.
 
 .Beim gewöhnlichen Flächentyp (SURFACE, links) dürfen sich die Flächen verschiedener Objekte überlappen. Beispielsweise spricht nichts dagegen, wenn dasselbe Stück Land gleichzeitig zu zwei Skipisten gehört. Dagegen wird bei einer Gebietseinteilung (AREA, rechts) gefordert, dass jeder Punkt im Land eindeutig einem Objekt zugeordnet werden kann, wenn er nicht zur Restfläche (schwarz dargestellt) gehört. Ein Beispiel sind die Abschnitte, welche der Pistendienst präpariert.
-image::img/image46.png[width=194,height=146] image:img/image47.png[width=204,height=136]
+image::img/image46.png[] image:img/image47.png[]
 
 
 [#_6_9_5]
@@ -680,7 +680,7 @@ INTERLIS 2 unterstützt Linien mit 2.5 Dimensionen.
 Dabei wird davon ausgegangen, dass jeder Stützpunkt (Punkt zwischen zwei Linienstücken) mit Lage und Höhe definiert ist und die Höhe auf dem Linienstück entsprechend der Länge des Kurvenstückteils linear interpoliert wird.
 
 .INTERLIS unterstützt 2.5-dimensionale Linien: Die Höhe zwischen zwei Stützpunkten wird immer linear interpoliert. An jener Stelle, wo auf dem Boden ein Viertel des Weges zwischen C und D zurückgelegt wurde, ist auch ein Viertel des Höhenunterschieds überwunden.
-image::img/image48.png[width=446,height=198]
+image::img/image48.png[]
 
 
 Sollte man den Pistenverlauf nun nicht mit einem dreidimensionalen Linientyp modellieren? Rein technisch wäre dies offenbar kein Problem, und die Höhe spielt schliesslich beim Ski­fahren eine wichtige Rolle. Dagegen spricht aber, dass die Höhe des Pistenverlaufs keine unabhängige Grösse ist: Kennt man die Lage, ergibt sich die Höhe aus der Geländeform. Die Höhe des Pistenverlaufs kann damit anhand seiner Lage und einem Geländemodell berech­net werden. Aus konzeptueller Sicht ist es darum vorzuziehen, auf die Höheninformation beim Pistenverlauf zu verzichten.
@@ -800,7 +800,7 @@ Im bisherigen Modell besitzt eine Bahngesellschaft einen Namen sowie eine Kurzbe
 Es liegt nahe, die Objektklasse Bahngesellschaft um den französische Namen und die Kurz­bezeichnung zu ergänzen:
 
 .Die Objektklasse Bahngesellschaft mit Namen und Kurzbezeichnung, +
-image::img/image49.png[width=101,height=49]
+image::img/image49.png[]
 
 jeweils auf Deutsch und Französisch.
 
@@ -834,7 +834,7 @@ END Bahngesellschaft;
 Oder bildlich:
 
 .Einer Bahngesellschaft sind Bahnbezeichnungen zugeordnet. Da eine Gesellschaft mehrere Namen besitzen kann, ist es ohne Aufwand möglich, neue Namen in anderen Sprachen aufzunehmen. Die Details der Zuordnung (Angaben wie 1..++*++ oder das aus­gefüllte Viereck) werden weiter unten im Zusammenhang mit Beziehungen diskutiert.
-image::img/image50.png[width=290,height=113]
+image::img/image50.png[]
 
 
 [WARNING]
@@ -850,7 +850,7 @@ Wer kennt schon die Sprachabkürzung für das Rätoromanische? rr? rm! Im Rahmen
 Wäre dies nicht der Fall gewesen, hätte man ein Modell gewählt, bei dem die Sprachen eigentliche Objekte sind. Das Sprachobjekt würde die Abkürzung und z.B. den Namen je als Text in der eigenen Sprache und in englisch enthalten.
 
 .In dieser Variante verweist die (Sprach)Bezeichnung (eine Struktur) auf die Sprache (eine normale Objektklasse).
-image::img/image51.png[width=397,height=115]
+image::img/image51.png[]
 
 
 Die Bezeichnung verweist so auf die Sprache. Dieser Verweis ist aber nicht eine vollwertige Beziehung (vgl. Abschnitt <<_6_13>>), da die Bezeichnungen keine Identität haben. Aus Sicht des Sprachobjektes besteht darum auch kein direkter Zugang zu den Bezeichnungselementen. Dieser müsste über eine Sicht etabliert werden (vgl. Abschnitt <<_6_17>>).
@@ -934,7 +934,7 @@ END inTagen;
 ----
 
 .Zeitdauer in einer detaillierten Modellierung mit Strukturen. Damit ist es möglich, dass die Gültigkeitsdauer eines Billetts je nach Bedarf ein Monat (ZeitdauerImplizit; links) oder exakt dreissig Tage (ZeitdauerInTagen; rechts) ist.
-image::img/image52.png[width=469,height=192]
+image::img/image52.png[]
 
 
 [WARNING]
@@ -1048,7 +1048,7 @@ Die Einteilung gemäss diesen Stärken ist nicht immer einfach. Aus Sicht der In
 * *Kopieren* – Wird eine Bahngesellschaft kopiert (in der Natur natürlich nicht so einfach wie im Computer), werden auch für alle zugeordneten Bergbahnen Kopien erstellt und der neuen Bahngesellschaft zugeordnet. Für jede Bergbahn werden entsprechend wieder Kopien der Masten erstellt. Das Kopieren eines Objekts erzeugt auch Duplikate jener Objekte, die ihm über Aggregationen und Kompositionen zugeordnet sind. Da­gegen entstehen keine Kopien für jene Objekte, die ihm über gewöhnliche Assozia­tionen zugeordnet sind.
 
 .Assoziation (links), Aggregation (mitte) und Komposition (rechts) sind verschiedene Arten von Beziehungen. Sie unterscheiden sich in ihrer Bindungsstärke: Ein Mast ist so eng mit seiner Bergbahn verbunden, dass er als Bestandteil der Bahn aufgefasst werden kann. Im Vergleich zur Komposition sind Aggregation und Assoziation schwächer.
-image::img/image55.png[width=61,height=72] image:img/image56.png[width=84,height=72] image:img/image57.png[width=51,height=72]
+image::img/image55.png[] image:img/image56.png[] image:img/image57.png[]
 
 
 Die Schreibweise in INTERLIS ist der graphischen Darstellung nachempfunden. Der Rollen­name muss jedoch auch dann geschrieben werden, wenn er sich nicht vom Namen der Klasse unterscheidet.
@@ -1114,7 +1114,7 @@ Was aber bedeuten bei mehrgliedrigen Beziehungen die Kardinalitätsangaben genau
 Etwas kompliziert. Braucht es wirklich mehrgliedrige Beziehungen, oder könnte man sie auf die üblichen Zweierbeziehungen reduzieren?
 
 .Beziehungen zwischen mehr als zwei Beteiligten lassen sich auf gewöhnliche Zweier­beziehungen reduzieren. Die frühere Beziehungsklasse (hier: Verkauf) wird zum gleich­berechtigten Partner, und die Beteiligten stehen neu nur noch mit der früheren Bezie­hungsklasse in Beziehung.
-image::img/image60.png[width=219,height=127]
+image::img/image60.png[]
 
 
 Dieses Modell drückt aber weniger klar aus, dass die drei Klassen Verkaufsstelle, Billettart und Saison als Dreiergruppe miteinander in Beziehung stehen.
@@ -1129,11 +1129,11 @@ Natürlich kann man die Bahnen einer Gesellschaft in alphabetischer Reihenfolge 
 Aber wäre es nicht sinnvoll, mit der Ordnung festzuhalten, in welcher Reihenfolge die Beziehung etabliert wurde? Zuerst wurde die Luftseilbahn eröffnet, dann der Skilift, dann die Gondelbahn, usw. In diesem Fall wäre es allerdings besser, die Beziehung mit den Attributen Betriebsanfang und Betriebsende zu versehen. Dann könnte sogar festgehalten werden, welche Betreiberin es über die Zeit hinweg gegeben hat. Es macht in diesem Fall auch keinen Sinn mehr, die Beziehung als Aggregation aufzufassen.
 
 .Um festzuhalten, in welcher Reihenfolge die Bergbahnen einer Gesellschaft ihren Betrieb aufgenommen haben, könnte man an sich eine geordnete Beziehung ver­wenden. Das Modell der nächsten Abbildung ist jedoch besser.
-image::img/image61.png[width=226,height=18]
+image::img/image61.png[]
 
 
 .Das Modell ist mit einer Beziehungsklasse sauberer, weil damit weitere Auswertungen möglich sind. So können hier die Bahnen einer Gesellschaft auch anhand der Betriebs­einstellung sortiert werden, und ein Computerprogramm kann anzeigen, von wem eine Bergbahn in der Vergangenheit betrieben wurde.
-image::img/image62.png[width=199,height=81]
+image::img/image62.png[]
 
 
 Ähnliche Überlegungen gelten für die Beziehung zwischen Bergbahn und Masten: Mit der Ordnung der Beziehung könnte man die Reihenfolge von Tal- zu Bergstation ausdrücken. Konzeptuell ist es aber besser, beim Mast ein Lageattribut zu führen und die Reihenfolge dann aus dieser Lage und dem Trasseeverlauf abzuleiten.
@@ -1144,7 +1144,7 @@ Bevor eine Beziehung als geordnet deklariert wird, sollte genau überlegt werden
 Wo machen geordnete Beziehungen überhaupt einen Sinn? Die Gondelbahn von Ilisbad aufs Ilishorn hat Gondeln, die nicht fix auf dem Transportseil montiert sind. Sie können vielmehr in der Tal- und Bergstation abgestellt und je nach Bedarf ins Seil eingeklinkt werden. Welche Gondeln sind aktuell in welcher Reihenfolge auf das Seil eingeklinkt?
 
 .Zwar besitzt eine Gondel eine Nummer, aber diese sagt nichts über die Reihenfolge auf dem Seil aus. In diesem Fall ist eine geordnete Beziehung sinnvoll.
-image::img/image63.png[width=191,height=70]
+image::img/image63.png[]
 
 
 Hier ist die Ordnung gefragt. Die Nummer der Gondel kann nicht für die Ordnung heran­gezogen werden. Diese identifiziert einfach die konkrete Gondel. Über die Reihenfolge, wie sie aktuell auf dem Seil angeordnet sind, sagt sie überhaupt nichts aus.
@@ -1157,25 +1157,25 @@ Eine Bahngesellschaft steht zu einer Reihe von Personen in Beziehung. Die einen 
 Eine Möglichkeit besteht darin, zwei unterschiedliche Beziehungen zwischen Bahngesell­schaft und Person zu definieren: eine für die Anstellung, eine für die Beteiligung. Falls diese Unterscheidung einmal nicht wesentlich sein sollte (vielleicht für den weihnachtlichen Versand eines Schoggi-Bähnlis), muss sich eine Anwendung aber um beide Beziehungen kümmern.
 
 .Eine Person kann gegenüber einer Bahngesellschaft Angestellter und/oder Beteiligter sein. Hier wird dies mit zwei verschiedenen Beziehungen modelliert. Will nun die Bahn­gesellschaft sowohl ihre Angestellten als auch ihre Teilhaber mit einem weihnachtlichen Schoggiversand beglücken, sind beide Beziehungen auszuwerten.
-image::img/image64.png[width=260,height=60]
+image::img/image64.png[]
 
 
 Eine andere Möglichkeit der Modellierung besteht darin, primär eine Beziehung zu definieren (Kontakt) und diese dann zu Anstellung bzw. Beteiligung zu erweitern. Solange es für eine Anwendung nicht relevant ist, in welcher Art des Kontaktes die Person zur Bahngesellschaft steht, nutzt sie die Kontakt-Beziehung und erhält so alle Personen, die in irgendeiner Art und Weise zur Bahngesellschaft in Kontakt stehen. Eine Anwendung, für die nur die Angestellten relevant sind, nutzt die erweiterte Beziehung Anstellung und erhält so nur die angestellten Personen.
 
 .In dieser Variante ist die Beziehung zwischen Bahngesellschaft und Person allgemein mit der Beziehungsklasse «Kontakt» modelliert. Als Spezialfall eines Kontaktes gibt es auch die Anstellung und die Beteiligung. Wer nach den Kontakten der Gesellschaft fragt, wird automatisch auch die Angestellten und die Beteiligten erhalten. Beziehungsklassen sind also ähnlich wie Objektklassen erweiterbar, was im Diagramm wiederum mit einem weissen Pfeil gezeichnet wird.
-image::img/image65.png[width=211,height=96]
+image::img/image65.png[]
 
 
 Man könnte die Anstellungsbeziehung nochmals erweitern und z.B. eine Beziehung «Direk­tion» einführen.
 
 .Die Beziehung zwischen einer Bahngesellschaft und ihrem Direktor («Direktion») ist ein Spezialfall der Beziehung «Anstellung».
-image::img/image66.png[width=185,height=123]
+image::img/image66.png[]
 
 
 Erweiterungen von Beziehungen gehen häufig Hand in Hand mit der Erweiterung von Objektklassen. Statt dass man z.B. von Anfang an sagt, eine Bergbahn weise Masten auf, spricht man zunächst nur von Betriebsmitteln. Diese sind der Bahn locker, also mittels Asso­ziation, zugeordnet. Da Masten eine wichtige Eigenschaft verschiedener Arten von Berg­bahnen sind, wird die Klasse «BahnMitMasten» eingeführt. Diese hat eine Beziehung zu den Masten. Diese wird aber als Erweiterung der Beziehung zwischen Bergbahnen und Be­triebsmitteln geführt. Da die Masten – etwa im Gegensatz zu einem Pistenfahrzeug – un­mittelbar zu Bergbahn gehören, wird diese Beziehung zur Komposition. Die Stärke einer Beziehung darf in einer Erweiterung aber nur verstärkt, nicht aber gelockert werden, da sie sonst im Widerspruch zur Definition in der Basisdefinition stünde.
 
 .Bergbahn und Betriebsmittel führen eine allgemeine Beziehung, die von spezialisierten Klassen zur Komposition verstärkt wird.
-image::img/image67.png[width=217,height=77]
+image::img/image67.png[]
 
 
 [#_6_13_7]
@@ -1416,7 +1416,7 @@ Konsistenzbedingungen können durch Klassenerweiterungen nicht ausser Kraft gese
 Betriebsentscheide beziehen sich jeweils auf eine bestimmte Bergbahn. Entsprechend sind die beiden Klassen durch eine Assoziation verbunden.
 
 .Die Klassen IhBBergbahn und Betriebsentscheid sind durch eine Assoziation verbunden.
-image::img/image68.png[width=263,height=32]
+image::img/image68.png[]
 
 
 Dennoch sind die Objekte der beiden Klassen recht unterschiedlich. Es braucht einiges, bis eine Bergbahn erstellt ist und bis sich irgendwelche Eigenschaften ändern. Solche Änderun­gen (und auch die der Billette) werden immer durch die Direktion beschlossen. Betriebs­entscheide werden jedoch täglich durch den Betriebsleiter gefällt.
@@ -1523,7 +1523,7 @@ Der nationale Tourismusverband hat eine abstrakte Klasse «Tarifbereich» defini
 Eine Bahn, deren Tal- und Bergstation innerhalb der Gegend eines solchen räumlichen Tarif­bereichs liegt, akzeptiert automatisch dessen Billette.
 
 .Welche Bergbahn liegt in der Gegend von welchem Tarifbereich? Die Ilistaler interessieren sich für alle Paare aus Bergbahn Bb und TarifbereichInGegend T, bei denen zwei Bedingungen gelten: Die Talstation von Bb muss in der Gegend von T liegen, und ebenso muss auch die Bergstation von Bb in der Gegend von T liegen.
-image::img/image69.png[width=305,height=173]
+image::img/image69.png[]
 
 
 Aber welche Bergbahn liegt nun konkret in der Gegend von welchem Tarifbereich? Auch diese Verbindung von Bergbahn und Tarifbereich kann mit einer Sicht abgeleitet werden.
@@ -1552,12 +1552,12 @@ Mit dem WHERE-Teil wird die Menge aller Sichtobjekte auf jene eingeschränkt, be
 Tal- und Bergstation von _Bb_
 in der Gegend von _T_?
 
-|image:img/image70.png[width=56,height=24] |image:img/image71.png[width=54,height=31] |ja
-|image:img/image72.png[width=17,height=39] |image:img/image71.png[width=54,height=31] |ja
-|image:img/image73.png[width=19,height=35] |image:img/image71.png[width=54,height=31] |nein
-|image:img/image70.png[width=56,height=24] |image:img/image74.png[width=47,height=38] |nein
-|image:img/image72.png[width=17,height=39] |image:img/image74.png[width=47,height=38] |ja
-|image:img/image73.png[width=19,height=35] |image:img/image74.png[width=47,height=38] |ja
+|image:img/image70.png[] |image:img/image71.png[] |ja
+|image:img/image72.png[] |image:img/image71.png[] |ja
+|image:img/image73.png[] |image:img/image71.png[] |nein
+|image:img/image70.png[] |image:img/image74.png[] |nein
+|image:img/image72.png[] |image:img/image74.png[] |ja
+|image:img/image73.png[] |image:img/image74.png[] |ja
 |===
 
 Abbildung 63: Betrachtet man in der letzten Abbildung sämtliche Kombinationen aus Bergbahn _Bb_ +

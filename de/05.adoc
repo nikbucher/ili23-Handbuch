@@ -8,7 +8,7 @@ Eigentlich ist eine Bergbahn nichts Besonderes, denn sie besitzt viele Eigenscha
 
 Andererseits ist es offensichtlich, dass Bergbahnen und Tramlinien zwar einiges gemeinsam haben, aber doch nicht ganz dasselbe sind. 
 
-image:img/image22.png[width=129,height=56] image:img/image23.png[width=102,height=162]
+image:img/image22.png[] image:img/image23.png[]
 
 Abbildung 23: In vielem ähnlich, aber doch nicht ganz dasselbe: Bergbahn und Tramlinie sind beides spezielle Bahnen – sie sind Unterklassen der allgemeineren Oberklasse Bahn.
 
@@ -19,7 +19,7 @@ Es ist üblich, die allgemeinere Oberklasse im Diagramm oberhalb der speziellere
 
 Jede Bergbahn ist eine Bahn, aber nicht jede Bahn fährt auf einen Berg: Die Menge aller Bergbahnen ist eine Teilmenge der Menge aller Bahnen. Man sagt auch, die Unterklasse Bergbahn sei eine *Einschränkung* der Oberklasse Bahn.
 
-image:img/image22.png[width=129,height=56] image:img/image24.png[width=216,height=107]
+image:img/image22.png[] image:img/image24.png[]
 
 Abbildung 24: Dem Spezialisieren von Klassen entspricht eine Teilmengenbeziehung von Objekt­mengen: Die Menge aller Bergbahnen (im rechten Bild mit vier Elementen) muss vollständig in der Menge aller Bahnen (neun Elemente) enthalten sein, denn im Modell (linkes Bild) spezialisiert die Klasse Bergbahn die allgemeinere Klasse Bahn.
 
@@ -30,7 +30,7 @@ Es ist verwirrend, dass die Begriffe «Einschränkung» und «Erweiterung» beim
 Die Vererbung ist ein ausgezeichnetes Mittel, um in einer komplexen Welt Ordnung zu schaf­fen. Allerdings kann es verlockend sein, ein allzu detailliertes Modell zu formulieren – also auch dort Klassen zu unterscheiden, wo es überhaupt nicht nötig wäre.
 
 .Das kraftvolle Mittel der Vererbung kann dazu verleiten, auch dort Spezialfälle zu unter­scheiden, wo es von der Anwendung her gar nicht nötig wäre. Zwar ist ein Rösslitram wirklich nicht ganz dasselbe wie eine elektrische Strassenbahn, aber: Macht es irgend­einen Sinn, all diese Unterscheidungen im Datenmodell zu treffen, oder wird das Ganze so nur unnötig aufgebläht?
-image::img/image25.png[width=458,height=207]
+image::img/image25.png[]
 
 
 Einen Hinweis darauf, ob sich das Unterteilen in spezielle Klassen lohnt, geben die jeweili­gen Eigenschaften. So hat jede Bahn einen Namen, aber nur Bergbahnen besitzen eine Tal- und eine Bergstation.
@@ -51,7 +51,7 @@ END Tramlinie;
 ----
 
 .Bergbahn und Tramlinie übernehmen («erben») die Eigenschaft Name von ihrer Oberklasse Bahn, ohne dass dies nochmals geschrieben werden müsste. Eine Bergbahn besitzt zusätzlich zu den ererbten noch weitere Eigenschaften, nämlich die Lage von Tal- und Bergstation (in Landeskoordinaten). Rechts dasselbe in der Schreibweise von INTERLIS.
-image::img/image26.png[width=230,height=90]
+image::img/image26.png[]
 
 
 [NOTE]
@@ -173,7 +173,7 @@ Andere konnten die Sicht des nationalen Verbands durchaus verstehen – wenn da 
 Sollten die Ilistaler also auf ihre Sonderwünsche verzichten? Oder alle Daten doppelt erfas­sen – einmal für sich selber, einmal für den nationalen Verband?
 
 .Der nationale Tourismusverband ist nicht bereit, sein Modell an die Ilistaler Spezial­wünsche anzupassen. Dank der Vererbung können die Ilistaler dennoch ihre Daten erfassen: Ihr Thema Bergbahnen übernimmt alles vom nationalen Thema Bergbahnen, erweitert es aber um eine Objektklasse IhBBergbahn mit zusätzlichen Eigenschaften.
-image::img/image29.png[width=315,height=254]
+image::img/image29.png[]
 
 
 Dank der Vererbung liess sich der Konflikt auflösen. Die Bahnen werden im Ilistal als IhB­Bergbahn erfasst, inklusive aller Zusätze. Nachdem IhBBergbahn eine Unterklasse von Bergbahn (gemäss Nationalverband) ist, kann jede IhBBergbahn auch als normale Bergbahn gelesen werden. Daher können die Ilistaler ihre Daten unverändert dem nationalen Verband schicken.

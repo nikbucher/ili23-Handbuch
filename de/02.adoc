@@ -24,7 +24,7 @@ Das gab das Zeichen, um kurz inne zu halten. Man erinnerte sich an die alte röm
 * Wer erfasst sie und führt sie nach?
 
 .Die verschiedenen Beteiligten und die Datenströme.
-image::img/image1.png[width=239,height=185]
+image::img/image1.png[]
 
 
 Aber wie kommen die Daten nun vom Bearbeiter zum Nutzer? E-Mail, FTP, DXF, ASCII – schon ging's wieder los. Der Informatiker empfahl, diese Frage mal etwas zurückzustellen und sich darum zu kümmern, wie die Daten modelliert seien. Modelliert? Wir wollen doch eine Informatiklösung und kein Holzmodell für unser schönes Ilistal. Die Frage, was ein Datenmodell ist, sprengte den Rahmen der ersten Sitzung. Nur soviel: Es soll beschreiben, wie die Daten aufgebaut sind. Welche Eigenschaften haben die verschiedenen Objekte? Welche Objekte stehen mit welchen anderen Objekten in Beziehung? Und das nicht einfach als Aufsatz, sondern in einer klaren, präzisen bildlichen oder formalen Sprache!
@@ -53,7 +53,7 @@ Beschreibt man nun alle Eigenschaften der Gegenstände in Worten, wird bald einm
 Mit einem solchen Diagramm sieht man das Wichtigste ganz gut:
 
 .Ein erster Ansatz eines Datenmodells.
-image::img/image3.png[width=117,height=48]
+image::img/image3.png[]
 
 
 [NOTE]
@@ -79,13 +79,13 @@ _Mit Objekt verwandte Begriffe sind: Exemplar, Instanz, Ausprägung, Datensatz, 
 Jede Bergbahn wird von einer Bahngesellschaft betrieben. Diese bietet bestimmte Billett­arten an. Ohne zusätzliche Informationen müssen sie jeweils für alle ihre Bergbahnen gültig sein. Damit wird man kaum zufrieden sein, da grössere Gesellschaften durchaus Billettarten herausgeben, die nur für einen Teil ihrer Bahnen gelten. Als nahe liegende Idee führt man eine weitere Beziehung zwischen Bergbahn und Billettart ein. Es wird also bei jeder Billettart aufgezählt, für welche Bergbahnen sie gilt:
 
 .Das Datenmodell wurde um eine Beziehung Bergbahn – Billettart erweitert.
-image::img/image6.png[width=118,height=48]
+image::img/image6.png[]
 
 
 Häufig sind aber mehrere Billettarten (z.B. Tageskarte, Wochenkarte, etc.) im gleichen Bereich gültig. Mit dem bis jetzt formulierten Modell müssten die Zuordnungen für jede Billett­art einzeln erstellt werden. Das ist eher mühsam und fehleranfällig. Darum hat wohl auch der nationale Tourismusverband ein etwas verfeinertes Modell gewählt:
 
 .Revidiertes Datenmodell. Der Knick in der Verbindungslinie zwischen Bahngesellschaft und Billettart hat nichts zu bedeuten.
-image::img/image7.png[width=265,height=71]
+image::img/image7.png[]
 
 
 [WARNING]
@@ -102,7 +102,7 @@ Die *Kardinalität* hält fest, wie viele Objekte der andern Art einem Objekt de
 In der Grafik wird die minimale und maximale Zahl der zulässigen anderen Objekte am Ende der Beziehungslinie bei der Klasse der anderen Objekte angemerkt. Ist die Zahl nach oben nicht beschränkt ist, schreibt man einen Stern (++*++) oder lässt die Angabe weg.
 
 .Eine Bergbahn wird von genau einer (1) Bahngesellschaft betrieben. Umgekehrt kann aber eine Bahngesellschaft beliebig viele (++*++) Bergbahnen betreiben.
-image::img/image9.png[width=265,height=71]
+image::img/image9.png[]
 
 
 [#_2_2_3]
@@ -111,7 +111,7 @@ image::img/image9.png[width=265,height=71]
 Selbstverständlich ist es für die geplante Anwendung nötig, dass eine Bergbahn, eine Bahn­gesellschaft, usw. detaillierter beschrieben wird. Eine Gesellschaft wird einen Namen und (bei Bahnen typisch) eine Kurzbezeichnung haben (z.B. Ilishornbahnen, IhB).
 
 .Die Objektklasse Bahngesellschaft mit Namen und Kurzbezeichnung.
-image::img/image10.png[width=85,height=33]
+image::img/image10.png[]
 
 
 [NOTE]
@@ -212,7 +212,7 @@ Zu den Ilishornbahnen gehören folgende Bergbahnen:
 * Ponylifte in Ilisdorf und Ilisbad.
 
 .Die Ilishornbahnen betreiben mehrere Bahnen.
-image::img/image11.png[width=450,height=185]
+image::img/image11.png[]
 
 
 Die Ilishornbahnen bieten dafür folgende Billettarten an:
@@ -267,7 +267,7 @@ _Im Sinne des Aufbauens verwandte Begriffe zu Datenmodell sind: Module, Pakete, 
 ====
 
 .Das Ilistaler Tourismus-Datenmodell (IlisTour) braucht nicht alles selbst zu definieren. Stattdessen baut es auf anderen Modellen auf: Es verwendet Teile des nationalen Tourismus-Modells (NatTour), der nationalen Grundlagen von Ahland, der amtlichen Vermessung, der Gebäudeadressen sowie allgemeine Grundlagen. Die gestrichelte Linie mit gefülltem Pfeil steht für die Abhängigkeit. Häufig wird die allgemeine Grundlage wie hier oben, der Spezialfall unten gezeichnet. Die umgekehrte Schreibweise ist jedoch ebenfalls verbreitet.
-image::img/image12.png[width=266,height=267]
+image::img/image12.png[]
 
 
 [#_2_3_3]
@@ -278,7 +278,7 @@ Das Modell des nationalen Tourismusverbandes wollen die Ilistaler aber nicht ein
 Zum Glück gibt es für solche Fälle die Vererbung.
 
 .Eine IhBBergbahn ist eine spezielle Bergbahn mit zusätzlichen Attributen: Trasseeverlauf sowie Benutzbarkeit für Wanderer und Schlittler. Die aus- +
-image::img/image13.png[width=102,height=99]
+image::img/image13.png[]
 
 gezogene Linie mit weisser Pfeilspitze bezeichnet die Spezialisierung.
 
@@ -292,7 +292,7 @@ _Mit Erweiterung verwandte Begriffe sind: Spezialisierung, Subklasse, ..._
 Wäre es nun richtig, in der Klasse IhBBergbahn gleich auch die Attribute Betriebszeit und aktuelle Wartezeit aufzunehmen? Wäre die Betriebszeit direkt ein Attribut von IhBBergbahn, könnte für jede Bahn genau eine, typischerweise die aktuelle Betriebszeit festgehalten werden. Der Betriebsleiter legt aber die Betriebszeiten jeweils zu Saisonbeginn fest: In der Vorsaison sind einzelne Lifte noch nicht in Betrieb, andere haben Mittagspause; über die Weihnachtstage ist voller Betrieb von 9 bis 15.30 Uhr; ab Mitte Februar – wenn die Tage länger werden – wird die Betriebszeit schrittweise bis 16.30 ausgedehnt. Je nach Schnee- und Wetterverhältnissen wird dann der Betrieb einzelner Bahnen vorübergehend stillgelegt.
 
 .Betriebszeiten sind neu als eigenständige Objekte definiert.
-image::img/image14.png[width=340,height=186]
+image::img/image14.png[]
 
 
 Legt man zudem noch fest, dass eine bestimmte Betriebszeit für verschiedene Bahnen gelten kann, kann der Erfassungsaufwand noch weiter gesenkt werden. Bei den Wartezeiten macht dies natürlich keinen Sinn. Eine zu einem bestimmten Zeitpunkt beobachtete Warte­zeit muss derjenigen Bahn zugeordnet werden, bei der entsprechend gewartet werden muss. Warum hält man die Wartezeit also nicht direkt auf der IhBBergbahn fest? Folgende Gründe sprechen dagegen:
@@ -315,7 +315,7 @@ Das Ilistaler Modell erweitert darum das vom nationalen Verband vorgegebene Them
 Da die Betriebszeiten, die Betriebsentscheide und die Zustandsmeldungen teilweise durch verschiedene Stellen, vor allem aber in völlig anderem Rhythmus erfasst werden, werden sie je in eigenen Themen (IhBPlanung, IhBBetrieb, IhBAktuell) definiert.
 
 .Das Ilistaler Modell (IlisTour) erweitert das Modell des nationalen Tourismus-Verbands (NatTour). IlisTour erbt das Thema Bergbahnen von NatTour, erweitert die Klasse Bergbahn zu IhBBergbahn und fügt weitere Themen für Planung, Betrieb und Aktuelles an.
-image::img/image15.png[width=354,height=359]
+image::img/image15.png[]
 
 
 [NOTE]
@@ -327,7 +327,7 @@ Vererbung gibt es nicht nur im Kleinen (Objektklassen), sondern auch im Grossen 
 Zusätzlich möchten die Ilistaler auch Pisten und Gasthäuser beschreiben. Sie fügen dem Ilis­taler Modell darum noch weitere Themen zu.
 
 .Das Ilistaler Tourismus-Modell wird um weitere Themen ergänzt.
-image::img/image16.png[width=258,height=255]
+image::img/image16.png[]
 
 
 Besonders bei den Gasthäusern stellen sich wieder Fragen. Wie soll z.B. der Schnellimbiss INTERLUNCH bildlich dargestellt werden? Man weiss zwar, dass er an der Dorfstrasse 27 liegt. Aber damit kann man kein Symbol auf dem Plan platzieren! Die Lösung liegt in der Nutzung der Gebäudeadressen. Dort gibt es eine Klasse Hauseingang, die auch ein Lageattribut (in Landeskoordinaten) aufweist. In der Klasse Gasthaus wird darum gar keine Adresse geführt, sondern eine Beziehung zum Hauseingang definiert. Konkret wird das Objekt, welches dem Hotel Sonne entspricht, mit dem Hauseingang-Objekt verbunden, das die Dorfstrasse 27 beschreibt.
@@ -338,7 +338,7 @@ Besonders bei den Gasthäusern stellen sich wieder Fragen. Wie soll z.B. der Sch
 Ein Konzept regelt die Anforderungen, nicht aber die Implementation. In der Implementation ist man grundsätzlich frei. Die Ilishornbahnen haben sich für ein standardisiertes Programm­paket (LiftSys) entschieden, das allerdings nur Daten gemäss dem erweiterten Modell be­handeln kann. Es ist aber ohne weiteres zulässig, auf die Klasse Bergbahn zu verzichten und deren Attribute gleich in der Klasse IhBBergbahn einzufügen.
 
 .Das Programmpaket für den Ilistaler Tourismus braucht sich nur grob ans konzeptuelle Modell zu halten. Es kann zum Beispiel intern zwei Objektklassen zu einer einzigen zusammenfassen. Wichtig ist nur, dass das Paket in der Lage ist, die Daten in jenem Format zu liefern, das dem konzeptuellen Modell entspricht.
-image::img/image17.png[width=391,height=99]
+image::img/image17.png[]
 
 
 Analog zur Behandlung der Klassen gemäss Konzept stellen sich verschiedene weitere Fragen, wie ein bestimmtes Computersystem die Vorstellungen umsetzt, die mit dem kon­zeptuellen Modell verbunden sind.
@@ -363,14 +363,14 @@ Wäre LiftSys in der Lage, das interne Datenmodell direkt gemäss dem konzeptuel
 Das Programmpaket des Bauamtes (BauSys) unterstützt zum Beispiel die Erstellung von INTERLIS 2-konformen Dateien. Es kennt aber nur einzelne Tabellen, die jeweils mehrere Kolonnen aufweisen können. Da die Formatierungsregeln von INTERLIS so aufgebaut sind, dass die Vererbungsstruktur sich in der Transferdatei nicht direkt spiegelt, könnten mit BauSys direkt korrekte Dateien erstellt werden. Die Umsetzung von den internen in die externen Daten kann man sich wie folgt vorstellen:
 
 .Die internen Daten des Programmpakets A werden in eine Transferdatei umgesetzt, deren Aufbau gemäss den Formatregeln von INTERLIS aus dem Datenmodell folgt. +
-image::img/image18.png[width=318,height=383]
+image::img/image18.png[]
 
 Die Daten können danach in Programmpaket B importiert werden. Voraussetzung ist, dass die beteiligten Programmpakete entsprechend dem Datenmodell konfiguriert worden sind.
 
 Das LiftSys unterstützt aber INTERLIS nicht. Was nun? Müssen sich die Ilishornbahnen mit dem Kauf eines neuen Programmpakets beschäftigen? Der Ausweg ist offensichtlich: LiftSys exportiert die Daten in einem anderen Format, diese werden dann mit einem Konversions­programm nach INTERLIS umgeformt. Das Konversionsprogramm kann entweder spezifisch für das konkrete Datenmodell oder allgemein als modellbasiertes Werkzeug realisiert sein.
 
 .Ein Konverter erstellt INTERLIS-Dateien aus einem Format, das spezifisch für ein bestimmtes Computersystem ist.
-image::img/image19.png[width=207,height=84]
+image::img/image19.png[]
 
 
 Nachdem alles glücklich funktionierte, wird die Datei an den nationalen Verband geschickt. Das Echo: «Fast gut – beim Namen des Sesselliftes auf die Ilisegg gibt es aber ein Problem!» Uff – das kennen wir doch auch aus verschiedenen E-Mails: «Ilistäli»; immer diese Umlaute.
@@ -425,7 +425,7 @@ Die verlangte Sicht verbindet Betriebszeiten, Betriebentscheide und Wartezeiten 
 Von der Anwendung aus gesehen können Sichtobjekte gleich wie Datenobjekte aufgefasst werden. Sichten werden darum auch mittels Sichtklassen beschrie­ben.
 
 .Der Bahnzustand ist keine eigenständige Objektklasse, sondern wird +
-image::img/image20.png[width=116,height=111]
+image::img/image20.png[]
 
 über eine Sicht von IhBBergbahn abgeleitet. Die Sicht fasst jene Daten +
 zusammen, die für das Darstellen auf einer Internet-Seite benötigt werden.

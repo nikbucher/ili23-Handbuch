@@ -5,7 +5,7 @@
 === Das Datenmodell im Überblick
 
 .Das Datenmodell in der UML-Darstellung. Der Übersichtlichkeit halber sind Themen, Strukturen, Wertebereiche und Attribute nicht abgebildet. Hierzu wird auf <<_6>> verwiesen, das auf Einzelheiten näher eingeht.
-image::img/image21.png[width=351,height=448]
+image::img/image21.png[]
 
 
 [#_4_2]
@@ -534,7 +534,7 @@ Wollen die Ilistaler ihre gesamten Daten an den nationalen Tourismusverband schi
 Drei Punkte (...) zeigen die Auslassungen an; die Kästchen rechts sind lediglich Anmer­kungen und gehören nicht zur Transferdatei.
 
 .Die Bergbahnen auf das Ilishorn sind ein Teil der Daten, die in einer Transferdatei enthalten sind (Wiederholung von Abbildung 11). Die nachfolgende Datei enthält einige Daten für den Ponylift Ilisdorf.
-image::img/image11.png[width=450,height=185]
+image::img/image11.png[]
 
 [source,xml]
 ----

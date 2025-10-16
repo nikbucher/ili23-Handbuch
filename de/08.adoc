@@ -97,7 +97,7 @@ Der nationale Tourismusverband erhält Daten nicht nur aus dem Ilistal, sondern 
 In den Regionen werden die Daten in den Datenbanken der verwendeten Systeme gehalten. Im Rahmen von INTERLIS geht man dabei von der Vorstellung aus, dass die Daten jedes Themas des Datenmodells in einem (oder auch mehreren) Datenbehältern gespeichert sind. So liegen die Bergbahndaten der Ilishornbahnen in einem Behälter, diejenigen der Blauberg­bahnen in einem anderen Behälter. Werden die Daten nun von den Ilishornbahnen oder den Blaubergbahnen an den Nationalen Tourismusverband geschickt, ist der jeweilige Behälter auch in der Transferdatei ersichtlich. Das Computersystem des Nationalen Verbandes (Nat­TourSys) liest die Daten ein und bringt die Datenbank NatTourDB auf den aktuellen Stand. Dabei kann festgehalten werden, woher die Objekte kommen.
 
 .Der nationale Tourismusverband erhält von den Ilishorn-, den Blauberg- und vielen anderen Bahnen hin und wieder eine Nachlieferung der jeweiligen Tourismusdaten.
-image::img/image78.png[width=240,height=179]
+image::img/image78.png[]
 
 
 Damit sind nun die Daten zum Ilistaler Ponylift gleich doppelt vorhanden: Einmal bei den Ilishornbahnen, ein zweites Mal beim nationalen Tourismusverband. Das heisst jetzt natürlich nicht, dass die Kinder im Ilistal auf einer neuen Piste snöben könnten. Es wurden ja nur Daten kopiert, keine neuen Lifte gebaut!

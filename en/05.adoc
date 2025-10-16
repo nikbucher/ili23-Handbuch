@@ -9,7 +9,7 @@ Actually a set of alpine transport is nothing extraordinary, because it has many
 On the other hand it is obvious that alpine transports and tramways have some things in common but nevertheless are not quite the same. 
 
 .Similar in many aspects but not quite the same: AlpineTransport and TramwayLine both are special railways – they are sub classes of the more general super class railway.
-image::img/image21.png[width=164,height=56] image:img/image22.png[width=98,height=162]
+image::img/image21.png[] image:img/image22.png[]
 
 
 [NOTE]
@@ -20,7 +20,7 @@ In diagrams it is customary to place the more general super class above the more
 Each alpine transport is a railway, but not every railway rides up a mountain: The set of alpine transport is a sub set of the set of all railways. We also speak of the fact that the sub class AlpineTransport is a *restriction* of the super class Railway.
 
 .The specialization of classes corresponds to a sub-set relationship of object sets: The set of alpine transport (in the picture on the right with four elements) must be contained entirely in the set of all railways (nine elements), because in the model (picture on the left) the class AlpineTransport specializes the more general class Railway.
-image::img/image21.png[width=164,height=56] image:img/image23.png[width=228,height=106]
+image::img/image21.png[] image:img/image23.png[]
 
 
 Occasionally we use the term *extension* – with the same meaning as «restriction» – for specialization.
@@ -30,7 +30,7 @@ It is confusing that with modeling the terms «restriction» and «extension» a
 Inheritance is a fabulous means of creating order in a complex world. On the other hand we may be tempted to formulate a more detailed model – i.e. to distinguish between classes without the least necessity. 
 
 .The powerful tool of inheritance may lead us into distinguishing between special cases even if an application would not render this necessary. It is true that a horse-drawn tramway is not the same as an electrical one but: Does it make any sense to state these differences in a data model or does it only unnecessarily blow up the model?
-image::img/image24.png[width=496,height=208]
+image::img/image24.png[]
 
 
 [source]
@@ -49,7 +49,7 @@ END TramwayLine;
 ----
 
 .AlpineTransport and TramwayLine accept («inherit») the property name of their super class Railway, without this having to be stated once more. In addition to inherited properties an alpine transport possesses further characteristics, i.e. the position of bottom and top station (in national coordinates). On the right hand side the same is stated in the notation of INTERLIS.
-image::img/image25.png[width=252,height=90]
+image::img/image25.png[]
 
 
 [NOTE]
@@ -171,7 +171,7 @@ Others could relate to the opinion of the National Tourist Office – just imagi
 So should the people in charge renounce their extra wishes? Or double gather all their data – once for themselves, once for the National Tourist Office?
 
 .The National Tourist Office is not willing to adjust their model to the extra wishes of Ilis Valley. Thanks to inheritance Ilis Valley can still collect their data: Their topic AlpineTransports inherits everything from the national topic AlpineTransports, but adds as an extension the object class MITAlpineTransport with additional properties.
-image::img/image28.png[width=314,height=254]
+image::img/image28.png[]
 
 
 Thanks to inheritance this conflict could be solved. In Ilis Valley all railways are captured as MITAlpineTransport with all extensions. Since MITAlpineTransport is a sub class of AlpineTransport (in accordance with the National Tourist Office), each MITAlpineTransport can be read as an ordinary AlpineTransport. Hence Ilis Valley can send their data just as they are to the National Tourist Office.
