@@ -100,7 +100,7 @@ Ilis Valley is not the only resort that sends data to the National Tourist Offic
 In the individual regions data are kept in the databases of the systems employed. Within the scope of INTERLIS we proceed on the assumption that the data of every topic of the data model are stored in one (or maybe several). Hence the alpine transport data of the Mount Ilis Alpine Transports are in one basket, those of the Blue Mountains Alpine Transports in another. Now if these data are sent from the Mount Ilis Alpine Transports or the Blue Mountains Alpine Transports to the National Tourist Office, then the corresponding basket becomes visible in the transfer file. The computer system of the national association (NatTourSys) reads these data and updates the data-base NatTourDB. Simultaneously they record where the objects come from.
 
 .Occasionally the National Tourist Office receives an update of their tourism data from the Mount Ilis, the «Blue Mountain Alpine Transports» and many other railway companies.
-image::img/image78.png[./media/image78,width=258,height=180]
+image::img/image78.png[width=258,height=180]
 
 
 Hence the data concerning the Ilis Valley pony lift exist twice: Once with the Mount Ilis Alpine Transports, once with the National Tourist Office. Of course this does not mean that from now on the children in Ilis Valley have got an extra ski run. We have only copied data and not built a new ski lift!

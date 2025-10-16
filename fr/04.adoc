@@ -5,7 +5,7 @@
 === Aperçu général du modèle de données
 
 .Le modèle de données en représentation UML. Les thèmes, les structures, les domaines de valeurs et les attributs n'ont pas été représentés pour des raisons évidentes de lisibilité. Nous renvoyons à ce sujet le lecteur au <<_6>> abordant ces questions plus en détail.
-image::img/image21.png[./media/image21,width=357,height=448]
+image::img/image21.png[width=357,height=448]
 
 
 [#_4_2]
@@ -538,7 +538,7 @@ Les Ilinois doivent créer un fichier de transfert (à l'aide de leur logiciel) 
 Les points de suspension (...) indiquent des parties non reproduites et les cases figurant sur la droite sont des commentaires ne faisant pas partie du fichier de transfert.
 
 .Les remontées mécaniques installées sur les flancs de la Dent d'Ili constituent une partie des données contenues dans un fichier de transfert (reproduction de la figure 11). Le fichier suivant contient certaines des données relatives au tire-fesses d'Ili-village.
-image::img/image11.png[./media/image11,width=450,height=185]
+image::img/image11.png[width=450,height=185]
 
 [source,xml]
 ----

@@ -97,7 +97,7 @@ L'Association nationale des offices de tourisme ne reçoit pas uniquement des do
 Dans les régions, les données sont gérées dans les banques de données des systèmes utilisés. Dans le cadre d'INTERLIS, on part de l'hypothèse que les données de chacun des thèmes du modèle sont mémorisées dans un ou plusieurs conteneurs de données. Ainsi, les données relatives aux lignes des Remontées mécaniques de la Dent d'Ili sont-elles gérées dans un conteneur et celles des Remontés mécaniques des montagnes bleues dans un autre. Si les données des Remontées mécaniques de la Dent d'Ili ou celles des Remontées mécaniques des montagnes bleues sont à présent transmises à l'Association nationale des offices de tourisme, le conteneur concerné apparaît également dans le fichier de transfert. Le système informatique de l'Association nationale (NatTourSys) lit les données et met la banque de données NatTourDB à jour. La provenance des objets peut être établie lors de ce processus.
 
 .L'Association nationale des offices de tourisme reçoit de temps à autre une livraison complémentaire de données touristiques transmises par les Remontées mécaniques de la Dent d'Ili, les Remontées mécaniques des montagnes bleues ou par toute autre entreprise affiliée à l'Association.
-image::img/image78.png[./media/image78,width=240,height=179]
+image::img/image78.png[width=240,height=179]
 
 
 Ainsi, les données relatives au tire-fesses du Val d'Ili sont donc disponibles deux fois : auprès des Remontées mécaniques de la Dent d'Ili et auprès de l'Association nationale des offices de tourisme. Cela ne signifie bien évidemment pas que les enfants peuvent godiller sur une nouvelle piste dans le Val d'Ili. Seules les données ont été copiées, aucune nouvelle remontée n'a été construite !

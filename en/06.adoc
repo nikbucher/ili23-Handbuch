@@ -145,7 +145,7 @@ Since all admissible possibilities have been enumerated, order would have been e
 If the different kinds feature their respective properties (attributes or relationships) it makes sense to define individual classes that inherit from the basic class (cf. <<_5>>).
 
 .CogRail, Funicular etc. are specific types of AlpineTransport. However there is no alpine transport as such: All «concrete» types of alpine transport always belong to one of the sub classes. Hence __AlpineTranspor__t is an abstract class, which in the diagram would be shown by means of italics.
-image::img/image30.png[./media/image30,width=390,height=62]
+image::img/image30.png[width=390,height=62]
 
 
 But there are no means of alpine transport that are exclusively alpine transport without at the same time being part of a sub class. Therefore the class AlpineTransport will be declared «abstract». Consequently a concrete means of alpine transport will always have to be a cog rail, an aerial cable car etc.
@@ -371,7 +371,7 @@ Already Ptolemaeus considered the earth to be a sphere. Surveyors have had to ta
 A useful approximation of the earth surface is the Ellipsoid, in other words the surface that results when an ellipse revolves around its central axis.
 
 .When an ellipse revolves around its own axis, a flattened sphere results in space. Thanks to such an ellipsoid an approximation of the shape of the earth surface can be attempted. +
-image::img/image31.png[./media/image31,width=128,height=101] image:img/image32.png[./media/image32,width=292,height=54]
+image::img/image31.png[width=128,height=101] image:img/image32.png[width=292,height=54]
 
 (All figures in this paragraph and in paragraph <<_6_7_5>> from: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Illustrations have been partially simplified. Original sources as stated above).
 
@@ -380,13 +380,13 @@ Depending on the part of the world, different ellipsoids are used, otherwise the
 As a spatial formation ellipsoids are somewhat awkward to handle. For this reason surveyors will map the ellipsoid onto a surface. To this intent they will drape a cylinder or cone over the ellipsoid and light it from the interior, thus projecting the picture of the landscape onto the cylinder or cone.
 
 .The ellipsoid is wrapped in a cylinder (left) or cone (right). Then it is lit from the interior.
-image::img/image33.png[./media/image33,width=120,height=94] image:img/image34.png[./media/image34,width=77,height=84]
+image::img/image33.png[width=120,height=94] image:img/image34.png[width=77,height=84]
 
 
 In the next step the cylinder or cone is cut open with a pair of scissors, rolled out flat on a table – and there goes your map!
 
 .Once the projection has been completed, the cylinder (or cone) is cut open and rolled out. A convex body such as an ellipsoid or a sphere could be cut open but not rolled out flat.
-image::img/image35.png[./media/image35,width=217,height=190]
+image::img/image35.png[width=217,height=190]
 
 
 At the end the map is superposed with fine perpendicular lines: the *coordinate* *system* of the map. That is why with each coordinate type it has to be determined what coordinate system it is based upon.
@@ -485,20 +485,20 @@ WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
 With altitudes an exceptional problem occurs. Where in fact would altitude 0 be situated? How can the altitude of any point be determined in relation to this altitude 0? Surveyors differentiate mainly between the altitudes according to the gravity field of the earth (gravity or geoid height; 0 being the altitude of the imaginary continuation of the sea below the continents) and altitudes according to the geometrical approximation of the earth (ellipsoid height; 0 being the surface of the ellipsoid).
 
 .The gravity field of the earth: With the geoid the surface of the oceans is mentally continued under the continents. Mountain ranges, trenches etc influence the gravity field and thus alter the imaginary surface of the water. This drawing is quite exaggerated.
-image::img/image36.png[./media/image36,width=160,height=153]
+image::img/image36.png[width=160,height=153]
 
 
 .Depending on the reference system selected point Q will have a different altitude.
-image::img/image37.png[./media/image37,width=310,height=118]
+image::img/image37.png[width=310,height=118]
 
 
 Typically projection coordinate systems will use geoid heights. That is why the third dimension of projection coordinates does not simply refer to the third axis of the projection system but to the first axis of a special height system.
 
 In contrast coordinates in GPS-measurements are determined purely geometrically from satellite positions without taking into account the gravity field of the earth. Hence WGS84-altitudes are ellipsoid heights.
 
-image::img/image38.png[./media/image38,width=245,height=154] +
+image::img/image38.png[width=245,height=154] +
 .There may be a difference of several meters between the gravity height and the geoid height. Above you see the difference between the commonly used ellipsoid of Switzerland and the one of France and former West Germany.
-image::img/image39.png[./media/image39,width=252,height=266] image:img/image40.png[./media/image40,width=193,height=270]
+image::img/image39.png[width=252,height=266] image:img/image40.png[width=193,height=270]
 
 
 The conversion between gravity heights and ellipsoid heights may pose a problem wherever the range of admissible coordinates extends over an area whose gravity field no longer is homogenous. Luckily these questions are of minor importance when modeling. Nevertheless they are worth a quick reflection.
@@ -518,14 +518,14 @@ DOMAIN
 Standing on Mount Ilis we might want to know in which direction we have to look in order to see Twisted Peak. 50 degrees? 40 degrees? 310 degrees?
 
 .Whoever climbs Mount Ilis will be rewarded with a spectacular view of the surrounding mountains. +
-image::img/image41.png[./media/image41,width=406,height=156]
+image::img/image41.png[width=406,height=156]
 
 But in what angle will the Twisted Peak come into view? Unless we know what coordinate system the question refers to, it is impossible to offer an answer.
 
 It all depends on the zero direction and how directions rotate. Whenever we speak of directions we also have to mention a reference system. That is why directions are closely linked with coordinate types. After all it also makes sense to determine the distance and direction of two points defined by coordinates.
 
 .The indication of axes and rotation is part of the definition of a coordinate system.
-image::img/image42.png[./media/image42,width=406,height=156]
+image::img/image42.png[width=406,height=156]
 
 
 [source]
@@ -571,7 +571,7 @@ It is obvious: The ski run from Mount Ilis to Ilis Rock is a complicated line. I
 This state of matters could also be represented in the conceptual model. Then again this would be an unnecessary burden. Once it has been stated that lines are always structured in this way, this need no longer be displayed.
 
 .The course of a ski run is a line. It consists of individual segments that can be of various types: straight segments, arc segments, etc.
-image::img/image43.png[./media/image43,width=342,height=69]
+image::img/image43.png[width=342,height=69]
 
 
 It definitely makes sense to indicate which types of segments may occur with one specific line type.
@@ -595,7 +595,7 @@ AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS)
 ----
 
 .Sometimes small overlaps cannot be omitted. It is part of the model
-image::img/image44.png[./media/image44,width=233,height=105]
+image::img/image44.png[width=233,height=105]
 
 to define the maximum overlap (in this figure the height of arrow).
 
@@ -636,7 +636,7 @@ END SkiRun;
 Just before Ilis Rock a big tree stands in the middle of the ski run – in other words the ski run passes on either side of the tree.
 
 .There is a big tree in the middle of the ski run. This might prove to be quite tricky for skiers, but we need not worry about the data model: Despite this the ski run will remain one whole surface.
-image::img/image45.png[./media/image45,width=277,height=117]
+image::img/image45.png[width=277,height=117]
 
 
 Is the surface that has to be prepared still one whole surface? Surface – at least in the sense of INTERLIS – always means coherent areas. Even if they have interior blank spaces (holes, enclaves), they remain coherent areas and thus can be described as surfaces.
@@ -662,7 +662,7 @@ END ConditionOfSkiRun;
 Because such surfaces without overlaps are quite common, INTERLIS has introduced its proper type (AREA). Instead of surfaces we speak of (planar) tessellation.
 
 .With the ordinary type of surface (SURFACE, left) surfaces of different objects may overlap. For instance there is nothing to stop one piece of land to belong to two ski runs. In the case of a tessellation (AREA, right) it is required that each point within the land be assigned unequivocally to one object, unless it were to belong to the remaining surface (shown in black); one example being the segments prepared by the maintenance service.
-image::img/image46.png[./media/image46,width=192,height=146] image:img/image47.png[./media/image47,width=205,height=137]
+image::img/image46.png[width=192,height=146] image:img/image47.png[width=205,height=137]
 
 
 [#_6_9_5]
@@ -676,7 +676,7 @@ INTERLIS 2 supports lines with 2.5 dimensions.
 Thereby we proceed on the assumption that each vertex point between two segments is defined by its position and height and that the height on the segment will be subject to a linear interpolation according to the length of the segment.
 
 .INTERLIS supports 2.5-dimensional lines: The Height between two vertexes is always subject to a linear interpolation. If at a given point on the ground a quarter of the distance between C and D has been covered, we assume that at the same time a quarter of the difference in altitude has been conquered.
-image::img/image48.png[./media/image48,width=446,height=198]
+image::img/image48.png[width=446,height=198]
 
 
 Now shouldn't we model the course of a ski run with a three-dimensional line type? From a purely technical point of view this would pose no problem, and after all elevation plays an important part in skiing. On the other hand the altitude of the course is no independent figure: Where the position is known, the height is a logical result of the terrain features. Thus we can calculate the elevation of the course of the ski run from its position and a topographical model. Hence from a conceptual point of view we prefer to do without the information on height when dealing with the course of a ski run.
@@ -796,7 +796,7 @@ In the existing model a railway company has got one name and an abbreviation. Ho
 It seems natural to supplement the object class RailwayCompany with the German name and its abbreviation:
 
 .The object class RailwayCompany with names and abbreviations, +
-image::img/image49.png[./media/image49,width=88,height=49]
+image::img/image49.png[width=88,height=49]
 
 in German and French respectively.
 
@@ -830,7 +830,7 @@ END RailwayCompany;
 Or in a graphic representation:
 
 .Railway designations are assigned to one railway company. Since one company may possess several names it is possible without further expenditure to add new names in different languages. Details of this assignation (indications such as 1..*or a filled-in square) will be explained below in connection with relationships.
-image::img/image50.png[./media/image50,width=290,height=113]
+image::img/image50.png[width=290,height=113]
 
 
 [WARNING]
@@ -846,7 +846,7 @@ Who would know the official language abbreviation for Romantsch? rr? rm! Within 
 If this were not the case, a model would have been chosen where languages would feature as actual objects. Then the language object would contain both abbreviation and e.g. name as a text in their own language and in English.
 
 .In this variant the language designation (a structure) refers to the language (a normal object class).
-image::img/image51.png[./media/image51,width=414,height=113]
+image::img/image51.png[width=414,height=113]
 
 
 Thus the designation refers to the language. However this reference is not a full relationship (cf. paragraph <<_6_13>>), since these designations have no identity. Consequently from the point of view of a language object there is no direct access to the designation elements. This would first have to be established by means of a view (cf. paragraph <<_6_17>>).
@@ -930,7 +930,7 @@ END inDays;
 ----
 
 .Length of time in detailed modeling with structures. Thus it is possible that if required the validity of a ticket can be either one month (LengthOfTimeImplicit; left) or exactly thirty days (LengthOfTimeInDays; right).
-image::img/image52.png[./media/image52,width=481,height=188]
+image::img/image52.png[width=481,height=188]
 
 
 [WARNING]
@@ -1050,7 +1050,7 @@ It is not always easy to classify according to these forces. From the view point
 * *Copy* – If we copy a railway company (in real life of course not as simple as on the computer), we will at the same time establish copies of all assigned alpine transports which then will be assigned to the new railway company. Accordingly copies of all the pylons are established for each of these alpine transports. Copying an object also means duplicating all those objects assigned by a common association.
 
 .Association (left), aggregation (middle) and composition (right) are different types of relationships. They differ in their binding force: A Pylon is so closely tied to its AlpineTransport that it can be considered a part of it. In comparison with a composition, both association and aggregation are weaker.
-image::img/image55.png[./media/image55,width=82,height=72] image:img/image56.png[./media/image56,width=82,height=72] image:img/image57.png[./media/image57,width=82,height=72]
+image::img/image55.png[width=82,height=72] image:img/image56.png[width=82,height=72] image:img/image57.png[width=82,height=72]
 
 
 The INTERLIS notation is copied from the graphic representation. However the role name has to be written even if does not differ from the class name.
@@ -1122,7 +1122,7 @@ So then what do the indications of cardinality exactly mean in multiple relation
 Slightly complicated. Do we really need multiple relationships or could we reduce them to the common one-to-one relationships?
 
 .Relationships between more than two parties can be reduced to common one-to-one relationship. The former relationship class (in this instance: Sale) becomes an equal partner and now all the parties concerned are only related to the former relationship class.
-image::img/image60.png[./media/image60,width=217,height=128]
+image::img/image60.png[width=217,height=128]
 
 
 However this model will express less clearly the fact that the three classes TicketCounter, TicketType and Season are related as a group of three.
@@ -1139,11 +1139,11 @@ But this sorting would not be a characteristic of the relationship between compa
 But wouldn't it make sense if this list captured the order in which the relationships were established? To start with the aerial cable car was inaugurated, then the ski lift, followed by the gondola etc. Then again in this case it would be better to supply the relationship with the attributes establishment and closure. Then it would even be possible to record the different managers in the course of time. So in this case it would no longer make sense to consider the relationship as an aggregation.
 
 .To record the order in which alpine transports of one company have started operating, we could use a directed relationship. However the model in the figure below is better.
-image::img/image61.png[./media/image61,width=232,height=18]
+image::img/image61.png[width=232,height=18]
 
 
 .The model with a relationship class is clearer because it will permit further evaluations. For instance it allows the sorting of one company's means of transport according to their shutdown and a computer program may display past managers of one alpine transport.
-image::img/image62.png[./media/image62,width=230,height=82]
+image::img/image62.png[width=230,height=82]
 
 
 Similar considerations apply to the relationship between alpine transports and pylons. By putting in order this relationship we could express the succession of bottom to top station. But from the conceptual point of view it is preferable to introduce a position attribute with a pylon and then to derive the succession from this position and the course of the track.
@@ -1154,7 +1154,7 @@ Before declaring a relationship ordered, consider carefully whether the order co
 So where do ordered relationships really make sense? The gondola from Ilis Bath to Mount Ilis has individual gondolas that are not mounted fixedly on the cable. They can be taken off at either the bottom or top station and, when needed, be replaced. At present which gondolas are mounted in which order on the cable?
 
 .Gondola cabins may have numbers but these will not determine their order on the cable. In this instance an ordered relationship makes sense.
-image::img/image63.png[./media/image63,width=217,height=69]
+image::img/image63.png[width=217,height=69]
 
 
 For once order is of interest. The number of a gondola cannot be used for establishing order. It simply identifies one specific gondola. It has nothing whatsoever to do with their current order on the cable.
@@ -1167,25 +1167,25 @@ A railway company is related to a number of persons. Some are employed by it, ot
 One possibility consists of defining two different relationships between railway company and persons: one for employment, one for participation. In case occasionally this differentiation should not be of interest (perhaps when sending little chocolate trains before Christmas), an application would have to concern itself with both relationships.
 
 .A Person may be employee and/or shareholder of a RailwayCompany as modeled above with two different relationships. Should the RailwayCompany intend to treat either of them to a Christmas surprise, both relationships would have to be evaluated.
-image::img/image64.png[./media/image64,width=249,height=60]
+image::img/image64.png[width=249,height=60]
 
 
 Another possibility of modeling would consist in primarily defining a relationship (contact), which then would be extended into employment or participation. As long as the type of contact person – railway company is irrelevant for an application, it uses the contact-relationship and consequently obtains everybody that in some way has contact with the company. An application where only employees are relevant would use the extended relationship Employment and thus would only obtain employees.
 
 .In this variant the relationship between RailwayCompany and Person is modeled in a general way with the relationship class «Contact», Employment and Shareholding are special cases of a contact. Whoever inquires after the contacts of a company will automatically also obtain employees and shareholders. Hence in a similar way as object classes relationship classes can be extended, which in the diagram is shown by a white arrow.
-image::img/image65.png[./media/image65,width=212,height=96]
+image::img/image65.png[width=212,height=96]
 
 
 This employment-relationship could be further extended and for instance a relationship «Management» could be introduced.
 
 .The relationship between a RailwayCompany and its managing director («Management») is a special case of the relationship «Employment».
-image::img/image66.png[./media/image66,width=186,height=124]
+image::img/image66.png[width=186,height=124]
 
 
 Extensions of relationships often go hand in hand with the extension of object classes. Instead of stating right from the beginning that an alpine transport possesses pylons, to start with we only speak of rolling stock. These would be loosely assigned, i. e. by association to the means of transport. Since pylons are an important feature of different kinds of alpine transport, the class «AlpineTransportWithPylons» will be introduced. This class will have a relationship with the pylons. However it will be introduced as an extension of the relationship between alpine transports and rolling stock. Since pylons – opposed to a vehicle – directly belong to an alpine transport, this relationship becomes a composition. Note that in an extension the force of a relationship can only be strengthened but not loosened, so as not to contradict the definition in the basic definition.
 
 .AlpineTransport and RollingStock lead a general relationship, strengthened into a composition by specialized classes.
-image::img/image67.png[./media/image67,width=254,height=78]
+image::img/image67.png[width=254,height=78]
 
 
 [#_6_13_7]
@@ -1419,7 +1419,7 @@ Class extensions cannot rule out consistency constraints. Extensions can only de
 Operating decisions always refer to a certain alpine transport. Consequently these two classes are linked by an association.
 
 .The classes MITAlpineTransports and OperatingDecision are linked by an association.
-image::img/image68.png[./media/image68,width=293,height=33]
+image::img/image68.png[width=293,height=33]
 
 
 Nevertheless the objects of these two classes are quite different. It takes quite a lot to build an alpine transport and to alter any of its characteristics. Such modifications (and also those of the tickets) are always decided by the management. Operating decisions are a daily occurrence and are up to the works manager.
@@ -1526,7 +1526,7 @@ The National Tourist Office has defined an abstract class «TariffZone». In Ili
 A means of transport whose bottom and top station lies within the area of such a spatial zone automatically accepts its tickets.
 
 .Which alpine transport is situated in the area of which tariff zone? People in Ilis Valley are interested in any pair of alpine transport At and ZoneInRegion Z which comply with two conditions: The bottom station of At must lie within the area Z, and the top station of AT must also lie within the area of Z.
-image::img/image69.png[./media/image69,width=305,height=173]
+image::img/image69.png[width=305,height=173]
 
 
 But now which alpine transport actually does lie within the area of which tariff zone? By taking recourse in a view this connection between alpine transport and tariff zone can also be derived.
@@ -1553,12 +1553,12 @@ By introducing the WHERE-part the set of all view objects is reduced to those th
 |===
 |Alpine transport _At_ |Tariff zone _Z_ |Bottom and top station of _At_ +
 in the area of Z?
-|image:img/image70.png[./media/image70,width=56,height=24] |image:img/image71.png[./media/image71,width=53,height=30] |yes
-|image:img/image72.png[./media/image72,width=17,height=40] |image:img/image71.png[./media/image71,width=53,height=30] |yes
-|image:img/image73.png[./media/image73,width=18,height=34] |image:img/image71.png[./media/image71,width=53,height=30] |no
-|image:img/image70.png[./media/image70,width=56,height=24] |image:img/image74.png[./media/image74,width=46,height=38] |no
-|image:img/image72.png[./media/image72,width=17,height=40] |image:img/image74.png[./media/image74,width=46,height=38] |yes
-|image:img/image73.png[./media/image73,width=18,height=34] |image:img/image74.png[./media/image74,width=46,height=38] |yes
+|image:img/image70.png[width=56,height=24] |image:img/image71.png[width=53,height=30] |yes
+|image:img/image72.png[width=17,height=40] |image:img/image71.png[width=53,height=30] |yes
+|image:img/image73.png[width=18,height=34] |image:img/image71.png[width=53,height=30] |no
+|image:img/image70.png[width=56,height=24] |image:img/image74.png[width=46,height=38] |no
+|image:img/image72.png[width=17,height=40] |image:img/image74.png[width=46,height=38] |yes
+|image:img/image73.png[width=18,height=34] |image:img/image74.png[width=46,height=38] |yes
 |===
 
 Figure 63: Looking at all combinations of alpine transport _At_ and tariff zone _Z_ +

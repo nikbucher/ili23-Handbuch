@@ -149,7 +149,7 @@ Toutes les possibilités offertes étant ainsi énumérées, l'ordre règne à n
 Lorsque les différents genres présentent des propriétés particulières (attributs ou relations), il est judicieux de définir des classes qui leur sont spécifiques, héritant de la classe de base (cf. <<_5>>).
 
 .Les chemins de fer à crémaillère, les funiculaires, etc. sont des cas particuliers de remontées mécaniques. Il n'existe cependant pas de remontées mécaniques à proprement parler : toutes les remontées « concrètes » appartiennent toujours à l'une des sous-classes. _Remontée mécanique_ est donc une classe abstraite, ce qui est signalé sur le diagramme par l'écriture du nom en italique.
-image::img/image30.png[./media/image30,width=489,height=63]
+image::img/image30.png[width=489,height=63]
 
 
 Il n'existe cependant pas de remontée mécanique qui soit simplement une remontée mécanique sans appartenir à l'une ou l'autre des sous-classes. La classe des remontées mécaniques est donc déclarée comme étant « abstraite ». Concrètement, une remontée mécanique doit donc toujours être un chemin de fer à crémaillère, un funiculaire, etc.
@@ -375,7 +375,7 @@ Pour Ptolémée, la Terre était une sphère. Les topographes (ou plus exactemen
 Une approximation bien plus probante de la forme de la Terre est livrée par une figure mathématique plus complexe, un ellipsoïde, générée par la rotation d'une ellipse autour de son axe principal.
 
 .Une ellipse en rotation autour de son axe principal donne naissance à une figure géométrique en trois dimensions que l'on appelle un ellipsoïde et qui ressemble à une sphère aplatie. Cette figure fournit une bonne approximation de la forme de la Terre. +
-image::img/image31.png[./media/image31,width=127,height=101] image:img/image32.png[./media/image32,width=292,height=55]
+image::img/image31.png[width=127,height=101] image:img/image32.png[width=292,height=55]
 
 (Toutes les figures de ce paragraphe et du paragraphe <<_6_7_5>> sont tirées de : K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bil­dern. Zurich, 1988. Certaines des illustrations ont été simplifiées. Veuillez donc vous reporter à cet ouvrage pour les sources originales).
 
@@ -384,13 +384,13 @@ Selon les régions du monde considérées, les ellipsoïdes utilisés sont posit
 S'agissant de figures spatiales, les ellipsoïdes sont toutefois difficiles à manipuler, raison pour laquelle les géodésiens les projettent sur une surface développable telle qu'un cylindre ou un cône qu'ils amènent en tangence avec l'ellipsoïde, un peu comme s'ils éclairaient l'ellipsoïde de l'intérieur et projetaient sa surface sur le cône ou le cylindre.
 
 .L'ellipsoïde est ceint par un cylindre (à gauche) ou un cône (à droite). Il est ensuite comme « éclairé de l'intérieur ».
-image::img/image33.png[./media/image33,width=120,height=93] image:img/image34.png[./media/image34,width=77,height=83]
+image::img/image33.png[width=120,height=93] image:img/image34.png[width=77,height=83]
 
 
 Le cylindre ou le cône est ensuite développé, comme si on le découpait avec une paire de ciseaux et qu'on le déroulait à plat sur une table – et voilà, la carte est prête !
 
 .Une fois la projection effectuée, le cylindre (ou le cône) est développé, autrement dit découpé puis déroulé. Une surface gauche comme celle d'un ellipsoïde ou d'une sphère peut être découpée mais pas déroulée à plat, elle n'est pas développable.
-image::img/image35.png[./media/image35,width=218,height=189]
+image::img/image35.png[width=218,height=189]
 
 
 La carte est enfin recouverte d'un réseau de fines lignes perpendiculaires les unes aux autres : le *système de coordonnées* de la carte. En conséquence, le système de coordonnées sur lequel se fonde le type de coordonnées retenu est également à indiquer.
@@ -489,20 +489,20 @@ WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
 Les altitudes posent en outre un problème particulier : où se trouve l'altitude 0 ? Et comment déterminer l'altitude d'un point par rapport à cette cote 0 ? Les géodésiens établissent une distinction fondamentale entre les altitudes rapportées au champ de pesanteur terrestre (altitudes dites orthométriques ; l'altitude 0 peut être assimilée au niveau moyen des mers prolongé sous les continents) et celles rapportées à la figure géométrique modélisant la forme de la Terre, l'ellipsoïde (altitude ellipsoïdique ; l'altitude 0 correspond à la surface de l'ellipsoïde).
 
 .Le champ de pesanteur terrestre : le niveau moyen des mers est prolongé sous les continents dans le cas du géoïde. Les massifs montagneux, les fosses marines, etc. in­fluencent le champ de pesanteur et déforment ainsi la surface de référence imaginée. L'échelle altimétrique est fortement amplifiée sur la représentation.
-image::img/image36.png[./media/image36,width=161,height=153]
+image::img/image36.png[width=161,height=153]
 
 
 .L'altitude associée au point Q varie en fonction du système de référence considéré.
-image::img/image37.png[./media/image37,width=310,height=119]
+image::img/image37.png[width=310,height=119]
 
 
 D'ordinaire, les systèmes de coordonnées nationaux utilisent des altitudes orthométriques. Ainsi, la troisième dimension des coordonnées nationales ne se rapporte-t-elle pas simplement au troisième axe du système national, mais au premier axe d'un système altimétrique particulier.
 
 En revanche, la détermination des coordonnées repose uniquement sur la géométrie de la position des satellites dans le cas d'observations GPS, sans que le champ de pesanteur terrestre vienne jouer le moindre rôle. Les altitudes WGS84 sont donc des altitudes ellipsoïdiques.
 
-image::img/image38.png[./media/image38,width=246,height=155] +
+image::img/image38.png[width=246,height=155] +
 .L'écart entre altitude orthométrique et altitude ellipsoïdique peut atteindre plusieurs mètres. Les représentations graphiques ci-dessus indiquent les différences enregistrées par rapport à l'ellipsoïde usuel en Suisse, en France et dans l'ouest de l'Allemagne.
-image::img/image39.png[./media/image39,width=251,height=266] image:img/image40.png[./media/image40,width=193,height=270]
+image::img/image39.png[width=251,height=266] image:img/image40.png[width=193,height=270]
 
 
 La conversion entre altitudes orthométriques et altitudes ellipsoïdiques peut poser problème dans des zones où le champ de pesanteur terrestre perd son homogénéité. Mais ces questions sont de peu d'importance au stade de la modélisation, ce qui ne signifie pas pour autant qu'il faille les en exclure totalement.
@@ -522,13 +522,13 @@ DOMAIN
 Lorsque nous nous trouvons au sommet de la Dent d'Ili, nous aimerions bien savoir dans quelle direction chercher la Dent Cambrée. A 50 degrés ? A 40 degrés ? Ou plutôt à 310 ?
 
 .Quiconque se donne la peine de monter au sommet de la Dent d'Ili est récompensé de ses efforts par la vue exceptionnelle qui s'offre alors à lui. Mais dans quelle direction peut-on contempler la Dent Cambrée ? Si le système de coordonnés de référence n'est pas clairement indiqué dans la question, aucune réponse ne peut lui être apportée.
-image::img/image41.png[./media/image41,width=408,height=156]
+image::img/image41.png[width=408,height=156]
 
 
 En effet, tout dépend de la direction origine et du sens de rotation des directions. Autrement dit, lorsqu'il est question de directions, il doit toujours être question également de systèmes de référence. Les directions sont par conséquent étroitement liées aux types de coordonnées. Il est par ailleurs parfaitement logique de déterminer à la fois la distance et la direction séparant deux points définis par leurs coordonnées.
 
 .L'indication des axes et du sens de rotation fait partie intégrante de la définition d'un système de coordonnées.
-image::img/image42.png[./media/image42,width=406,height=156]
+image::img/image42.png[width=406,height=156]
 
 
 [source]
@@ -574,7 +574,7 @@ Il est évident que la piste reliant la Dent d'Ili à Ia Crête d'Ili est une li
 Cette situation pourrait également être décrite dans le modèle conceptuel, mais cela constituerait une contrainte superflue. Une fois que l'on sait que les lignes sont toujours structurées de la sorte, il n'est plus nécessaire d'y revenir.
 
 .Le tracé d'une piste est représenté par une ligne, elle-même constituée de tronçons de diverses sortes : des segments de droite, des arcs de cercle, etc.
-image::img/image43.png[./media/image43,width=343,height=69]
+image::img/image43.png[width=343,height=69]
 
 
 Il est toutefois judicieux d'indiquer les types de tronçons de lignes autorisés pour un type de ligne particulier :
@@ -598,7 +598,7 @@ LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS)
 ----
 
 .De petits recoupements sont parfois inévitables. La définition de la taille maximale d'un tel recouvrement (la flèche sur le graphique) fait partie intégrante du modèle.
-image::img/image44.png[./media/image44,width=234,height=105]
+image::img/image44.png[width=234,height=105]
 
 
 [#_6_9_3]
@@ -638,7 +638,7 @@ END Piste;
 Un peu avant l'arrivée sur la Crête d'Ili, un grand arbre occupe le milieu de la piste – ou, formulé différemment, la piste contourne l'arbre par la gauche et la droite.
 
 .Un grand arbre occupe le milieu de la piste. La situation peut être source d'angoisse pour les skieurs, mais ne trouble absolument pas le modèle de données : la piste est une seule et même surface, malgré l'enclave.
-image::img/image45.png[./media/image45,width=277,height=117]
+image::img/image45.png[width=277,height=117]
 
 
 La surface à préparer est-elle encore une surface unique ? Par surfaces, on entend toujours – au moins au sens d'INTERLIS – des zones d'un seul tenant. Et même si elles comportent des vides ou des enclaves, elles restent des zones d'un seul tenant et peuvent par conséquent être décrites comme des surfaces.
@@ -664,7 +664,7 @@ END EtatPiste;
 De telles surfaces exemptes de tout recouvrement étant relativement fréquentes, un type spécifique (intitulé AREA, soit aire) a été introduit dans INTERLIS. On ne parle alors plus de surfaces mais de partitions de territoires.
 
 .Dans le cas du type de surface ordinaire (SURFACE, à gauche), les surfaces de différents objets peuvent se chevaucher. Rien ne s'oppose par exemple, à ce que la même portion de terrain appartienne simultanément à deux pistes de ski. Il est en revanche exigé, dans le cas d'une partition du territoire (AREA, à droite), que chacun des points du terrain soit affecté sans la moindre équivoque à un objet s'il n'appartient pas à la surface résiduelle (représentée en noir). Les portions de terrain préparées par le service des pistes en constituent un exemple.
-image::img/image46.png[./media/image46,width=194,height=146] image:img/image47.png[./media/image47,width=204,height=136]
+image::img/image46.png[width=194,height=146] image:img/image47.png[width=204,height=136]
 
 
 [#_6_9_5]
@@ -678,7 +678,7 @@ INTERLIS 2 accepte des lignes à 2.5 dimensions.
 On suppose en fait que chaque point d'appui (point séparant deux tronçons de lignes) est défini en planimétrie et en altimétrie et que l'altitude d'un point du tronçon de ligne est interpolée à partir de ses points d'appui, en fonction de la distance le séparant du point de départ du tronçon.
 
 .INTERLIS accepte des lignes à 2.5 dimensions : l'altitude entre deux points d'appui fait toujours l'objet d'une interpolation linéaire. A l'endroit où un quart du tronçon C – D (en projection sur le plan) est parcouru, un quart de la dénivelée entre ces deux points a également été vaincu.
-image::img/image48.png[./media/image48,width=443,height=196]
+image::img/image48.png[width=443,height=196]
 
 
 Ne faudrait-il pas alors modéliser le tracé de la piste au moyen d'un type de ligne à trois dimensions ? D'un point de vue purement technique, cela ne poserait manifestement aucun problème et il faut bien reconnaître que l'altitude joue un rôle prépondérant dans le domaine du ski. L'inconvénient, en revanche, est que l'altitude du tracé de la piste n'est pas une grandeur indépendante : si l'on connaît sa position en planimétrie, l'altitude se déduit de la forme du terrain. L'altitude du tracé peut par conséquent se calculer à partir des positions en planimétrie et d'un modèle du terrain. D'un point de vue conceptuel, il est donc préférable de renoncer à la composante altimétrique pour le tracé de la piste.
@@ -798,7 +798,7 @@ Dans le modèle actuel, un nom et un nom abrégé sont associés à une sociét�
 Il est tentant de vouloir étendre la classe d'objets des sociétés de remontées mécaniques pour y ajouter le nom allemand et le nom abrégé qui lui est associé :
 
 .La classe d'objets des sociétés de remontées mécaniques avec le nom et le nom abrégé qui lui sont associés, en français et en allemand.
-image::img/image49.png[./media/image49,width=152,height=49]
+image::img/image49.png[width=152,height=49]
 
 
 Le problème serait alors réglé. Mais que se passerait-il alors si un beau jour, on désirait saisir le nom et le nom abrégé associé dans une troisième, une quatrième voire une cinquième langue ? Pas grand chose, en fait – il ne s'agit jamais que d'une petite modification du modèle de données !
@@ -831,7 +831,7 @@ END SocieteRemonteesMecaniques;
 Ou sous la forme d'un diagramme :
 
 .Plusieurs désignations sont affectées à une société de remontées mécaniques. Une entreprise pouvant posséder plusieurs noms, il est aisément possible d'enregistrer de nouveaux noms dans d'autres langues. Les détails de l'affectation (les informations telles que 1..* ou le rectangle plein) seront abordés ultérieurement dans le contexte des relations.
-image::img/image50.png[./media/image50,width=292,height=114]
+image::img/image50.png[width=292,height=114]
 
 
 [WARNING]
@@ -847,7 +847,7 @@ Qui sait que l'abréviation officielle du romanche est rm ? Du point de vue de 
 Si tel n'avait pas été le cas, on aurait sans doute opté pour un modèle dans lequel les langues sont des objets de plein droit. L'objet linguistique aurait ainsi contenu l'abréviation et par exemple le nom sous forme textuelle, dans la langue elle-même et en anglais.
 
 .Dans cette variante, la désignation de la langue (une structure) renvoie à la langue (une classe d'objets normale).
-image::img/image51.png[./media/image51,width=408,height=115]
+image::img/image51.png[width=408,height=115]
 
 
 La désignation renvoie ainsi à la langue. Ce renvoi n'en constitue pas pour autant une relation de plein droit (cf. § <<_6_13>>), les désignations ne possédant pas d'identité propre. Du point de vue de l'objet linguistique, il n'existe donc pas non plus d'accès direct aux éléments de désignation, lequel devrait être établi par l'intermédiaire d'une vue (cf. § <<_6_17>>).
@@ -931,7 +931,7 @@ END DureeEnJours;
 ----
 
 .Modélisation détaillée des durées à l'aide de structures. Il est ainsi possible que la durée de validité d'un billet soit d'un mois (DureeImplicite; à gauche) ou de trente jours exactement (DureeEnJours; à droite), selon les besoins.
-image::img/image52.png[./media/image52,width=489,height=187]
+image::img/image52.png[width=489,height=187]
 
 
 [WARNING]
@@ -1048,7 +1048,7 @@ La subdivision en fonction de ces intensités n'est pas toujours simple. Il exis
 * *Copier* – En cas de copie d'une société de remontées mécaniques (ce qui, dans la réalité, est loin d'être aussi simple que sur un ordinateur), des copies de toutes les remontés mécaniques qui lui sont affectées sont également générées et subordonnées à la nouvelle entreprise de transport. Pour chaque remontée, des copies de ses pylônes sont également effectuées. La copie d'un objet génère également la duplication des objets qui lui sont associés par le biais d'agrégations et de compositions. Aucune copie n'est en revanche créée pour les objets qui lui sont associés par l'intermédiaire d'associations ordinaires.
 
 .L'association (à gauche), l'agrégation (au centre) et la composition (à droite) sont différents types de relations se différenciant les unes des autres par leurs niveaux d'intensité : un pylône est en relation si étroite avec sa remontée mécanique qu'il peut être interprété comme faisant partie intégrante de la ligne. Comparées à la composition, l'agrégation et l'association sont moins intenses.
-image::img/image55.png[./media/image55,width=102,height=72] image:img/image56.png[./media/image56,width=146,height=72] image:img/image57.png[./media/image57,width=101,height=72]
+image::img/image55.png[width=102,height=72] image:img/image56.png[width=146,height=72] image:img/image57.png[width=101,height=72]
 
 
 La notation INTERLIS est très proche de la représentation graphique. Le nom du rôle doit cependant être figuré lorsqu'il se distingue du nom de la classe.
@@ -1114,7 +1114,7 @@ Mais que signifient alors les informations de cardinalité pour de telles relati
 C'est un peu compliqué, je vous l'accorde. Mais avons-nous réellement besoin de relations multiples ? Ne pourrait-on pas les réduire à des relations duales ordinaires ?
 
 .Des relations multiples, impliquant donc plusieurs intervenants, peuvent être réduites à des relations duales ordinaires. La classe relationnelle précédente (celle de la vente dans ce cas) devient un partenaire de rang équivalent aux trois autres qui ne sont plus alors qu'en relation directe avec elle.
-image::img/image60.png[./media/image60,width=201,height=128]
+image::img/image60.png[width=201,height=128]
 
 
 Toutefois, ce modèle laisse moins clairement transparaître le fait que les trois classes (point de vente, type de billet et saison) sont en relation les unes avec les autres.
@@ -1129,11 +1129,11 @@ Il est bien sûr possible de répertorier les lignes d'une entreprise par ordre 
 Ne serait-il toutefois pas judicieux d'enregistrer l'ordre de succession de l'établissement des relations ? Le téléphérique a ouvert le premier, suivi du remonte-pente, de la télécabine, etc. Il serait sans doute plus indiqué dans ce cas de pourvoir la relation de deux attributs supplémentaires, à savoir le début et la fin de l'exploitation. On pourrait même enregistrer les différents exploitants qui se sont succédé au cours des années. Il n'est en revanche pas opportun d'envisager cette relation comme une agrégation.
 
 .On pourrait imaginer recourir à une relation ordonnée afin d'enregistrer l'ordre de mise en service des différentes remontées mécaniques d'une entreprise. Le modèle de la figure suivante semble toutefois plus indiqué.
-image::img/image61.png[./media/image61,width=325,height=18]
+image::img/image61.png[width=325,height=18]
 
 
 .Le modèle gagne en clarté si l'on recourt à une classe relationnelle, parce qu'il permet facilement de procéder à des exploitations complémentaires. Ainsi, les lignes d'une entreprise peuvent-elles être triées en fonction de la date de la fin de leur exploitation et un programme informatique serait en mesure de préciser l'identité du ou des exploitants successifs de la remontée mécanique.
-image::img/image62.png[./media/image62,width=328,height=81]
+image::img/image62.png[width=328,height=81]
 
 
 Des considérations du même ordre peuvent s'appliquer à la relation entre la ligne et ses pylônes : l'introduction d'un ordre dans la relation pourrait permettre leur classement de la station inférieure jusqu'à la station supérieure. D'un point de vue conceptuel, il est cependant plus judicieux de gérer un attribut de position pour les pylônes puis de déduire l'ordre de succession de ces positions et du tracé de la ligne.
@@ -1144,7 +1144,7 @@ Réfléchissez bien avant de déclarer une relation comme étant ordonnée : cet
 Dans quels cas les relations ordonnées se justifient-elles réellement ? La télécabine d'Ili-les-Bains à la Dent d'Ili comporte des cabines qui ne sont pas assujetties à demeure au câble de transport. Elles peuvent être décrochées à la station inférieure ou à la station supérieure puis à nouveau accrochées si le besoin s'en fait sentir. Quelles cabines sont actuellement accrochées au câble et dans quel ordre ?
 
 .Une cabine possède bien un numéro, mais celui-ci ne donne aucune indication sur la position de cette cabine sur le câble. Une relation ordonnée est donc opportune ici.
-image::img/image63.png[./media/image63,width=184,height=70]
+image::img/image63.png[width=184,height=70]
 
 
 L'ordre est ici requis. Il ne peut pas être fait appel au numéro de la cabine pour l'obtenir, puisque celui-ci identifie simplement une cabine donnée et ne fournit aucune indication sur sa position actuelle sur le câble.
@@ -1157,25 +1157,25 @@ Une société de remontées mécaniques est en relation avec un grand nombre de 
 L'une de celles-ci consiste à définir deux relations différentes entre la société de remontés mécaniques et les personnes : l'une pour le salariat, l'autre pour l'actionnariat. Si cette distinction peut occasionnellement perdre de son importance (peut-être pour l'envoi, à l'occasion des fêtes de fin d'année, d'un petit train en chocolat), il n'en demeure pas moins qu'une application doit se préoccuper de chacune de ces deux relations.
 
 .Une personne peut être salariée et/ou actionnaire d'une société de remontées mécaniques. Cette situation est ici modélisée par le biais de deux relations différentes. Si l'entreprise souhaite faire un petit cadeau à ses salariés comme à ses actionnaires à l'occasion des fêtes de fin d'année (en leur envoyant des chocolats par exemple), les deux relations devront être exploitées.
-image::img/image64.png[./media/image64,width=271,height=60]
+image::img/image64.png[width=271,height=60]
 
 
 Une autre possibilité de modélisation consiste à définir une relation primaire (contact) puis à l'étendre au salariat et à l'actionnariat. Tant qu'une application n'a pas besoin de connaître la nature exacte du lien qu'entretient une personne avec l'entreprise, elle recourt à la relation primaire (contact) et obtient ainsi connaissance de l'ensemble des personnes en contact de quelque nature que ce soit avec l'entreprise. Une application ne concernant que les salariés utilise la relation étendue du salariat et n'obtient connaissance que des personnes salariées par l'entreprise.
 
 .Dans cette variante, la relation entre la société de remontées mécaniques et une personne, quelle qu'elle soit, est modélisée par la classe relationnelle du contact. Le salariat et l'actionnariat constituent alors des formes particulières de contact avec l'entreprise. Quiconque voudra s'enquérir des contacts de l'entreprise obtiendra automatiquement connaissance des salariés et des actionnaires. Les classes relationnelles sont donc extensibles sur le même modèle que les classes d'objets, ce qui se traduit sur le diagramme par la représentation d'une flèche évidée.
-image::img/image65.png[./media/image65,width=283,height=96]
+image::img/image65.png[width=283,height=96]
 
 
 On pourrait affiner encore la relation du salariat en introduisant par exemple une extension « direction ».
 
 .La relation entre une entreprise de transport et son directeur (« Direction ») constitue un cas particulier de la relation du « salariat ».
-image::img/image66.png[./media/image66,width=250,height=123]
+image::img/image66.png[width=250,height=123]
 
 
 Bien souvent, les extensions de relations sont étroitement associées aux extensions de classes d'objets. Au lieu d'affirmer d'emblée qu'une remontée mécanique comprend des pylônes, on parle dans un premier temps de moyens d'exploitation. Ceux-ci sont liés à la ligne par l'intermédiaire d'associations, liens assez lâches. Les pylônes constituant toutefois une propriété constitutive importante de différents types de remontées mécaniques, on introduit la classe RemonteeAvecPylones qui est alors en relation avec les pylônes eux-mêmes. Cette classe est cependant gérée comme une extension de la relation entre les remontées mécaniques et les moyens d'exploitation. Les pylônes étant liés à une remontée mécanique donnée – au contraire par exemple de dameuses –, cette relation se transforme en composition. L'intensité d'une relation ne peut que se renforcer dans le cadre d'une extension et non s'affaiblir, car la relation risquerait alors de se trouver en contradiction avec sa définition de base.
 
 .Il existe une relation ordinaire entre les remontées mécaniques et les moyens d'exploitation qui est renforcée en composition par des classes spécialisées.
-image::img/image67.png[./media/image67,width=256,height=77]
+image::img/image67.png[width=256,height=77]
 
 
 [#_6_13_7]
@@ -1416,7 +1416,7 @@ Des extensions de classes ne peuvent pas faire perdre leur validité à des règ
 Une décision d'exploitation se rapporte toujours à une remontée mécanique donnée. Les deux classes concernées sont ainsi liées par une association.
 
 .Les classes Remontee_RDI et DecisionExploitation sont liées par une association.
-image::img/image68.png[./media/image68,width=260,height=32]
+image::img/image68.png[width=260,height=32]
 
 
 Les objets de ces deux classes sont cependant très différents. La mise en service d'une remontée mécanique requiert une somme de travail et d'efforts considérable si ben que ses propriétés sont généralement stables dans le temps. Tout changement de celles-ci (ou des billets) fait l'objet d'une décision de la direction. En revanche, les décisions d'exploitation sont prises quotidiennement et sont du ressort du responsable de l'exploitation.
@@ -1523,7 +1523,7 @@ L'Association nationale des offices de tourisme a défini une classe abstraite d
 Une remontée mécanique dont les stations inférieure et supérieure sont situées dans le secteur couvert par une telle zone tarifaire accepte automatiquement les billets correspondants.
 
 .Quelle remontée mécanique se trouve dans le secteur couvert par quelle zone tarifaire ? Les Ilinois s'intéressent à tous les couples de remontées mécaniques (RM) et de ZoneTarifaireDansSecteur (ZT), pour lesquels deux conditions sont remplies : la station inférieure de la RM doit se trouver dans le secteur de la ZT et la station supérieure de la RM doit aussi se trouver dans le secteur de la ZT.
-image::img/image69.png[./media/image69,width=305,height=173]
+image::img/image69.png[width=305,height=173]
 
 
 Mais concrètement, quelle remontée mécanique se trouve dans le secteur de quelle zone tarifaire ? Cette jonction entre remontée mécanique et zone tarifaire peut également être déduite par l'intermédiaire d'une vue.
@@ -1552,12 +1552,12 @@ La partie WHERE permet de restreindre l'ensemble de tous les objets-vues à ceux
 stations inférieure et supérieure de _RM_
 dans le secteur de _ZT_ ?
 
-|image:img/image70.png[./media/image70,width=55,height=24] |image:img/image71.png[./media/image71,width=54,height=30] |oui
-|image:img/image72.png[./media/image72,width=17,height=39] |image:img/image71.png[./media/image71,width=54,height=30] |oui
-|image:img/image73.png[./media/image73,width=19,height=34] |image:img/image71.png[./media/image71,width=54,height=30] |non
-|image:img/image70.png[./media/image70,width=55,height=24] |image:img/image74.png[./media/image74,width=48,height=38] |non
-|image:img/image72.png[./media/image72,width=17,height=39] |image:img/image74.png[./media/image74,width=48,height=38] |oui
-|image:img/image73.png[./media/image73,width=19,height=34] |image:img/image74.png[./media/image74,width=48,height=38] |oui
+|image:img/image70.png[width=55,height=24] |image:img/image71.png[width=54,height=30] |oui
+|image:img/image72.png[width=17,height=39] |image:img/image71.png[width=54,height=30] |oui
+|image:img/image73.png[width=19,height=34] |image:img/image71.png[width=54,height=30] |non
+|image:img/image70.png[width=55,height=24] |image:img/image74.png[width=48,height=38] |non
+|image:img/image72.png[width=17,height=39] |image:img/image74.png[width=48,height=38] |oui
+|image:img/image73.png[width=19,height=34] |image:img/image74.png[width=48,height=38] |oui
 |===
 
 Figure 63 : Si l'on considère toutes les combinaisons possibles de remontée mécanique _RM_ +

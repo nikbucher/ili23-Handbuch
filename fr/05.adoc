@@ -9,7 +9,7 @@ Une ligne de montagne (ou remontée mécanique) n'a, en définitive, rien de fon
 S'il est évident qu'une ligne de montagne et une ligne de tramway présentent des points communs, bien des choses les séparent aussi. 
 
 .Semblables en bien des points, mais pas totalement identiques : une ligne de montagne (ou remontée mécanique) et une ligne de tramway sont deux cas particuliers de lignes / remontées – ce sont des sous-classes de la sur-classe générale des lignes / remontées.
-image::img/image22.png[./media/image22,width=154,height=56] image:img/image23.png[./media/image23,width=86,height=162]
+image::img/image22.png[width=154,height=56] image:img/image23.png[width=86,height=162]
 
 
 [NOTE]
@@ -20,7 +20,7 @@ Il est d'usage de représenter la sur-classe générale au-dessus des sous-class
 Toute ligne de montagne peut être considérée comme une ligne / remontée, mais toute ligne / remontée ne mène pas nécessairement au sommet d'une montagne : l'ensemble des lignes de montagne est un sous-ensemble de l'ensemble des lignes / remontées. On dit aussi que la sous-classe des lignes de montagne est une *restriction* de la sur-classe des lignes / remontées.
 
 .Une relation entre sous-ensembles d'objets correspond à la spécialisation de classes : l'ensemble de toutes les lignes de montagne (comprenant quatre éléments sur l'image de droite) doit être compris en totalité dans l'ensemble des lignes / remontées (neuf éléments) puisque la classe des lignes de montagne spécialise la classe plus générale des lignes / remontées.
-image::img/image22.png[./media/image22,width=154,height=56] image:img/image24.png[./media/image24,width=217,height=107]
+image::img/image22.png[width=154,height=56] image:img/image24.png[width=217,height=107]
 
 
 A l'occasion, le terme d'*extension* est également utilisé à la place de spécialisation, de signification identique à « restriction ».
@@ -30,7 +30,7 @@ Il peut sembler déconcertant de prime abord que les notions de « restriction �
 L'héritage constitue un moyen remarquable permettant d'établir une hiérarchie au sein d'un ensemble complexe d'éléments. Veillez toutefois à ne pas formuler le modèle de manière trop détaillée, vous risqueriez de distinguer des classes là où une telle différenciation n'est pas nécessaire.
 
 .L'outil puissant que constitue l'héritage peut potentiellement conduire à distinguer des cas particuliers alors que l'application ne le justifie pas. Soit, un trolleybus et un tramway électrique, ce n'est pas tout à fait la même chose. Mais l'introduction de telles différences dans le modèle se justifie-t-elle ou ne contribue-t-elle qu'à le faire enfler ?
-image::img/image25.png[./media/image25,width=450,height=207]
+image::img/image25.png[width=450,height=207]
 
 
 CLASS Ligne++_++Remontee = +
@@ -46,7 +46,7 @@ CLASS LigneTramway EXTENDS Ligne++_++Remontee = +
 END LigneTramway;
 
 .La ligne de montagne (ou remontée mécanique) et la ligne de tramway reprennent (« héritent de ») la propriété de nom de leur sur-classe de lignes / remontées sans que celle-ci ait à être répétée. Une remontée mécanique possède des propriétés supplémentaires en plus de celles qu'elle hérite, à savoir la position des stations inférieure et supérieure (en coordonnées nationales). A droite, la même situation est décrite en notation INTERLIS.
-image::img/image26.png[./media/image26,width=245,height=90]
+image::img/image26.png[width=245,height=90]
 
 
 [NOTE]
@@ -71,7 +71,7 @@ CLASS LigneTramway EXTENDS Ligne++_++Remontee = +
 **END LigneTramway;
 
 .Cinq caractères suffisent amplement pour le nom d'une ligne de tramway : le type de la propriété de nom est donc affiné (ou précisé) par la sous-classe. A droite, à nouveau la même situation décrite en notation INTERLIS.
-image::img/image27.png[./media/image27,width=266,height=91]
+image::img/image27.png[width=266,height=91]
 
 
 L'indication précisée et affinée doit être compatible avec celle issue de l'héritage. La longueur maximale autorisée pour le nom d'une ligne de tramway ne pourrait par exemple pas être supérieure à ce qui a été défini pour une ligne / remontée ordinaire.
@@ -162,7 +162,7 @@ D'autres faisaient preuve de plus de retenue et avouaient comprendre le point de
 Les Ilinois devraient-ils alors renoncer à leurs demandes supplémentaires ? Ou saisir toutes les données en double exemplaire : une fois pour l'Association nationale, une fois pour eux ?
 
 .L'Association nationale des offices de tourisme n'est pas disposée à adapter son modèle pour répondre aux demandes spécifiques des Ilinois. Grâce à l'héritage, les Ilinois peuvent cependant saisir leurs données : leur propre thème des remontées mécaniques reprend la totalité des informations du thème des remontées mécaniques de l'Association nationale mais l'étend par une classe d'objets Remontee++_++RDI présentant des propriétés supplémentaires.
-image::img/image29.png[./media/image29,width=302,height=254]
+image::img/image29.png[width=302,height=254]
 
 
 L'héritage a permis de résoudre ce conflit. Dans le Val d'Ili, les lignes / remontées sont simplement saisies dans la classe Remontee++_++RDI, informations supplémentaires comprises. Puisque Remontee++_++RDI est une sous-classe de la classe des remontées mécaniques (selon l'Association nationale), toute Remontee++_++RDI peut également être lue comme une remontée mécanique normale. Et ainsi, les Ilinois peuvent transmettre leurs données à l'Association nationale sans rien avoir à modifier.
