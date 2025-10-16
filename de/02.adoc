@@ -124,9 +124,11 @@ _Mit Attribut verwandte Begriffe sind: Kolonne, Feld, Eigenschaft, ..._
 Bei diesen beiden Attributen ist es bereits durch die Bezeichnung recht offensichtlich, von welcher Art sie sind: Texte. Beim Preis einer Billettart werden weitere Angaben schon etwas wichtiger: Franken, Euro, Dollar, Ahländer Taler? Bei der Gültigkeitsdauer würde es vor allem dann anspruchsvoller, wenn sie nicht einfach mit einer Anzahl von Tagen beschrieben werden kann. Will man bei einer Bahn die Länge angeben, ist es natürlich auch von Belang, ob sie in Meter oder Kilometer beschrieben wird. Für die bearbeitenden Programme ist es wichtig zu wissen, wie lang die vorgesehenen Textattribute werden dürfen oder in welchem Bereich die vorgesehenen Zahlen liegen dürfen.
 
 [NOTE]
+====
 Der *Typ* eines Attributs beschreibt, welche Werte das Attribut annehmen kann und welche Bedeutung sie haben.
 
-Ein mit Typ verwandter Begriff ist Wertebereich.
+_Ein mit Typ verwandter Begriff ist Wertebereich._
+====
 
 .Die Objektklasse «Bahngesellschaft» besitzt einen Namen und eine Kurzbezeichnung.
 [%autowidth]

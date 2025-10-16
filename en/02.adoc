@@ -124,9 +124,11 @@ _Terms related with attribute are: column, field, property, ..._
 With these two attributes it is quite obvious what type they are: texts. With the price of a ticket type further indications will be of importance: franc, Euro, dollar, Ahland sovereign? Terming the period of validity will be even more demanding if it cannot simply be described with a number of days. If we indicate the length of a railway company it is naturally enough also of importance whether it is described in meters or kilometers. For the programs employed it is important to know how long the projected text attributes may be or within what range the projected numbers may lie.
 
 [NOTE]
+====
 The *type* of attribute describes what values an attribute may take on and what is their significance.
 
-A term related with type is value domain.
+_A term related with type is value domain._
+====
 
 .The object class «RailwayCompany» possesses both a name and an abbreviation.
 [%autowidth]

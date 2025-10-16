@@ -124,9 +124,11 @@ _Notions apparentées aux attributs : colonne, champ, propriété, ..._
 La désignation de nos deux attributs laisse assez clairement apparaître le type dont il s'agit : du texte. Dans le cas du prix d'un type de billet, l'indication d'informations supplémentaires est déjà un peu plus importante : franc, euro, dollar, couronne béotienne ? Le cas de la durée de validité devient plus épineux encore, surtout s'il n'est pas possible de la décrire par un nombre de jours. Et si l'on souhaite indiquer la longueur d'une ligne, il va de soi qu'il faut préciser l'unité dans laquelle cette valeur est exprimée, en mètres ou en kilomètres. Il est important que les programmes de traitement aient connaissance de la longueur prévue pour les attributs textuels ou des limites dans lesquelles les valeurs permises peuvent évoluer.
 
 [NOTE]
+====
 Le *type* d'un attribut décrit les valeurs que ce dernier peut prendre et la signification qui leur est attachée.
 
-Le domaine de valeurs est une notion apparentée au type.
+_Le domaine de valeurs est une notion apparentée au type._
+====
 
 .La classe d'objets de « société de remontées mécaniques » possède un nom et un nom abrégé.
 [%autowidth]
