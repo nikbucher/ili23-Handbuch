@@ -112,15 +112,16 @@ Figure 28 : La classe des lignes / remontées comme classe abstraite : s'il ne p
 
 Admettons qu'une association internationale souhaite garantir que la saisie des billets s'accompagne de celle de leur prix. Elle ne désire toutefois pas imposer d'unité monétaire pour l'indication du prix et la limite supérieure pour le prix n'est par ailleurs pas clairement définie. Ce qui est sûr, en revanche, c'est que « le prix » doit être une valeur numérique et qu'il est ici question d'argent : le prix n'est certainement pas indiqué en kilomètres / heure !
 
-____
-CLASS TypeBilletInternational (ABSTRACT) = +
-Prix (ABSTRACT): NUMERIC ++[++MONEY++]++; +
-END TypeBilletInternational; +
- +
-CLASS TypeBilletBeotie EXTENDS TypeBilletInternational = +
-Prix (EXTENDED): 0.00 .. 9999.99 ++[++Beotie.Couronne++]++; +
+[source]
+----
+CLASS TypeBilletInternational (ABSTRACT) =
+  Prix (ABSTRACT): NUMERIC [MONEY];
+END TypeBilletInternational;
+
+CLASS TypeBilletBeotie EXTENDS TypeBilletInternational =
+  Prix (EXTENDED): 0.00 .. 9999.99 [Beotie.Couronne];
 END TypeBilletBeotie;
-____
+----
 
 [NOTE]
 Il n'est pas nécessaire de définir toutes les propriétés dans les moindres détails : des *propriétés abstraites* sont admises pour les classes abstraites. Il incombe alors aux sous-classes concrètes de les préciser. Ce type de propriétés se révèle particulièrement intéressant lorsqu'une chose est à réglementer au plan national ou international, sans pour autant que tous les détails en soient prescrits.

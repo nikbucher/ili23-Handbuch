@@ -33,17 +33,20 @@ Inheritance is a fabulous means of creating order in a complex world. On the oth
 image::img/image24.png[./media/image24,width=496,height=208]
 
 
-CLASS Railway = +
-Name: TEXT++*++100; +
-END Railway; +
- +
-CLASS AlpineTransport EXTENDS Railway = +
-PosBottomStation: NationalCoord; +
-PosTopStation: NationalCoord; +
-END AlpineTransport; +
- +
-CLASS TramwayLine EXTENDS Railway = +
+[source]
+----
+CLASS Railway =
+  Name: TEXT*100;
+END Railway;
+
+CLASS AlpineTransport EXTENDS Railway =
+  PosBottomStation: NationalCoord;
+  PosTopStation: NationalCoord;
+END AlpineTransport;
+
+CLASS TramwayLine EXTENDS Railway =
 END TramwayLine;
+----
 
 .AlpineTransport and TramwayLine accept («inherit») the property name of their super class Railway, without this having to be stated once more. In addition to inherited properties an alpine transport possesses further characteristics, i.e. the position of bottom and top station (in national coordinates). On the right hand side the same is stated in the notation of INTERLIS.
 image::img/image25.png[./media/image25,width=252,height=90]
@@ -59,18 +62,21 @@ In general one hundred signs may be appropriate for the name of one particular a
 
 But a tramway line with one hundred signs? Five signs should definitely be enough.
 
-CLASS Railway = +
-Name: TEXT++*++100; +
-END Railway; +
- +
-CLASS AlpineTransport EXTENDS Railway = +
-PosBottomStation: NationalCoord; +
-PosTopStation: NationalCoord; +
-END AlpineTransport; +
- +
-CLASS TramwayLine EXTENDS Railway = +
-**Name (EXTENDED): TEXT++*++5; +
-**END TramwayLine;
+[source]
+----
+CLASS Railway =
+  Name: TEXT*100;
+END Railway;
+
+CLASS AlpineTransport EXTENDS Railway =
+  PosBottomStation: NationalCoord;
+  PosTopStation: NationalCoord;
+END AlpineTransport;
+
+CLASS TramwayLine EXTENDS Railway =
+  Name (EXTENDED): TEXT*5;
+END TramwayLine;
+----
 
 Figure 27: Five signs are sufficient for the name of a Tramway Line: The type of the property «Name» is refined by the sub class (specified). On the right hand side the same is stated in the notation of INTERLIS.
 
@@ -93,17 +99,20 @@ If a class should not feature any concrete objects, it is declared *abstract*.
 
 Very often in a data model all its super classes will be abstract and only its very last, most specific classes will be concrete.
 
-CLASS Railway *(ABSTRACT)* = +
-Name: TEXT++*++100; +
-END Railway; +
- +
-CLASS AlpineTransport EXTENDS Railway = +
-PosBottomStation: NationalCoord; +
-PosTopStation: NationalCoord; +
-END AlpineTransport; +
- +
-CLASS TramwayLine EXTENDS Railway = +
+[source]
+----
+CLASS Railway (ABSTRACT) =
+  Name: TEXT*100;
+END Railway;
+
+CLASS AlpineTransport EXTENDS Railway =
+  PosBottomStation: NationalCoord;
+  PosTopStation: NationalCoord;
+END AlpineTransport;
+
+CLASS TramwayLine EXTENDS Railway =
 END TramwayLine;
+----
 
 Figure 28: Railway as an abstract class: If it is required that there be no objects that are only railway without also being alpine transport or tramway line this is shown in the diagram in italics. On the right hand side the same is stated in the notation of INTERLIS.
 
@@ -112,13 +121,16 @@ Figure 28: Railway as an abstract class: If it is required that there be no obje
 
 Let's assume an international association wishes to ensure that tickets are captured with their prices. Then again it does not want to dictate a certain currency and consequently it is not clear where a sensible upper limit for the price could be set. Nevertheless it is not contested that «price» should be a number and that we deal with money. After all prices are not measured in kilometers per hour!
 
-CLASS TicketTypeWorldwide (ABSTRACT) = +
-Price (ABSTRACT): NUMERIC ++[++MONEY++]++; +
-END TicketTypeWorldwide; +
- +
-CLASS TicketTypeAhland EXTENDS TicketTypeWorldwide = +
-Price (EXTENDED): 0.00 .. 9999.99 ++[++Ahland.Sovereign++]++; +
+[source]
+----
+CLASS TicketTypeWorldwide (ABSTRACT) =
+  Price (ABSTRACT): NUMERIC [MONEY];
+END TicketTypeWorldwide;
+
+CLASS TicketTypeAhland EXTENDS TicketTypeWorldwide =
+  Price (EXTENDED): 0.00 .. 9999.99 [Ahland.Sovereign];
 END TicketTypeAhland;
+----
 
 [NOTE]
 Not all properties have to be defined down to the last detail: with abstract classes *abstract properties* are admissible. It is then up to the concrete sub classes, to specify these properties. For instance this is handy when regulating something on national or international level without prescribing every single detail right from the beginning.

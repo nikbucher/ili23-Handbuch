@@ -21,9 +21,12 @@ However this would also decide that the price can never be less than 10 sovereig
 
 Of course it is also important to consider the number of decimals necessary. If prices may feature pennies then the limit would have to be set with to decimals. With an attribute which for instance represents an investment budget you are likely to deal in millions, when dealing with dimensions two digits will be sufficient. However these may refer to a thousand, a million or even a billion.
 
-Price: 0.00 .. 9999.99; +
-Budget: 0.00E6 .. 999.99E6; +
+[source]
+----
+Price: 0.00 .. 9999.99;
+Budget: 0.00E6 .. 999.99E6;
 GrossNationalProduct: 0.0E0 .. 9.9E20;
+----
 
 The number of decimals describes the precision: «4.3 Million» (4.3E6 = 4.3 · 106) is not as precise an indication as «4300000».
 
@@ -32,12 +35,15 @@ The number of decimals describes the precision: «4.3 Million» (4.3E6 = 4.3 ·
 
 Now do we deal with sovereigns, francs, Euro or dollars? Units are – not only where money is concerned – of paramount importance. That is why we recommend indicating the unit not only as a comment or part of the attribute name but actually as constituent of the type:
 
-UNIT +
-Sovereign EXTENDS MONEY; +
- +
-CLASS TicketType = +
-Price: 0 .. 9999 ++[++Sovereign++]++; +
+[source]
+----
+UNIT
+  Sovereign EXTENDS MONEY;
+
+CLASS TicketType =
+  Price: 0 .. 9999 [Sovereign];
 END TicketType;
+----
 
 Sovereigns (or Swiss francs, Euro, dollars, etc.) are defined as units and can then be used when defining a numeric type. However most common units (amongst others also CHF, EUR, USD) actually need not be defined but are available via the specific units model (units.ili, cf. paragraph 3.3).
 
@@ -49,9 +55,12 @@ In the interest of clarity we recommend indicating units at any time. The INTERL
 
 Since the Mount Ilis Alpine Transports will never issue tickets that cost over a thousand sovereigns, one might come up with the idea of defining this in its own class:
 
-CLASS TicketType (EXTENDED) = +
-Price (EXTENDED): 0 .. 1000 ++[++sovereigns++]++; +
+[source]
+----
+CLASS TicketType (EXTENDED) =
+  Price (EXTENDED): 0 .. 1000 [sovereigns];
 END TicketType;
+----
 
 In this application this concrete example does not make much sense really. But in real life there certainly are cases where limiting the inherited value domain is a sensible thing to do.
 
@@ -61,9 +70,12 @@ Thus an indication of price 0 .. 1000 is an admissible restriction of the value 
 
 The people in charge in Ilis Valley also insist on the possibility of issuing tickets with prices that not necessarily have to be an entire sovereign. One would like to write the following definition:
 
-CLASS TicketType (EXTENDED) = +
-Price (EXTENDED): 0.00 .. 1000.00 ++[++Sovereign++]++; +
+[source]
+----
+CLASS TicketType (EXTENDED) =
+  Price (EXTENDED): 0.00 .. 1000.00 [Sovereign];
 END TicketType;
+----
 
 Then again, would this be compatible with the basic model? Yes, because according to the Illis Valley model (e.g. 7.35) with a mathematical rounding each value can be mapped onto a correct value of the national model (e.g. 7).
 
@@ -78,40 +90,55 @@ And furthermore: Units of the extension must always be in accordance with those 
 
 Can the National Tourist Office determine what price is admissible for a ticket? If the limits are still entirely unknown, then – within the scope of abstract attributes – their notation can be omitted. Nevertheless it is possible to already determine a unit.
 
-Price (ABSTRACT): NUMERIC ++[++Ahland.Sovereign++]++;
+[source]
+----
+Price (ABSTRACT): NUMERIC [Ahland.Sovereign];
+----
 
 Maybe even the unit is still uncertain. It would only be known that e deal with e.g. a currency.
 
-Price (ABSTRACT): NUMERIC ++[++MONEY++]++;
+[source]
+----
+Price (ABSTRACT): NUMERIC [MONEY];
+----
 
 Thus at least the character of the unit would be settled. Therefore in an extension only such units could be defined as would figure as concretes of the abstract unit MONEY (for further information concerning abstract properties also see paragraph 5.4).
 
-Price (EXTENDED): 0 .. 10000 ++[++CHF++]++; !! admissible +
-Price (EXTENDED): 0 .. 2000 ++[++USD++]++; !! admissible +
-Price (EXTENDED): 0 .. 1000 ++[++m++]++; !! inadmissible, because meter +
-!! specifies LENGTH and not MONEY.
+[source]
+----
+Price (EXTENDED): 0 .. 10000 [CHF]; !! admissible
+Price (EXTENDED): 0 .. 2000 [USD]; !! admissible
+Price (EXTENDED): 0 .. 1000 [m]; !! inadmissible, because meter
+                                  !! specifies LENGTH and not MONEY.
+----
 
 [#_6_2]
 === Types of alpine transport – Modeling of types of objects
 
 For a brief overview it is sufficient to roughly divide alpine transports: Cog rail, funiculars, aerial cable cars, ski lift, chair lifts, gondolas. In the simplest of cases the type would be noted as a text attribute.
 
-CLASS AlpineTransport = +
-Name: TEXT++*++100; +
-Kind: TEXT++*++50; +
+[source]
+----
+CLASS AlpineTransport =
+  Name: TEXT*100;
+  Kind: TEXT*50;
 END AlpineTransport;
+----
 
 Consequently people in charge of data input would be very free in their description. Aerial cable car, gondola, ski lift, ski-lift – it is to be feared that a virtual jungle of terms would result. This could be avoided by using an enumeration.
 
-CLASS AlpineTransport = +
-Name: TEXT++*++100; +
-Kind: (CogRail, +
-Funicular, +
-AerialCableCar +
-SkiLift, +
-ChairLift, +
-Gondola); +
+[source]
+----
+CLASS AlpineTransport =
+  Name: TEXT*100;
+  Kind: (CogRail,
+         Funicular,
+         AerialCableCar
+         SkiLift,
+         ChairLift,
+         Gondola);
 END AlpineTransport;
+----
 
 Since all admissible possibilities have been enumerated, order would have been established. Often it will appear desirable to add further attributes such as the number of available seats on some means of transport. With funicular and aerial cable car this would be the capacity of the entire cabin, with ski and chair lifts it would be the number of persons per single ride. However with a cog rail where several wagons can be hooked up this information would not make sense. Maybe the cog system would be of greater interest. Now should the class AlpineTransport simply feature all attributes needed for the describing of the different kinds?
 
@@ -125,33 +152,36 @@ But there are no means of alpine transport that are exclusively alpine transport
 
 In the textual notation of INTERLIS 2 abstract classes are pointed out with the indication (ABSTRACT) in brackets. As a side remark: The INTERLIS-units model «Units» features a unit «CountedObjects» for counted objects such as the number of people in a aerial cable car cabin.
 
-CLASS AlpineTransport (ABSTRACT) = +
-Name: Text ++*++ 100; +
-END AlpineTransport; +
- +
-CLASS CogRail EXTENDS AlpineTransport = +
-CogSystem: (Riggenbach, Abt, vonRoll); +
-END CogRail; +
- +
-CLASS Funicular EXTENDS AlpineTransport = +
-Capacity: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END Funicular; +
- +
-CLASS AerialCableCar EXTENDS AlpineTransport = +
-Capacity: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END AerialCableCar; +
- +
-CLASS SkiLift EXTENDS AlpineTransport = +
-PersonsPerRide: 0 .. 10 ++[++Units.CountedObjects++]++; +
-END SkiLift; +
- +
-CLASS ChairLift EXTENDS AlpineTransport = +
-PersonsPerRide: 0 .. 24 ++[++Units.CountedObjects++]++; +
-END ChairLift; +
- +
-CLASS Gondola EXTENDS AlpineTransport = +
-Capacity: 0 .. 99 ++[++Units.CountedObjects++]++; +
+[source]
+----
+CLASS AlpineTransport (ABSTRACT) =
+  Name: Text*100;
+END AlpineTransport;
+
+CLASS CogRail EXTENDS AlpineTransport =
+  CogSystem: (Riggenbach, Abt, vonRoll);
+END CogRail;
+
+CLASS Funicular EXTENDS AlpineTransport =
+  Capacity: 0 .. 999 [Units.CountedObjects];
+END Funicular;
+
+CLASS AerialCableCar EXTENDS AlpineTransport =
+  Capacity: 0 .. 999 [Units.CountedObjects];
+END AerialCableCar;
+
+CLASS SkiLift EXTENDS AlpineTransport =
+  PersonsPerRide: 0 .. 10 [Units.CountedObjects];
+END SkiLift;
+
+CLASS ChairLift EXTENDS AlpineTransport =
+  PersonsPerRide: 0 .. 24 [Units.CountedObjects];
+END ChairLift;
+
+CLASS Gondola EXTENDS AlpineTransport =
+  Capacity: 0 .. 99 [Units.CountedObjects];
 END Gondola;
+----
 
 For the meeting a railway person had been invited especially who then did a lengthy speech on cog rails. All present learnt a lot about what cog systems are in use world-­wide and about their respective advantages and disadvantages. However at the end of the day the people in Ilis Valley asked themselves what, after all, did these cog systems have to do with their project. Nobody could imagine of what possible interest these or other pieces of information would be in a future extension. Thus this model was rejected because it went too much into detail and finally would incur unnecessary costs for the input and maintenance of data.
 
@@ -165,22 +195,28 @@ See also paragraph 5.1 which deals with the temptation to enter into too many de
 
 In order to achieve a rough distinction between the difficulty degrees of ski runs, three colors had been chosen: blue, red, black. These and only these difficulty degrees should prevail. Furthermore they all relate to an order. Blue depicts a simple ski run, a red run is more difficult than a blue one, and a black one is the most demanding. The following definition would describe this circumstance:
 
-CLASS SkiRun = +
-DifficultyDegree: (blue, red, black: FINAL) ORDERED; +
+[source]
+----
+CLASS SkiRun =
+  DifficultyDegree: (blue, red, black: FINAL) ORDERED;
 END SkiRun;
+----
 
 If the FINAL-indication were to be missing, then this enumeration could still be added onto in an extension. For instance in the case of different kinds of alpine transport this might make sense:
 
-!! Model of the National Tourist Office +
-CLASS AlpineTransport = +
-Kind: (CogRail, Funicular, AerialCableCar, +
-SkiLift, ChairLift, Gondola); +
-END AlpineTransport; +
- +
-!! Model Ilis Valley +
-CLASS MITAlpineTransport EXTENDS AlpineTransport = +
-Kind (EXTENDED): (SnowBus); +
+[source]
+----
+!! Model of the National Tourist Office
+CLASS AlpineTransport =
+  Kind: (CogRail, Funicular, AerialCableCar,
+        SkiLift, ChairLift, Gondola);
+END AlpineTransport;
+
+!! Model Ilis Valley
+CLASS MITAlpineTransport EXTENDS AlpineTransport =
+  Kind (EXTENDED): (SnowBus);
 END MITAlpineTransport;
+----
 
 In the extended class the element snow bus is added to the enumeration – the latest of all novelties – at the end of the existing enumeration. But what will the National Tourist Office make of that? For them «Snow bus» is still unheard of.
 
@@ -189,7 +225,10 @@ Each (horizontal) extension can be complemented with further value as long as it
 
 For the basic class the value snow bus - and other possible values - are only recognizable as OTHER. However if FINAL is indicated, then the value OTHER no longer can occur. If an enumeration is defined as circular (*CIRCULAR*) then such extensions are impossible because circular means that the highest value is followed by the lowest and hence it would be impossible to know which of them is the highest.
 
+[source]
+----
 WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+----
 
 [#_6_3_2]
 ==== Sub-enumeration
@@ -198,13 +237,16 @@ Thu s it had been decided not to model the different kinds of alpine transport w
 
 For each value of an enumeration a sub-enumeration can be defined. This may happen directly within the basic definition or only in an extension.
 
-CLASS MITAlpineTransport EXTENDS AlpineTransport +
-Kind (EXTENDED): (CogRail (Riggenbach, Abt, vonRoll)); +
+[source]
+----
+CLASS MITAlpineTransport EXTENDS AlpineTransport
+  Kind (EXTENDED): (CogRail (Riggenbach, Abt, vonRoll));
 END MITAlpineTransport;
 
-WeekDay: (WorkingDay (Monday, Tuesday, Wednesday, +
-Thursday, Friday, Saturday), +
-Sunday);
+WeekDay: (WorkingDay (Monday, Tuesday, Wednesday,
+                      Thursday, Friday, Saturday),
+         Sunday);
+----
 
 If such an enumeration is defined within an extension, then it is simply of no importance from the base's point of view. So as far as the National Tourist Office is concerned a Riggenbach-cog rail would still be a cog rail.
 
@@ -215,21 +257,30 @@ Even sub-enumeration can be complemented with further values, as long as value h
 
 As a general rule designations may consist of names of any chosen length. Nevertheless the national association has determined that the name of any alpine transport may not exceed a total of 100 signs. In general of course the names tend to be much shorter, but one would like to be on the safe side.
 
-STRUCTURE RailwayDesignation EXTENDS Designation = +
-Name (EXTENDED): TEXT++*++100; +
+[source]
+----
+STRUCTURE RailwayDesignation EXTENDS Designation =
+  Name (EXTENDED): TEXT*100;
 END RailwayDesignation;
+----
 
 Whenever the length of a text attribute is discretionary or as yet completely unknown, the indication of its length can be omitted. If obviously this length will be determined within the scope of an extension of class, the attribute will be qualified as abstract:
 
+[source]
+----
 Description (ABSTRACT): TEXT;
+----
 
 Some means of transport in Ilis Valley have installed a web camera, which continually registers the environment of the top station. Tourists may judge themselves whether the trip is worthwhile. The Internet address of the current picture also represents a (somewhat particular) form of text.
 
-CLASS MITAlpineTransport = +
-... +
-PictureTopStation: URI; +
-... +
+[source]
+----
+CLASS MITAlpineTransport =
+  ...
+  PictureTopStation: URI;
+  ...
 END MITAlpineTransport;
+----
 
 Internet addresses have got nothing in common with the Swiss canton of Uri – if anything then with Geneva where the first Web-Browser was developed at CERN. URI simply is the abbreviation of _Uniform Resource Identifier._ _Uniform Resource Locators (URLs)_, mainly used for web sites, are special URIs.
 
@@ -246,11 +297,14 @@ Undefined is not simply 0 or some other slightly exceptional value. It is an ind
 
 For instance in INTERLIS 2 we would write:
 
-CLASS Weather = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Weather =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY 0 .. 200 [kmh];
 END Weather
+----
 
 Hence both temperature and wind speed are compulsory (MANDATORY). Since the wind direction is not compulsory, it is optional. Thus the concrete value may be undefined. In extensions it is admissible to turn optional attributes into mandatory attributes. However mandatory attributes may never be turned into optional attributes, because in accordance with the basic class the value «undefined» is not permitted.
 
@@ -259,26 +313,32 @@ Hence both temperature and wind speed are compulsory (MANDATORY). Since the wind
 
 Both waiting times at stations and duration of rides are noted in minutes.
 
-CLASS AlpineTransport = +
-Duration: 0 .. 200 ++[++min++]++; +
+[source]
+----
+CLASS AlpineTransport =
+  Duration: 0 .. 200 [min];
 END AlpineTransport;
 
-CLASS StatusAlpineTransport = +
-WaitingTime: 0 .. 200 ++[++min++]++; +
+CLASS StatusAlpineTransport =
+  WaitingTime: 0 .. 200 [min];
 END StatusAlpineTransport;
+----
 
 Both properties can adopt values of the same range. With a specifically defined value range (DOMAIN) this common factor can be highlighted further:
 
-DOMAIN +
-DurationInMinutes = 0 .. 200 ++[++min++]++;
+[source]
+----
+DOMAIN
+  DurationInMinutes = 0 .. 200 [min];
 
-CLASS AlpineTransport = +
-DurationOfRide: DurationInMinutes; +
+CLASS AlpineTransport =
+  DurationOfRide: DurationInMinutes;
 END AlpineTransport;
 
-CLASS StatusAlpineTransport = +
-WaitingTime: DurationInMinutes; +
+CLASS StatusAlpineTransport =
+  WaitingTime: DurationInMinutes;
 END StatusAlpineTransport;
+----
 
 [#_6_7]
 === Where is Ilis Valley? – Coordinate types
@@ -290,11 +350,14 @@ We would link the idea of a place in real world, shaped like a point, with the q
 
 For each dimension of a coordinate type we have to determine, in the same way as with numeric types, in which admissible values may range and what unit they refer to.
 
-Position: COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+Position: COORD 500.00 .. 91000.00 [m],
+                 700.00 .. 23000.00 [m];
 
-XPosition: 500.00 .. 91000.00 ++[++m++]++; +
-YPosition: 700.00 .. 23000.00 ++[++m++]++;
+XPosition: 500.00 .. 91000.00 [m];
+YPosition: 700.00 .. 23000.00 [m];
+----
 
 At first sight the difference between a position attribute with a coordinate type and one numeric attribute for both X- and Y-direction is minor. Thanks to its definition as a coordinate type it is obvious that these pieces of information belong together. A program package may also exploit this property. For instance many programs are capable of graphic representation of Cartesian coordinate values.
 
@@ -328,8 +391,11 @@ image::img/image35.png[./media/image35,width=217,height=190]
 
 At the end the map is superposed with fine perpendicular lines: the *coordinate* *system* of the map. That is why with each coordinate type it has to be determined what coordinate system it is based upon.
 
-Position: COORD 480000 .. 850000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-60000 .. 320000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++};
+[source]
+----
+Position: COORD 480000 .. 850000.00 [m] {AhlandSys[1]},
+                 60000 .. 320000.00 [m] {AhlandSys[2]};
+----
 
 The first dimension of the coordinate corresponds to the first axis of the coordinate system by the name of «AhlandSys», the second dimension to the second axis of the same system.
 
@@ -342,61 +408,79 @@ Data belonging to a meta model are «meta» in another more formal sense an info
 
 In simple cases here the application range of a data model will make it quite clear what coordinate system the coordinates actually belong to, you may omit the explicit indication of the coordinate system. Nevertheless it does make sense to make at least some sort of mention of the coordinate system in the name of the coordinate type.
 
-NationalCoord = COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+NationalCoord = COORD 500.00 .. 91000.00 [m],
+                      700.00 .. 23000.00 [m];
 
 Position: NationalCoord;
+----
 
 To avoid confusions, the responsible persons of Ilis Valley have given preference to a precise definition:
 
-REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic +
-OBJECTS OF GeoCartesian2D: AhlandSys;
+[source]
+----
+REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+  OBJECTS OF GeoCartesian2D: AhlandSys;
+----
 
 Based upon the general model for coordinate systems (CoordSys), they have presented a precise definition of their national system. For its position they have registered an object of the class GeoCartesian2D with the name of AhlandSys. Within the model the existence of this data entry is referred to by means of OBJECTS OF. Thus the coordinate system AhlandSys becomes available in the model. When applying the system, there is no need to actually mention the name of our stock of meta data (CoordSystems), unless several such stocks of meta data were defined within the current modeling part.
 
-LandesKoord = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++CoordSystems.AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++CoordSystems.AhlandSys++[++2++]++};
+[source]
+----
+LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
+                    700.00 .. 23000.00 [m] {CoordSystems.AhlandSys[2]};
+----
 
 [#_6_7_4]
 ==== Different coordinate systems
 
 In order to offer a special service to those tourists that have a simple GPS-receiver at their disposal, Ilis Valley would like to make their coordinates also available as geographical coordinates in the global WGS84-System.
 
-WGS84Coord = COORD -90.00000 .. 90.00000 ++[++Units.Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Units.Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++},
+[source]
+----
+WGS84Coord = COORD -90.00000 .. 90.00000 [Units.Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Units.Angle_Degree]
+                   {WGS84[2]},
 
-CLASS AlpineTransport = +
-PosBottomstation: NationalCoord; +
-PosBottomstationWGS: WGS84Coord; +
-.... +
+CLASS AlpineTransport =
+  PosBottomstation: NationalCoord;
+  PosBottomstationWGS: WGS84Coord;
+  ....
 END AlpineTransport;
+----
 
 It seems obvious that both attributes are directly related. Projection coordinates can be converted into WGS84-coordinates. However it is not up to the conceptual description of data to render a detailed definition of such a conversion. Nevertheless it would be desirable to indicate that it is possible to calculate one set of coordinates from the others.
 
-!! Conversion of coordinates from the Ahland projection system to WGS84. +
-!! Functions will be discussed in paragraph 7.2 +
+[source]
+----
+!! Conversion of coordinates from the Ahland projection system to WGS84.
+!! Functions will be discussed in paragraph 7.2
 FUNCTION AhlandToWGS84 (Ah: Ahland.NationalCoord): WGS84Coord;
 
-CLASS AlpineTransport = +
-PosBottomStation: Ahland.NationalCoord; +
-PosBottomStationWGS: WGS84Coord := AhlandToWGS84 (PosBottomStation); +
-.... +
+CLASS AlpineTransport =
+  PosBottomStation: Ahland.NationalCoord;
+  PosBottomStationWGS: WGS84Coord := AhlandToWGS84 (PosBottomStation);
+  ....
 END AlpineTransport;
+----
 
 [#_6_7_5]
 ==== Three dimensional coordinates
 
 Of course projection coordinates are not enough for the skiers and hikers around the  Ilis. Big differences in altitude delight the skiers, while hikers will either fear perspiration or shaking knees. Altitudes definitely are sought after! That is why coordinate types may also display three dimensions.
 
-NationalCoord3 = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++} +
-0.00 .. 9000.00 ++[++m++]++ ++{++AhlandHeightSys++[++1++]++};
+[source]
+----
+NationalCoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                       700.00 .. 23000.00 [m] {AhlandSys[2]}
+                       0.00 .. 9000.00 [m] {AhlandHeightSys[1]};
 
-WGS84Coord = COORD -90.00000 .. 90.00000 ++[++Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++}, +
--2000.00 .. 9000.00 ++[++m++]++ ++{++WGS84H++[++1++]++};
+WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]},
+                   -2000.00 .. 9000.00 [m] {WGS84H[1]};
+----
 
 With altitudes an exceptional problem occurs. Where in fact would altitude 0 be situated? How can the altitude of any point be determined in relation to this altitude 0? Surveyors differentiate mainly between the altitudes according to the gravity field of the earth (gravity or geoid height; 0 being the altitude of the imaginary continuation of the sea below the continents) and altitudes according to the geometrical approximation of the earth (ellipsoid height; 0 being the surface of the ellipsoid).
 
@@ -424,9 +508,12 @@ The conversion between gravity heights and ellipsoid heights may pose a problem 
 
 How big is a right angle? 90 Degrees or Pi / 2? This is a question of the unit in use. But when is the angle considered positive, when negative? Consequently the sense of rotation belongs to every type of angle: clockwise or counter clockwise.
 
-DOMAIN +
-AngleClockwise = -179 .. 180 CIRCULAR CLOCKWISE; +
-AngleCounterClockwise = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
+[source]
+----
+DOMAIN
+  AngleClockwise = -179 .. 180 CIRCULAR CLOCKWISE;
+  AngleCounterClockwise = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
+----
 
 Standing on Mount Ilis we might want to know in which direction we have to look in order to see Twisted Peak. 50 degrees? 40 degrees? 310 degrees?
 
@@ -441,12 +528,15 @@ It all depends on the zero direction and how directions rotate. Whenever we spea
 image::img/image42.png[./media/image42,width=406,height=156]
 
 
-NationalCoord = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++}, +
--200.00 .. 14000.00 ++[++m++]++ ++{++AhlandHeightSys++[++1++]++}, +
-ROTATION 2 -++>++ 1;
+[source]
+----
+NationalCoord = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                      700.00 .. 23000.00 [m] {AhlandSys[2]},
+                      -200.00 .. 14000.00 [m] {AhlandHeightSys[1]},
+                      ROTATION 2 -> 1;
 
-Direction = 0.0 .. 359.9 CIRCULAR ++[++Angle++_++Degree++]++ ++{++AhlandSys};
+Direction = 0.0 .. 359.9 CIRCULAR [Angle_Degree] {AhlandSys};
+----
 
 [#_6_9]
 === Is a ski run a line or a surface? – Geometry types
@@ -462,11 +552,14 @@ In this sense a line type is nothing but a numeric type or even better a coordin
 
 In INTERLIS we could write:
 
+[source]
+----
 AhlandLine = POLYLINE VERTEX Ahland.NationalCoord;
 
-CLASS SkiRun = +
-Course: AhlandLine; +
+CLASS SkiRun =
+  Course: AhlandLine;
 END SkiRun;
+----
 
 The ski run is described by means of lines that are based upon the Ahland projection coordinate system. Thus the vertices of the lines in the Ahland reference system rely on the coordinate type of the reference system.
 
@@ -483,7 +576,10 @@ image::img/image43.png[./media/image43,width=342,height=69]
 
 It definitely makes sense to indicate which types of segments may occur with one specific line type.
 
+[source]
+----
 AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Ahland.NationalCoord;
+----
 
 This INTERLIS 2-definition indicates that lines of this type may feature straights and arcs.
 
@@ -491,11 +587,14 @@ In many cases – and it is the same with ski runs – it does not make sense if
 
 Since the Ahland projection coordinate system uses meters, this defini­tion permits overlaps up to 2 cm:
 
-AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.NationalCoord +
-WITHOUT OVERLAPS ++>++ 0.02;
+[source]
+----
+AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS)
+             VERTEX Ahland.NationalCoord
+             WITHOUT OVERLAPS > 0.02;
+----
 
-.Sometimes small overlaps cannot be omitted. It is part of the model +
+.Sometimes small overlaps cannot be omitted. It is part of the model
 image::img/image44.png[./media/image44,width=233,height=105]
 
 to define the maximum overlap (in this figure the height of arrow).
@@ -505,28 +604,34 @@ to define the maximum overlap (in this figure the height of arrow).
 
 Of course any skier would expect the segments of the ski run from Mount Ilis to Ilis Rock to start at Mount Ilis and to end at Ilis Rock. After all the idea is to go downhill and not to climb up a slope! Then again for the description of other objects (e.g. hiking paths) direction is of no importance. Whenever the direction of lines is important this should be shown in the conceptual model.
 
+[source]
+----
 AhlandLineDirected = DIRECTED POLYLINE VERTEX Ahland.NationalCoord;
 
-CLASS SkiRun = +
-Course: AhlandLineDirected; +
+CLASS SkiRun =
+  Course: AhlandLineDirected;
 END SkiRun;
+----
 
 [#_6_9_4]
 ==== Surfaces
 
 For the maintenance service of the Mount Ilis Alpine Transports the question arises whether the description of the ski runs fulfils their demands. In order to clarify which of the areas have to be prepared a presentation in the form of a surface seems preferable.
 
-DOMAIN +
-AhlandLineDirected = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.NationalCoord; +
- +
-AhlandSurface = SURFACE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.NationalCoord;
+[source]
+----
+DOMAIN
+  AhlandLineDirected = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS)
+                       VERTEX Ahland.NationalCoord;
 
-CLASS SkiRun = +
-Course: AhlandLineDirected; +
-Prepared: AhlandSurface; +
+  AhlandSurface = SURFACE WITH (STRAIGHTS, ARCS)
+                  VERTEX Ahland.NationalCoord;
+
+CLASS SkiRun =
+  Course: AhlandLineDirected;
+  Prepared: AhlandSurface;
 END SkiRun;
+----
 
 Just before Ilis Rock a big tree stands in the middle of the ski run – in other words the ski run passes on either side of the tree.
 
@@ -543,13 +648,16 @@ At the very top of the Mount Ilis several ski runs are that close that as a resu
 
 That is why the maintenance service has decided to use a different form of modeling: instead of assigning the surfaces that are to be prepared directly to the ski runs, they are considered as independent segments of a ski run. Each segment is a surface. However these segments should never overlap, since one particular area will only have to be prepared once.
 
-DOMAIN +
-AhlandTessellation = AREA WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.NationalCoord; +
- +
-CLASS ConditionOfSkiRun = +
-PreparedSurface: AhlandTessellation; +
+[source]
+----
+DOMAIN
+  AhlandTessellation = AREA WITH (STRAIGHTS, ARCS)
+                       VERTEX Ahland.NationalCoord;
+
+CLASS ConditionOfSkiRun =
+  PreparedSurface: AhlandTessellation;
 END ConditionOfSkiRun;
+----
 
 Because such surfaces without overlaps are quite common, INTERLIS has introduced its proper type (AREA). Instead of surfaces we speak of (planar) tessellation.
 
@@ -585,42 +693,54 @@ With this issue a decisive criteria would be the expenditure for collection and 
 
 Just before Ilis Rock travelers on the chair lift from Ilis Dale pull their hats tightly over their ears: At this spot the wind tends to rip and whistle. When it comes to wind, it is not only speed that is decisive, but also direction. If, in a class description, both these properties simply appear along with other attributes, not enough emphasis will be put on this relevant fact.
 
-CLASS Weather = +
-Temperature: MANDATORY -50 .. 50 ++[++oC++]++; +
-WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Weather =
+  Temperature: MANDATORY -50 .. 50 [oC];
+  WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY 0 .. 200 [kmh];
 END Weather;
+----
 
 In situations where a specific fact cannot be described by only one value, it makes sense to define a structure combining both characteristics (wind direction, wind speed).
 
-STRUCTURE IndicationOfWind = +
-WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE IndicationOfWind =
+  WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY 0 .. 200 [kmh];
 END IndicationOfWind;
+----
 
 Other concepts related to structure are: data type, structured data type, ....
 
 This particular structure can be used whenever we deal with comments on wind.
 
-CLASS Weather = +
-Temperature: MANDATORY -50 .. 50 ++[++oC++]++; +
-Wind: IndicationOfWind; +
+[source]
+----
+CLASS Weather =
+  Temperature: MANDATORY -50 .. 50 [oC];
+  Wind: IndicationOfWind;
 END Weather;
 
-CLASS WindMeter = +
-Position: MANDATORY NationalCoord; +
-Wind: IndicationOfWind; +
+CLASS WindMeter =
+  Position: MANDATORY NationalCoord;
+  Wind: IndicationOfWind;
 END WindMeter;
+----
 
 [#_6_10_2]
 ==== Several elements of structure
 
 The wind-meter stationed at Ilis Rock is more special yet: It does not only display the current value, but also six values recorded previously. While this of course does not warm your ears, it is still quite astonishing to note how swiftly conditions can change.
 
-CLASS WindMeter = +
-Position: MANDATORY NationalCoord; +
-Wind: LIST ++{++6} OF IndicationOfWind; +
+[source]
+----
+CLASS WindMeter =
+  Position: MANDATORY NationalCoord;
+  Wind: LIST {6} OF IndicationOfWind;
 END WindMeter;
+----
 
 Therefore the attribute wind comprises six elements (six values each with speed and direction). LIST Of states that their order is relevant (e.g. the most recent value comes first). If the order were not relevant, this would be indicated by BAG OF. As with relationships there is a possibility to indicate the minimum and maximum number of elements.
 
@@ -643,24 +763,27 @@ In some cases it is necessary to refer to another object in order to describe a 
 
 The attribute course of a ski run (cf. paragraph 6.9.1) is defined as AhlandLine, which in turn is defined as POLYLINE. A POLYLINE may be understood as a set of segments of a line (cf. paragraph 6.9.2). Thus the definition as POLYLINE is nothing but a shortened notation for an ordered set of structures, the structures elements corresponding to a certain structure definition:
 
-STRUCTURE AhlandSegment (ABSTRACT) = +
-SegmentEndPoint: MANDATORY Ahland.NationalCoord; +
+[source]
+----
+STRUCTURE AhlandSegment (ABSTRACT) =
+  SegmentEndPoint: MANDATORY Ahland.NationalCoord;
 END AhlandSegment;
 
-STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) = +
+STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) =
 END AhlandStartSegment;
 
-STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) = +
+STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) =
 END AhlandStraightSegment;
 
-STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) = +
-ArcPoint: MANDATORY Ahland.NationalCoord; +
-Radius: Length; +
+STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) =
+  ArcPoint: MANDATORY Ahland.NationalCoord;
+  Radius: Length;
 END AhlandArcSegment;
 
-CLASS SkiRun = +
-Course: LIST ++{++2..++*++} OF AhlandSegment; +
+CLASS SkiRun =
+  Course: LIST {2..*} OF AhlandSegment;
 END SkiRun;
+----
 
 [#_6_11]
 === What languages are spoken in Ilis Valley? – Multilingualism
@@ -687,23 +810,26 @@ As a matter of fact it is no big deal to enlarge a little box on a piece of pape
 
 Hence it would be preferable not to state a concrete language in the data model. In the following new version one railway company displays a set of designations. As it is a common requirement to deal with several languages, the structure RailwayDesignation will inherit the basic structure designation, itself comprising the language and a text.
 
-STRUCTURE Designation = +
-Name: TEXT; +
-Language: TEXT++*++2; +
-END Designation; +
- +
-STRUCTURE RailwayDesignation EXTENDS Designation = +
-Name (EXTENDED): TEXT++*++100; +
-Abbreviation: TEXT++*++10; +
-END RailwayDesignation; +
- +
-CLASS RailwayCompany = +
-Names: BAG ++{++1..++*++} OF RailwayDesignation; +
+[source]
+----
+STRUCTURE Designation =
+  Name: TEXT;
+  Language: TEXT*2;
+END Designation;
+
+STRUCTURE RailwayDesignation EXTENDS Designation =
+  Name (EXTENDED): TEXT*100;
+  Abbreviation: TEXT*10;
+END RailwayDesignation;
+
+CLASS RailwayCompany =
+  Names: BAG {1..*} OF RailwayDesignation;
 END RailwayCompany;
+----
 
 Or in a graphic representation:
 
-.Railway designations are assigned to one railway company. Since one company may possess several names it is possible without further expenditure to add new names in different languages. Details of this assignation (indications such as 1..++*++ or a filled-in square) will be explained below in connection with relationships.
+.Railway designations are assigned to one railway company. Since one company may possess several names it is possible without further expenditure to add new names in different languages. Details of this assignation (indications such as 1..*or a filled-in square) will be explained below in connection with relationships.
 image::img/image50.png[./media/image50,width=290,height=113]
 
 
@@ -733,7 +859,10 @@ Thus the designation refers to the language. However this reference is not a ful
 
 The National Tourist Office provides a simple solution in the form of an attribute for the validity of ticket types, which shows the number of days (with one decimal).
 
-Validity: 0.0 .. 1000.0 ++[++d++]++;
+[source]
+----
+Validity: 0.0 .. 1000.0 [d];
+----
 
 If – like people in Ilis Valley – one is more concerned with details, several questions arise:
 
@@ -757,42 +886,48 @@ But what then would be a better solution?
 
 It is not always possible to describe with sufficient precision object characteristics such as validity by one single value. Sometimes a whole group of attributes is necessary, sometimes it makes sense to plan several extensions. That is where structures provide a convenient solution.
 
-STRUCTURE LengthOfTime (ABSTRACT) = +
-END LengthOfTime; +
- +
-STRUCTURE LengthOfTimeToday EXTENDS LengthOfTime = +
-END LengthOfTimeToday; +
- +
-STRUCTURE LengthOfTimeInDays EXTENDS LengthOfTime = +
-Duration: MANDATORY Days ++[++d++]++; +
-END LengthOfTimeInDays; +
- +
-.... +
- +
-CLASS TicketType = +
-Validity: LengthOfTime; +
+[source]
+----
+STRUCTURE LengthOfTime (ABSTRACT) =
+END LengthOfTime;
+
+STRUCTURE LengthOfTimeToday EXTENDS LengthOfTime =
+END LengthOfTimeToday;
+
+STRUCTURE LengthOfTimeInDays EXTENDS LengthOfTime =
+  Duration: MANDATORY Days [d];
+END LengthOfTimeInDays;
+
+....
+
+CLASS TicketType =
+  Validity: LengthOfTime;
 END TicketType;
+----
 
 The validity of one particular ticket type is described by means of an instance (a structure element) of the structure LengthOfTimeToday, LengthOfTimeInDays, LengthOfTimeInMonths etc. We could even go further in our modeling and make sure that the units of an explicit duration (day, month etc.) always have to be a length of time and define an enumeration for implicit duration (week, season etc.):
 
-STRUCTURE LengthOfTime (ABSTRACT) = +
-END LengthOfTime; +
- +
-STRUCTURE LengthOfTimeImplicit EXTENDS LengthOfTime = +
-Duration: MANDATORY (Day, Week, Month, Year); +
-END LengthOfTimeImplicit; +
- +
-STRUCTURE LengthOfTimeExplicit (ABSTRACT) EXTENDS LengthOfTime = +
-Duration (ABSTRACT): MANDATORY NUMERIC ++[++TIME++]++; +
-END LengthOfTimeExplicit; +
- +
-STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTimeExplicit = +
-Duration (EXTENDED): MANDATORY 0 .. 200 ++[++Units.min++]++; +
-END LengthOfTimeInMinutes; +
- +
-STRUCTURE LengthOfTimeInDays EXTENDS LengthOfTimeExplicit = +
-Duration (EXTENDED): MANDATORY 0 .. 1000 ++[++d++]++; +
+[source]
+----
+STRUCTURE LengthOfTime (ABSTRACT) =
+END LengthOfTime;
+
+STRUCTURE LengthOfTimeImplicit EXTENDS LengthOfTime =
+  Duration: MANDATORY (Day, Week, Month, Year);
+END LengthOfTimeImplicit;
+
+STRUCTURE LengthOfTimeExplicit (ABSTRACT) EXTENDS LengthOfTime =
+  Duration (ABSTRACT): MANDATORY NUMERIC [TIME];
+END LengthOfTimeExplicit;
+
+STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTimeExplicit =
+  Duration (EXTENDED): MANDATORY 0 .. 200 [Units.min];
+END LengthOfTimeInMinutes;
+
+STRUCTURE LengthOfTimeInDays EXTENDS LengthOfTimeExplicit =
+  Duration (EXTENDED): MANDATORY 0 .. 1000 [d];
 END inDays;
+----
 
 .Length of time in detailed modeling with structures. Thus it is possible that if required the validity of a ticket can be either one month (LengthOfTimeImplicit; left) or exactly thirty days (LengthOfTimeInDays; right).
 image::img/image52.png[./media/image52,width=481,height=188]
@@ -806,17 +941,23 @@ Basically we aim at a precise, detailed and appropriate modeling. However one sh
 
 Length of time does not only exist for tickets. Every Friday Ilis Valley organizes a ski race for their guests. Racing times are measured in minutes, seconds and their fractions. For this we could define a structure, which features the attributes hours, minutes and seconds: It seems natural to define a structure featuring the attributes minutes and seconds:
 
-STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime = +
-Minutes: 0 .. 9999.99 ++[++min++]++; +
-Seconds: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime =
+  Minutes: 0 .. 9999.99 [min];
+  Seconds: 0.00 .. 59.99 [s];
 END LengthOfTimeInMinutes;
+----
 
 To express the relationship between minutes and seconds, the following additional solution presents itself:
 
-STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime = +
-Minutes: 0 .. 9999.99 ++[++min++]++; +
-CONTINOUS SUBDIVISION Seconds: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime =
+  Minutes: 0 .. 9999.99 [min];
+  CONTINOUS SUBDIVISION Seconds: 0.00 .. 59.99 [s];
 END LengthOfTimeInMinutes;
+----
 
 This does not determine in what form such a length of time would be memorized in a computer. It simply is a means of describing as precisely as possible what we really want.
 
@@ -827,14 +968,17 @@ The traditional ski race for guests is always designed in a way that even skiing
 
 How do we record the admissible domain (from 30 seconds to 3 minutes and 30 seconds)? The solution is provided by formatted domains:
 
-DOMAIN LengthOfTimeinMinSec = FORMAT BASED ON LengthOfTimeInMinutes +
-( Minutes ":" Seconds ); +
- +
-CLASS RaceTime = +
-FirstName: TEXT++*++50; +
-Surname: TEXT++*++50; +
-Runtime: FORMAT LengthOfTimeinMinSec "0:30" .. "3:30"; +
+[source]
+----
+DOMAIN LengthOfTimeinMinSec = FORMAT BASED ON LengthOfTimeInMinutes
+                               ( Minutes ":" Seconds );
+
+CLASS RaceTime =
+  FirstName: TEXT*50;
+  Surname: TEXT*50;
+  Runtime: FORMAT LengthOfTimeinMinSec "0:30" .. "3:30";
 END RaceTime;
+----
 
 A formatted domain refers to a structure and determines the design of a string of symbols composed of the individual attributes of the structure and text constants representing the value. In this form it is possible to define restrictions for the domain. This formatted representation will also be used for data transfer. Thus it may be possible to directly support certain representation forms demanded by external authorities. This is of special interest fort the XML-conform representation of duration and points in time.
 
@@ -869,19 +1013,25 @@ In the relationship between RailwayCompany and AlpineTransport the railway compa
 
 In the graphic representation the role name appears at the end of relationship line on the side of the holder of the role. However if it is no different from the class name, then in most cases the role name is omitted.
 
-ASSOCIATION = +
-Operator -- ++{++1} RailwayCompany; +
-Railway -- ++{*++} AlpineTransport; +
+[source]
+----
+ASSOCIATION =
+  Operator -- {1} RailwayCompany;
+  Railway -- {*} AlpineTransport;
 END;
+----
 
 Figure 48: According to this model it is possible to inquire after the operator of an AlpineTransport. «Operator» is a _Role_ that the class «RailwayCompany» holds in view of the class «AlpineTransport». Below this relationship between RailwayCompany and AlpineTransport is rendered in INTERLIS notation.
 
 It is quite common to select role names that do not differ from the class name. For instance in the relationship AlpineTransport – TariffZone there is little sense in introducing further names. Nevertheless the need for additional names is quite obvious if a relationship exists between objects of the same class. We might like to display the fact that one company owns other railway companies as subsidiary companies.
 
-ASSOCIATION = +
-Daughter -- ++{*++} RailwayCompany; +
-Mother -- ++{++0..1} RailwayCompany; +
+[source]
+----
+ASSOCIATION =
+  Daughter -- {*} RailwayCompany;
+  Mother -- {0..1} RailwayCompany;
 END;
+----
 
 Figure 49: A railway company may be parent company but also subsidiary of another railway company. In such cases the class name is not suitable as role name. This example is displayed on the left the graphic notation of UML, on the right in the textual notation of INTERLIS.
 
@@ -905,20 +1055,23 @@ image::img/image55.png[./media/image55,width=82,height=72] image:img/image56.png
 
 The INTERLIS notation is copied from the graphic representation. However the role name has to be written even if does not differ from the class name.
 
-ASSOCIATION = +
-AlpineTransport -- AlpineTransport; +
-TariffZone -- TariffZone; +
+[source]
+----
+ASSOCIATION =
+  AlpineTransport -- AlpineTransport;
+  TariffZone -- TariffZone;
 END;
 
-ASSOCIATION = +
-Operator -++<>++ RailwayCompany; +
-AlpineTransport -- AlpineTransport; +
+ASSOCIATION =
+  Operator -<> RailwayCompany;
+  AlpineTransport -- AlpineTransport;
 END;
 
-ASSOCIATION = +
-AlpineTransport -++<++#++>++ AlpineTransport; +
-Pylon -- Pylon; +
+ASSOCIATION =
+  AlpineTransport -<#> AlpineTransport;
+  Pylon -- Pylon;
 END;
+----
 
 [#_6_13_3]
 ==== Relationships with attributes
@@ -927,14 +1080,17 @@ Various ticket types entitle to a ride on alpine transports run by different rai
 
 Relationships can also feature attributes and hence have the nature of special classes.
 
-ASSOCIATION Quota = +
-Participant -- ++{*++} RailwayCompany; +
-TicketType -- ++{*++} TicketType; +
- +
-ATTRIBUTE +
-Quota: 0.00 .. 100.00 ++[++Units.Percent++]++; +
- +
+[source]
+----
+ASSOCIATION Quota =
+  Participant -- {*} RailwayCompany;
+  TicketType -- {*} TicketType;
+
+  ATTRIBUTE
+    Quota: 0.00 .. 100.00 [Units.Percent];
+
 END Quota;
+----
 
 Figure 51: A RailwayCompany has a predetermined Quota in the profits from the sale of a particular TicketType. The percentage agreed upon is neither a characteristic of the railway company nor of the TicketType. Instead we deal with a characteristic of their relationship. Such situations are modeled with relationship classes.
 
@@ -943,22 +1099,25 @@ Figure 51: A RailwayCompany has a predetermined Quota in the profits from the sa
 
 In order to gain a better overview of all the ticket sales, the National Tourist Office would like to record in the future which ticket counter has sold how many of one ticket type in which season.
 
-ASSOCIATION Sale = +
-TicketCounter -- ++{*++} TicketCounter; +
-Season -- ++{*++} Season; +
-TicketType -- ++{*++} TicketType;
+[source]
+----
+ASSOCIATION Sale =
+  TicketCounter -- {*} TicketCounter;
+  Season -- {*} Season;
+  TicketType -- {*} TicketType;
 
-ATTRIBUTE +
-Number: 1 .. 999999 ++[++Units.CountedObjects++]++; +
-Amount: 0.00 .. 9999999.99 ++[++Ahland.Sovereign++]++;
+  ATTRIBUTE
+    Number: 1 .. 999999 [Units.CountedObjects];
+    Amount: 0.00 .. 9999999.99 [Ahland.Sovereign];
 
 END Sale;
+----
 
 Figure 52: The Sale is captured per TicketCounter, TicketType and Season. We deal with a multiple relationship between three equal partners (the classes TicketCounter, TicketType and Season). In contrast «Sale» is a relationship class, which captures characteristics of the relationship (e.g. the number of tickets sold as well as the amount).
 
 Thus there is an equal relationship between ticket counter, ticket type and season, which also captures in the form of attributes the number of tickets sold plus the turnover. So this relationship does no longer link two but three classes.
 
-So then what do the indications of cardinality exactly mean in multiple relationships? Cardinality e.g. with the season (++*++) means that for a particular combination of ticket type and ticket counter there may be any number of assignations to season objects. Were we to indicate cardinality 1, then a certain ticket type could only be sold for one season by one specific ticket counter.
+So then what do the indications of cardinality exactly mean in multiple relationships? Cardinality e.g. with the season (*) means that for a particular combination of ticket type and ticket counter there may be any number of assignations to season objects. Were we to indicate cardinality 1, then a certain ticket type could only be sold for one season by one specific ticket counter.
 
 Slightly complicated. Do we really need multiple relationships or could we reduce them to the common one-to-one relationships?
 
@@ -1058,12 +1217,15 @@ The relationship between this special tariff zone and the alpine transports in t
 
 We recall that the Mount Ilis Alpine Transports want to report information on current conditions for each of their alpine transports, amongst others the weather at the top station:
 
-CLASS InformationOnCondition = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY LengthOfTimeInMinutes; +
-Captured MANDATORY MomentInTimeCET; +
+[source]
+----
+CLASS InformationOnCondition =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY LengthOfTimeInMinutes;
+  Captured MANDATORY MomentInTimeCET;
 END InformationOnCondition;
+----
 
 With this definition even a report stating an undefined wind direction and a wind speed of 60 km/h would be acceptable. This is not our goal. An undefined wind direction should mean calm. But then of course wind speed would be 0. And vice versa with a wind speed greater than zero the wind direction should always be defined.
 
@@ -1072,31 +1234,37 @@ Situations where a certain connection has to exist between different attributes 
 
 As a rule consistency constraints are described by a formula whose interpretation will tell whether the condition is fulfilled or not. Thanks to such a logical expression we will come to terms with a lull:
 
-CLASS InformationOnCondition = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY 0 .. 200 ++[++kmh++]++; +
-WaitingTime: LengthOfTimeInMinutes; +
-Captured: MANDATORY MomentInTimeCET; +
-MANDATORY CONSTRAINT +
-DEFINED (WindDirection) == (WindSpeed ++>++ 0); +
+[source]
+----
+CLASS InformationOnCondition =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY 0 .. 200 [kmh];
+  WaitingTime: LengthOfTimeInMinutes;
+  Captured: MANDATORY MomentInTimeCET;
+  MANDATORY CONSTRAINT
+    DEFINED (WindDirection) == (WindSpeed > 0);
 END InformationOnCondition;
+----
 
 Precisely when the wind direction is defined, then the wind speed must be greater than zero. If no wind direction is defined, then speed has to be zero. Hence «Definiteness» of the wind direction must equal (==) «Positiveness» of the wind speed.
 
 Very often consistency constraints could be omitted if only the model were structured differently. If we wrap up all indications regarding wind in a structure, and then state that this structure, there is no need for a consistency constraint. With no wind the structure element is missing. If it is blowing then forcibly there must be both wind direction and wind speed.
 
-STRUCTURE IndicationOfWind = +
-WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-WindSpeed: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE IndicationOfWind =
+  WindDirection: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  WindSpeed: MANDATORY 0 .. 200 [kmh];
 END IndicationOfWind;
 
-CLASS InformationOnConditions = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-Wind: IndicationOfWind; +
-WaitingTime: LengthOfTimeInMinutes; +
-Captured: MANDATORY MomentInTimeCET; +
+CLASS InformationOnConditions =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  Wind: IndicationOfWind;
+  WaitingTime: LengthOfTimeInMinutes;
+  Captured: MANDATORY MomentInTimeCET;
 END InformationOnConditions;
+----
 
 [WARNING]
 With consistency constraints – especially if they are complicated – we always suspect that the optimal model has not yet been found. On the other hand there is no sense in making an extra effort to render a basically simple model complicated only to avoid a consistency constraint.
@@ -1110,26 +1278,32 @@ In general consistency constraints apply to all objects of the corresponding cla
 
 With attributes such as monthly salaries and body-height the generally admissible scope must be relatively. However the values of most objects will lie below a considerably lower limit, but exceptions may occur, for instance the salary of the managing director.
 
-ASSOCIATION Employment = +
-... +
-MonthlySalary: MANDATORY 0 .. 20000 ++[++Sovereigns++]++; +
-... +
-CONSTRAINT ++>++= 95% +
-MonthlySalary ++<++ 10000; +
+[source]
+----
+ASSOCIATION Employment =
+  ...
+  MonthlySalary: MANDATORY 0 .. 20000 [Sovereigns];
+  ...
+  CONSTRAINT >= 95%
+    MonthlySalary < 10000;
 END Employment;
+----
 
-We estimate that in a minimum of (++>++=) 95% of all cases the monthly salary is below 10000 sovereigns. If a model comprises such «soft » condition, there is the possibility to check data with regard to plausibility and to examine it statistically during input.
+We estimate that in a minimum of (>=) 95% of all cases the monthly salary is below 10000 sovereigns. If a model comprises such «soft » condition, there is the possibility to check data with regard to plausibility and to examine it statistically during input.
 
 [#_6_14_3]
 ==== Uniqueness constraints
 
 How can we identify persons that either work for the company or are participants? It might seem obvious to use names and first names but this would be quite unsuitable:
 
-CLASS Person = +
-Name: TEXT++*++50; +
-FirstName: TEXT++*++20; +
-UNIQUE Name, FirstName; +
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  FirstName: TEXT*20;
+  UNIQUE Name, FirstName;
 END Person;
+----
 
 Consequently it would become inadmissible to list to persons with the same combination of name and first name. Hence the new engine driver John Smith could only start his job after his namesake the accountant has been sacked.
 
@@ -1150,12 +1324,15 @@ Wherever possible avoid artificial identifiers. If nevertheless they are necessa
 
 For the Mount Ilis Alpine Transports a simple solution has been found for this problem: A number for every employee has been introduced. Anybody new at the Mount Ilis Alpine Transports will be assigned a number that has not been bestowed on before.
 
-CLASS Person = +
-Name: TEXT++*++50; +
-FirstName: TEXT++*++20; +
-Employee'sNumber: 1 .. 9999; +
-UNIQUE Employee'sNumber; +
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  FirstName: TEXT*20;
+  Employee'sNumber: 1 .. 9999;
+  UNIQUE Employee'sNumber;
 END Person;
+----
 
 The whole thing would become more tricky if the class that describes these persons were not defined by the Mount Ilis Alpine Transports but by the national association instead. The number of any person within the scope of the association would have to be unequivocal – even if they were gathered decentrally. If there happened to be two numbers (e.g. one at the Mount Ilis Alpine Transports, another at the Blue Mountains Alpine Transports__),__ then the constraint would be violated.
 
@@ -1167,20 +1344,23 @@ One railway company may possess several names. However per language there should
 [NOTE]
 If an object features sub structures, uniqueness – as opposed to the actual objects – as a rule should not apply «globally» to the elements of all sub-structures. In most cases it only refers «locally» to the sub-structure elements of one single object.
 
-STRUCTURE Designation = +
-Name: TEXT++*++100; +
-Language: TEXT++*++2; +
-END Designation; +
- +
-STRUCTURE DesignationOfRailway EXTENDS Designation = +
-Abbreviation: TEXT++*++10; +
-END DesignationOfRailway; +
- +
-CLASS RailwayCompany = +
-Names: BAG ++{++1..++*++} OF DesignationOfRailway; +
-UNIQUE +
-(LOCAL) Names : Language; +
+[source]
+----
+STRUCTURE Designation =
+  Name: TEXT*100;
+  Language: TEXT*2;
+END Designation;
+
+STRUCTURE DesignationOfRailway EXTENDS Designation =
+  Abbreviation: TEXT*10;
+END DesignationOfRailway;
+
+CLASS RailwayCompany =
+  Names: BAG {1..*} OF DesignationOfRailway;
+  UNIQUE
+    (LOCAL) Names : Language;
 END RailwayCompany;
+----
 
 But how can we avoid collisions between the abbreviations of various railway companies? Both the Blue Mountain Alpine Transport as well as the Black Mountain Alpine Transports would in the first place like to be known as BMT. In INTERLIS 2 consistency constraints cannot only be formulated for object classes respectively local structure elements but also for views (cf. paragraph 6.17). By means of a certain view we can make structure elements into basically independent objects. Then in turn we can formulate uniqueness constraints for them.
 
@@ -1208,19 +1388,22 @@ Such existence constraints cannot only be formulated in connection with lines bu
 [#_6_14_5]
 ==== Inheritance of consistency constraints
 
-Already with the alpine transport itself a consistency constraint had been formulated: The course of the track has to start at the bottom station and end at the top station. In other words, the first point of the course of a track (Tracks -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint) must coincide with the position of the bottom station and (AND) the last point of the course of a track (Tracks -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint) must coincide with the position of the top station.
+Already with the alpine transport itself a consistency constraint had been formulated: The course of the track has to start at the bottom station and end at the top station. In other words, the first point of the course of a track (Tracks -> Segments[FIRST] -> SegmentEndPoint) must coincide with the position of the bottom station and (AND) the last point of the course of a track (Tracks -> Segments[LAST] -> SegmentEndPoint) must coincide with the position of the top station.
 
 Paragraph 7.3 explains the structure of polylines. It also deals with the attribute SegmentEndPoint, which stands for the end point of a line segment.
 
-CLASS AlpineTransport = +
-PosBottomStation: Ahland.NationalCoord3; +
-PosTopStation: Ahland.NationalCoord3; +
-TrackCourse: Ahland.LineNormal; +
-MANDATORY CONSTRAINT +
-Tracks -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint == PARENT == PosBottomStation +
-AND +
-Tracks -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint == PARENT == PosTopStation; +
+[source]
+----
+CLASS AlpineTransport =
+  PosBottomStation: Ahland.NationalCoord3;
+  PosTopStation: Ahland.NationalCoord3;
+  TrackCourse: Ahland.LineNormal;
+  MANDATORY CONSTRAINT
+    Tracks -> Segments[FIRST] -> SegmentEndPoint == PARENT == PosBottomStation
+    AND
+    Tracks -> Segments[LAST] -> SegmentEndPoint == PARENT == PosTopStation;
 END AlpineTransport;
+----
 
 What does such a definition mean when it comes to possible extensions of this class?
 
@@ -1323,12 +1506,15 @@ The most essential characteristic of a view is its *formation law*. It determine
 For instance the view «PersonWithIndicationOfAge» is derived from the object class «Person» the so called basis. One individual PersonWithIndicationOfAge will possess the same characteristics (ALL OF) with exactly the same values as the original person. In addition the view supplements one more characteristic «Age». The age results from (:=) the difference between year of birth and current year.
 
 VIEW PersonWithIndicationOfAge +
-PROJECTION OF Person; +
-= +
-ALL OF Person; +
-Age: 0 .. 150 ++[++y++]++ := Difference (Person -++>++ YearOfBirth, +
-PARAMETER CurrentYear); +
+[source]
+----
+PROJECTION OF Person;
+=
+  ALL OF Person;
+  Age: 0 .. 150 [y] := Difference (Person -> YearOfBirth,
+                                    PARAMETER CurrentYear);
 END PersonWithIndicationOfAge;
+----
 
 In this example there is exactly one virtual view object for each object, in other words a corresponding PersonWithIndicationOfAge for every person.
 
@@ -1348,13 +1534,16 @@ But now which alpine transport actually does lie within the area of which tariff
 [NOTE]
 Possibly the most important formation law of a view is the *join (JOIN)*. It combines several basic objects into a view object. Especially as a basis for derived relationships the join is of major importance.
 
-VIEW AlpineTransportsInRegion +
-JOIN OF At ~ AlpineTransport, +
-Z ~ TariffZoneInRegion; +
-WHERE InSurface(At -++>++ PosBottomStation, Z -++>++ Region) AND +
-InSurface(At -++>++ PosTopStation, Z -++>++ Region); +
-= +
+[source]
+----
+VIEW AlpineTransportsInRegion
+  JOIN OF At ~ AlpineTransport,
+          Z ~ TariffZoneInRegion;
+  WHERE InSurface(At -> PosBottomStation, Z -> Region) AND
+        InSurface(At -> PosTopStation, Z -> Region);
+  =
 END AlpineTransportsInRegion;
+----
 
 To start with by introducing a join all possible pairs are formed. Each object of the class AlpineTransport is joined to every object of the class TariffZoneInRegion to form a virtual view object.
 
@@ -1382,11 +1571,15 @@ If there is no tariff zone that corresponds to one particular alpine transport, 
 
 If we should wish to have a register of all coordinates of bottom and top station we are confronted with the fact that these coordinates are captured as individual attributes of the alpine transports. By using a *union (UNION)* they can be gathered into a set of equal view objects.
 
-VIEW StationCoordinates +
-UNION OF BottomStation ~ AlpineTransport, TopStation ~ AlpineTransport; = +
-Coordinates: Ahland.NationalCoord := BottomStation -++>++ PosBottomStation, +
-TopStation -++>++ PosTopStation; +
+[source]
+----
+VIEW StationCoordinates
+  UNION OF BottomStation ~ AlpineTransport, TopStation ~ AlpineTransport;
+  =
+    Coordinates: Ahland.NationalCoord := BottomStation -> PosBottomStation,
+                                          TopStation -> PosTopStation;
 END StationCoordinates;
+----
 
 Here the set of all view objects equals the double set of all alpine transports. Once they are evaluated under the aspect of bottom station, and once under the aspect of top station. The attribute is selected according to the position attribute of either bottom or top station.
 
@@ -1397,16 +1590,19 @@ Here the set of all view objects equals the double set of all alpine transports.
 
 In order to check tickets, every alpine transport has to know what ticket type is valid. So they would still like a list of all alpine transports that indicates for every line which ticket types are valid. Independently of all basic data they would like to define something like the following model:
 
-CLASS TicketType = +
-Names: BAG ++{++1..++*++} OF Designation; +
-Price: 0.00 .. 5000.00 ++[++Ahland.Sovereign++]++; +
-Validity: LengthOfTime; +
+[source]
+----
+CLASS TicketType =
+  Names: BAG {1..*} OF Designation;
+  Price: 0.00 .. 5000.00 [Ahland.Sovereign];
+  Validity: LengthOfTime;
 END TicketType;
 
-CLASS AlpineTransport = +
-Names: BAG ++{++1..++*++} OF Designation; +
-ValidTicketTypes: BAG OF TicketType; +
+CLASS AlpineTransport =
+  Names: BAG {1..*} OF Designation;
+  ValidTicketTypes: BAG OF TicketType;
 END AlpineTransport;
+----
 
 But how can this be derived from the original data? This is not quite as simple. Several tariff zones can be assigned to one alpine transport; then again several ticket types are assigned to one tariff zone. Furthermore there are tariff zones, which comprise all alpine transports within one area.
 
@@ -1414,29 +1610,35 @@ Luckily this last aspect has already been dealt with because there is an abstrac
 
 On this basis we can define a view which links alpine transports and ticket types:
 
-VIEW AlpineTransportAndValidTicketType +
-JOIN OF At ~ AlpineTransport, +
-Z ~ TariffZone, +
-Tt ~ TicketType, +
-V ~ Validity; +
-WHERE (V -++>++ AlpineTransport == At) AND (V -++>++ TariffZone == Z) AND +
-(Tt -++>++ TariffZone == Z); +
-= +
-TransportNames: BAG ++{++1..++*++} OF Designation := At -++>++ Names; +
-TicketNames: BAG ++{++1..++*++} OF Designation := Tt -++>++ Names; +
-Price: 0.00 .. 5000.00 ++[++Ahland.Sovereign++]++ := Tt -++>++ Price; +
-DurationOfValidity: LengthOfTime := Tt -++>++ DurationOfValidity; +
+[source]
+----
+VIEW AlpineTransportAndValidTicketType
+  JOIN OF At ~ AlpineTransport,
+          Z ~ TariffZone,
+          Tt ~ TicketType,
+          V ~ Validity;
+  WHERE (V -> AlpineTransport == At) AND (V -> TariffZone == Z) AND
+        (Tt -> TariffZone == Z);
+  =
+    TransportNames: BAG {1..*} OF Designation := At -> Names;
+    TicketNames: BAG {1..*} OF Designation := Tt -> Names;
+    Price: 0.00 .. 5000.00 [Ahland.Sovereign] := Tt -> Price;
+    DurationOfValidity: LengthOfTime := Tt -> DurationOfValidity;
 END AlpineTransportAndValidTicketType;
+----
 
 This combines alpine transport and ticket type. It takes into consideration the validity relationship and the fact that a tariff zone is assigned to every ticket type, which has to be in keeping with the validity relationship. So we have almost achieved our goal. The admissible combination of alpine transport and ticket type are available as view objects. Now we would like to unit them per alpine transport:
 
-VIEW OnAlpineTransportValidTicketType +
-AGGREGATION OF AtVT ~ AlpineTransportAndValidTicketType +
-EQUAL (AaVT -++>++ At); +
-= +
-TransportNames: BAG ++{++1..++*++} OF Designation := AtVT -++>++ At -++>++ Names; +
-TicketTypes: BAG OF AlpineTransportAndValidTicketType := AGGREGATES; +
+[source]
+----
+VIEW OnAlpineTransportValidTicketType
+  AGGREGATION OF AtVT ~ AlpineTransportAndValidTicketType
+  EQUAL (AaVT -> At);
+  =
+    TransportNames: BAG {1..*} OF Designation := AtVT -> At -> Names;
+    TicketTypes: BAG OF AlpineTransportAndValidTicketType := AGGREGATES;
 END OnAlpineTransportValidTicketType;
+----
 
 This result is achieved by means of an aggregation. Thereby all objects of the basic view which comply with a certain condition (i.e. that they belong to the same alpine transport) are combined into one view object. The set of all primary view objects that has been combined to form a whole is available for structure attributes (AGGREGATES).
 
@@ -1445,12 +1647,15 @@ This result is achieved by means of an aggregation. Thereby all objects of the b
 
 The national association has already defined the view that lists all valid ticket types for every alpine transport (view «OnAlpineTransportValidTicketType», see above). In Ilis Valley they also want to use this view. But they also want to include the attribute TrackCourse in this view, which they have defined in their own extension of the class AlpineTransport.
 
-VIEW MITAlpineTransportAndValidTicketType +
-EXTENDS AlpineTransportAndValidTicketType +
-BASE At EXTENDED BY MITAt ~ MITAlpineTransport +
-= +
-TrackCourse := MITAt -++>++ TrackCourse; +
+[source]
+----
+VIEW MITAlpineTransportAndValidTicketType
+  EXTENDS AlpineTransportAndValidTicketType
+  BASE At EXTENDED BY MITAt ~ MITAlpineTransport
+  =
+    TrackCourse := MITAt -> TrackCourse;
 END MITAlpineTransportAndValidTicketType;
+----
 
 With the definition of an additional basis (must be an extension of an already existing basis) its attributes are available. If a view object is not based on this extension (i.e. it is not a MITAlpineTransport), the attribute is undefined.
 

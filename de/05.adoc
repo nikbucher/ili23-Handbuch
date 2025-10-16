@@ -35,17 +35,20 @@ image::img/image25.png[width=458,height=207]
 
 Einen Hinweis darauf, ob sich das Unterteilen in spezielle Klassen lohnt, geben die jeweili­gen Eigenschaften. So hat jede Bahn einen Namen, aber nur Bergbahnen besitzen eine Tal- und eine Bergstation.
 
-CLASS Bahn = +
-Name: TEXT++*++100; +
-END Bahn; +
- +
-CLASS Bergbahn EXTENDS Bahn = +
-LageTalstation: LandesKoord; +
-LageBergstation: LandesKoord; +
-END Bergbahn; +
- +
-CLASS Tramlinie EXTENDS Bahn = +
+[source]
+----
+CLASS Bahn =
+  Name: TEXT*100;
+END Bahn;
+
+CLASS Bergbahn EXTENDS Bahn =
+  LageTalstation: LandesKoord;
+  LageBergstation: LandesKoord;
+END Bergbahn;
+
+CLASS Tramlinie EXTENDS Bahn =
 END Tramlinie;
+----
 
 .Bergbahn und Tramlinie übernehmen («erben») die Eigenschaft Name von ihrer Oberklasse Bahn, ohne dass dies nochmals geschrieben werden müsste. Eine Bergbahn besitzt zusätzlich zu den ererbten noch weitere Eigenschaften, nämlich die Lage von Tal- und Bergstation (in Landeskoordinaten). Rechts dasselbe in der Schreibweise von INTERLIS.
 image::img/image26.png[width=230,height=90]
@@ -61,18 +64,21 @@ Hundert Zeichen für den Namen einer Bahn mag im allgemeinen Fall ja angemessen 
 
 Aber eine Tramlinie mit hundert Buchstaben? Hier reichen fünf Zeichen definitiv aus.
 
-CLASS Bahn = +
-Name: TEXT++*++100; +
-END Bahn; +
- +
-CLASS Bergbahn EXTENDS Bahn = +
-LageTalstation: LandesKoord; +
-LageBergstation: LandesKoord; +
-END Bergbahn; +
- +
-CLASS Tramlinie EXTENDS Bahn = +
-**Name (EXTENDED): TEXT++*++5; +
-**END Tramlinie;
+[source]
+----
+CLASS Bahn =
+  Name: TEXT*100;
+END Bahn;
+
+CLASS Bergbahn EXTENDS Bahn =
+  LageTalstation: LandesKoord;
+  LageBergstation: LandesKoord;
+END Bergbahn;
+
+CLASS Tramlinie EXTENDS Bahn =
+  Name (EXTENDED): TEXT*5;
+END Tramlinie;
+----
 
 Abbildung 27: Für den Namen einer Tramlinie reichen fünf Zeichen aus: Der Typ der Eigenschaft «Name» wird von der Unterklasse verfeinert (präzisiert). Rechts wiederum dasselbe in der Schreibweise von INTERLIS.
 
@@ -95,17 +101,20 @@ Soll es von einer Klasse keine konkreten Objekte geben können, wird sie als *ab
 
 Häufig sind in einem Datenmodell sogar alle Oberklassen abstrakt und nur die untersten, speziellsten Klassen konkret.
 
-CLASS Bahn *(ABSTRACT)* = +
-Name: TEXT++*++100; +
-END Bahn; +
- +
-CLASS Bergbahn EXTENDS Bahn = +
-LageTalstation: LandesKoord; +
-LageBergstation: LandesKoord; +
-END Bergbahn; +
- +
-CLASS Tramlinie EXTENDS Bahn = +
+[source]
+----
+CLASS Bahn (ABSTRACT) =
+  Name: TEXT*100;
+END Bahn;
+
+CLASS Bergbahn EXTENDS Bahn =
+  LageTalstation: LandesKoord;
+  LageBergstation: LandesKoord;
+END Bergbahn;
+
+CLASS Tramlinie EXTENDS Bahn =
 END Tramlinie;
+----
 
 Abbildung 28: Bahn als abstrakte Klasse: Soll es keine Objekte geben können, die nur Bahn sind, ohne auch Bergbahn oder Tramlinie zu sein, wird dies im Diagramm mittels Schrägschrift bezeichnet. Rechts dasselbe Modell in der Schreibweise von INTERLIS.
 
@@ -114,15 +123,16 @@ Abbildung 28: Bahn als abstrakte Klasse: Soll es keine Objekte geben können, di
 
 Angenommen, ein internationaler Verband möchte sicherstellen, dass Billette mit ihren Preisen erfasst werden. Er will aber keine bestimmte Währung für die Preisangabe vor­schreiben, und entsprechend ist auch nicht klar, was eine sinnvolle Obergrenze für den Preis wäre. Fest steht andererseits, dass «Preis» eine Zahl sein soll, und dass es sich um Geld handelt. Schliesslich werden Preise nicht in Kilometern pro Stunde gemessen!
 
-____
-CLASS BillettartWeltweit (ABSTRACT) = +
-Preis (ABSTRACT): NUMERIC ++[++MONEY++]++; +
-END BillettartWeltweit; +
- +
-CLASS BillettartAhland EXTENDS BillettartWeltweit = +
-Preis (EXTENDED): 0.00 .. 9999.99 ++[++Ahland.Taler++]++; +
+[source]
+----
+CLASS BillettartWeltweit (ABSTRACT) =
+  Preis (ABSTRACT): NUMERIC [MONEY];
+END BillettartWeltweit;
+
+CLASS BillettartAhland EXTENDS BillettartWeltweit =
+  Preis (EXTENDED): 0.00 .. 9999.99 [Ahland.Taler];
 END BillettartAhland;
-____
+----
 
 [NOTE]
 Nicht alle Eigenschaften müssen bis ins Detail festgelegt werden: Bei abstrakten Klassen sind *abstrakte Eigenschaften* zulässig. Es liegt dann an den konkreten Unterklassen, diese Eigenschaften zu präzisieren. Dies ist zum Beispiel dann nützlich, wenn etwas auf internationaler oder nationaler Stufe allgemein geregelt werden soll, ohne gleich jedes Detail vorzuschreiben.

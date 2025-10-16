@@ -15,19 +15,21 @@ Bei der Modellierung auf konzeptueller Stufe möchte man sich aber eigentlich ni
 
 Da sich die Preise zwischen 10 und 635 Talern bewegen, könnte man also schreiben:
 
-____
+[source]
+----
 Preis: 10 .. 635;
-____
+----
 
 Damit würde man aber auch festlegen, dass ein Preis nie kleiner als 10 Taler und nie grösser als 635 Taler sein kann. Das möchte man natürlich nicht. Als untere Schranke ist 0 plausibel. Aber die obere Schranke? Mehr als 10'000 Taler werden es ja kaum sein. Also 10'000? Wo eine Schranke auf Grund der Anwendung nicht genau festgelegt werden kann, macht es jedenfalls keinen Sinn, den Wert so zu wählen, dass eine kürzere Speicherform (z.B__. short integer__ mit Werten zwischen –32768 und 32767) gerade nicht mehr ausreicht.
 
 Dabei ist es natürlich auch wichtig zu überlegen, wie viele Nachkommastellen nötig sind. Wenn die Preise auch Groschen aufweisen können, werden die Schranken eben mit jeweils zwei Nachkommastellen festgelegt. Bei einem Attribut, das z.B. ein Investitionsbudget dar­stellt, möchte man sich nur mit Millionen abgeben; wo es nur um Grössenordnungen geht, reichen zwei Ziffern. Diese können sich aber auf Tausend, eine Million oder gar eine Milliarde beziehen.
 
-____
-Preis: 0.00 .. 9999.99; +
-Budget: 0.00E6 .. 999.99E6; +
+[source]
+----
+Preis: 0.00 .. 9999.99;
+Budget: 0.00E6 .. 999.99E6;
 Bruttosozialprodukt: 0.0E0 .. 9.9E20;
-____
+----
 
 Die Anzahl der Stellen bezeichnet die Genauigkeit: «4.3 Millionen» (4.3E6 = 4.3 · 106) ist eine weniger genaue Angabe als «4300000».
 
@@ -36,14 +38,15 @@ Die Anzahl der Stellen bezeichnet die Genauigkeit: «4.3 Millionen» (4.3E6 = 4.
 
 Sind das jetzt Taler, Franken, Euro oder Dollar? Die Einheit ist – nicht nur beim Geld – von entscheidender Bedeutung. Darum ist es empfehlenswert, die Einheit nicht nur als Kommentar oder als Teil des Attributnamens anzugeben, sondern als Bestandteil des Typs:
 
-____
-UNIT +
-Taler EXTENDS MONEY; +
- +
-CLASS Billettart = +
-Preis: 0 .. 9999 ++[++Taler++]++; +
+[source]
+----
+UNIT
+  Taler EXTENDS MONEY;
+
+CLASS Billettart =
+  Preis: 0 .. 9999 [Taler];
 END Billettart;
-____
+----
 
 Taler (oder Schweizerfranken, Euro, Dollar, etc.) werden als Einheit definiert und können dann bei der Definition eines numerischen Typs benutzt werden. Die meisten gängigen Einheiten (darunter auch CHF, EUR, USD) müssen jedoch nicht selbst definiert werden, sondern stehen über das spezielle Einheiten-Modell (units.ili, vgl. Abschnitt 3.3) zur Verfügung.
 
@@ -55,11 +58,12 @@ Im Interesse der Klarheit wird empfohlen, immer Einheiten anzugeben. Das INTERLI
 
 Da die Ilishornbahnen nie Billette abgeben werden, die mehr als tausend Taler kosten, könnte man auf die Idee kommen, dies in einer eigenen Klasse zu definieren:
 
-____
-CLASS Billettart (EXTENDED) = +
-Preis (EXTENDED): 0 .. 1000 ++[++Taler++]++; +
+[source]
+----
+CLASS Billettart (EXTENDED) =
+  Preis (EXTENDED): 0 .. 1000 [Taler];
 END Billettart;
-____
+----
 
 In dieser Anwendung macht dieses konkrete Beispiel eher wenig Sinn. Es gibt aber durchaus Fälle in der Praxis, wo es sinnvoll ist, den ererbten Wertebereich einzuschränken.
 
@@ -69,11 +73,12 @@ Eine Preisangabe 0 .. 1000 ist also eine zulässige Einschränkung des national 
 
 Die Ilistaler wollen auch die Möglichkeit haben, Billette auszugeben, deren Preis nicht zwin­gend ein voller Talerbetrag ist. Man möchte folgende Definition schreiben:
 
-____
-CLASS Billettart (EXTENDED) = +
-Preis (EXTENDED): 0.00 .. 1000.00 ++[++Taler++]++; +
+[source]
+----
+CLASS Billettart (EXTENDED) =
+  Preis (EXTENDED): 0.00 .. 1000.00 [Taler];
 END Billettart;
-____
+----
 
 Aber ist das mit dem Basismodell verträglich? Ja, denn jeder Wert gemäss Ilistaler Modell (z.B. 7.35) kann mit mathematischer Rundung auf einen korrekten Wert des nationalen Modells abgebildet werden (z.B. 7).
 
@@ -88,51 +93,56 @@ Und noch etwas: Die Einheiten der Erweiterung müssen immer mit derjenigen der B
 
 Kann der nationale Verband festlegen, welcher Preis für ein Billett zulässig ist? Sind die Schranken noch völlig unbekannt, kann – im Rahmen abstrakter Attribute – auf ihre An­gabe verzichtet werden. Es ist aber möglich, dennoch bereits eine Einheit festzulegen.
 
-____
-Preis (ABSTRACT): NUMERIC ++[++Ahland.Taler++]++;
-____
+[source]
+----
+Preis (ABSTRACT): NUMERIC [Ahland.Taler];
+----
 
 Vielleicht ist sogar die Einheit noch unklar. Man weiss erst, dass es sich z.B. um eine Währung handelt.
 
-____
-Preis (ABSTRACT): NUMERIC ++[++MONEY++]++;
-____
+[source]
+----
+Preis (ABSTRACT): NUMERIC [MONEY];
+----
 
 Damit ist immerhin der Charakter der Einheit festgelegt. In einer Erweiterung können damit nur noch Einheiten definiert werden, die Konkretisierungen der abstrakten Einheit MONEY sind (zu abstrakten Eigenschaften siehe auch Abschnitt 5.4).
 
-____
-Preis (EXTENDED): 0 .. 10000 ++[++CHF++]++; !! erlaubt +
-Preis (EXTENDED): 0 .. 2000 ++[++USD++]++; !! erlaubt +
-Preis (EXTENDED): 0 .. 1000 ++[++m++]++; !! verboten, da Meter eine Konkre- +
-!! tisierung von LENGTH und nicht +
-!! von MONEY ist.
-____
+[source]
+----
+Preis (EXTENDED): 0 .. 10000 [CHF]; !! erlaubt
+Preis (EXTENDED): 0 .. 2000 [USD]; !! erlaubt
+Preis (EXTENDED): 0 .. 1000 [m]; !! verboten, da Meter eine Konkre-
+                                  !! tisierung von LENGTH und nicht
+                                  !! von MONEY ist.
+----
 
 [#_6_2]
 === Arten von Bergbahnen – Modellierung von Arten von Objekten
 
 Für eine grobe Übersicht genügt es, die Bergbahnen grob einzuteilen: Zahnradbahn, Standseilbahn, Luftseilbahn, Skilift, Sessellift, Gondelbahn. Im einfachsten Fall wird die Art als Textattribut festgehalten.
 
-____
-CLASS Bergbahn = +
-Name: TEXT++*++100; +
-Art: TEXT++*++50; +
+[source]
+----
+CLASS Bergbahn =
+  Name: TEXT*100;
+  Art: TEXT*50;
 END Bergbahn;
-____
+----
 
 Als Folge ist die Person, welche die Daten erfasst, in der Beschreibung sehr frei. Seilbahn, Schwebebahn, Skilift, Ski-Lift – es ist zu befürchten, dass ein rechter Wildwuchs an Be­zeichnungen entsteht. Vermeiden lässt sich dies mit einer Aufzählung.
 
-____
-CLASS Bergbahn = +
-Name: TEXT++*++100; +
-Art: (Zahnradbahn, +
-Standseilbahn, +
-Luftseilbahn +
-Skilift, +
-Sessellift, +
-Gondelbahn); +
+[source]
+----
+CLASS Bergbahn =
+  Name: TEXT*100;
+  Art: (Zahnradbahn,
+        Standseilbahn,
+        Luftseilbahn
+        Skilift,
+        Sessellift,
+        Gondelbahn);
 END Bergbahn;
-____
+----
 
 Da jetzt alle zulässigen Möglichkeiten aufgezählt sind, herrscht Ordnung. Oft möchte man nun noch weitere Attribute anfügen, z.B. die Anzahl der Plätze in der Bahn. Bei Stand- und Luftseilbahn ist dies das Fassungsvermögen der ganzen Kabine, bei den Ski- und Sesselliften die Anzahl Personen pro Einzelfahrt. Bei der Zahnradbahn, wo mehrere Wagen zusammengekuppelt werden können, macht die Angabe jedoch keinen Sinn. Dafür interessiert dort vielleicht das Zahnstangensystem. Soll jetzt die Klasse Bergbahn einfach alle Attribute aufweisen, die zum Beschreiben der verschiedenen Arten nötig sind?
 
@@ -146,35 +156,36 @@ Es gibt aber keine Bergbahnen, die ausschliesslich Bergbahn sind und nicht gleic
 
 In der textuellen Schreibweise von INTERLIS 2 werden abstrakte Klassen mit der Angabe (ABSTRACT) in Klammern bezeichnet. Nur nebenbei: Das INTERLIS-Einheitenmodell «Units» kennt eine Einheit «CountedObjects» für abgezählte Objekte wie zum Beispiel die Zahl der Personen in einer Luftseilbahnkabine.
 
-____
-CLASS Bergbahn (ABSTRACT) = +
-Name: Text ++*++ 100; +
-END Bergbahn; +
- +
-CLASS Zahnradbahn EXTENDS Bergbahn = +
-Stangensystem: (Riggenbach, Abt, vonRoll); +
-END Zahnradbahn; +
- +
-CLASS Standseilbahn EXTENDS Bergbahn = +
-Fassungsvermoegen: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END Standseilbahn; +
- +
-CLASS Luftseilbahn EXTENDS Bergbahn = +
-Fassungsvermoegen: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END Luftseilbahn; +
- +
-CLASS Skilift EXTENDS Bergbahn = +
-PersonenProFahrt: 0 .. 10 ++[++Units.CountedObjects++]++; +
-END Skilift; +
- +
-CLASS Sessellift EXTENDS Bergbahn = +
-PersonenProFahrt: 0 .. 24 ++[++Units.CountedObjects++]++; +
-END Sessellift; +
- +
-CLASS Gondelbahn EXTENDS Bergbahn = +
-Fassungsvermoegen: 0 .. 99 ++[++Units.CountedObjects++]++; +
+[source]
+----
+CLASS Bergbahn (ABSTRACT) =
+  Name: Text*100;
+END Bergbahn;
+
+CLASS Zahnradbahn EXTENDS Bergbahn =
+  Stangensystem: (Riggenbach, Abt, vonRoll);
+END Zahnradbahn;
+
+CLASS Standseilbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 999 [Units.CountedObjects];
+END Standseilbahn;
+
+CLASS Luftseilbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 999 [Units.CountedObjects];
+END Luftseilbahn;
+
+CLASS Skilift EXTENDS Bergbahn =
+  PersonenProFahrt: 0 .. 10 [Units.CountedObjects];
+END Skilift;
+
+CLASS Sessellift EXTENDS Bergbahn =
+  PersonenProFahrt: 0 .. 24 [Units.CountedObjects];
+END Sessellift;
+
+CLASS Gondelbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 99 [Units.CountedObjects];
 END Gondelbahn;
-____
+----
 
 Für die Sitzung wurde extra ein Eisenbahner eingeladen, der längere Zeit über Zahnrad­bahnen referierte. Die Anwesenden lernten viel darüber, was für Zahnstangensysteme welt­weit im Einsatz sind und welche Vor- und Nachteile sie jeweils besitzen. Schliesslich fragten sich die Ilistaler aber, was genau die Zahnstangensysteme eigentlich mit ihrem Projekt zu schaffen haben. Es konnte sich auch niemand vorstellen, wie diese und andere Angaben jemals in einem zukünftigen Ausbauschritt von Belang werden könnten. Daher wurde dieses Modell verworfen, weil es zu sehr ins Detail geht und am Ende lediglich Kosten für das Erfassen und Pflegen unnötiger Daten verursacht hätte.
 
@@ -188,26 +199,28 @@ Siehe auch Abschnitt 5.1 zur Verlockung, beim Modellieren allzu sehr ins Detail 
 
 Um den Schwierigkeitsgrad von Skipisten grob zu beschreiben, wurden drei Farben gewählt: blau, rot, schwarz. Es soll nur diese und keine anderen Schwierigkeitsgrade geben. Zudem sind sie geordnet. Blau bezeichnet eine einfache Piste, eine rote Piste ist schwieriger als eine blaue, eine schwarze am anspruchsvollsten. Dies wird mit der folgenden Definition be­schrieben:
 
-____
-CLASS Piste = +
-Schwierigkeitsgrad: (blau, rot, schwarz: FINAL) ORDERED; +
+[source]
+----
+CLASS Piste =
+  Schwierigkeitsgrad: (blau, rot, schwarz: FINAL) ORDERED;
 END Piste;
-____
+----
 
 Würde die FINAL-Angabe fehlen, könnte die Aufzählung in einer Erweiterung noch ergänzt werden. Zum Beispiel könnte dies bei der Art von Bergbahnen Sinn machen:
 
-____
-!! Modell des Nationalen Tourismusverbandes +
-CLASS Bergbahn = +
-Art: (Zahnradbahn, Standseilbahn, Luftseilbahn, +
-Skilift, Sessellift, Gondelbahn); +
-END Bergbahn; +
- +
-!! Modell Ilistal +
-CLASS IhBBergbahn EXTENDS Bergbahn = +
-Art (EXTENDED): (Schneebus); +
+[source]
+----
+!! Modell des Nationalen Tourismusverbandes
+CLASS Bergbahn =
+  Art: (Zahnradbahn, Standseilbahn, Luftseilbahn,
+       Skilift, Sessellift, Gondelbahn);
+END Bergbahn;
+
+!! Modell Ilistal
+CLASS IhBBergbahn EXTENDS Bergbahn =
+  Art (EXTENDED): (Schneebus);
 END IhBBergbahn;
-____
+----
 
 In der erweiterten Klasse wird der Aufzählung noch das Element Schneebus – das neuste vom Neuen – am Ende der bisherigen Aufzählung beigefügt. Aber was fängt der nationale Tourismusverband damit an? Dort ist «Schneebus» doch ein unbekannter Wert.
 
@@ -216,9 +229,10 @@ Jede (horizontale) Erweiterung kann durch weitere Werte ergänzt werden, solange
 
 Für die Basisklasse ist der Wert Schneebus (und allfällige weitere Werte) nur noch als OTHER erkennbar. Wird jedoch FINAL angegeben, kann der Wert OTHER nicht mehr auftreten. Ist eine Aufzählung zyklisch (*CIRCULAR*) definiert, sind solche Ergänzungen nie möglich, heisst doch zyklisch, dass nach dem höchsten Wert wieder der niedrigste kommt und man sonst gar nicht wüsste, welches der höchste ist.
 
-____
+[source]
+----
 Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
-____
+----
 
 [#_6_3_2]
 ==== Unteraufzählungen
@@ -227,15 +241,16 @@ Man hatte also beschlossen, die verschiedenen Arten von Bergbahnen nicht mit ein
 
 Für jeden Wert einer Aufzählung kann eine Unteraufzählung definiert werden. Dies kann direkt innerhalb der Basisdefinition oder erst in einer Erweiterung erfolgen.
 
-____
-CLASS IhBBergbahn EXTENDS Bergbahn = +
-Art (EXTENDED): (Zahnradbahn (Riggenbach, Abt, vonRoll)); +
+[source]
+----
+CLASS IhBBergbahn EXTENDS Bergbahn =
+  Art (EXTENDED): (Zahnradbahn (Riggenbach, Abt, vonRoll));
 END IhBBergbahn;
 
-Wochentag: (Werktag (Montag, Dienstag, Mittwoch, +
-Donnerstag, Freitag, Samstag), +
-Sonntag);
-____
+Wochentag: (Werktag (Montag, Dienstag, Mittwoch,
+                     Donnerstag, Freitag, Samstag),
+            Sonntag);
+----
 
 Wird eine solche Unteraufzählung in einer Erweiterung definiert, ist sie aus der Sicht der Basis einfach nicht von Belang. Aus der Sicht des nationalen Tourismusverbands würde also auch eine Riggenbach-Zahnradbahn eine Zahnradbahn sein.
 
@@ -246,27 +261,30 @@ Auch Unteraufzählungen können wieder um weitere Werte ergänzt werden, sofern 
 
 Bezeichnungen können grundsätzlich beliebig lange Namen enthalten. Der nationale Verband hat jedoch festgelegt, dass der Name einer Bergbahn höchstens 100 Zeichen aufweisen darf. In der Regel sind die Namen natürlich durchaus kürzer, man wollte einfach sicher gehen.
 
-____
-STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung = +
-Name (EXTENDED): TEXT++*++100; +
+[source]
+----
+STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung =
+  Name (EXTENDED): TEXT*100;
 END Bahnbezeichnung;
-____
+----
 
 Ist die Länge eines Text-Attributes beliebig oder noch vollkommen unbekannt, kann auf die Angabe der Länge verzichtet werden. Ist es klar, dass die Länge im Rahmen einer Klassenerweiterung noch festgelegt wird, wird das Attribut als abstrakt bezeichnet:
 
-____
+[source]
+----
 Beschreibung (ABSTRACT): TEXT;
-____
+----
 
 Manche Bahnen im Ilistal haben eine Web-Kamera installiert, die laufend die Umgebung der Bergstation aufnimmt. Interessierte Touristen können so sehen, ob sich die Reise lohnt. Die Internet-Adresse des aktuellen Bildes ist ebenfalls eine (etwas besondere) Art von Text.
 
-____
-CLASS IhBBergbahn = +
-... +
-BildBergstation: URI; +
-... +
+[source]
+----
+CLASS IhBBergbahn =
+  ...
+  BildBergstation: URI;
+  ...
 END IhBBergbahn;
-____
+----
 
 Internet-Adressen haben aber nichts mit einem Schweizer Kanton zu tun – oder wenn schon, dann allenfalls mit Genf, wo am CERN der erste Web-Browser entwickelt wurde. URI ist schlicht die Abkürzung von _Uniform Resource Identifier._ Die meist für Web-Seiten benutzten _Uniform Resource Locators (URLs)_ sind spezielle URIs.
 
@@ -283,13 +301,14 @@ Undefiniert ist nicht einfach 0 oder sonst irgendein etwas besonderer Wert. Es i
 
 In INTERLIS 2 schreibt man zum Beispiel:
 
-____
-CLASS Wetter = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
 END Wetter;
-____
+----
 
 Temperatur und Windgeschwindigkeit sind also obligatorisch (MANDATORY). Da die Windrichtung nicht obligatorisch verlangt wird, ist sie fakultativ. Der konkrete Wert darf damit undefiniert sein. In Erweiterungen ist es zulässig, aus fakultativen Attributen obligatorische zu machen. Obligatorische Attribute dürfen aber nicht zu fakultativen werden, da gemäss der Basisklasse der Wert «undefiniert» nicht erlaubt ist.
 
@@ -298,30 +317,32 @@ Temperatur und Windgeschwindigkeit sind also obligatorisch (MANDATORY). Da die W
 
 Wartezeiten an den Bergbahnen und die Fahrzeiten der Bergbahnen werden beide in Minu­ten festgehalten.
 
-____
-CLASS Bergbahn = +
-Fahrzeit: 0 .. 200 ++[++min++]++; +
+[source]
+----
+CLASS Bergbahn =
+  Fahrzeit: 0 .. 200 [min];
 END Bergbahn;
 
-CLASS Bergbahnstatus = +
-Wartezeit: 0 .. 200 ++[++min++]++; +
+CLASS Bergbahnstatus =
+  Wartezeit: 0 .. 200 [min];
 END Bergbahnstatus;
-____
+----
 
 Beide Eigenschaften können Werte aus demselben Bereich annehmen. Mit einem ausdrücklich definierten Wertebereich (DOMAIN) lässt sich diese Gemeinsamkeit betonen:
 
-____
-DOMAIN +
-ZeitdauerInMinuten = 0 .. 200 ++[++min++]++;
+[source]
+----
+DOMAIN
+  ZeitdauerInMinuten = 0 .. 200 [min];
 
-CLASS Bergbahn = +
-Fahrzeit: ZeitdauerInMinuten; +
+CLASS Bergbahn =
+  Fahrzeit: ZeitdauerInMinuten;
 END Bergbahn;
 
-CLASS Bergbahnstatus = +
-Wartezeit: ZeitdauerInMinuten; +
+CLASS Bergbahnstatus =
+  Wartezeit: ZeitdauerInMinuten;
 END Bergbahnstatus;
-____
+----
 
 [#_6_7]
 === Wo liegt das Ilistal? – Koordinatentypen
@@ -333,13 +354,14 @@ Mit der Frage «Wo?» ist die Vorstellung eines punktförmigen Ortes in der real
 
 Für jede Dimension eines Koordinatentyps muss darum wie für jeden numerischen Typ fest­gelegt werden, in welchem Zahlenbereich die zulässigen Werte liegen dürfen und welche Einheit mit ihr verbunden ist.
 
-____
-Lage: COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+Lage: COORD 500.00 .. 91000.00 [m],
+            700.00 .. 23000.00 [m];
 
-XLage: 500.00 .. 91000.00 ++[++m++]++; +
-YLage: 700.00 .. 23000.00 ++[++m++]++;
-____
+XLage: 500.00 .. 91000.00 [m];
+YLage: 700.00 .. 23000.00 [m];
+----
 
 Der Unterschied zwischen einem Lageattribut mit einem Koordinatentyp und je einem numerischen Attribut für die X- und die Y-Richtung ist auf den ersten Blick klein. Dank der Definition als Koordinatentyp ist es aber offensichtlich, dass die beiden Angaben zusammen­gehören. Diese Eigenschaft kann durch die Programmpakete auch ausgenützt werden. So sind viele Programme dafür eingerichtet, kartesische Koordinatenwerte grafisch darzustellen.
 
@@ -373,10 +395,11 @@ image::img/image35.png[width=217,height=189]
 
 Zuletzt werden feine, rechtwinklig aufeinander stehende Linien über die Karte gelegt: Das *Koordinatensystem* der Karte. Bei jedem Koordinatentyp muss darum auch festgelegt werden, welches Koordinatensystem ihm zu Grunde liegt.
 
-____
-Lage: COORD 480000 .. 850000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-60000 .. 320000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++};
-____
+[source]
+----
+Lage: COORD 480000 .. 850000.00 [m] {AhlandSys[1]},
+            60000 .. 320000.00 [m] {AhlandSys[2]};
+----
 
 Die erste Dimension der Koordinate entspricht der ersten Achse des Koordinatensystems mit Namen «AhlandSys», die zweite Dimension der zweiten Achse des gleichen Systems.
 
@@ -389,73 +412,79 @@ Die Daten zu einem Metamodell sind in einem anderen, formaleren Sinn «meta» al
 
 In den einfachen Fällen, wo es auf Grund des Anwendungs- und Einsatzgebietes eines Datenmodells klar ist, zu welchem Koordinatensystem die Koordinaten gehören, kann auf die explizite Angabe des Koordinatensystems verzichtet werden. Es macht aber Sinn, das Koordinatensystem mindestens im Namen des Koordinatentyps anklingen zu lassen.
 
-____
-LandesKoord = COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+LandesKoord = COORD 500.00 .. 91000.00 [m],
+                    700.00 .. 23000.00 [m];
 
 Lage: LandesKoord;
-____
+----
 
 Um Verwechslungen auszuschliessen haben die Ilistaler eine präzise Definition vorgezogen:
 
-____
-REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic +
-OBJECTS OF GeoCartesian2D: AhlandSys;
-____
+[source]
+----
+REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+  OBJECTS OF GeoCartesian2D: AhlandSys;
+----
 
 Sie haben auf der Grundlage des allgemeinen Modells für Koordinatensysteme (CoordSys) ihr Landessystem präzis definiert. Für die Lage wurde dafür in den entsprechenden Daten ein Objekt der Klasse GeoCartesian2D mit dem Namen AhlandSys eingetragen. Die Existenz dieses Dateneintrags wird mittels OBJECTS OF im Modell angemerkt. Das Koordinatensystem „AhlandSys“ ist damit im Modell verfügbar. Bei der Anwendung des Systems muss der Name des Metadatenbestands (CoordSystems) nur erwähnt werden, wenn im aktuellen Modellierungsteil mehrere solche Metadatenbestände definiert sind.
 
-____
-LandesKoord = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++CoordSystems.AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++CoordSystems.AhlandSys++[++2++]++};
-____
+[source]
+----
+LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
+                    700.00 .. 23000.00 [m] {CoordSystems.AhlandSys[2]};
+----
 
 [#_6_7_4]
 ==== Verschiedene Koordinatensysteme
 
 Damit denjenigen Touristen, die über einen einfachen GPS-Empfänger verfügen, ein besonderer Service geboten werden kann, möchten die Ilistaler ihre Koordinaten auch als geografische Koordinaten im globalen WGS84-System anbieten.
 
-____
-WGS84Coord = COORD -90.00000 .. 90.00000 ++[++Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++};
+[source]
+----
+WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]};
 
-CLASS Bergbahn = +
-LageTalstation: LandesKoord; +
-LageTalstationWGS: WGS84Koord; +
-.... +
+CLASS Bergbahn =
+  LageTalstation: LandesKoord;
+  LageTalstationWGS: WGS84Koord;
+  ....
 END Bergbahn;
-____
+----
 
 Nun ist es aber offensichtlich, dass die beiden Attribute einen direkten Zusammenhang haben. Landeskoordinaten können doch in WGS84-Koordinaten umgerechnet werden. Die detaillierte Definition einer solchen Umrechnung ist aber nicht Aufgabe einer konzeptuellen Beschreibung der Daten. Es ist aber wünschenswert anzugeben, dass die einen Koordinaten aus den anderen gerechnet werden können.
 
-____
-!! Umrechnung von Koordinaten im Ahländer Landessystem zu WGS84. +
-!! Funktionen werden in Abschnitt 7.2 diskutiert. +
+[source]
+----
+!! Umrechnung von Koordinaten im Ahländer Landessystem zu WGS84.
+!! Funktionen werden in Abschnitt 7.2 diskutiert.
 FUNCTION AhlandToWGS84 (Ah: Ahland.LandesKoord): WGS84Koord;
 
-CLASS Bergbahn = +
-LageTalstation: Ahland.LandesKoord; +
-LageTalstationWGS: WGS84Koord := AhlandToWGS84 (LageTalstation); +
-.... +
+CLASS Bergbahn =
+  LageTalstation: Ahland.LandesKoord;
+  LageTalstationWGS: WGS84Koord := AhlandToWGS84 (LageTalstation);
+  ....
 END Bergbahn;
-____
+----
 
 [#_6_7_5]
 ==== Dreidimensionale Koordinaten
 
 Den Skifahrern und Wanderern rund um das Ilishorn genügen natürlich die Lagekoordinaten nicht. Grosse Höhendifferenzen lassen die Skifahrerherzen höher schlagen, während der Wanderer Schweissperlen oder schlotternde Knie befürchten muss. Höhen sind gefragt! Koordinatentypen können darum auch drei Dimensionen aufweisen.
 
-____
-LandesKoord3 = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++}, +
-0.00 .. 9000.00 ++[++m++]++ ++{++AhlandHoehenSys++[++1++]++};
+[source]
+----
+LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                     700.00 .. 23000.00 [m] {AhlandSys[2]},
+                     0.00 .. 9000.00 [m] {AhlandHoehenSys[1]};
 
-WGS84Koord = COORD -90.00000 .. 90.00000 ++[++Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++}, +
--2000.00 .. 9000.00 ++[++m++]++ ++{++WGS84H++[++1++]++};
-____
+WGS84Koord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]},
+                   -2000.00 .. 9000.00 [m] {WGS84H[1]};
+----
 
 Bei den Höhen stellt sich noch ein besonderes Problem. Wo ist eigentlich die Höhe 0? Wie kann man die Höhe eines Punktes gegenüber dieser Höhe 0 bestimmen? Die Geodäten unterscheiden vor allem zwischen den Höhen gemäss dem Schwerefeld der Erde (Schwere- oder Geoid-Höhe; 0 ist die Höhe der gedachten Fortsetzung des Meeres unter den Kontinenten) und Höhen gemäss der geometrischen Annäherung der Erde (Ellipsoid-Höhe; 0 ist die Oberfläche des Ellipsoids).
 
@@ -483,11 +512,12 @@ Die Umrechnung zwischen Schwerehöhen und Ellipsoidhöhen kann vor allem dort ei
 
 Wie gross ist ein rechter Winkel? 90 Grad oder Pi / 2? Das ist eine Frage der Einheit, die verwendet wird. Aber wann gilt der Winkel als positiv, wann als negativ? Zu einem Winkeltyp gehört darum der Drehsinn: Uhrzeigersinn oder Gegenuhrzeigersinn.
 
-____
-DOMAIN +
-WinkelImUhrzeigersinn = -179 .. 180 CIRCULAR CLOCKWISE; +
-WinkelImGegenuhrzeigersinn = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
-____
+[source]
+----
+DOMAIN
+  WinkelImUhrzeigersinn = -179 .. 180 CIRCULAR CLOCKWISE;
+  WinkelImGegenuhrzeigersinn = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
+----
 
 Wenn wir auf dem Ilishorn stehen, möchten wir vielleicht wissen, in welche Richtung wir schauen müssen, um das Krummhorn zu sehen. 50 Grad? 40 Grad? 310 Grad?
 
@@ -502,14 +532,15 @@ Es kommt eben drauf an, wo die Nullrichtung ist und wie die Richtungen drehen. W
 image::img/image42.png[width=406,height=156]
 
 
-____
-LandesKoord3 = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++AhlandSys++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++AhlandSys++[++2++]++}, +
--200.00 .. 14000.00 ++[++m++]++ ++{++AhlandHoehenSys++[++1++]++}, +
-ROTATION 2 -++>++ 1;
+[source]
+----
+LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                     700.00 .. 23000.00 [m] {AhlandSys[2]},
+                     -200.00 .. 14000.00 [m] {AhlandHoehenSys[1]},
+                     ROTATION 2 -> 1;
 
-Richtung = 0.0 .. 359.9 CIRCULAR ++[++Angle++_++Degree++]++ ++{++AhlandSys};
-____
+Richtung = 0.0 .. 359.9 CIRCULAR [Angle_Degree] {AhlandSys};
+----
 
 [#_6_9]
 === Ist eine Piste eine Linie oder eine Fläche? – Geometrietypen
@@ -525,13 +556,14 @@ In diesem Sinn ist ein Linientyp nichts anderes als z.B. ein numerischer Typ ode
 
 In INTERLIS könnte man schreiben:
 
-____
+[source]
+----
 AhlandLinie = POLYLINE VERTEX Ahland.LandesKoord;
 
-CLASS Piste = +
-Verlauf: AhlandLinie; +
+CLASS Piste =
+  Verlauf: AhlandLinie;
 END Piste;
-____
+----
 
 Der Pistenverlauf wird mittels Linien beschrieben, die auf dem Ahländer Landes-Koordinatensystem basieren. Die Stützpunkte der Linien im Ahländer Landessystem stützen sich deshalb auf den Koordinatentyp des Landessystems ab.
 
@@ -548,9 +580,10 @@ image::img/image43.png[width=360,height=69]
 
 Es macht aber durchaus Sinn anzugeben, welche Arten von Linienstücken bei einem be­stimmten Linientyp vorkommen dürfen.
 
-____
+[source]
+----
 AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Ahland.LandesKoord;
-____
+----
 
 Mit dieser INTERLIS 2-Definition wird angegeben, dass Linien dieses Typs Geraden- und Kreisbogenstücke aufweisen dürfen.
 
@@ -558,11 +591,12 @@ In vielen Fällen – so auch bei den Pisten – macht es keinen Sinn, dass eine
 
 Nachdem das Ahländer Landes-Koordinatensystem Meter verwendet, sind mit dieser Defini­tion Überlappungen bis zu 2 cm erlaubt:
 
-____
-AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.LandesKoord +
-WITHOUT OVERLAPS ++>++ 0.02;
-____
+[source]
+----
+AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS)
+              VERTEX Ahland.LandesKoord
+              WITHOUT OVERLAPS > 0.02;
+----
 
 .Kleine Überschneidungen sind manchmal nicht vermeidbar. Es ist Teil des Modells, +
 image::img/image44.png[width=233,height=105]
@@ -574,32 +608,34 @@ wie gross die Überlappung (im Bild die Pfeilhöhe) höchstens sein darf.
 
 Als Skifahrer erwartet man natürlich, dass die Linienstücke der Piste vom Ilishorn zur Ilisegg beim Ilishorn beginnen und bei der Ilisegg enden. Man möchte ja hinunterfahren und nicht die Steigfelle montieren! Zur Beschreibung anderer Objekte (z.B. der Wanderwege) ist jedoch die Richtung nicht von Bedeutung. Wo die Richtung der Linien von Bedeutung ist, soll dies im konzeptuellen Modell auch angegeben werden.
 
-____
+[source]
+----
 AhlandLinieGerichtet = DIRECTED POLYLINE VERTEX Ahland.LandesKoord;
 
-CLASS Piste = +
-Verlauf: AhlandLinieGerichtet; +
+CLASS Piste =
+  Verlauf: AhlandLinieGerichtet;
 END Piste;
-____
+----
 
 [#_6_9_4]
 ==== Flächen
 
 Für den Pistendienst der Ilishornbahnen stellte sich die Frage, ob die Beschreibung der Pisten für seine Zwecke genügt. Damit immer klar ist, welche Bereiche jeweils präpariert werden müssen, wird eine Darstellung als Fläche vorgezogen.
 
-____
-DOMAIN +
-AhlandLinieGerichtet = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.LandesKoord; +
- +
-AhlandFlaeche = SURFACE WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.LandesKoord;
+[source]
+----
+DOMAIN
+  AhlandLinieGerichtet = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS)
+                         VERTEX Ahland.LandesKoord;
 
-CLASS Piste = +
-Verlauf: AhlandLinieGerichtet; +
-Praepariert: AhlandFlaeche; +
+  AhlandFlaeche = SURFACE WITH (STRAIGHTS, ARCS)
+                  VERTEX Ahland.LandesKoord;
+
+CLASS Piste =
+  Verlauf: AhlandLinieGerichtet;
+  Praepariert: AhlandFlaeche;
 END Piste;
-____
+----
 
 Kurz vor der Ilisegg steht mitten in der Piste ein grosser Baum – oder anders gesagt, die Piste geht links und rechts am Baum vorbei.
 
@@ -616,15 +652,16 @@ Oben beim Ilishorn liegen verschiedene Pisten anfänglich so nahe beieinander, d
 
 Der Pistendienst hat sich darum für eine andere Modellierung entschieden: Die zu präpa­rierenden Flächen werden nicht direkt den Pisten zugeordnet, sondern als eigenständige Pistenabschnitte geführt. Jeder Pistenabschnitt ist eine Fläche. Die Pistenabschnitte sollen sich aber nie überlappen, da ein bestimmter Geländeabschnitt schliesslich nur einmal prä­pariert werden muss.
 
-____
-DOMAIN +
-AhlandGebietseinteilung = AREA WITH (STRAIGHTS, ARCS) +
-VERTEX Ahland.LandesKoord; +
- +
-CLASS Pistenzustand = +
-PraeparierteFlaeche: AhlandGebietseinteilung; +
+[source]
+----
+DOMAIN
+  AhlandGebietseinteilung = AREA WITH (STRAIGHTS, ARCS)
+                            VERTEX Ahland.LandesKoord;
+
+CLASS Pistenzustand =
+  PraeparierteFlaeche: AhlandGebietseinteilung;
 END Pistenzustand;
-____
+----
 
 Da solche überlappungsfreien Flächen recht häufig vorkommen, wurde dafür in INTERLIS ein eigener Typ (AREA) eingeführt. Statt von Flächen wird von Gebietseinteilungen gesprochen.
 
@@ -660,50 +697,54 @@ Ein wichtiges Entscheidungskriterium in dieser Frage dürfte der Aufwand für Er
 
 Kurz vor der Ilisegg ziehen sich die Leute auf dem Sessellift vom Ilistäli die Kappe fest über die Ohren: Hier pfeift der Wind so richtig. Beim Wind ist eben nicht nur die Windgeschwindigkeit, sondern auch die Richtung aus der er kommt, massgebend. Führt man diese beiden Eigenschaften im Rahmen einer Klassenbeschreibung einfach zusammen mit anderen Attributen auf, kommt dieser Sachverhalt wenig zum Ausdruck.
 
-____
-CLASS Wetter = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
 END Wetter;
-____
+----
 
 Für Situationen, wo ein Sachverhalt nicht durch einen einzigen, sondern durch mehrere Werte beschrieben wird, ist es sinnvoll, eine Struktur (Windangabe) zu definieren, welche die verschiedenen Eigenschaften (Windrichtung, Windgeschwindigkeit) umfasst.
 
-____
-STRUCTURE Windangabe = +
-Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
 END Windangabe;
-____
+----
 
 Mit Struktur verwandte Begriffe sind: Datentyp, strukturierter Datentyp, ...
 
 Überall, wo eine Aussage über den Wind gemacht wird, kann diese Struktur verwendet werden.
 
-____
-CLASS Wetter = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Wind: Windangabe; +
+[source]
+----
+CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
 END Wetter;
 
-CLASS Windmesser = +
-Standort: MANDATORY LandesKoord; +
-Wind: Windangabe; +
+CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: Windangabe;
 END Windmesser;
-____
+----
 
 [#_6_10_2]
 ==== Mehrere Strukturelemente
 
 Der Windmesser auf der Ilisegg ist noch etwas spezieller: Er zeigt nicht einfach den aktuellen Wert, sondern gleich die letzten sechs gemessenen Werte an. Deswegen werden die Ohren zwar nicht wärmer, aber erstaunlich ist es ja schon, wie schnell die Verhältnisse manchmal ändern können.
 
-____
-CLASS Windmesser = +
-Standort: MANDATORY LandesKoord; +
-Wind: LIST ++{++6} OF Windangabe; +
+[source]
+----
+CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: LIST {6} OF Windangabe;
 END Windmesser;
-____
+----
 
 Das Attribut Wind umfasst also sechs Elemente (Messwerte je mit Windrichtung und Windgeschwindigkeit). Mit LIST OF wird ausgesagt, dass die Reihenfolge relevant ist (z.B. der neuste Wert zuerst). Wäre die Reihenfolge nicht relevant, würde man BAG OF schreiben. Ähnlich wie bei den Beziehungen kann angegeben werden, wie viele Elemente minimal und maximal aufgeführt sein können.
 
@@ -726,26 +767,27 @@ Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf e
 
 Das Attribut Verlauf der Piste (vgl. Abschnitt 6.9.1) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt 6.9.2). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:
 
-____
-STRUCTURE AhlandSegment (ABSTRACT) = +
-SegmentEndPoint: MANDATORY Ahland.LandesKoord; +
+[source]
+----
+STRUCTURE AhlandSegment (ABSTRACT) =
+  SegmentEndPoint: MANDATORY Ahland.LandesKoord;
 END AhlandSegment;
 
-STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) = +
+STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) =
 END AhlandStartSegment;
 
-STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) = +
+STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) =
 END AhlandStraightSegment;
 
-STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) = +
-ArcPoint: MANDATORY Ahland.LandesKoord; +
-Radius: Length; +
+STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) =
+  ArcPoint: MANDATORY Ahland.LandesKoord;
+  Radius: Length;
 END AhlandArcSegment;
 
-CLASS Piste = +
-Verlauf: LIST ++{++2..++*++} OF AhlandSegment; +
+CLASS Piste =
+  Verlauf: LIST {2..*} OF AhlandSegment;
 END Piste;
-____
+----
 
 [#_6_11]
 === Wie wird im Ilistal gesprochen? – Mehrsprachigkeit
@@ -772,21 +814,22 @@ Es ist ja tatsächlich keine grosse Sache, ein Kästchen auf Papier um einige Ze
 
 Besser ist es daher, wenn die konkrete Sprache gar nicht im Datenmodell vorkommt. In der folgenden neuen Version weist eine Bahngesellschaft eine Menge von Bahnbezeichnungen auf. Da der Umgang mit mehreren Sprachen ein häufiges Anliegen ist, erbt die Struktur Bahnbezeichnung die Grundstruktur Bezeichnung, welche die Sprache und einen Text umfasst.
 
-____
-STRUCTURE Bezeichung = +
-Name: TEXT; +
-Sprache: TEXT++*++2; +
-END Bezeichnung; +
- +
-STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung = +
-Name (EXTENDED): TEXT++*++100; +
-Kurzbezeichnung: TEXT++*++10; +
-END Bahnbezeichnung; +
- +
-CLASS Bahngesellschaft = +
-Namen: BAG ++{++1..++*++} OF Bahnbezeichnung; +
+[source]
+----
+STRUCTURE Bezeichung =
+  Name: TEXT;
+  Sprache: TEXT*2;
+END Bezeichnung;
+
+STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung =
+  Name (EXTENDED): TEXT*100;
+  Kurzbezeichnung: TEXT*10;
+END Bahnbezeichnung;
+
+CLASS Bahngesellschaft =
+  Namen: BAG {1..*} OF Bahnbezeichnung;
 END Bahngesellschaft;
-____
+----
 
 Oder bildlich:
 
@@ -820,9 +863,10 @@ Die Bezeichnung verweist so auf die Sprache. Dieser Verweis ist aber nicht eine 
 
 Der nationale Verband hat eine simple Lösung und für die Gültigkeitsdauer von Billettarten ein Attribut vorgesehen, das die Anzahl Tage (mit einer Stelle nach dem Komma) vorsieht.
 
-____
-Gueltigkeitsdauer: 0.0 .. 1000.0 ++[++d++]++;
-____
+[source]
+----
+Gueltigkeitsdauer: 0.0 .. 1000.0 [d];
+----
 
 Wenn man es – wie die Ilistaler – etwas genauer nimmt, stellen sich verschiedene Fragen:
 
@@ -846,46 +890,48 @@ Wie könnte aber eine bessere Lösung aussehen?
 
 Objekteigenschaften wie die Gültigkeitsdauer können nicht immer durch einen einzigen Wert genügend präzis beschrieben werden. Manchmal braucht es eine Gruppe von Attributen, manchmal macht es Sinn, verschiedene Erweiterungen vorzusehen. Dafür bietet sich die Struktur an.
 
-____
-STRUCTURE Zeitdauer (ABSTRACT) = +
-END Zeitdauer; +
- +
-STRUCTURE ZeitdauerHeute EXTENDS Zeitdauer = +
-END ZeitdauerHeute; +
- +
-STRUCTURE ZeitdauerInTagen EXTENDS Zeitdauer = +
-Dauer: MANDATORY Tage ++[++d++]++; +
-END ZeitdauerInTagen; +
- +
-.... +
- +
-CLASS Billettart = +
-Gueltigkeitsdauer: Zeitdauer; +
+[source]
+----
+STRUCTURE Zeitdauer (ABSTRACT) =
+END Zeitdauer;
+
+STRUCTURE ZeitdauerHeute EXTENDS Zeitdauer =
+END ZeitdauerHeute;
+
+STRUCTURE ZeitdauerInTagen EXTENDS Zeitdauer =
+  Dauer: MANDATORY Tage [d];
+END ZeitdauerInTagen;
+
+....
+
+CLASS Billettart =
+  Gueltigkeitsdauer: Zeitdauer;
 END Billettart;
-____
+----
 
 Die Gültigkeitsdauer einer bestimmten Billettart ist mit einer Instanz (einem Strukturelement) der Struktur ZeitdauerHeute, ZeitdauerInTagen, ZeitdauerInMonaten, etc. beschrieben. Man könnte sogar noch etwas präziser modellieren und dafür sorgen, dass die Einheit einer expliziten Dauer (Tag, Monat, etc.) immer eine Zeitdauer sein muss und für implizite Zeitdauern (Woche, Saison, etc.) eine Aufzählung definieren:
 
-____
-STRUCTURE Zeitdauer (ABSTRACT) = +
-END Zeitdauer; +
- +
-STRUCTURE ZeitdauerImplizit EXTENDS Zeitdauer = +
-Dauer: MANDATORY (Tag, Woche, Monat, Jahr); +
-END ZeitdauerImplizit; +
- +
-STRUCTURE ZeitdauerExplizit (ABSTRACT) EXTENDS Zeitdauer = +
-Dauer (ABSTRACT): MANDATORY NUMERIC ++[++TIME++]++; +
-END ZeitdauerExplizit; +
- +
-STRUCTURE ZeitdauerInMinuten EXTENDS ZeitdauerExplizit = +
-Dauer (EXTENDED): MANDATORY 0 .. 200 ++[++Units.min++]++; +
-END ZeitdauerInMinuten; +
- +
-STRUCTURE ZeitdauerInTagen EXTENDS ZeitdauerExplizit = +
-Dauer (EXTENDED): MANDATORY 0 .. 1000 ++[++d++]++; +
+[source]
+----
+STRUCTURE Zeitdauer (ABSTRACT) =
+END Zeitdauer;
+
+STRUCTURE ZeitdauerImplizit EXTENDS Zeitdauer =
+  Dauer: MANDATORY (Tag, Woche, Monat, Jahr);
+END ZeitdauerImplizit;
+
+STRUCTURE ZeitdauerExplizit (ABSTRACT) EXTENDS Zeitdauer =
+  Dauer (ABSTRACT): MANDATORY NUMERIC [TIME];
+END ZeitdauerExplizit;
+
+STRUCTURE ZeitdauerInMinuten EXTENDS ZeitdauerExplizit =
+  Dauer (EXTENDED): MANDATORY 0 .. 200 [Units.min];
+END ZeitdauerInMinuten;
+
+STRUCTURE ZeitdauerInTagen EXTENDS ZeitdauerExplizit =
+  Dauer (EXTENDED): MANDATORY 0 .. 1000 [d];
 END inTagen;
-____
+----
 
 .Zeitdauer in einer detaillierten Modellierung mit Strukturen. Damit ist es möglich, dass die Gültigkeitsdauer eines Billetts je nach Bedarf ein Monat (ZeitdauerImplizit; links) oder exakt dreissig Tage (ZeitdauerInTagen; rechts) ist.
 image::img/image52.png[width=469,height=192]
@@ -899,21 +945,23 @@ Eine präzise, detaillierte, sachgerechte Modellierung ist grundsätzlich anzust
 
 Zeitdauern gibt es nicht nur für Billette. Die Ilistaler veranstalten jeden Freitag ein Skirennen für ihre Gäste. Dort werden Rennzeiten in Minuten, Sekunden und deren Bruchteilen gemessen. Es ist nahe liegend, dafür eine Struktur zu definieren, welche die Attribute Minuten und Sekunden aufweist:
 
-____
-STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer = +
-Minuten: 0 .. 9999.99 ++[++min++]++; +
-Sekunden: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
+  Minuten: 0 .. 9999.99 [min];
+  Sekunden: 0.00 .. 59.99 [s];
 END ZeitdauerInMinuten;
-____
+----
 
 Damit der Zusammenhang zwischen Minuten und Sekunden ausgedrückt werden kann, bietet sich eine zusätzliche Möglichkeit an:
 
-____
-STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer = +
-Minuten: 0 .. 9999.99 ++[++min++]++; +
-CONTINOUS SUBDIVISION Sekunden: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
+  Minuten: 0 .. 9999.99 [min];
+  CONTINOUS SUBDIVISION Sekunden: 0.00 .. 59.99 [s];
 END ZeitdauerInMinuten;
-____
+----
 
 Damit ist nichts darüber ausgesagt, in welcher Form solche Zeitdauern in einem Computer gespeichert werden. Es handelt sich nur um ein Mittel, möglichst konzeptnah zu beschrei­ben, was man wirklich will.
 
@@ -924,16 +972,17 @@ Das Gästeskirennen wird immer so gestaltet, dass selbst die Skilehrer sicher me
 
 Wie kann nun der zulässige Wertebereich (30 Sekunden bis 3 Minuten und 30 Sekunden) festgehalten werden? Die Lösung liegt in formatierten Wertebereichen:
 
-____
-DOMAIN ZeitdauerinMinSec = FORMAT BASED ON ZeitdauerInMinuten +
-( Minuten ":" Sekunden ); +
- +
-CLASS Rennzeit = +
-Vorname: TEXT++*++50; +
-Name: TEXT++*++50; +
-Laufzeit: FORMAT ZeitdauerinMinSec "0:30" .. "3:30"; +
+[source]
+----
+DOMAIN ZeitdauerinMinSec = FORMAT BASED ON ZeitdauerInMinuten
+  ( Minuten ":" Sekunden );
+
+CLASS Rennzeit =
+  Vorname: TEXT*50;
+  Name: TEXT*50;
+  Laufzeit: FORMAT ZeitdauerinMinSec "0:30" .. "3:30";
 END Rennzeit;
-____
+----
 
 Ein formatierter Wertebereich nimmt auf eine Struktur Bezug und legt fest, wie aus den einzelnen Attributen der Struktur und aus Textkonstanten eine Zeichenkette entsteht, die den Wert wiedergibt. In dieser Form können Wertebereichseinschränkungen festgelegt werden. Die formatierte Darstellung wird auch für den Datentransfer verwendet. Damit ist es zum Teil möglich, gewisse extern verlangte Darstellungsformen direkt zu unterstützen. Dies kann insbesondere für die XML-konforme Darstellung von Zeitdauern und Zeitpunkten genutzt werden.
 
@@ -1004,22 +1053,23 @@ image::img/image55.png[width=61,height=72] image:img/image56.png[width=84,height
 
 Die Schreibweise in INTERLIS ist der graphischen Darstellung nachempfunden. Der Rollen­name muss jedoch auch dann geschrieben werden, wenn er sich nicht vom Namen der Klasse unterscheidet.
 
-____
-ASSOCIATION = +
-Bergbahn -- Bergbahn; +
-Tarifbereich -- Tarifbereich; +
+[source]
+----
+ASSOCIATION =
+  Bergbahn -- Bergbahn;
+  Tarifbereich -- Tarifbereich;
 END;
 
-ASSOCIATION = +
-Betreiberin -++<>++ Bahngesellschaft; +
-Bergbahn -- Bergbahn; +
+ASSOCIATION =
+  Betreiberin -<> Bahngesellschaft;
+  Bergbahn -- Bergbahn;
 END;
 
-ASSOCIATION = +
-Bergbahn -++<++#++>++ Bergbahn; +
-Mast -- Mast; +
+ASSOCIATION =
+  Bergbahn -<#> Bergbahn;
+  Mast -- Mast;
 END;
-____
+----
 
 [#_6_13_3]
 ==== Beziehungen mit Attributen
@@ -1143,11 +1193,12 @@ Im konzeptuellen Modell sollen nur diejenigen impliziten Beziehungen beschrieben
 
 Von konzeptueller Bedeutung sind nicht zuletzt Beziehungen, die in einigen Fällen explizit definiert werden müssen und in anderen Fällen ableitbar sind. Die Ableitung kann sich auf die Geographie oder auf andere Eigenschaften abstützen. Beispielsweise führten die Ilistaler einen speziellen Tarifbereich ein, der als Fläche umschrieben ist und alle Bergbahnen umfasst, deren Tal- und Bergstation innerhalb der Fläche liegt.
 
-____
-CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich = +
-Gegend: AhlandFlaeche; +
+[source]
+----
+CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich =
+  Gegend: AhlandFlaeche;
 END TarifbereichInGegend;
-____
+----
 
 Die Beziehung zwischen diesem speziellen Tarifbereich und den Bergbahnen in der zuge­hörigen Gegend kann mit Sichten (vgl. Abschnitt 6.17) automatisch etabliert werden.
 
@@ -1159,15 +1210,16 @@ Die Beziehung zwischen diesem speziellen Tarifbereich und den Bergbahnen in der 
 
 Wir erinnern uns, dass die Ilishornbahnen für die einzelnen Bergbahnen jeweils den aktuel­len Zustand erfassen wollen, unter anderem das Wetter bei der Bergstation:
 
-____
-CLASS Zustandsmeldung = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
-Wartezeit: ZeitdauerInMinuten; +
-Erfasst: MANDATORY ZeitpunktMEZ; +
+[source]
+----
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
 END Zustandsmeldung;
-____
+----
 
 Mit dieser Definition wäre auch eine Meldung mit einer undefinierten Windrichtung und einer Windgeschwindigkeit von 60 km/h erlaubt. Das ist aber nicht die Meinung. Eine undefinierte Windrichtung soll Windstille bedeuten. Dann aber ist die Windgeschwindigkeit natürlich 0. Und umgekehrt soll bei einer Windgeschwindigkeit grösser Null immer auch die Windrichtung definiert sein.
 
@@ -1176,35 +1228,37 @@ Situationen, in denen zwischen verschiedenen Attributen eines Objektes oder gar 
 
 Eine Konsistenzbedingung wird in der Regel mit einer Formel beschrieben, deren Aus­wertung ergibt, ob die Bedingung erfüllt ist oder nicht. Mit einem solchen logischen Ausdruck kann die Windstille geregelt werden:
 
-____
-CLASS Zustandsmeldung = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
-Wartezeit: ZeitdauerInMinuten; +
-Erfasst: MANDATORY ZeitpunktMEZ; +
-MANDATORY CONSTRAINT +
-DEFINED (Windrichtung) == (Windgeschwindigkeit ++>++ 0); +
+[source]
+----
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+  MANDATORY CONSTRAINT
+    DEFINED (Windrichtung) == (Windgeschwindigkeit > 0);
 END Zustandsmeldung;
-____
+----
 
 Genau dann wenn die Windrichtung definiert ist, muss die Windgeschwindigkeit grösser Null sein. Ist die Windrichtung nicht definiert, muss die Geschwindigkeit Null sein. Es wird also gefordert, die «Definiertheit» der Windrichtung solle gleich (==) der «Positivheit» der Wind­geschwindigkeit sein.
 
 Häufig sind aber Konsistenzbedingungen vermeidbar, wenn das Modell anders aufgebaut wird. Packt man die Windangaben in eine Struktur und sagt, dass diese Struktur als Ganzes fakultativ ist, braucht es keine Konsistenzbedingung. Bei Windstille fehlt das Strukturelement. Windet es, sind zwingend Windrichtung und Windgeschwindigkeit vorhanden.
 
-____
-STRUCTURE Windangabe = +
-Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-Windgeschwindigkeit: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
 END Wind;
 
-CLASS Zustandsmeldung = +
-Temperatur: MANDATORY –50 .. 50 ++[++oC++]++; +
-Wind: Windangabe; +
-Wartezeit: ZeitdauerInMinuten; +
-Erfasst: MANDATORY ZeitpunktMEZ; +
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
 END Zustandsmeldung;
-____
+----
 
 [WARNING]
 Bei Konsistenzbedingungen – insbesondere wenn sie kompliziert sind – besteht immer der Verdacht, dass das optimale Modell noch nicht gefunden wurde. Andererseits macht es auch keinen Sinn, ein an sich einfaches Modell künstlich kompliziert zu machen, nur um eine Konsistenzbedingung zu vermeiden.
@@ -1218,15 +1272,16 @@ Konsistenzbedingungen gelten üblicherweise für alle Objekte der betreffenden K
 
 Bei Attributen wie Monatssalär oder Körpergrösse muss der grundsätzlich zulässige Bereich relativ gross gewählt werden. Die Werte der meisten Objekte liegen aber unterhalb einer wesentlich tieferen Grenze. Ausnahmen sind dennoch möglich, wie zum Beispiel für den Lohn des Bahndirektors.
 
-____
-ASSOCIATION Anstellung = +
-... +
-Monatssalaer: MANDATORY 0 .. 20000 ++[++Taler++]++; +
-... +
-CONSTRAINT ++>++= 95% +
-Monatssalaer ++<++ 10000; +
+[source]
+----
+ASSOCIATION Anstellung =
+  ...
+  Monatssalaer: MANDATORY 0 .. 20000 [Taler];
+  ...
+  CONSTRAINT >= 95%
+    Monatssalaer < 10000;
 END Anstellung;
-____
+----
 
 Es wird geschätzt, dass das Monatssalär in mindestens (++>++=) 95% aller Fälle unter 10000 Talern liegt. Umfasst ein Modell solche «weichen» Bedingungen, wird es möglich, Daten bei der Eingabe auf ihre Plausibilität zu prüfen und statistisch zu kontrollieren.
 
@@ -1235,13 +1290,14 @@ Es wird geschätzt, dass das Monatssalär in mindestens (++>++=) 95% aller Fäll
 
 Wie werden die Personen identifiziert, die bei Bergbahngesellschaften arbeiten oder an ihnen beteiligt sind? Nahe liegend, aber ungeeignet wäre es, hierzu Name und Vorname zu verwenden:
 
-____
-CLASS Person = +
-Name: TEXT++*++50; +
-Vorname: TEXT++*++20; +
-UNIQUE Name, Vorname; +
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  UNIQUE Name, Vorname;
 END Person;
-____
+----
 
 Es wäre dann unzulässig, zwei verschiedene Personen mit der gleichen Kombination von Name und Vorname aufzuführen. Der neue Lokomotivführer Hans Huber darf seine Arbeit also erst antreten, wenn zuvor sein Namensvetter in der Buchhaltung entlassen wird.
 
@@ -1262,14 +1318,15 @@ Künstliche Identifikatoren sind wo immer möglich zu vermeiden. Wo sie dennoch 
 
 Bei den Ilishornbahnen wurde dieses Problem auf simple Weise gelöst: Man hat einfach eine Personalnummer eingeführt. Stösst eine Person neu zu den Ilishornbahnen, wird ihr eine Nummer zugewiesen, die noch nicht vergeben ist.
 
-____
-CLASS Person = +
-Name: TEXT++*++50; +
-Vorname: TEXT++*++20; +
-Personalnummer: 1 .. 9999; +
-UNIQUE Personalnummer; +
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  Personalnummer: 1 .. 9999;
+  UNIQUE Personalnummer;
 END Person;
-____
+----
 
 Heikler würde die Sache, wenn die Klasse, durch die Personen beschrieben sind, nicht durch die Ilishornbahnen, sondern durch den nationalen Verband definiert wäre. Die Personal­nummern aller Personen im Rahmen des Verbandes müssten dann eindeutig sein – auch wenn sie dezentral erfasst werden. Gäbe es zwei gleiche Nummern (z.B. eine bei den Ilishornbahnen, eine bei den Blaubergbahnen), wäre die Bedingung verletzt.
 
@@ -1281,22 +1338,23 @@ Eine Bahngesellschaft kann mehrere Namen tragen. Es soll aber pro Sprache nur ei
 [NOTE]
 Weist ein Objekt Unterstrukturen auf, soll die Eindeutigkeit – anders als bei den eigentlichen Objekten – in der Regel nicht «global» für die Elemente von sämt­lichen Unterstrukturen gelten. Sie bezieht sich meist nur «lokal» auf die Unter­strukturelemente von einem einzigen Objekt.
 
-____
-STRUCTURE Bezeichnung = +
-Name: TEXT++*++100; +
-Sprache: TEXT++*++2; +
-END Bezeichnung; +
- +
-STRUCTURE Bahnbezeichung EXTENDS Bezeichnung = +
-Kurzbezeichnung: TEXT++*++10; +
-END Bahnbezeichnung; +
- +
-CLASS Bahngesellschaft = +
-Namen: BAG ++{++1..++*++} OF Bahnbezeichnung; +
-UNIQUE +
-(LOCAL) Namen : Sprache; +
+[source]
+----
+STRUCTURE Bezeichnung =
+  Name: TEXT*100;
+  Sprache: TEXT*2;
+END Bezeichnung;
+
+STRUCTURE Bahnbezeichung EXTENDS Bezeichnung =
+  Kurzbezeichnung: TEXT*10;
+END Bahnbezeichnung;
+
+CLASS Bahngesellschaft =
+  Namen: BAG {1..*} OF Bahnbezeichnung;
+  UNIQUE
+    (LOCAL) Namen : Sprache;
 END Bahngesellschaft;
-____
+----
 
 Wie aber erreicht man, dass die Kurzbezeichnungen der verschiedenen Bahnen nicht kolli­die­ren? Sowohl die Blaubergbahnen wie die Buntbergbahnen möchten doch primär einmal BBB heissen. In INTERLIS 2 können Konsistenzbedingungen nicht nur für Objektklassen bzw. lokale Strukturelemente, sondern auch für Sichten (vgl. Abschnitt 6.17) formuliert wer­den. Mit einer bestimmten Sicht können aus Strukturelementen quasi eigenständige Objekte gemacht werden. Für diese kann dann wieder eine Eindeutigkeitsbedingung formuliert wer­den.
 
@@ -1309,17 +1367,18 @@ Diesen Zusammenhang möchte man ausdrücken. Die Linien von INTERLIS 2 verbinden
 
 Mit der folgenden Definition muss sich jeder Punkt des Trasseeverlaufs auf die Lage eines Masts (Mast:Lage), die Lage der Talstation einer Bergbahn (Bergbahn:LageTalstation) oder (OR) die Lage der Bergstation einer Bergbahn (Bergbahn:LageBergstation) abstützen.
 
-____
-CLASS BodenunabhaengigeBahn EXTENDS Bergbahn = +
-EXISTENCE CONSTRAINT +
-Trasseeverlauf REQUIRED IN +
-Mast:Lage +
-OR +
-Bergbahn:LageTalstation +
-OR +
-Bergbahn:LageBergstation; +
+[source]
+----
+CLASS BodenunabhaengigeBahn EXTENDS Bergbahn =
+  EXISTENCE CONSTRAINT
+    Trasseeverlauf REQUIRED IN
+      Mast:Lage
+      OR
+      Bergbahn:LageTalstation
+      OR
+      Bergbahn:LageBergstation;
 END BodenunabhaengigeBahn;
-____
+----
 
 Solche Existenzbedingungen sind nicht nur im Zusammenhang mit Linien, sondern auch bei gewöhnlichen Attributen formulierbar. Konzeptuell können sie immer als eine schwache Form einer Beziehung betrachtet werden.
 
@@ -1330,17 +1389,18 @@ Bereits bei der Bergbahn selbst wurde eine Konsistenzbedingung formuliert: Der T
 
 Abschnitt 7.3 erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.
 
-____
-CLASS Bergbahn = +
-LageTalstation: Ahland.LandesKoord3; +
-LageBergstation: Ahland.LandesKoord3; +
-Trasseeverlauf: Ahland.LinieNormal; +
-MANDATORY CONSTRAINT +
-Trassee -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint == PARENT == LageTalstation +
-AND +
-Trassee -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint == PARENT == LageBergstation; +
+[source]
+----
+CLASS Bergbahn =
+  LageTalstation: Ahland.LandesKoord3;
+  LageBergstation: Ahland.LandesKoord3;
+  Trasseeverlauf: Ahland.LinieNormal;
+  MANDATORY CONSTRAINT
+    Trassee -> Segments[FIRST] -> SegmentEndPoint == PARENT == LageTalstation
+    AND
+    Trassee -> Segments[LAST] -> SegmentEndPoint == PARENT == LageBergstation;
 END Bergbahn;
-____
+----
 
 Was bedeutet eine solche Definition für allfällige Erweiterungen dieser Klasse?
 
@@ -1442,15 +1502,16 @@ Die wesentlichste Eigenschaft einer Sicht ist ihr *Bildungsgesetz.* Es legt fest
 
 Beispielsweise ist die Sicht «PersonMitAltersangabe» von der Objektklasse «Person» abgeleitet, der so genannten Basis. Eine einzelne PersonMitAltersangabe trägt dieselben Eigenschaften (ALL OF) mit genau denselben Werten wie die ursprüngliche Person. Zusätzlich fügt die Sicht aber noch eine weitere Eigenschaft «Alter» hinzu. Das Alter be­stimmt sich (:=) aus der Differenz von Jahrgang und laufendem Jahr.
 
-____
-VIEW PersonMitAltersangabe +
-PROJECTION OF Person; +
-= +
-ALL OF Person; +
-Alter: 0 .. 150 ++[++y++]++ := Difference (Person -++>++ Jahrgang, +
-PARAMETER laufendesJahr); +
+[source]
+----
+VIEW PersonMitAltersangabe
+  PROJECTION OF Person;
+=
+  ALL OF Person;
+  Alter: 0 .. 150 [y] := Difference (Person -> Jahrgang,
+    PARAMETER laufendesJahr);
 END PersonMitAltersangabe;
-____
+----
 
 In diesem Beispiel gibt es für jedes Objekt der Basisklasse genau ein virtuelles Sicht-Objekt, also zu jeder Person eine entsprechende PersonMitAltersangabe.
 
@@ -1470,15 +1531,16 @@ Aber welche Bergbahn liegt nun konkret in der Gegend von welchem Tarifbereich? A
 [NOTE]
 Das wohl wichtigste Bildungsgesetz einer Sicht ist die *Verbindung (JOIN)*. Sie verbindet mehrere Basisobjekte zu einem Sichtobjekt. Die Verbindung ist insbesondere als Basis für abgeleitete Beziehungen von Bedeutung.
 
-____
-VIEW BergbahnenInGegend +
-JOIN OF Bb ~ Bergbahn, +
-T ~ TarifbereichInGegend; +
-WHERE InSurface(Bb -++>++ LageTalstation, T -++>++ Gegend) AND +
-InSurface(Bb -++>++ LageBergstation, T -++>++ Gegend); +
-= +
+[source]
+----
+VIEW BergbahnenInGegend
+  JOIN OF Bb ~ Bergbahn,
+    T ~ TarifbereichInGegend;
+  WHERE InSurface(Bb -> LageTalstation, T -> Gegend) AND
+    InSurface(Bb -> LageBergstation, T -> Gegend);
+=
 END BergbahnenInGegend;
-____
+----
 
 Mit der Verbindung werden zunächst sämtliche Paare gebildet: Jedes Objekt der Klasse Bergbahn wird mit jedem Objekt der Klasse TarifbereichInGegend zu einem virtuellen Sicht­objekt verbunden.
 
@@ -1487,10 +1549,8 @@ Mit dem WHERE-Teil wird die Menge aller Sichtobjekte auf jene eingeschränkt, be
 [width="65%",cols="^32%,^21%,^47%",]
 |===
 |Bergbahn _Bb_ |Tarifbereich _T_ a|
-____
-Tal- und Bergstation von _Bb_ +
+Tal- und Bergstation von _Bb_
 in der Gegend von _T_?
-____
 
 |image:img/image70.png[width=56,height=24] |image:img/image71.png[width=54,height=31] |ja
 |image:img/image72.png[width=17,height=39] |image:img/image71.png[width=54,height=31] |ja
@@ -1510,14 +1570,15 @@ Gibt es zu einer Bergbahn keinen Tarifbereich, kommt sie in der Sicht nicht vor.
 
 Möchte man ein Verzeichnis aller Koordinaten von Tal- und Bergstationen, steht dem die Tatsache entgegen, dass diese Koordinaten als einzelne Attribute der Bergbahnen aufbewahrt sind. Mit der *Vereinigung (UNION)* können sie aber zu einer Menge von gleichberechtigten Sichtobjekten zusammengefasst werden.
 
-____
-VIEW StationsKoordinaten +
-UNION OF Talstation ~ Bergbahn, Bergstation ~ Bergbahn; +
-= +
-Koordinaten: Ahland.LandesKoord := Talstation -++>++ LageTalstation, +
-Bergstation -++>++ LageBergstation; +
+[source]
+----
+VIEW StationsKoordinaten
+  UNION OF Talstation ~ Bergbahn, Bergstation ~ Bergbahn;
+=
+  Koordinaten: Ahland.LandesKoord := Talstation -> LageTalstation,
+    Bergstation -> LageBergstation;
 END StationsKoordinaten;
-____
+----
 
 Die Menge der Sichtobjekte ist hier gleich der doppelten Menge der Bergbahnen. Einmal werden sie unter dem Aspekt Talstation, einmal unter dem Aspekt Bergstation ausgewertet. Das Attribut wird je nachdem gemäss dem Lageattribut von Tal- bzw. Bergstation gesetzt.
 
@@ -1528,18 +1589,19 @@ Die Menge der Sichtobjekte ist hier gleich der doppelten Menge der Bergbahnen. E
 
 Für die Billettkontrolle muss man bei jeder Bergbahn wissen, welche Billettarten gültig sind. Man möchte doch ein Verzeichnis aller Bergbahnen, in dem bei jeder Bergbahn die gültigen Billettarten aufgeführt sind. Losgelöst von den Basisdaten möchte man etwa folgendes Modell definieren:
 
-____
-CLASS Billettart = +
-Namen: BAG ++{++1..++*++} OF Bezeichnung; +
-Preis: 0.00 .. 5000.00 ++[++Ahland.Taler++]++; +
-Gueltigkeitsdauer: Zeitdauer; +
+[source]
+----
+CLASS Billettart =
+  Namen: BAG {1..*} OF Bezeichnung;
+  Preis: 0.00 .. 5000.00 [Ahland.Taler];
+  Gueltigkeitsdauer: Zeitdauer;
 END Billettart;
 
-CLASS Bergbahn = +
-Namen: BAG ++{++1..++*++} OF Bezeichnung; +
-GueltigeBillettarten: BAG OF Billettart; +
+CLASS Bergbahn =
+  Namen: BAG {1..*} OF Bezeichnung;
+  GueltigeBillettarten: BAG OF Billettart;
 END Bergbahn;
-____
+----
 
 Aber wie kann das nun aus den Originaldaten abgeleitet werden? Das ist gar nicht so ein­fach. Einer Bergbahn können mehrere Tarifbereiche zugeordnet sein, welchen ihrerseits wieder mehrere Billettarten zugeordnet sind. Zudem gibt es Tarifbereiche, die alle Berg­bahnen einer Gegend umfassen.
 
@@ -1547,33 +1609,35 @@ Der letzte Aspekt ist zum Glück schon erledigt, weil es eine abstrakte Beziehun
 
 Auf dieser Basis kann eine Sicht definiert werden, welche die Bergbahnen mit den Billett­arten verbindet:
 
-____
-VIEW BergbahnUndGueltigeBillettart +
-JOIN OF Bb ~ Bergbahn, +
-T ~ Tarifbereich, +
-Ba ~ Billettart, +
-G ~ Gueltigkeit; +
-WHERE (G -++>++ Bergbahn == Bb) AND (G -++>++ Tarifbereich == T) AND +
-(Ba -++>++ Tarifbereich == T); +
-= +
-BahnNamen: BAG ++{++1..++*++} OF Bezeichnung := Bb -++>++ Namen; +
-BillettNamen: BAG ++{++1..++*++} OF Bezeichnung := Ba -++>++ Namen; +
-Preis: 0.00 .. 5000.00 ++[++Ahland.Taler++]++ := Ba -++>++ Preis; +
-Gueltigkeitsdauer: Zeitdauer := Ba -++>++ Gueltigkeitsdauer; +
+[source]
+----
+VIEW BergbahnUndGueltigeBillettart
+  JOIN OF Bb ~ Bergbahn,
+    T ~ Tarifbereich,
+    Ba ~ Billettart,
+    G ~ Gueltigkeit;
+  WHERE (G -> Bergbahn == Bb) AND (G -> Tarifbereich == T) AND
+    (Ba -> Tarifbereich == T);
+=
+  BahnNamen: BAG {1..*} OF Bezeichnung := Bb -> Namen;
+  BillettNamen: BAG {1..*} OF Bezeichnung := Ba -> Namen;
+  Preis: 0.00 .. 5000.00 [Ahland.Taler] := Ba -> Preis;
+  Gueltigkeitsdauer: Zeitdauer := Ba -> Gueltigkeitsdauer;
 END BergbahnUndGueltigeBillettart;
-____
+----
 
 Diese Verbindung kombiniert Bergbahn und Billettart. Sie berücksichtigt dabei die Gültigkeits­beziehung und dass einer Billettart ein Tarifbereich zugeordnet ist, der mit jenem der Gültigkeits-Beziehung übereinstimmen muss. Damit ist das Ziel schon fast erreicht. Die zulässigen Kombinationen von Bergbahn und Billettart sind als Sichtobjekte verfügbar. Nur möchte man sie noch pro Bergbahn zusammenfassen:
 
-____
-VIEW AufBergbahnGueltigeBillettart +
-AGGREGATION OF BuGB ~ BergbahnUndGueltigeBillettart +
-EQUAL (BuGB -++>++ Bb); +
-= +
-BahnNamen: BAG ++{++1..++*++} OF Bezeichnung := BuGB -++>++ Bb -++>++ Namen; +
-Billettarten: BAG OF BergbahnUndGueltigeBillettart := AGGREGATES; +
+[source]
+----
+VIEW AufBergbahnGueltigeBillettart
+  AGGREGATION OF BuGB ~ BergbahnUndGueltigeBillettart
+    EQUAL (BuGB -> Bb);
+=
+  BahnNamen: BAG {1..*} OF Bezeichnung := BuGB -> Bb -> Namen;
+  Billettarten: BAG OF BergbahnUndGueltigeBillettart := AGGREGATES;
 END AufBergbahnGueltigeBillettart;
-____
+----
 
 Eine solche Zusammenfassung erfolgt mit einer Aggregation. Damit werden alle Objekte der Basissicht, die eine bestimmte Bedingung erfüllen (nämlich dass sie zur gleichen Bergbahn gehören), zu einem Sichtobjekt zusammengefasst. Die Menge aller ursprünglichen Sicht­objekte, die zu einem Ganzen zusammengefasst wurde, steht dabei für Strukturattribute zur Verfügung (AGGREGATES).
 
@@ -1582,14 +1646,15 @@ Eine solche Zusammenfassung erfolgt mit einer Aggregation. Damit werden alle Obj
 
 Bereits der nationale Verband hat die Sicht definiert, die alle gültigen Billettarten für jede Bergbahn aufführt (Sicht «AufBergbahnGueltigeBillettart», siehe oben). Die Ilistaler wollen diese Sicht auch benutzen. Sie möchten aber auch in dieser Sicht das Attribut Trasseeverlauf einbeziehen, das sie in der eigenen Erweiterung der Klasse Bergbahn definiert haben.
 
-____
-VIEW IhBBergbahnUndGueltigeBillettart +
-EXTENDS BergbahnUndGueltigeBillettart +
-BASE Bb EXTENDED BY IhBBb ~ IhBBergbahn +
-= +
-Trasseeverlauf := IhBBb -++>++ Trasseeverlauf; +
+[source]
+----
+VIEW IhBBergbahnUndGueltigeBillettart
+  EXTENDS BergbahnUndGueltigeBillettart
+  BASE Bb EXTENDED BY IhBBb ~ IhBBergbahn
+=
+  Trasseeverlauf := IhBBb -> Trasseeverlauf;
 END IhBBergbahnUndGueltigeBillettart;
-____
+----
 
 Mit der Definition einer zusätzlichen Basis (muss eine Erweiterung einer bisherigen Basis sein) stehen deren Attribute zur Verfügung. Beruht ein Sichtobjekt nicht auf dieser Erwei­terung (ist es also keine IhBBergbahn), ist das Attribut undefiniert.
 

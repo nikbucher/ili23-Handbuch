@@ -15,19 +15,21 @@ On ne souhaiterait toutefois pas avoir à se préoccuper du format de mémorisat
 
 Les tarifs s'échelonnant entre 10 et 635 couronnes, on pourrait écrire :
 
-____
+[source]
+----
 Prix: 10 .. 635;
-____
+----
 
 Ce faisant, on définirait aussi que le prix ne peut être ni inférieur à 10 couronnes ni supérieur à 635 couronnes, ce que l'on ne souhaiterait évidemment pas. 0 semble représenter une limite inférieure vraisemblable. Mais qu'en est-il de la limite supérieure ? Il est peu probable que le prix excède un jour 10'000 couronnes. Alors va pour 10'000 ? Lorsque les contraintes propres à une application ne permettent pas de définir une limite avec clarté, il n'y a aucun intérêt à choisir la valeur de telle manière qu'un format de mémorisation plus court (tel que _short integer_ acceptant des valeurs comprises entre –32768 et 32767) en devienne tout juste insuffisant.
 
 Dans le même ordre d'idées, il est également important de réfléchir au nombre de chiffres après la virgule nécessaires. Si les prix sont susceptibles d'intégrer des centimes, alors les limites sont à fixer avec deux décimales. Si l'on considère par exemple un attribut représentant un budget d'investissement, les sommes seront évidemment exprimées en millions de couronnes ; lorsqu'il ne s'agit que d'ordres de grandeur, deux chiffres sont suffisants. Mais ceux-ci peuvent se rapporter aux milliers, aux millions ou aux milliards.
 
-____
-Prix: 0.00 .. 9999.99; +
-Budget: 0.00E6 .. 999.99E6; +
+[source]
+----
+Prix: 0.00 .. 9999.99;
+Budget: 0.00E6 .. 999.99E6;
 ProduitNationalBrut : 0.0E0 .. 9.9E20;
-____
+----
 
 Le nombre de chiffres définit la précision : « 4.3 millions » (4.3E6 = 4.3 · 106) constitue une information moins précise que « 4300000 ».
 
@@ -36,14 +38,15 @@ Le nombre de chiffres définit la précision : « 4.3 millions » (4.3E6 = 4.3 
 
 S'agit-il maintenant de couronnes, de francs, d'euros ou de dollars ? L'unité est d'une importance capitale et pas seulement dans le cas de l'argent. C'est pourquoi il est recommandé de l'intégrer directement au type et non d'en faire un simple commentaire ou une partie du nom de l'attribut :
 
-____
-UNIT +
-Couronne EXTENDS MONEY; +
- +
-CLASS TypeBillet = +
-Prix: 0 .. 9999 ++[++Couronnes++]++; +
+[source]
+----
+UNIT
+  Couronne EXTENDS MONEY;
+
+CLASS TypeBillet =
+  Prix: 0 .. 9999 [Couronnes];
 END TypeBillet;
-____
+----
 
 Les couronnes (ou francs suisses, euros, dollars, etc.) sont définies comme unité et peuvent être utilisées lors de la définition d'un type numérique. La plupart des unités courantes (parmi lesquelles CHF, EUR, USD) n'ont cependant pas à être définies directement puisqu'elles existent déjà dans le modèle spécifique des unités (units.ili, cf. § 3.3).
 
@@ -55,11 +58,12 @@ Par souci de clarté, nous recommandons de toujours indiquer des unités. Outre 
 
 Comme il est acquis que les Remontées mécaniques de la Dent d'Ili n'émettront jamais de billets coûtant plus de mille couronnes, l'idée de le définir dans une classe particulière pourrait aisément germer :
 
-____
-CLASS TypeBillet (EXTENDED) = +
-Prix (EXTENDED): 0 .. 1000 ++[++Couronnes++]++; +
+[source]
+----
+CLASS TypeBillet (EXTENDED) =
+  Prix (EXTENDED): 0 .. 1000 [Couronnes];
 END TypeBillet;
-____
+----
 
 Cet exemple concret ne se justifie pas pleinement ici, mais dans certains cas en pratique, il est tout à fait judicieux de restreindre le domaine de valeurs hérité.
 
@@ -69,11 +73,12 @@ Une plage tarifaire allant de 0 .. 1000 constitue par conséquent une restrictio
 
 Les Ilinois veulent également avoir la possibilité d'émettre des billets dont le prix ne soit pas un nombre entier de couronnes mais réponde à la définition suivante :
 
-____
-CLASS TypeBillet (EXTENDED) = +
-Prix (EXTENDED): 0.00 .. 1000.00 ++[++Couronnes++]++; +
+[source]
+----
+CLASS TypeBillet (EXTENDED) =
+  Prix (EXTENDED): 0.00 .. 1000.00 [Couronnes];
 END TypeBillet;
-____
+----
 
 Est-elle compatible avec le modèle de base ? Oui, car chaque valeur respectant le modèle ilinois (7.35 par exemple) peut être arrondie à une valeur correcte (7 dans ce cas) du point de vue du modèle national.
 
@@ -88,51 +93,56 @@ Encore un dernier point : les unités de l'extension doivent toujours coïncider
 
 L'Association nationale peut-elle définir le prix admissible pour un billet ? Si les limites restent parfaitement inconnues, l'emploi d'attributs abstraits peut permettre de renoncer à leur indication. Il reste toutefois possible de définir une unité.
 
-____
-Prix (ABSTRACT): NUMERIC ++[++Beotie.Couronne++]++;
-____
+[source]
+----
+Prix (ABSTRACT): NUMERIC [Beotie.Couronne];
+----
 
 Et peut-être que l'unité elle-même reste floue. On sait seulement qu'il s'agit d'une unité monétaire (dans notre exemple).
 
-____
-Prix (ABSTRACT): NUMERIC ++[++MONEY++]++;
-____
+[source]
+----
+Prix (ABSTRACT): NUMERIC [MONEY];
+----
 
 L'unité est caractérisée si l'on procède de la sorte. Seules des unités concrétisant l'unité abstraite MONEY peuvent encore être définies dans le cadre d'une extension (cf. également § 5.4 pour ce qui concerne les propriétés abstraites).
 
-____
-Prix (EXTENDED): 0 .. 10000 ++[++CHF++]++; !! permis +
-Prix (EXTENDED): 0 .. 2000 ++[++USD++]++; !! permis +
-Prix (EXTENDED): 0 .. 1000 ++[++m++]++; !! interdit, le metre concretisant +
-!! la longueur (LENGTH) et non la +
-!! monnaie (MONEY).
-____
+[source]
+----
+Prix (EXTENDED): 0 .. 10000 [CHF]; !! permis
+Prix (EXTENDED): 0 .. 2000 [USD]; !! permis
+Prix (EXTENDED): 0 .. 1000 [m]; !! interdit, le metre concretisant
+                                 !! la longueur (LENGTH) et non la
+                                 !! monnaie (MONEY).
+----
 
 [#_6_2]
 === Types de remontées mécaniques – Modélisation de types et d'objets
 
 Il suffit, pour un bref aperçu, de subdiviser sommairement les remontées mécaniques (ou lignes de montagne) : chemin de fer à crémaillère, funiculaire, téléphérique, remonte-pente, télésiège, télécabine. Dans le cas le plus simple, le genre est défini comme un attribut textuel.
 
-____
-CLASS RemonteeMecanique = +
-Nom: TEXT++*++100; +
-Genre: TEXT++*++50; +
+[source]
+----
+CLASS RemonteeMecanique =
+  Nom: TEXT*100;
+  Genre: TEXT*50;
 END RemonteeMecanique;
-____
+----
 
 Il en résulte que la personne amenée à saisir les données bénéficiera d'une grande liberté au niveau de la description. Télébenne, téléski, skilift, ski-lift – il est à craindre que les désignations les plus diverses se mettent à fleurir. Une énumération permettra de l'éviter :
 
-____
-CLASS RemonteeMecanique = +
-Nom: TEXT++*++100; +
-Genre: (CheminFerCremaillere, +
-Funiculaire, +
-Telepherique, +
-Remonte++_++pente, +
-Telesiege, +
-Telecabine); +
+[source]
+----
+CLASS RemonteeMecanique =
+  Nom: TEXT*100;
+  Genre: (CheminFerCremaillere,
+          Funiculaire,
+          Telepherique,
+          Remonte_pente,
+          Telesiege,
+          Telecabine);
 END RemonteeMecanique;
-____
+----
 
 Toutes les possibilités offertes étant ainsi énumérées, l'ordre règne à nouveau. Mais parfois, il est nécessaire d'ajouter de nouveaux attributs tels que le nombre de places disponibles. Pour un funiculaire et un téléphérique, il s'agit de la capacité de la cabine entière, alors que le nombre de personnes par trajet est comptabilisé pour un remonte-pente ou un télésiège. Dans le cas du chemin de fer à crémaillère, plusieurs voitures peuvent être accouplées et cette indication a donc peu de signification. Mais c'est peut-être le système de la crémaillère qui présente de l'intérêt ici. La classe des remontées mécaniques doit-elle alors intégrer tous les attributs nécessaires à la description des différents genres ?
 
@@ -146,35 +156,36 @@ Il n'existe cependant pas de remontée mécanique qui soit simplement une remont
 
 Dans la notation textuelle d'INTERLIS 2, les classes abstraites sont signalées par la mention (ABSTRACT). En passant : «Units», le modèle INTERLIS des unités comporte une unité «CountedObjects» pour le décompte d'objets tels que le nombre de personnes à bord de la cabine d'un téléphérique.
 
-____
-CLASS RemonteeMecanique (ABSTRACT) = +
-Nom: Text ++*++ 100; +
-END RemonteeMecanique; +
- +
-CLASS CheminFerCremaillere EXTENDS RemonteeMecanique = +
-SystemeCremaillere : (Riggenbach, Abt, vonRoll); +
-END CheminFerCremaillere; +
- +
-CLASS Funiculaire EXTENDS RemonteeMecanique = +
-Capacite: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END Funiculaire; +
- +
-CLASS Telepherique EXTENDS RemonteeMecanique = +
-Capacite: 0 .. 999 ++[++Units.CountedObjects++]++; +
-END Telepherique; +
- +
-CLASS Remonte++_++pente EXTENDS RemonteeMecanique = +
-PersonnesParTrajet: 0 .. 10 ++[++Units.CountedObjects++]++; +
-END Remonte++_++pente; +
- +
-CLASS Telesiege EXTENDS RemonteeMecanique = +
-PersonnesParTrajet: 0 .. 24 ++[++Units.CountedObjects++]++; +
-END Telesiege; +
- +
-CLASS Telecabine EXTENDS RemonteeMecanique = +
-Capacite: 0 .. 99 ++[++Units.CountedObjects++]++; +
+[source]
+----
+CLASS RemonteeMecanique (ABSTRACT) =
+  Nom: Text * 100;
+END RemonteeMecanique;
+
+CLASS CheminFerCremaillere EXTENDS RemonteeMecanique =
+  SystemeCremaillere : (Riggenbach, Abt, vonRoll);
+END CheminFerCremaillere;
+
+CLASS Funiculaire EXTENDS RemonteeMecanique =
+  Capacite: 0 .. 999 [Units.CountedObjects];
+END Funiculaire;
+
+CLASS Telepherique EXTENDS RemonteeMecanique =
+  Capacite: 0 .. 999 [Units.CountedObjects];
+END Telepherique;
+
+CLASS Remonte_pente EXTENDS RemonteeMecanique =
+  PersonnesParTrajet: 0 .. 10 [Units.CountedObjects];
+END Remonte_pente;
+
+CLASS Telesiege EXTENDS RemonteeMecanique =
+  PersonnesParTrajet: 0 .. 24 [Units.CountedObjects];
+END Telesiege;
+
+CLASS Telecabine EXTENDS RemonteeMecanique =
+  Capacite: 0 .. 99 [Units.CountedObjects];
 END Telecabine;
-____
+----
 
 Un cheminot, tout spécialement convié à la réunion, a présenté un long exposé sur les chemins de fer à crémaillère. L'assistance a été abreuvée d'informations sur les différents systèmes de crémaillères en usage de par le monde, agrémentées d'un comparatif détaillé de leurs avantages et inconvénients respectifs. Les Ilinois en vinrent finalement à se demander quel rapport existait entre les systèmes de crémaillères et leur projet. Personne ne parvenait à s'imaginer l'importance que pourraient prendre ces informations un jour, même à l'occasion d'une éventuelle extension. En conséquence, le modèle proposé a été rejeté parce que jugé trop détaillé et générateur de coûts superflus, causés par la saisie et la gestion de données en fin de compte inutiles.
 
@@ -188,26 +199,28 @@ Cf. également § 5.1 pour la tentation d'aller trop loin dans les détails au n
 
 Trois couleurs ont été sélectionnées pour décrire sommairement le niveau de difficulté des pistes de ski : bleu, rouge et noir. Ces niveaux de difficultés, par ailleurs ordonnés, sont les seuls admis. Le bleu désigne une piste facile, le rouge une piste d'un niveau plus difficile et le noir est réservé aux pistes les plus exigeantes. Cette situation est décrite par la définition suivante :
 
-____
-CLASS Piste = +
-NiveauDifficulte : (bleu, rouge, noir : FINAL) ORDERED; +
+[source]
+----
+CLASS Piste =
+  NiveauDifficulte : (bleu, rouge, noir : FINAL) ORDERED;
 END Piste;
-____
+----
 
 Si la mention FINAL était omise, l'énumération pourrait être complétée dans le cadre d'une extension, ce qui pourrait présenter un intérêt pour le genre de remontée mécanique :
 
-____
-!! Modele de l'Association nationale des offices de tourisme +
-CLASS RemonteeMecanique = +
-Genre: (CheminFerCremaillere, Funiculaire, Telepherique, +
-Remonte++_++pente, Telesiege, Telecabine); +
-END RemonteeMecanique; +
- +
-!! Modele du Val d'Ili +
-CLASS Remontee++_++RDI EXTENDS RemonteeMecanique = +
-Genre (EXTENDED): (BusDesNeiges); +
-END Remontee++_++RDI;
-____
+[source]
+----
+!! Modele de l'Association nationale des offices de tourisme
+CLASS RemonteeMecanique =
+  Genre: (CheminFerCremaillere, Funiculaire, Telepherique,
+          Remonte_pente, Telesiege, Telecabine);
+END RemonteeMecanique;
+
+!! Modele du Val d'Ili
+CLASS Remontee_RDI EXTENDS RemonteeMecanique =
+  Genre (EXTENDED): (BusDesNeiges);
+END Remontee_RDI;
+----
 
 Dans la classe étendue, l'élément bus des neiges – une exclusivité du Val d'Ili – est rajouté à la fin de l'énumération existante. Mais que peut bien en faire l'Association nationale des offices de tourisme ? Pour elle, exclusivité ou pas, le «bus des neiges» est parfaitement inconnu.
 
@@ -216,9 +229,10 @@ Chaque extension (horizontale) peut être complétée par des valeurs supplémen
 
 Pour la classe de base, la valeur bus des neiges (comme toute autre valeur supplémentaire) se fond dans une masse indistincte : OTHER. Cependant, si la mention FINAL a été indiquée, OTHER n'est plus possible. Si une énumération est définie comme étant cyclique (*CIRCULAR*), de tels compléments ne sont jamais possibles puisque par cyclique, on entend que la première valeur de la liste fait à nouveau suite à la dernière, que l'on ne saurait d'ailleurs pas distinguer sans cela.
 
-____
+[source]
+----
 DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
-____
+----
 
 [#_6_3_2]
 ==== Sous-énumérations
@@ -227,15 +241,16 @@ Il a donc été décidé de ne pas modéliser les différents genres de remonté
 
 Il est possible de définir une sous-énumération pour chaque valeur d'une énumération. Cela peut s'effectuer directement au sein de la définition de base ou ultérieurement, dans le cadre d'une extension.
 
-____
-CLASS Remontee++_++RDI EXTENDS RemonteeMecanique = +
-Genre (EXTENDED): (CheminFerCremaillere (Riggenbach, Abt, vonRoll)); +
-END Remontee++_++RDI;
+[source]
+----
+CLASS Remontee_RDI EXTENDS RemonteeMecanique =
+  Genre (EXTENDED): (CheminFerCremaillere (Riggenbach, Abt, vonRoll));
+END Remontee_RDI;
 
-JourDeLaSemaine : (JourOuvrable (lundi, mardi, mercredi, +
-jeudi, vendredi, samedi), +
-dimanche);
-____
+JourDeLaSemaine : (JourOuvrable (lundi, mardi, mercredi,
+                                 jeudi, vendredi, samedi),
+                   dimanche);
+----
 
 Si une telle sous-énumération est définie dans une extension, elle est sans objet du point de vue de la base, de sorte que pour l'Association nationale des offices de tourisme, une voie à crémaillère Riggenbach est un chemin de fer à crémaillère comme un autre.
 
@@ -246,27 +261,30 @@ Les sous-énumérations peuvent à leur tour être étendues par des valeurs sup
 
 Les désignations peuvent fondamentalement comprendre des noms de longueur quelconque. L'Association nationale a cependant décidé que le nom d'une remontée mécanique devait comporter au plus 100 caractères. Les noms sont bien plus courts que cela en règle générale, on souhaitait simplement se donner une marge de sécurité suffisante.
 
-____
-STRUCTURE DesignationEntreprise EXTENDS Designation = +
-Nom (EXTENDED): TEXT++*++100; +
+[source]
+----
+STRUCTURE DesignationEntreprise EXTENDS Designation =
+  Nom (EXTENDED): TEXT*100;
 END DesignationEntreprise;
-____
+----
 
 Si la longueur d'un attribut textuel est quelconque ou reste totalement inconnue, on peut renoncer à indiquer cette information. En revanche, s'il est clair que la longueur sera fixée dans le cadre d'une extension de classe, l'attribut est à définir comme étant abstrait :
 
-____
+[source]
+----
 Description (ABSTRACT): TEXT;
-____
+----
 
 Une web-cam est installée sur certaines lignes du Val d'Ili, filmant en continu les alentours de la station supérieure afin que les touristes tentés de s'y rendre puissent voir si le jeu en vaut la chandelle. L'adresse Internet de l'image actuelle constitue également un type de texte (d'un genre un peu particulier toutefois).
 
-____
-CLASS Remontee++_++RDI = +
-... +
-ImageStationSuperieure: URI; +
-... +
-END Remontee++_++RDI;
-____
+[source]
+----
+CLASS Remontee_RDI =
+  ...
+  ImageStationSuperieure: URI;
+  ...
+END Remontee_RDI;
+----
 
 Contrairement aux apparences, les adresses Internet sont sans lien avec le canton suisse du même nom, tout au plus existe-t-il un lien avec le canton de Genève puisque c'est au CERN qu'a été développé le premier navigateur Internet. URI est ici l'abréviation d'_Uniform Resource Identifier._ Les URL (_Uniform Resource Locators)_ généralement utilisés pour les pages Internet sont une forme particulière d'URI.
 
@@ -283,13 +301,14 @@ Indéfini ne signifie pas simplement égal à 0 ou à toute autre valeur particu
 
 Dans INTERLIS 2, on écrira par exemple :
 
-____
-CLASS Meteo = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Meteo =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
 END Meteo;
-____
+----
 
 La température et la vitesse du vent sont donc obligatoires (MANDATORY). La direction du vent n'étant pas obligatoirement requise, elle est donc facultative. La valeur concrète de ce paramètre peut donc être indéfinie. Il est permis, dans des extensions, de rendre obligatoires des attributs facultatifs. En revanche, des attributs obligatoires ne peuvent pas devenir facultatifs puisque la valeur « indéfinie » n'est pas permise dans la classe de base.
 
@@ -298,30 +317,32 @@ La température et la vitesse du vent sont donc obligatoires (MANDATORY). La dir
 
 Les délais d'attente sur les remontées mécaniques et les durées des trajets correspondants sont indiqués en minutes.
 
-____
-CLASS RemonteeMecanique = +
-DureeTrajet: 0 .. 200 ++[++min++]++; +
+[source]
+----
+CLASS RemonteeMecanique =
+  DureeTrajet: 0 .. 200 [min];
 END RemonteeMecanique;
 
-CLASS EtatRemonteeMecanique = +
-DelaiAttente: 0 .. 200 ++[++min++]++; +
+CLASS EtatRemonteeMecanique =
+  DelaiAttente: 0 .. 200 [min];
 END EtatRemonteeMecanique;
-____
+----
 
 Ces deux propriétés peuvent accepter des valeurs issues du même domaine. Cette communauté peut être soulignée par un domaine de valeurs défini explicitement (DOMAIN) :
 
-____
-DOMAIN +
-DureeEnMinutes = 0 .. 200 ++[++min++]++;
+[source]
+----
+DOMAIN
+  DureeEnMinutes = 0 .. 200 [min];
 
-CLASS RemonteeMecanique = +
-DureeTrajet: DureeEnMinutes; +
+CLASS RemonteeMecanique =
+  DureeTrajet: DureeEnMinutes;
 END RemonteeMecanique;
 
-CLASS EtatRemonteeMecanique = +
-DelaiAttente: DureeEnMinutes; +
+CLASS EtatRemonteeMecanique =
+  DelaiAttente: DureeEnMinutes;
 END EtatRemonteeMecanique;
-____
+----
 
 [#_6_7]
 === Mais où se trouve le Val d'Ili ? – Types de coordonnées
@@ -333,13 +354,14 @@ La question « où ? » appelle une réponse liée à un lieu ponctuel du monde 
 
 Ainsi, il convient de définir, pour chacune des dimensions d'un type de coordonnées comme pour tout type numérique, le domaine dans lequel les valeurs admissibles peuvent évoluer de même que l'unité qui leur est associée.
 
-____
-Position: COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+Position: COORD 500.00 .. 91000.00 [m],
+                 700.00 .. 23000.00 [m];
 
-XPos: 500.00 .. 91000.00 ++[++m++]++; +
-YPos: 700.00 .. 23000.00 ++[++m++]++;
-____
+XPos: 500.00 .. 91000.00 [m];
+YPos: 700.00 .. 23000.00 [m];
+----
 
 La différence existant entre un attribut de position auquel un type de coordonnées est associé et des attributs numériques séparés pour les directions X et Y semble réduite à première vue. La définition en tant que type de coordonnées met cependant clairement en lumière le fait que les deux informations sont liées. Cette propriété est mise à profit par des logiciels bien souvent conçus pour représenter graphiquement des cordonnées cartésiennes.
 
@@ -373,10 +395,11 @@ image::img/image35.png[./media/image35,width=218,height=189]
 
 La carte est enfin recouverte d'un réseau de fines lignes perpendiculaires les unes aux autres : le *système de coordonnées* de la carte. En conséquence, le système de coordonnées sur lequel se fonde le type de coordonnées retenu est également à indiquer.
 
-____
-Pos: COORD 480000 .. 850000.00 ++[++m++]++ ++{++SysBeotie++[++1++]++}, +
-60000 .. 320000.00 ++[++m++]++ ++{++SysBeotie++[++2++]++};
-____
+[source]
+----
+Pos: COORD 480000 .. 850000.00 [m] {SysBeotie[1]},
+           60000 .. 320000.00 [m] {SysBeotie[2]};
+----
 
 La première coordonnée correspond au premier axe du système de coordonnées intitulé « SysBeotie », tandis que la seconde coordonnée correspond au second axe du même système.
 
@@ -389,73 +412,79 @@ Les données relatives à un métamodèle sont dites « méta- » englobantes en
 
 Dans les cas les plus simples, où le système de coordonnées auquel se réfèrent les coordonnées est sans ambiguïté, en raison du champ d'application et du domaine d'utilisation du modèle de données, il peut être renoncé à l'indication explicite de cette information. Il est toutefois judicieux de laisser transparaître le système de coordonnées, ne serait-ce que dans le nom du type des coordonnées.
 
-____
-CoordNational = COORD 500.00 .. 91000.00 ++[++m++]++, +
-700.00 .. 23000.00 ++[++m++]++;
+[source]
+----
+CoordNational = COORD 500.00 .. 91000.00 [m],
+                      700.00 .. 23000.00 [m];
 
 Pos: CoordNational;
-____
+----
 
 Les Ilinois ont préféré recourir à une définition précise pour exclure tout risque de confusion :
 
-____
-REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic +
-OBJECTS OF GeoCartesian2D: SysBeotie;
-____
+[source]
+----
+REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+  OBJECTS OF GeoCartesian2D: SysBeotie;
+----
 
 Ils ont défini leur système sur la base du modèle général de systèmes de coordonnées (CoordSys). C'est pourquoi un objet de la classe GeoCartesian2D, du nom de SysBeotie, a été introduit pour la planimétrie au sein des données correspondantes. L'existence de cette entrée de données est signalée dans le modèle par OBJECTS OF, de sorte que le système de coordonnées "SysBeotie" y est ainsi disponible. Lors de l'utilisation du système, le nom de l'ensemble de métadonnées (CoordSystems) ne doit être mentionné que si plusieurs ensembles de ce type sont définis dans la partie concernée de la modélisation.
 
-____
-CoordNational = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++CoordSystems.SysBeotie++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++CoordSystems.SysBeotie++[++2++]++};
-____
+[source]
+----
+CoordNational = COORD 500.00 .. 91000.00 [m] {CoordSystems.SysBeotie[1]},
+                      700.00 .. 23000.00 [m] {CoordSystems.SysBeotie[2]};
+----
 
 [#_6_7_4]
 ==== Différents systèmes de coordonnées
 
 Les Ilinois souhaiteraient également proposer leurs coordonnées sous forme de coordonnées géographiques exprimées dans le système mondial WGS84 afin qu'un service spécifique puisse être offert aux touristes disposant d'un capteur GPS basique.
 
-____
-WGS84Coord = COORD -90.00000 .. 90.00000 ++[++Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++};
+[source]
+----
+WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]};
 
-CLASS RemonteeMecanique = +
-PosStationInf: CoordNational; +
-PosStationInfWGS: WGS84Coord; +
-.... +
+CLASS RemonteeMecanique =
+  PosStationInf: CoordNational;
+  PosStationInfWGS: WGS84Coord;
+  ....
 END RemonteeMecanique;
-____
+----
 
 Il est cependant manifeste qu'un lien direct unit les deux attributs. Les coordonnées nationales peuvent être converties en coordonnées WGS84. La définition détaillée d'une telle conversion n'est toutefois pas du ressort de la description conceptuelle des données. Mais il est souhaitable d'indiquer que ces coordonnées peuvent être déduites les unes des autres par voie de calcul.
 
-____
-!! Conversion de coordonnees du systeme national beotien en WGS84. +
-!! Les fonctions sont abordees au paragraphe 7.2. +
+[source]
+----
+!! Conversion de coordonnees du systeme national beotien en WGS84.
+!! Les fonctions sont abordees au paragraphe 7.2.
 FUNCTION BeotieVersWGS84 (Bo: Beotie.CoordNational): WGS84Coord;
 
-CLASS RemonteeMecanique = +
-PosStationInf: Beotie.CoordNational; +
-WGSStationInferieure: WGS84Coord := BeotieVersWGS84 (PosStationInf); +
-.... +
+CLASS RemonteeMecanique =
+  PosStationInf: Beotie.CoordNational;
+  WGSStationInferieure: WGS84Coord := BeotieVersWGS84 (PosStationInf);
+  ....
 END RemonteeMecanique;
-____
+----
 
 [#_6_7_5]
 ==== Coordonnées tridimensionnelles
 
 Il va de soi que les skieurs et les randonneurs évoluant autour de la Dent d'Ili ne peuvent se satisfaire de coordonnées planimétriques. Si le coeur des skieurs se met à battre la chamade dès lors qu'on leur annonce de fortes dénivelées, une sourde angoisse étreint celui des randonneurs, la sueur leur perle sur le front et leurs genoux se dérobent soudain sous eux. Qu'elles soient synonymes de bonnes ou de mauvaises nouvelles, tout le monde veut connaître les altitudes ! En conséquence, les types de cordonnées peuvent également présenter trois dimensions.
 
-____
-CoordNational3 = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++SysBeotie++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++SysBeotie++[++2++]++}, +
-0.00 .. 9000.00 ++[++m++]++ ++{++SysBeotieAlt++[++1++]++};
+[source]
+----
+CoordNational3 = COORD 500.00 .. 91000.00 [m] {SysBeotie[1]},
+                       700.00 .. 23000.00 [m] {SysBeotie[2]},
+                       0.00 .. 9000.00 [m] {SysBeotieAlt[1]};
 
-WGS84Coord = COORD -90.00000 .. 90.00000 ++[++Angle++_++Degree++]++ ++{++WGS84++[++1++]++}, +
-0.00000 .. 359.99999 CIRCULAR ++[++Angle++_++Degree++]++ +
-++{++WGS84++[++2++]++}, +
--2000.00 .. 9000.00 ++[++m++]++ ++{++WGS84A++[++1++]++};
-____
+WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]},
+                   -2000.00 .. 9000.00 [m] {WGS84A[1]};
+----
 
 Les altitudes posent en outre un problème particulier : où se trouve l'altitude 0 ? Et comment déterminer l'altitude d'un point par rapport à cette cote 0 ? Les géodésiens établissent une distinction fondamentale entre les altitudes rapportées au champ de pesanteur terrestre (altitudes dites orthométriques ; l'altitude 0 peut être assimilée au niveau moyen des mers prolongé sous les continents) et celles rapportées à la figure géométrique modélisant la forme de la Terre, l'ellipsoïde (altitude ellipsoïdique ; l'altitude 0 correspond à la surface de l'ellipsoïde).
 
@@ -483,11 +512,12 @@ La conversion entre altitudes orthométriques et altitudes ellipsoïdiques peut 
 
 Comment exprimer un angle droit ? Par 90 degrés ou par pi / 2 ? Il ne s'agit que d'une question d'unité. Mais quand un angle est-il considéré comme étant positif et quand comme étant négatif ? Le sens de rotation (horaire ou anti-horaire) fait par conséquent partie de la définition d'un type d'angle.
 
-____
-DOMAIN +
-AngleDansLeSensHoraire = -179 .. 180 CIRCULAR CLOCKWISE; +
-AngleDansLeSensAnti-horaire = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
-____
+[source]
+----
+DOMAIN
+  AngleDansLeSensHoraire = -179 .. 180 CIRCULAR CLOCKWISE;
+  AngleDansLeSensAnti-horaire = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;
+----
 
 Lorsque nous nous trouvons au sommet de la Dent d'Ili, nous aimerions bien savoir dans quelle direction chercher la Dent Cambrée. A 50 degrés ? A 40 degrés ? Ou plutôt à 310 ?
 
@@ -501,14 +531,15 @@ En effet, tout dépend de la direction origine et du sens de rotation des direct
 image::img/image42.png[./media/image42,width=406,height=156]
 
 
-____
-CoordNational3 = COORD 500.00 .. 91000.00 ++[++m++]++ ++{++SysBeotie++[++1++]++}, +
-700.00 .. 23000.00 ++[++m++]++ ++{++SysBeotie++[++2++]++}, +
--200.00 .. 14000.00 ++[++m++]++ ++{++SysBeotieAlt++[++1++]++}, +
-ROTATION 2 -++>++ 1;
+[source]
+----
+CoordNational3 = COORD 500.00 .. 91000.00 [m] {SysBeotie[1]},
+                       700.00 .. 23000.00 [m] {SysBeotie[2]},
+                       -200.00 .. 14000.00 [m] {SysBeotieAlt[1]},
+                       ROTATION 2 -> 1;
 
-Direction = 0.0 .. 359.9 CIRCULAR ++[++Angle++_++Degre++]++ ++{++SysBeotie};
-____
+Direction = 0.0 .. 359.9 CIRCULAR [Angle_Degre] {SysBeotie};
+----
 
 [#_6_9]
 === Une piste est-elle une ligne ou une surface ? – Types géométriques
@@ -524,13 +555,14 @@ Pris dans ce sens, le type de ligne n'est rien d'autre qu'un type numérique ou 
 
 Avec INTERLIS, ou pourrait écrire :
 
-____
+[source]
+----
 LigneBeotie = POLYLINE VERTEX Beotie.CoordNational;
 
-CLASS Piste = +
-Trace: LigneBeotie; +
+CLASS Piste =
+  Trace: LigneBeotie;
 END Piste;
-____
+----
 
 Le tracé de la piste est décrit au moyen de lignes basées sur des coordonnées exprimées dans le système national béotien. En conséquence, les points d'appui des lignes dans le système national béotien prennent appui sur le type de coordonnées du système national.
 
@@ -547,9 +579,10 @@ image::img/image43.png[./media/image43,width=343,height=69]
 
 Il est toutefois judicieux d'indiquer les types de tronçons de lignes autorisés pour un type de ligne particulier :
 
-____
+[source]
+----
 LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Beotie.CoordNational;
-____
+----
 
 Cette définition INTERLIS 2 précise que les lignes du type indiqué peuvent comprendre des segments de droite et des arcs de cercles.
 
@@ -557,11 +590,12 @@ Dans de nombreux cas – dont les pistes font partie – il ne présente aucun i
 
 Le système de coordonnées national béotien utilisant le mètre comme unité, la définition ci-dessous permet des recouvrements n'excédant pas 2 centimètres :
 
-____
-LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Beotie.CoordNational +
-WITHOUT OVERLAPS ++>++ 0.02;
-____
+[source]
+----
+LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS)
+              VERTEX Beotie.CoordNational
+              WITHOUT OVERLAPS > 0.02;
+----
 
 .De petits recoupements sont parfois inévitables. La définition de la taille maximale d'un tel recouvrement (la flèche sur le graphique) fait partie intégrante du modèle.
 image::img/image44.png[./media/image44,width=234,height=105]
@@ -572,32 +606,34 @@ image::img/image44.png[./media/image44,width=234,height=105]
 
 Un skieur s'attend naturellement à ce que les tronçons de ligne de la piste reliant la Dent d'Ili à la Crête d'Ili commencent aux abords de la Dent d'Ili pour finir sur la Crête d'Ili. Ils souhaitent descendre la piste et non chausser les peaux de phoque pour la remonter ! La direction présente cependant peu d'intérêt pour la description d'autres objets (tels que des sentiers de randonnée). Lorsque la direction des lignes est d'importance, elle doit donc figurer dans le modèle conceptuel.
 
-____
+[source]
+----
 LigneBeotieOrientee = DIRECTED POLYLINE VERTEX Beotie.CoordNational;
 
-CLASS Piste = +
-Trace: LigneBeotieOrientee; +
+CLASS Piste =
+  Trace: LigneBeotieOrientee;
 END Piste;
-____
+----
 
 [#_6_9_4]
 ==== Surfaces
 
 Le service des pistes des Remontées mécaniques de la Dent d'Ili s'est demandé si la description des pistes répondait à ses besoins. Après réflexion, il a conclu qu'une représentation sous forme de surface était préférable afin que la définition des secteurs à préparer soit toujours parfaitement claire.
 
-____
-DOMAIN +
-LigneBeotieOrientee = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS) +
-VERTEX Beotie.CoordNational; +
- +
-SurfaceBeotie = SURFACE WITH (STRAIGHTS, ARCS) +
-VERTEX Beotie.CoordNational;
+[source]
+----
+DOMAIN
+  LigneBeotieOrientee = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS)
+                        VERTEX Beotie.CoordNational;
 
-CLASS Piste = +
-Trace: LigneBeotieOrientee; +
-Preparee: SurfaceBeotie; +
+  SurfaceBeotie = SURFACE WITH (STRAIGHTS, ARCS)
+                  VERTEX Beotie.CoordNational;
+
+CLASS Piste =
+  Trace: LigneBeotieOrientee;
+  Preparee: SurfaceBeotie;
 END Piste;
-____
+----
 
 Un peu avant l'arrivée sur la Crête d'Ili, un grand arbre occupe le milieu de la piste – ou, formulé différemment, la piste contourne l'arbre par la gauche et la droite.
 
@@ -614,15 +650,16 @@ Au sommet, sous la Dent d'Ili, différentes pistes débutent si près les unes d
 
 En conséquence, le service des pistes a opté pour une autre modélisation : les surfaces à préparer ne sont pas directement affectées aux pistes mais sont gérées comme des tronçons de pistes indépendants. Chacun de ces tronçons de pistes est une surface mais aucun recouvrement ne doit être permis entre tronçons, puisqu'une portion de terrain ne doit être préparée qu'une seule fois.
 
-____
-DOMAIN +
-PartitionTerritoireBeotie = AREA WITH (STRAIGHTS, ARCS) +
-VERTEX Beotie.CoordNational; +
- +
-CLASS EtatPiste = +
-SurfacePreparee: PartitionTerritoireBeotie; +
+[source]
+----
+DOMAIN
+  PartitionTerritoireBeotie = AREA WITH (STRAIGHTS, ARCS)
+                              VERTEX Beotie.CoordNational;
+
+CLASS EtatPiste =
+  SurfacePreparee: PartitionTerritoireBeotie;
 END EtatPiste;
-____
+----
 
 De telles surfaces exemptes de tout recouvrement étant relativement fréquentes, un type spécifique (intitulé AREA, soit aire) a été introduit dans INTERLIS. On ne parle alors plus de surfaces mais de partitions de territoires.
 
@@ -658,50 +695,54 @@ Le volume de travail requis par la saisie et la mise à jour devrait constituer 
 
 Peu avant la Crête d'Ili, les personnes assises sur le télésiège se mettent soudain à se couvrir les oreilles et à remonter leur col : le vent est vraiment cinglant ici. Dans le cas du vent, il importe non seulement de connaître sa vitesse mais également la direction dans laquelle il souffle. Si l'on se contente de réunir ces deux propriétés avec d'autres attributs dans le cadre d'une description de classe, elles perdent de leur vigueur.
 
-____
-CLASS Temps = +
-Temperature: MANDATORY -50 .. 50 ++[++oC++]++; +
-DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+CLASS Temps =
+  Temperature: MANDATORY -50 .. 50 [oC];
+  DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
 END Temps;
-____
+----
 
 En conséquence, lorsqu'une situation n'est pas décrite par une seule valeur mais par plusieurs, il est judicieux de définir une structure (InfoVent) englobant ces propriétés (direction du vent, vitesse du vent).
 
-____
-STRUCTURE InfoVent = +
-DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE InfoVent =
+  DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
 END InfoVent;
-____
+----
 
 Notions apparentées aux structures : types de données, types de données structurés, ...
 
 Cette structure peut être utilisée partout où un avis concernant le vent est émis.
 
-____
-CLASS Temps = +
-Temperature: MANDATORY -50 .. 50 ++[++oC++]++; +
-Vent: InfoVent; +
+[source]
+----
+CLASS Temps =
+  Temperature: MANDATORY -50 .. 50 [oC];
+  Vent: InfoVent;
 END Temps;
 
-CLASS Anemometre = +
-Lieu: MANDATORY CoordNational; +
-Vent: InfoVent; +
+CLASS Anemometre =
+  Lieu: MANDATORY CoordNational;
+  Vent: InfoVent;
 END Anemometre;
-____
+----
 
 [#_6_10_2]
 ==== Plusieurs éléments structurés
 
 L'anémomètre de la Crête d'ili est un peu particulier : il n'indique pas uniquement la valeur actuelle mais présente aussi les six dernières valeurs mesurées. Les gens n'en sont pas réchauffés pour autant mais sont généralement surpris de constater la vitesse à laquelle les changements peuvent se produire.
 
-____
-CLASS Anemometre = +
-Lieu: MANDATORY CoordNational; +
-Vent: LIST ++{++6} OF InfoVent; +
+[source]
+----
+CLASS Anemometre =
+  Lieu: MANDATORY CoordNational;
+  Vent: LIST {6} OF InfoVent;
 END Anemometre;
-____
+----
 
 L'attribut Vent englobe donc six éléments (valeurs de mesure incluant à chaque fois la direction et la vitesse du vent). Il est indiqué par LIST OF que l'ordre de succession a son importance (par exemple la valeur la plus récente en tête). Si l'ordre de succession était sans importance, on écrirait BAG OF. Le nombre d'éléments mimal et maximal qu'il est possible d'énumérer peut être précisé, comme dans le cas des relations.
 
@@ -724,26 +765,27 @@ Il est nécessaire, dans certains cas, de renvoyer vers un autre objet pour la d
 
 L'attribut du tracé de la piste (cf. § 6.9.1) est défini comme LigneBeotie, laquelle est à son tour définie comme une polyligne (POLYLINE). Une polyligne peut être comprise comme un ensemble de tronçons de lignes (cf. § 6.9.2). La définition en tant que polyligne n'est en fait qu'une notation abrégée pour un ensemble ordonné de structures, les éléments structurés correspondant à une définition spécifique :
 
-____
-STRUCTURE SegmentBeotie (ABSTRACT) = +
-SegmentEndPoint: MANDATORY Beotie.CoordNational; +
+[source]
+----
+STRUCTURE SegmentBeotie (ABSTRACT) =
+  SegmentEndPoint: MANDATORY Beotie.CoordNational;
 END SegmentBeotie;
 
-STRUCTURE StartSegmentBeotie EXTENDS SegmentBeotie (FINAL) = +
+STRUCTURE StartSegmentBeotie EXTENDS SegmentBeotie (FINAL) =
 END SegmentBeotie;
 
-STRUCTURE StraightSegmentBeotie EXTENDS SegmentBeotie (FINAL) = +
+STRUCTURE StraightSegmentBeotie EXTENDS SegmentBeotie (FINAL) =
 END StraightSegmentBeotie;
 
-STRUCTURE ArcSegmentBeotie EXTENDS SegmentBeotie (FINAL) = +
-ArcPoint: MANDATORY Beotie.CoordNational; +
-Rayon: Length; +
+STRUCTURE ArcSegmentBeotie EXTENDS SegmentBeotie (FINAL) =
+  ArcPoint: MANDATORY Beotie.CoordNational;
+  Rayon: Length;
 END ArcSegmentBeotie;
 
-CLASS Piste = +
-Trace: LIST ++{++2..++*++} OF SegmentBeotie; +
+CLASS Piste =
+  Trace: LIST {2..*} OF SegmentBeotie;
 END Piste;
-____
+----
 
 [#_6_11]
 === Comment s'exprime-t-on dans le Val d'Ili ? – Multilinguisme
@@ -769,25 +811,26 @@ Il est effectivement très facile d'agrandir une case sur le papier et d'y rajou
 
 Il vaut donc mieux que la langue effective n'apparaisse pas dans le modèle de données. Dans la nouvelle version suivante, un ensemble de désignations est affecté à une société de remontées mécaniques. La capacité à gérer plusieurs langues étant une demande fréquemment exprimée, la structure DesignationEntreprise hérite de la structure de base Designation qui englobe la langue et un texte.
 
-____
-STRUCTURE Designation = +
-Nom: TEXT; +
-Langue: TEXT++*++2; +
-END Designation; +
- +
-STRUCTURE DesignationEntreprise EXTENDS Designation = +
-Nom(EXTENDED): TEXT++*++100; +
-NomAbrege: TEXT++*++10; +
-END DesignationEntreprise; +
- +
-CLASS SocieteRemonteesMecaniques = +
-Noms: BAG ++{++1..++*++} OF DesignationEntreprise; +
+[source]
+----
+STRUCTURE Designation =
+  Nom: TEXT;
+  Langue: TEXT*2;
+END Designation;
+
+STRUCTURE DesignationEntreprise EXTENDS Designation =
+  Nom(EXTENDED): TEXT*100;
+  NomAbrege: TEXT*10;
+END DesignationEntreprise;
+
+CLASS SocieteRemonteesMecaniques =
+  Noms: BAG {1..*} OF DesignationEntreprise;
 END SocieteRemonteesMecaniques;
-____
+----
 
 Ou sous la forme d'un diagramme :
 
-.Plusieurs désignations sont affectées à une société de remontées mécaniques. Une entreprise pouvant posséder plusieurs noms, il est aisément possible d'enregistrer de nouveaux noms dans d'autres langues. Les détails de l'affectation (les informations telles que 1..++*++ ou le rectangle plein) seront abordés ultérieurement dans le contexte des relations.
+.Plusieurs désignations sont affectées à une société de remontées mécaniques. Une entreprise pouvant posséder plusieurs noms, il est aisément possible d'enregistrer de nouveaux noms dans d'autres langues. Les détails de l'affectation (les informations telles que 1..* ou le rectangle plein) seront abordés ultérieurement dans le contexte des relations.
 image::img/image50.png[./media/image50,width=292,height=114]
 
 
@@ -817,9 +860,10 @@ La désignation renvoie ainsi à la langue. Ce renvoi n'en constitue pas pour au
 
 L'Association nationale a prévu une solution simple, fondée sur un attribut pour la durée de validité des types de billets, basé sur le nombre de jours (avec un chiffre après la virgule).
 
-____
-DureeValidite : 0.0 .. 1000.0 ++[++d++]++;
-____
+[source]
+----
+DureeValidite : 0.0 .. 1000.0 [d];
+----
 
 Différentes questions se posent toutefois si l'on regarde les choses d'un peu plus près, comme les Ilinois comptent bien le faire :
 
@@ -843,46 +887,48 @@ A quoi pourrait alors ressembler une meilleure solution ?
 
 Des propriétés d'objets telles que la durée de validité ne peuvent pas toujours être décrites avec une précision suffisante par une valeur unique. Un groupe d'attributs est parfois requis et il peut même être judicieux de prévoir des extensions. La structure sert à cela.
 
-____
-STRUCTURE Duree (ABSTRACT) = +
-END Duree; +
- +
-STRUCTURE DureeAujourdHui EXTENDS Duree = +
-END DureeAujourdHui; +
- +
-STRUCTURE DureeEnJours EXTENDS Duree = +
-Duree: MANDATORY Jours ++[++d++]++; +
-END DureeEnJours; +
- +
-.... +
- +
-CLASS TypeBillet = +
-DureeValidite: Duree; +
+[source]
+----
+STRUCTURE Duree (ABSTRACT) =
+END Duree;
+
+STRUCTURE DureeAujourdHui EXTENDS Duree =
+END DureeAujourdHui;
+
+STRUCTURE DureeEnJours EXTENDS Duree =
+  Duree: MANDATORY Jours [d];
+END DureeEnJours;
+
+....
+
+CLASS TypeBillet =
+  DureeValidite: Duree;
 END TypeBillet;
-____
+----
 
 La durée de validité d'un type de billet donné est décrite par une instance (un élément structuré) de la structure DureeAujourdHui, DureeEnJours, DureeEnMois, etc. On pourrait même préciser la modélisation un peu plus en veillant à ce que l'unité d'un laps de temps explicite (jour, mois, etc.) soit toujours une durée et en définissant une énumération pour les durées implicites (semaine, saison, etc.) :
 
-____
-STRUCTURE Duree (ABSTRACT) = +
-END Duree; +
- +
-STRUCTURE DureeImplicite EXTENDS Duree = +
-LapsTemps: MANDATORY (Jour, Semaine, Mois, Annee); +
-END DureeImplicite; +
- +
-STRUCTURE DureeExplicite (ABSTRACT) EXTENDS Duree = +
-LapsTemps (ABSTRACT): MANDATORY NUMERIC ++[++TIME++]++; +
-END DureeExplicite; +
- +
-STRUCTURE DureeEnMinutes EXTENDS DureeExplicite = +
-LapsTemps (EXTENDED): MANDATORY 0 .. 200 ++[++Units.min++]++; +
-END DureeEnMinutes; +
- +
-STRUCTURE DureeEnJours EXTENDS DureeExplicite = +
-LapsTemps (EXTENDED): MANDATORY 0 .. 1000 ++[++d++]++; +
+[source]
+----
+STRUCTURE Duree (ABSTRACT) =
+END Duree;
+
+STRUCTURE DureeImplicite EXTENDS Duree =
+  LapsTemps: MANDATORY (Jour, Semaine, Mois, Annee);
+END DureeImplicite;
+
+STRUCTURE DureeExplicite (ABSTRACT) EXTENDS Duree =
+  LapsTemps (ABSTRACT): MANDATORY NUMERIC [TIME];
+END DureeExplicite;
+
+STRUCTURE DureeEnMinutes EXTENDS DureeExplicite =
+  LapsTemps (EXTENDED): MANDATORY 0 .. 200 [Units.min];
+END DureeEnMinutes;
+
+STRUCTURE DureeEnJours EXTENDS DureeExplicite =
+  LapsTemps (EXTENDED): MANDATORY 0 .. 1000 [d];
 END DureeEnJours;
-____
+----
 
 .Modélisation détaillée des durées à l'aide de structures. Il est ainsi possible que la durée de validité d'un billet soit d'un mois (DureeImplicite; à gauche) ou de trente jours exactement (DureeEnJours; à droite), selon les besoins.
 image::img/image52.png[./media/image52,width=489,height=187]
@@ -896,21 +942,23 @@ Une modélisation précise, détaillée et appropriée est fondamentalement à p
 
 Les durées ne concernent pas uniquement les billets. Tous les vendredis, les Ilinois organisent une compétition de ski ouverte aux hôtes de la station. Les temps de parcours sont mesurés en minutes, secondes et centièmes de secondes. Il est tout naturel de définir une structure à cette fin, présentant les attributs Minutes et Secondes :
 
-____
-STRUCTURE DureeEnMinutes EXTENDS Duree = +
-Minutes: 0 .. 9999.99 ++[++min++]++; +
-Secondes: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE DureeEnMinutes EXTENDS Duree =
+  Minutes: 0 .. 9999.99 [min];
+  Secondes: 0.00 .. 59.99 [s];
 END DureeEnMinutes;
-____
+----
 
 Afin que le lien entre les minutes et les secondes puisse être exprimé, une possibilité supplémentaire est proposée :
 
-____
-STRUCTURE DureeEnMinutes EXTENDS Duree = +
-Minutes: 0 .. 9999.99 ++[++min++]++; +
-CONTINOUS SUBDIVISION Secondes: 0.00 .. 59.99 ++[++s++]++; +
+[source]
+----
+STRUCTURE DureeEnMinutes EXTENDS Duree =
+  Minutes: 0 .. 9999.99 [min];
+  CONTINOUS SUBDIVISION Secondes: 0.00 .. 59.99 [s];
 END DureeEnMinutes;
-____
+----
 
 Aucune indication n'est fournie sur la manière dont de telles durées peuvent être mémorisées par un ordinateur. Il ne s'agit que d'un moyen destiné à décrire ce que l'on souhaite, au plus près possible du concept.
 
@@ -921,16 +969,17 @@ La compétition de ski ouverte aux hôtes de la station est toujours organisée 
 
 Comment le domaine des valeurs admissibles (de 30 secondes à 3 minutes et 30 secondes) peut-il à présent être défini ? La solution réside dans des domaines de valeurs formatés :
 
-____
-DOMAIN DureeenMinSec = FORMAT BASED ON DureeenMinutes +
-( Minutes ":" Secondes ); +
- +
-CLASS TempsDescente = +
-Prenom: TEXT++*++50; +
-Nom: TEXT++*++50; +
-TempsParcours: FORMAT DureeenMinSec "0:30" .. "3:30"; +
+[source]
+----
+DOMAIN DureeenMinSec = FORMAT BASED ON DureeenMinutes
+  ( Minutes ":" Secondes );
+
+CLASS TempsDescente =
+  Prenom: TEXT*50;
+  Nom: TEXT*50;
+  TempsParcours: FORMAT DureeenMinSec "0:30" .. "3:30";
 END TempsDescente;
-____
+----
 
 Un domaine de valeurs formaté prend appui sur une structure et indique comment une chaîne de caractères reproduisant la valeur résulte des différents attributs de la structure et de constantes textuelles. Des restrictions de domaines de valeurs peuvent être définies sous cette forme. La représentation formatée est également utilisée pour le transfert de données. Il est ainsi possible, au moins partiellement, d'accepter directement certaines formes de représentation requises en externe. Ce recours peut notamment être utilisé pour la représentation conforme à XML de durées et d'instants.
 
@@ -965,20 +1014,21 @@ Dans la relation liant la société de remontées mécaniques à une ligne parti
 
 Sur le graphique, le nom du rôle figure à l'extrémité du trait de relation, du côté de son détenteur, mais il est généralement omis lorsqu'il est identique au nom de la classe.
 
-____
-ASSOCIATION = +
-Exploitant -- ++{++1} SocieteRemonteesMecaniques; +
-Ligne++_++Remontee -- ++{*++} RemonteeMecanique; +
+[source]
+----
+ASSOCIATION =
+  Exploitant -- {1} SocieteRemonteesMecaniques;
+  Ligne_Remontee -- {*} RemonteeMecanique;
 END;
-____
+----
 
 Figure 48 : Il est possible, selon ce modèle, de s'enquérir de l'exploitant d'une remontée mécanique. « Exploitant » est un _rôle_ que la classe des « sociétés de remontées » mécaniques endosse vis-à-vis de la classe des « remontées mécaniques ». La relation liant la société de remontées mécaniques et la ligne (remontée mécanique) est indiquée en dessous en notation INTERLIS.
 
 Il est parfaitement normal que le choix des noms de rôles se porte sur des noms identiques à ceux des classes. Dans la relation liant par exemple une remontée mécanique à une zone tarifaire, introduire des noms supplémentaires présente peu d'intérêt. Il en va toutefois différemment lorsqu'une relation lie des objets de la même classe et les noms supplémentaires sont alors bien utiles. On souhaiterait par ailleurs représenter le fait qu'une société de remontées mécaniques possède d'autres entreprises qui sont alors ses filiales.
 
-ASSOCIATION = +
-Filiale -- ++{*++} SocieteRemonteesMecaniques; +
-Mere -- ++{++0..1} SocieteRemonteesMecaniques; +
+ASSOCIATION =
+  Filiale -- {*} SocieteRemonteesMecaniques;
+  Mere -- {0..1} SocieteRemonteesMecaniques;
 END;
 
 Figure 49 : Une société de remontées mécaniques peut aussi bien être la société mère d'une autre entreprise de transport que l'une de ses filiales. Dans de tels cas, le nom de classe n'est plus approprié en tant que nom de rôle. L'exemple ci-dessus est présenté à gauche dans le formalisme graphique UML et à droite en notation textuelle INTERLIS.
@@ -1003,22 +1053,23 @@ image::img/image55.png[./media/image55,width=102,height=72] image:img/image56.pn
 
 La notation INTERLIS est très proche de la représentation graphique. Le nom du rôle doit cependant être figuré lorsqu'il se distingue du nom de la classe.
 
-____
-ASSOCIATION = +
-RemonteeMecanique -- RemonteeMecanique; +
-ZoneTarifaire -- ZoneTarifaire; +
+[source]
+----
+ASSOCIATION =
+  RemonteeMecanique -- RemonteeMecanique;
+  ZoneTarifaire -- ZoneTarifaire;
 END;
 
-ASSOCIATION = +
-Exploitant -++<>++ SocieteRemonteesMecaniques; +
-RemonteeMecanique -- RemonteeMecanique; +
+ASSOCIATION =
+  Exploitant -<> SocieteRemonteesMecaniques;
+  RemonteeMecanique -- RemonteeMecanique;
 END;
 
-ASSOCIATION = +
-RemonteeMecanique –++<++#++>++ RemonteeMecanique; +
-Pylone -- Pylone; +
+ASSOCIATION =
+  RemonteeMecanique –<#> RemonteeMecanique;
+  Pylone -- Pylone;
 END;
-____
+----
 
 [#_6_13_3]
 ==== Relations avec attributs
@@ -1027,13 +1078,13 @@ Des billets de divers types donnent le droit d'emprunter des remontées mécaniq
 
 Les relations peuvent également se voir affecter des attributs de sorte qu'elles peuvent être conçues comme des classes d'un genre un peu spécifique.
 
-ASSOCIATION Pourcentage = +
-Participant -- ++{*++} SocieteRemonteesMecaniques; +
-TypeBillet -- ++{*++} TypeBillet; +
- +
-ATTRIBUTE +
-Pourcentage: 0.00 .. 100.00 ++[++Units.Percent++]++; +
- +
+ASSOCIATION Pourcentage =
+  Participant -- {*} SocieteRemonteesMecaniques;
+  TypeBillet -- {*} TypeBillet;
+
+  ATTRIBUTE
+    Pourcentage: 0.00 .. 100.00 [Units.Percent];
+
 END Pourcentage;
 
 Figure 51 : Une société de remontées mécaniques se voit rétrocéder un pourcentage prédéfini du produit de la vente d'un type de billet donné qui n'est une propriété ni de l'entreprise de transport, ni du type de billet mais bien de la relation qui les unit. De telles situations sont modélisées par l'intermédiaire de classes relationnelles.
@@ -1043,14 +1094,14 @@ Figure 51 : Une société de remontées mécaniques se voit rétrocéder un pour
 
 Désireuse d'avoir une vue d'ensemble plus fine de la vente des billets, l'Association nationale souhaiterait pouvoir connaître la ventilation des ventes des différents types de billets, point de vente par point de vente et saison par saison.
 
-ASSOCIATION Vente = +
-PointVente –- ++{*++} PointVente; +
-Saison –- ++{*++} Saison; +
-TypeBillet –- ++{*++} TypeBillet;
+ASSOCIATION Vente =
+  PointVente –- {*} PointVente;
+  Saison –- {*} Saison;
+  TypeBillet –- {*} TypeBillet;
 
-ATTRIBUTE +
-Nombre: 1 .. 999999 ++[++Units.CountedObjects++]++; +
-Montant: 0.00 .. 9999999.99 ++[++Beotie.Couronne++]++;
+  ATTRIBUTE
+    Nombre: 1 .. 999999 [Units.CountedObjects];
+    Montant: 0.00 .. 9999999.99 [Beotie.Couronne];
 
 END Vente;
 
@@ -1058,7 +1109,7 @@ Figure 52 : La vente est ventilée par points de vente, types de billets et sais
 
 Il existe donc une relation d'égal à égal liant les points de vente, les types de billets et les saisons à laquelle sont en plus affectés deux attributs, à savoir le nombre de billets vendus et le montant encaissé. Cette relation ne lie donc plus deux mais trois classes.
 
-Mais que signifient alors les informations de cardinalité pour de telles relations ? S'agissant par exemple de la saison, la cardinalité (++*++) nous apprend qu'il peut exister un nombre quelconque d'affectations aux saisons pour une combinaison donnée de type de billet et de point de vente. Si une cardinalité de valeur 1 avait été indiquée à la place, cela aurait signifié qu'un seul type de billet aurait pu être vendu par un seul point de vente durant une seule saison.
+Mais que signifient alors les informations de cardinalité pour de telles relations ? S'agissant par exemple de la saison, la cardinalité (*) nous apprend qu'il peut exister un nombre quelconque d'affectations aux saisons pour une combinaison donnée de type de billet et de point de vente. Si une cardinalité de valeur 1 avait été indiquée à la place, cela aurait signifié qu'un seul type de billet aurait pu être vendu par un seul point de vente durant une seule saison.
 
 C'est un peu compliqué, je vous l'accorde. Mais avons-nous réellement besoin de relations multiples ? Ne pourrait-on pas les réduire à des relations duales ordinaires ?
 
@@ -1142,11 +1193,12 @@ Le modèle conceptuel ne doit décrire que les relations implicites d'importance
 
 Les relations à définir explicitement dans certains cas et dérivables dans d'autres revêtent une grande importance au plan conceptuel. La dérivation peut se fonder sur la position géographique comme sur d'autres propriétés. Les Ilinois ont par exemple introduit une zone tarifaire spéciale, décrite par une surface et englobant toutes les remontées mécaniques dont les stations inférieure et supérieure se situent dans ses limites.
 
-____
-CLASS ZoneTarifaireDansSecteur EXTENDS NatTour.Billets.ZoneTarifaire = +
-Secteur: SurfaceBeotie; +
+[source]
+----
+CLASS ZoneTarifaireDansSecteur EXTENDS NatTour.Billets.ZoneTarifaire =
+  Secteur: SurfaceBeotie;
 END ZoneTarifaireDansSecteur;
-____
+----
 
 La relation entre cette zone tarifaire spéciale et les remontées mécaniques du secteur considéré peut être automatiquement établie au moyen de vues (cf. § 6.17).
 
@@ -1158,15 +1210,16 @@ La relation entre cette zone tarifaire spéciale et les remontées mécaniques d
 
 Vous vous souvenez que les Remontées mécaniques de la Dent d'Ili souhaitent pouvoir saisir l'état actuel de chacune de leurs lignes et entre autres les conditions météo prévalant à la station supérieure :
 
-____
-CLASS MessageEtat = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
-DelaiAttente: DureeEnMinutes; +
-Saisi: MANDATORY InstantHEC; +
+[source]
+----
+CLASS MessageEtat =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
+  DelaiAttente: DureeEnMinutes;
+  Saisi: MANDATORY InstantHEC;
 END MessageEtat;
-____
+----
 
 Avec cette définition, un message indiquant qu'un vent souffle d'une direction indéfinie à une vitesse de 60 km/h serait possible. Mais ce n'est pas vraiment le but recherché. Une direction du vent indéfinie doit impliquer le calme plat, c'est à dire un vent de vitesse nulle. Et inversement, dès lors que la vitesse du vent n'est pas nulle, une direction doit lui être attribuée.
 
@@ -1175,35 +1228,37 @@ Des situations dans lesquelles un lien préétabli doit exister entre différent
 
 Une règle d'intégrité est d'ordinaire décrite au moyen d'une formule dont l'exploitation révèle si la règle est respectée ou non. Le calme plat peut donc être régi par une expression logique du type suivant :
 
-____
-CLASS MessageEtat = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
-DelaiAttente: DureeEnMinutes; +
-Saisi: MANDATORY InstantHEC; +
-MANDATORY CONSTRAINT +
-DEFINED (DirectionVent) == (VitesseVent ++>++ 0); +
+[source]
+----
+CLASS MessageEtat =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
+  DelaiAttente: DureeEnMinutes;
+  Saisi: MANDATORY InstantHEC;
+  MANDATORY CONSTRAINT
+    DEFINED (DirectionVent) == (VitesseVent > 0);
 END MessageEtat;
-____
+----
 
 Si la direction du vent est définie, alors sa vitesse doit être supérieure à zéro. Si la direction du vent est indéfinie, sa vitesse doit être nulle. Il est par conséquent exigé que l'on mette sur un pied d'égalité (==) le fait que la direction du vent est définie et le fait que la vitesse du vent est supérieure à zéro.
 
 Cependant, les règles d'intégrité peuvent fréquemment être évitées en structurant le modèle différemment. Si l'on intègre les informations relatives au vent au sein d'une structure que l'on définit comme un tout facultatif, plus aucune règle d'intégrité n'est nécessaire. L'élément structuré fait défaut en cas de calme plat et s'il vente, la direction et la vitesse du vent sont nécessaires disponibles.
 
-____
-STRUCTURE InfoVent = +
-DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR; +
-VitesseVent: MANDATORY 0 .. 200 ++[++kmh++]++; +
+[source]
+----
+STRUCTURE InfoVent =
+  DirectionVent: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  VitesseVent: MANDATORY 0 .. 200 [kmh];
 END Vent;
 
-CLASS MessageEtat = +
-Temperature: MANDATORY –50 .. 50 ++[++oC++]++; +
-Vent: InfoVent; +
-DelaiAttente: DureeEnMinutes; +
-Saisi: MANDATORY InstantHEC; +
+CLASS MessageEtat =
+  Temperature: MANDATORY –50 .. 50 [oC];
+  Vent: InfoVent;
+  DelaiAttente: DureeEnMinutes;
+  Saisi: MANDATORY InstantHEC;
 END MessageEtat;
-____
+----
 
 [WARNING]
 La présence de règles d'intégrité – tout particulièrement si elles sont complexes – fait toujours peser un soupçon sur le niveau d'optimisation du modèle. D'un autre côté, il n'y a vraiment aucun intérêt à compliquer artificiellement un modèle simple dans l'unique but d'éviter une règle d'intégrité.
@@ -1217,30 +1272,32 @@ Les règles d'intégrité s'appliquent généralement à tous les objets de la c
 
 S'agissant d'attributs tels que le salaire mensuel ou la taille d'une personne, le domaine d'admissibilité retenu doit être relativement étendu. Les valeurs de la plupart des objets se concentrent cependant dans un domaine bien plus restreint. Des exceptions sont toutefois possibles, cas par exemple du salaire du directeur.
 
-____
-ASSOCIATION Salariat = +
-... +
-SalaireMensuel: MANDATORY 0 .. 20000 ++[++Couronnes++]++; +
-... +
-CONSTRAINT ++>++= 95% +
-SalaireMensuel ++<++ 10000; +
+[source]
+----
+ASSOCIATION Salariat =
+  ...
+  SalaireMensuel: MANDATORY 0 .. 20000 [Couronnes];
+  ...
+  CONSTRAINT >= 95%
+    SalaireMensuel < 10000;
 END Salariat;
-____
+----
 
-On estime que le salaire mensuel est inférieur à 10'000 couronnes dans au moins (++>++=) 95% des cas. Si un modèle intègre de telles conditions « souples », la plausibilité des données entrées peut être vérifiée et un contrôle statistique effectué.
+On estime que le salaire mensuel est inférieur à 10'000 couronnes dans au moins (>=) 95% des cas. Si un modèle intègre de telles conditions « souples », la plausibilité des données entrées peut être vérifiée et un contrôle statistique effectué.
 
 [#_6_14_3]
 ==== Conditions d'unicité
 
 Comment les salariés ou les actionnaires des entreprises de transport en montagne sont-ils identifiés ? Il serait très tentant mais inapproprié d'utiliser le nom et le prénom à cet effet :
 
-____
-CLASS Personne = +
-Nom: TEXT++*++50; +
-Prenom: TEXT++*++20; +
-UNIQUE Nom, Prenom; +
+[source]
+----
+CLASS Personne =
+  Nom: TEXT*50;
+  Prenom: TEXT*20;
+  UNIQUE Nom, Prenom;
 END Personne;
-____
+----
 
 Il ne serait donc pas permis d'enregistrer deux personnes différentes possédant le même nom et le même prénom. Ainsi, le nouveau conducteur de locomotive Jean Martin ne pourrait être embauché qu'une fois son homonyme de la comptabilité limogé.
 
@@ -1261,14 +1318,15 @@ Les identificateurs artificiels sont autant que possible à éviter. Lorsqu'ils 
 
 Ce problème a été résolu d'une manière très simple pour les Remontées mécaniques de la Dent d'Ili, en introduisant tout bêtement un numéro personnel. Dès qu'une personne rejoint les Remontées mécaniques de la Dent d'Ili, un numéro non encore attribué lui est affecté.
 
-____
-CLASS Personne = +
-Nom: TEXT++*++50; +
-Prenom: TEXT++*++20; +
-NumeroPersonnel: 1 .. 9999; +
-UNIQUE NumeroPersonnel; +
+[source]
+----
+CLASS Personne =
+  Nom: TEXT*50;
+  Prenom: TEXT*20;
+  NumeroPersonnel: 1 .. 9999;
+  UNIQUE NumeroPersonnel;
 END Personne;
-____
+----
 
 Les choses deviendraient plus délicates si la classe par laquelle les personnes sont décrites était définie non pas par les Remontées mécaniques de la Dent d'Ili mais par l'Association nationale. Les numéros affectés à toutes les personnes dans le cadre de l'Association devraient alors être uniques – même en cas de saisie décentralisée. L'existence de deux numéros identiques (par exemple un pour les Remontées mécaniques de la Dent d'Ili et l'autre pour les Remontées mécaniques des montagnes bleues) signifierait la violation de la condition.
 
@@ -1280,22 +1338,23 @@ Une société de remontées mécaniques peut porter plusieurs noms, mais il ne d
 [NOTE]
 Si un objet comporte des sous-structures, l'unicité ne doit généralement pas s'appliquer « globalement » aux éléments de l'ensemble des sous-structures, au contraire du cas des objets effectifs. Elle ne se rapporte d'ordinaire que « localement » aux éléments de sous-structure d'un seul objet.
 
-____
-STRUCTURE Designation = +
-Nom: TEXT++*++100; +
-Langue: TEXT++*++2; +
-END Designation; +
- +
-STRUCTURE DesignationEntreprise EXTENDS Designation = +
-NomAbrege: TEXT++*++10; +
-END DesignationEntreprise; +
- +
-CLASS SocieteRemonteesMecaniques = +
-Noms: BAG ++{++1..++*++} OF DesignationEntreprise; +
-UNIQUE +
-(LOCAL) Noms : Langue; +
+[source]
+----
+STRUCTURE Designation =
+  Nom: TEXT*100;
+  Langue: TEXT*2;
+END Designation;
+
+STRUCTURE DesignationEntreprise EXTENDS Designation =
+  NomAbrege: TEXT*10;
+END DesignationEntreprise;
+
+CLASS SocieteRemonteesMecaniques =
+  Noms: BAG {1..*} OF DesignationEntreprise;
+  UNIQUE
+    (LOCAL) Noms : Langue;
 END SocieteRemonteesMecaniques;
-____
+----
 
 Comment alors parvenir à éviter tout conflit entre les noms abrégés des différentes entreprises ? Les Remontées mécaniques des montagnes bleues tout comme les Remontées mécaniques des montagnes blanches revendiquent le nom abrégé RMB. Dans INTERLIS 2, il est possible de formuler des règles d'intégrité valant non seulement pour les classes d'objets ou des éléments structurés locaux, mais également pour des vues (cf. § 6.17). Une vue donnée permet de faire d'éléments structurés des objets quasi indépendants, pour lesquels une nouvelle condition d'unicité peut à son tour être formulée.
 
@@ -1308,38 +1367,40 @@ Ce lien doit pouvoir être exprimé. Les lignes d'INTERLIS 2 relient toutefois d
 
 Avec la définition suivante, chaque point du tracé doit s'appuyer sur la position d'un pylône (Pylone:Position), de la station inférieure d'une remontée mécanique (RemonteeMecanique:PosStationInf) ou (OR) de la station supérieure d'une remontée mécanique (RemonteeMecanique:PosStationSup).
 
-____
-CLASS RemonteeDependanteTerrain EXTENDS RemonteeMecanique = +
-EXISTENCE CONSTRAINT +
-Trace REQUIRED IN +
-Pylone:Position +
-OR +
-RemonteeMecanique:PosStationInf +
-OR +
-RemonteeMecanique:PosStationSup; +
+[source]
+----
+CLASS RemonteeDependanteTerrain EXTENDS RemonteeMecanique =
+  EXISTENCE CONSTRAINT
+    Trace REQUIRED IN
+      Pylone:Position
+      OR
+      RemonteeMecanique:PosStationInf
+      OR
+      RemonteeMecanique:PosStationSup;
 END RemonteeDependanteTerrain;
-____
+----
 
 De telles conditions d'existence ne peuvent pas uniquement être formulées en lien avec des remontées mais peuvent également l'être avec des attributs ordinaires. Sur le plan conceptuel, elles peuvent toujours être considérées comme une forme de relation faible.
 
 [#_6_14_5]
 ==== Héritage de règles d'intégrité
 
-Une règle d'intégrité a déjà été formulée pour la remontée mécanique elle-même : le tracé doit débuter à la station inférieure pour s'achever à la station supérieure. Autrement dit, le premier point du tracé (Tracee -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint) doit correspondre à la position de la station inférieure et (AND) le dernier point du tracé (Tracee -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint) doit coïncider avec la position de la station supérieure.
+Une règle d'intégrité a déjà été formulée pour la remontée mécanique elle-même : le tracé doit débuter à la station inférieure pour s'achever à la station supérieure. Autrement dit, le premier point du tracé (Tracee -> Segments[FIRST] -> SegmentEndPoint) doit correspondre à la position de la station inférieure et (AND) le dernier point du tracé (Tracee -> Segments[LAST] -> SegmentEndPoint) doit coïncider avec la position de la station supérieure.
 
 Le paragraphe 7.3 expose la manière dont les lignes sont construites et présente l'attribut SegmentEndPoint, symbolisant le point final d'un segment de ligne.
 
-____
-CLASS RemonteeMecanique = +
-PosStationInf: Beotie.CoordNational3; +
-PosStationSup: Beotie.CoordNational3; +
-Trace: LigneBeotieNormale; +
-MANDATORY CONSTRAINT +
-Tracee -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint == PARENT == PosStationInf +
-AND +
-Tracee -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint == PARENT == PosStationSup; +
+[source]
+----
+CLASS RemonteeMecanique =
+  PosStationInf: Beotie.CoordNational3;
+  PosStationSup: Beotie.CoordNational3;
+  Trace: LigneBeotieNormale;
+  MANDATORY CONSTRAINT
+    Tracee -> Segments[FIRST] -> SegmentEndPoint == PARENT == PosStationInf
+    AND
+    Tracee -> Segments[LAST] -> SegmentEndPoint == PARENT == PosStationSup;
 END RemonteeMecanique;
-____
+----
 
 Que signifie une telle définition pour d'éventuelles extensions de cette classe ?
 
@@ -1354,7 +1415,7 @@ Des extensions de classes ne peuvent pas faire perdre leur validité à des règ
 
 Une décision d'exploitation se rapporte toujours à une remontée mécanique donnée. Les deux classes concernées sont ainsi liées par une association.
 
-.Les classes Remontee++_++RDI et DecisionExploitation sont liées par une association.
+.Les classes Remontee_RDI et DecisionExploitation sont liées par une association.
 image::img/image68.png[./media/image68,width=260,height=32]
 
 
@@ -1441,15 +1502,16 @@ La propriété la plus importante d'une vue est sa *loi de formation.* Elle déf
 
 La vue « PersonneAvecIndicationDeSonAge » est par exemple déduite de la classe d'objets « Personne » que l'on appelle la base. Une PersonneAvecIndicationDeSonAge possède les mêmes propriétés (ALL OF) auxquelles les mêmes valeurs sont associées que la personne initiale. La vue ajoute cependant une propriété supplémentaire « Age ». L'âge, se déduit (:=) de la différence entre l'année de naissance et l'année en cours.
 
-____
-VIEW PersonneAvecIndicationDeSonAge +
-PROJECTION OF Personne +
-= +
-ALL OF Personne; +
-Age: 0 .. 150 ++[++y++]++ := Difference (Personne -++>++ AnneeNaissance, +
-PARAMETER AnneeEnCours); +
+[source]
+----
+VIEW PersonneAvecIndicationDeSonAge
+  PROJECTION OF Personne
+  =
+  ALL OF Personne;
+  Age: 0 .. 150 [y] := Difference (Personne -> AnneeNaissance,
+    PARAMETER AnneeEnCours);
 END PersonneAvecIndicationDeSonAge;
-____
+----
 
 Dans cet exemple, il existe exactement un objet-vue virtuel pour chaque objet de la classe de base : une PersonneAvecIndicationDeSonAge est associée à toute personne.
 
@@ -1469,15 +1531,16 @@ Mais concrètement, quelle remontée mécanique se trouve dans le secteur de que
 [NOTE]
 La loi de formation d'une vue la plus importante est certainement la *jonction (JOIN)*. Elle joint plusieurs objets de base au sein d'un objet-vue. La jonction revêt une importance particulière en tant que base pour des relations dérivées.
 
-____
-VIEW RemonteesMecaniquesDansSecteur +
-JOIN OF RM ~ RemonteeMecanique, +
-ZT ~ ZoneTarifaireDansSecteur; +
-WHERE InSurface(RM -++>++ PosStationInf, ZT -++>++ Secteur) AND +
-InSurface(RM -++>++ PosStationSup, ZT -++>++ Secteur); +
-= +
+[source]
+----
+VIEW RemonteesMecaniquesDansSecteur
+  JOIN OF RM ~ RemonteeMecanique,
+    ZT ~ ZoneTarifaireDansSecteur;
+  WHERE InSurface(RM -> PosStationInf, ZT -> Secteur) AND
+    InSurface(RM -> PosStationSup, ZT -> Secteur);
+  =
 END RemonteesMecaniquesDansSecteur;
-____
+----
 
 La jonction procède d'abord à la formation de l'ensemble des couples : chacun des objets de la classe RemonteeMecanique est mis en relation avec chacun des objets de la classe ZoneTarifaireDansSecteur pour former un objet-vue virtuel.
 
@@ -1486,10 +1549,8 @@ La partie WHERE permet de restreindre l'ensemble de tous les objets-vues à ceux
 [width="65%",cols="^32%,^21%,^47%",]
 |===
 |Remontée mécanique _RM_ |Zone tarifaire _ZT_ a|
-____
-stations inférieure et supérieure de _RM_ +
+stations inférieure et supérieure de _RM_
 dans le secteur de _ZT_ ?
-____
 
 |image:img/image70.png[./media/image70,width=55,height=24] |image:img/image71.png[./media/image71,width=54,height=30] |oui
 |image:img/image72.png[./media/image72,width=17,height=39] |image:img/image71.png[./media/image71,width=54,height=30] |oui
@@ -1508,15 +1569,16 @@ Une remontée mécanique n'apparaîtra pas sur la vue si elle ne se trouve dans 
 
 Si l'on souhaite répertorier toutes les coordonnées de stations inférieures et supérieures, on se heurte à un obstacle, à savoir au fait que ces coordonnées sont gérées sous forme d'attributs individuels de chacune des remontées mécaniques. L'*union (UNION)* permet cependant de les regrouper au sein d'un ensemble d'objets-vues égaux en droits.
 
-____
-VIEW CoordonneesStations +
-UNION OF StationInferieure ~ RemonteeMecanique, +
-StationSuperieure ~ RemonteeMecanique; +
-= +
-Coordonnees: Beotie.CoordNational := StationInferieure -++>++ PosStationInf, +
-StationSuperieure -++>++ PosStationSup; +
+[source]
+----
+VIEW CoordonneesStations
+  UNION OF StationInferieure ~ RemonteeMecanique,
+    StationSuperieure ~ RemonteeMecanique;
+  =
+  Coordonnees: Beotie.CoordNational := StationInferieure -> PosStationInf,
+    StationSuperieure -> PosStationSup;
 END CoordonneesStations;
-____
+----
 
 L'ensemble des objets-vues est ici deux fois plus étendu que celui des remontées mécaniques puisqu'il intègre la totalité des stations inférieures plus la totalité des stations supérieures. Ainsi, l'attribut est défini dans le respect de l'attribut de position de la station inférieure ou de la station supérieure, selon le cas.
 
@@ -1527,18 +1589,19 @@ L'*agrégation (AGGREGATION)* et l'*inspection (INSPECTION)* sont liées aux att
 
 Pour le contrôle des billets, il est indispensable de connaître les types de billets valables sur chacune des remontées mécaniques. Il serait donc souhaitable de disposer d'un répertoire de toutes les remontées mécaniques indiquant les types de billets valables sur chacune d'entre elles. Les Ilinois désireraient par conséquent définir un modèle proche de ce qui suit, hors données de base :
 
-____
-CLASS TypeBillet = +
-Noms: BAG ++{++1..++*++} OF Designation; +
-Prix: 0.00 .. 5000.00 ++[++Beotie.Couronne++]++; +
-DureeValidite: Duree; +
+[source]
+----
+CLASS TypeBillet =
+  Noms: BAG {1..*} OF Designation;
+  Prix: 0.00 .. 5000.00 [Beotie.Couronne];
+  DureeValidite: Duree;
 END TypeBillet;
 
-CLASS RemonteeMecanique = +
-Noms: BAG ++{++1..++*++} OF Designation; +
-TypesBilletsValables: BAG OF TypeBillet; +
+CLASS RemonteeMecanique =
+  Noms: BAG {1..*} OF Designation;
+  TypesBilletsValables: BAG OF TypeBillet;
 END RemonteeMecanique;
-____
+----
 
 Comment dériver ces informations des données originales ? Ce n'est pas si simple. A une remontée mécanique peuvent être affectées plusieurs zones tarifaires, auxquelles sont à leur tour affectés plusieurs types de billets. Il existe en outre des zones tarifaires englobant toutes les remontées mécaniques d'un secteur.
 
@@ -1546,33 +1609,35 @@ Le dernier aspect de la question est heureusement déjà réglé puisqu'il exist
 
 Une vue liant les remontées mécaniques aux types de billets peut alors être définie sur cette base :
 
-____
-VIEW RemonteeMecaniqueEtTypeBilletValable +
-JOIN OF RM ~ RemonteeMecanique, +
-ZT ~ ZoneTarifaire, +
-TB ~ TypeBillet +
-V ~ Validite; +
-WHERE (V -++>++ RemonteeMecanique == RM) AND (V -++>++ ZoneTarifaire == ZT AND +
-(TB -++>++ ZoneTarifaire == ZT); +
-= +
-NomRemontee: BAG ++{++1..++*++} OF Designation := RM -++>++ Nom; +
-NomBillet: BAG ++{++1..++*++} OF Designation := TB -++>++ Nom; +
-Prix: 0.00 .. 5000.00 ++[++Beotie.Couronne++]++ := TB -++>++ Prix; +
-DureeValidite: Duree := TB -++>++ DureeValidite; +
+[source]
+----
+VIEW RemonteeMecaniqueEtTypeBilletValable
+  JOIN OF RM ~ RemonteeMecanique,
+    ZT ~ ZoneTarifaire,
+    TB ~ TypeBillet
+    V ~ Validite;
+  WHERE (V -> RemonteeMecanique == RM) AND (V -> ZoneTarifaire == ZT AND
+    (TB -> ZoneTarifaire == ZT);
+  =
+  NomRemontee: BAG {1..*} OF Designation := RM -> Nom;
+  NomBillet: BAG {1..*} OF Designation := TB -> Nom;
+  Prix: 0.00 .. 5000.00 [Beotie.Couronne] := TB -> Prix;
+  DureeValidite: Duree := TB -> DureeValidite;
 END RemonteeMecaniqueEtTypeBilletValable;
-____
+----
 
 Cette jonction combine les remontées mécaniques et les types de billets. Elle tient compte de la relation de validité et du fait qu'un type de billet est affecté à une zone tarifaire devant coïncider avec celle de la relation de validité. Ainsi, le but est déjà quasiment atteint. Les combinaisons admissibles de remontée mécanique et de type de billet sont disponibles sous forme d'objets-vues. On souhaiterait encore pouvoir les regrouper par remontée mécanique :
 
-____
-VIEW TypeBilletValableSurRemonteeMecanique +
-AGGREGATION OF RMetTBV ~ RemonteeMecaniqueEtTypeBilletValable +
-EQUAL (RMetTBV -++>++ RM); +
-= +
-NomRemontee: BAG ++{++1..++*++} OF Designation := RMetTBV -++>++ RM -++>++ Nom; +
-TypesBillets: BAG OF RemonteeMecaniqueEtTypeBilletValable := AGGREGATES; +
+[source]
+----
+VIEW TypeBilletValableSurRemonteeMecanique
+  AGGREGATION OF RMetTBV ~ RemonteeMecaniqueEtTypeBilletValable
+  EQUAL (RMetTBV -> RM);
+  =
+  NomRemontee: BAG {1..*} OF Designation := RMetTBV -> RM -> Nom;
+  TypesBillets: BAG OF RemonteeMecaniqueEtTypeBilletValable := AGGREGATES;
 END TypeBilletValableSurRemonteeMecanique;
-____
+----
 
 Un tel regroupement s'effectue au moyen d'une agrégation. Tous les objets de la vue de base remplissant une condition donnée (à savoir qu'ils appartiennent à la même remontée mécanique) sont regroupés au sein d'un objet-vue. L'ensemble de tous les objets-vues initiaux regroupés au sein d'un tout est à disposition dans ce cadre pour des attributs de structure (AGGREGATES).
 
@@ -1581,14 +1646,15 @@ Un tel regroupement s'effectue au moyen d'une agrégation. Tous les objets de la
 
 La définition de la vue présentant l'ensemble des types de billets valables pour chacune des remontées mécaniques (vue TypeBilletValableSurRemonteeMecanique, cf. ci-dessus) a déjà été effectuée par l'Association nationale. Les Ilinois souhaitent pouvoir l'utiliser. Ils désirent cependant pouvoir y intégrer l'attribut de tracé qu'ils ont défini dans leur propre extension de la classe des remontées mécaniques.
 
-____
-VIEW Remontee++_++RDIEtTypeBilletValable +
-EXTENDS RemonteeMecaniqueEtTypeBilletValable +
-BASE RM EXTENDED BY ReDI ~ Remontee++_++RDI +
-= +
-Trace := ReDI -++>++ Trace; +
-END Remontee++_++RDIEtTypeBilletValable;
-____
+[source]
+----
+VIEW Remontee_RDIEtTypeBilletValable
+  EXTENDS RemonteeMecaniqueEtTypeBilletValable
+  BASE RM EXTENDED BY ReDI ~ Remontee_RDI
+  =
+  Trace := ReDI -> Trace;
+END Remontee_RDIEtTypeBilletValable;
+----
 
 La définition d'une base supplémentaire (laquelle doit être une extension d'une base préexistante) permet de pouvoir accéder aux attributs concernés. Si un objet-vue ne repose pas sur cette extension (s'il ne s'agit donc pas d'une remontée RDI), l'attribut est indéfini.
 
