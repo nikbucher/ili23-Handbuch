@@ -24,45 +24,47 @@ The fact that a transfer goes smoothly even if not all the parties concerned use
 
 What was actually in this file? It was opened with a normal text editor.
 
-____
-++<++?xml version="1.0" encoding="utf-8"?++>++ +
-... +
-++<++BASKET BID="xAHTOUMIT01234567" TOPICS="IlisTour.AlpineTransports"++>++ +
-++<++IlisTour.MITAlpineTransports.MITAlpineTransport +
-TID="xAHTOUMIT04231336"++>++ +
-++<++Names++>++ +
-++<++NatTour.Designation++>++ +
-++<++Name++>++**Pony lift Ilis Ville**++<++/Name++>++ +
-++<++Language++>++en++<++/Language++>++ +
-++<++/NatTour.Designation++>++ +
-++<++/Names++>++ +
-... +
-++<++PosTopStation++>++ +
-++<++P++>++ +
-++<++C1++>++8020.60++<++/C1++>++ +
-++<++C2++>++13188.62++<++/C2++>++ +
-++<++C3++>++1789.04++<++/C3++>++ +
-++<++/P++>++ +
-++<++/PosTopStation++>++ +
-++<++TravelTime++>++ +
-++<++Ahland.LengthOfTimeInMinutes++>++ +
-++<++Duration++>++3++<++/Duration++>++ +
-++<++/Ahland.LengthOfTimeInMinutes++>++ +
-++<++/TravelTime++>++ +
-++<++Kind++>++SkiLift++<++/Kind++>++ +
-... +
-++<++PictureTopStation++>++ +
-http://www.ilishornbahnen.com/webcam?bahn=pony4 +
-++<++/PictureTopStation++>++ +
-... +
-++<++/IlisTour.MITAlpineTransports.MITAlpineTransport++>++ +
-++<++/BASKET++>++ +
+.The Ilis Valley pony lift as part of the full transfer for Ilis Valley data. The INTERLIS-standard defines the precision with which such a transfer file has to be structured for a certain data model.
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
 ...
-____
+<BASKET BID="xAHTOUMIT01234567" TOPICS="IlisTour.AlpineTransports">
+  <IlisTour.MITAlpineTransports.MITAlpineTransport
+   TID="xAHTOUMIT04231336">
+    <Names>
+      <NatTour.Designation>
+        <Name>Pony lift Ilis Ville</Name> <1>
+        <Language>en</Language>
+      </NatTour.Designation>
+    </Names>
+    ...
+    <PosTopStation>
+      <P>
+        <C1>8020.60</C1>
+        <C2>13188.62</C2>
+        <C3>1789.04</C3>
+      </P>
+    </PosTopStation>
+    <TravelTime>
+      <Ahland.LengthOfTimeInMinutes>
+        <Duration>3</Duration>
+      </Ahland.LengthOfTimeInMinutes>
+    </TravelTime>
+    <Kind>SkiLift</Kind>
+    ...
+    <PictureTopStation>
+      http://www.ilishornbahnen.com/webcam?bahn=pony4
+    </PictureTopStation>
+    ...
+  </IlisTour.MITAlpineTransports.MITAlpineTransport>
+</BASKET>
+...
+----
 
-Figure 67: The Ilis Valley pony lift as part of the full transfer for Ilis Valley data. The INTERLIS-standard defines the precision with which such a transfer file has to be structured for a certain data model.
+Quite a few pointed brackets, at the very beginning something about XML (that had been mentioned somewhere earlier along the way!), even though with question marks... Aha, something simple for a change:
 
-Quite a few pointed brackets, at the very beginning something about XML (that had been mentioned somewhere earlier along the way!), even though with question marks... Aha, something simple for a change: The pony lift Ilis Ville (more towards the beginning, printed in bold).
+<1> The pony lift Ilis Ville
 
 Depending on the data model a transfer file has a different structure. But of course it is not completely arbitrary: The INTERLIS-standard states precise rules as to how the corresponding XML format is to be derived from a specific data model.
 

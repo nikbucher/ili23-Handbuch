@@ -24,42 +24,46 @@ Dass der Transfer auch dann reibungslos abläuft, wenn die Beteiligten nicht gen
 
 Was war denn überhaupt in dieser Datei enthalten? Man öffnete sie mit einem normalen Text-Editor.
 
-++<++?xml version="1.0" encoding="utf-8"?++>++ +
-... +
-++<++BASKET BID="xAHTOUIHB01234567" TOPICS="IlisTour.Bergbahnen"++>++ +
-++<++IlisTour.IhBBergbahnen.IhBBergbahn TID="xAHTOUIHB04231336"++>++ +
-++<++Namen++>++ +
-++<++NatTour.Bezeichnung++>++ +
-++<++Name++>++**Ponylift Ilisdorf**++<++/Name++>++ +
-++<++Sprache++>++de++<++/Sprache++>++ +
-++<++/NatTour.Bezeichnung++>++ +
-++<++/Namen++>++ +
-... +
-++<++LageBergstation++>++ +
-++<++P++>++ +
-++<++C1++>++8020.60++<++/C1++>++ +
-++<++C2++>++13188.62++<++/C2++>++ +
-++<++C3++>++1789.04++<++/C3++>++ +
-++<++/P++>++ +
-++<++/LageBergstation++>++ +
-++<++Fahrzeit++>++ +
-++<++Ahland.ZeitdauerInMinuten++>++ +
-++<++Dauer++>++3++<++/Dauer++>++ +
-++<++/Ahland.ZeitdauerInMinuten++>++ +
-++<++/Fahrzeit++>++ +
-++<++Art++>++Skilift++<++/Art++>++ +
-... +
-++<++BildBergstation++>++ +
-http://www.ilishornbahnen.com/webcam?bahn=pony4 +
-++<++/BildBergstation++>++ +
-... +
-++<++/IlisTour.IhBBergbahnen.IhBBergbahn++>++ +
-++<++/BASKET++>++ +
+.Der Ilistaler Ponylift als Teil des Volltransfers für die Ilistaler Daten. Der INTERLIS-Standard legt fest, wie genau eine solche Transferdatei für ein bestimmtes Datenmodell aufgebaut sein muss.
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
 ...
+<BASKET BID="xAHTOUIHB01234567" TOPICS="IlisTour.Bergbahnen">
+  <IlisTour.IhBBergbahnen.IhBBergbahn TID="xAHTOUIHB04231336">
+    <Namen>
+      <NatTour.Bezeichnung>
+        <Name>Ponylift Ilisdorf</Name> <1>
+        <Sprache>de</Sprache>
+      </NatTour.Bezeichnung>
+    </Namen>
+    ...
+    <LageBergstation>
+      <P>
+        <C1>8020.60</C1>
+        <C2>13188.62</C2>
+        <C3>1789.04</C3>
+      </P>
+    </LageBergstation>
+    <Fahrzeit>
+      <Ahland.ZeitdauerInMinuten>
+        <Dauer>3</Dauer>
+      </Ahland.ZeitdauerInMinuten>
+    </Fahrzeit>
+    <Art>Skilift</Art>
+    ...
+    <BildBergstation>
+      http://www.ilishornbahnen.com/webcam?bahn=pony4
+    </BildBergstation>
+    ...
+  </IlisTour.IhBBergbahnen.IhBBergbahn>
+</BASKET>
+...
+----
 
-Abbildung 67: Der Ilistaler Ponylift als Teil des Volltransfers für die Ilistaler Daten. Der INTERLIS-Standard legt fest, wie genau eine solche Transferdatei für ein bestimmtes Datenmodell aufgebaut sein muss.
+Ziemlich viele spitze Klammern, ganz am Anfang etwas von XML (davon hatte man doch schon mal gehört!), wenn auch in Fragezeichen... Aha, hier war einmal etwas Einfacheres:
 
-Ziemlich viele spitze Klammern, ganz am Anfang etwas von XML (davon hatte man doch schon mal gehört!), wenn auch in Fragezeichen... Aha, hier war einmal etwas Einfacheres: Der Ponylift Ilisdorf (eher zu Beginn; hier fett gedruckt).
+<1> Der Ponylift Ilisdorf.
 
 Je nach Datenmodell ist die Transferdatei anders aufgebaut. Die Struktur ist aber natürlich nicht beliebig: Der INTERLIS-Standard schreibt mit präzisen Regeln vor, wie aus einem bestimmten Datenmodell das zugehörige XML-Format abzuleiten ist.
 

@@ -24,42 +24,46 @@ Le fait que le transfert puisse se dérouler sans le moindre accroc, même lorsq
 
 Mais que contenait ce fichier ? Pour le savoir, on l'ouvrit dans un éditeur de texte normal :
 
-++<++?xml version="1.0" encoding="utf-8"?++>++ +
-... +
-++<++BASKET BID="xBOTOURDI01234567" TOPICS="IlisTour.RemonteesMecaniques"++>++ +
-++<++IlisTour.Remontees++_++RDI.Remontee++_++RDI TID="xBOTOURDI04231336"++>++ +
-++<++Noms++>++ +
-++<++NatTour.Designation++>++ +
-++<++Nom++>++**Tire-fesses Ili-village**++<++/Nom++>++ +
-++<++Langue++>++fr++<++/Langue++>++ +
-++<++/NatTour.Designation++>++ +
-++<++/Noms++>++ +
-... +
-++<++PosStationSup++>++ +
-++<++P++>++ +
-++<++C1++>++8020.60++<++/C1++>++ +
-++<++C2++>++13188.62++<++/C2++>++ +
-++<++C3++>++1789.04++<++/C3++>++ +
-++<++/P++>++ +
-++<++/PosStationSup++>++ +
-++<++DureeTrajet++>++ +
-++<++Beotie.DureeEnMinutes++>++ +
-++<++LapsTemps++>++3++<++/LapsTemps++>++ +
-++<++/Beotie.DureeEnMinutes++>++ +
-++<++/DureeTrajet++>++ +
-++<++Genre++>++Remonte++_++pente++<++/Genre++>++ +
-... +
-++<++ImageStationSuperieure++>++ +
-http://www.ilishornbahnen.com/webcam?bahn=pony4 +
-++<++/ImageStationSuperieure++>++ +
-... +
-++<++/IlisTour.Remontees++_++RDI.Remontee++_++RDI++>++ +
-++<++/BASKET++>++ +
+.Le tire-fesses du Val d'Ili, extrait du transfert intégral des données du Val d'Ili. La norme INTERLIS fixe le degré de spécification d'un tel fichier de transfert pour un modèle de données bien défini.
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
 ...
+<BASKET BID="xBOTOURDI01234567" TOPICS="IlisTour.RemonteesMecaniques">
+  <IlisTour.Remontees_RDI.Remontee_RDI TID="xBOTOURDI04231336">
+    <Noms>
+      <NatTour.Designation>
+        <Nom>Tire-fesses Ili-village</Nom> <1>
+        <Langue>fr</Langue>
+      </NatTour.Designation>
+    </Noms>
+    ...
+    <PosStationSup>
+      <P>
+        <C1>8020.60</C1>
+        <C2>13188.62</C2>
+        <C3>1789.04</C3>
+      </P>
+    </PosStationSup>
+    <DureeTrajet>
+      <Beotie.DureeEnMinutes>
+        <LapsTemps>3</LapsTemps>
+      </Beotie.DureeEnMinutes>
+    </DureeTrajet>
+    <Genre>Remonte_pente</Genre>
+    ...
+    <ImageStationSuperieure>
+      http://www.ilishornbahnen.com/webcam?bahn=pony4
+    </ImageStationSuperieure>
+    ...
+  </IlisTour.Remontees_RDI.Remontee_RDI>
+</BASKET>
+...
+----
 
-Figure 67 : Le tire-fesses du Val d'Ili, extrait du transfert intégral des données du Val d'Ili. La norme INTERLIS fixe le degré de spécification d'un tel fichier de transfert pour un modèle de données bien défini.
+Beaucoup de signes « inférieur à » et « supérieur à », une référence à XML tout au début (on en a déjà entendu parler de ça !), entourée de points d'interrogation... Ah, enfin quelque chose d'un peu plus simple :
 
-Beaucoup de signes « inférieur à » et « supérieur à », une référence à XML tout au début (on en a déjà entendu parler de ça !), entourée de points d'interrogation... Ah, enfin quelque chose d'un peu plus simple : le tire-fesses d'Ili-village (en début de fichier, figurant en gras).
+<1> le tire-fesses d'Ili-village.
 
 La structure du fichier de transfert est différente selon le modèle de données mais elle n'est évidemment pas quelconque : la norme INTERLIS contient des règles précises, prescrivant la manière dont le format XML associé se déduit d'un modèle de données.
 
