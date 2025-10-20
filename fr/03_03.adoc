@@ -1,0 +1,15 @@
+[#_3_3]
+=== Modèles de données standardisés
+
+Recréer tout nouveau modèle de a à z n'est pas nécessairement la meilleure solution. Il est bien plus astucieux d'utiliser des modèles prédéfinis et de les affiner. Des modèles sur lesquels des applications peuvent s'appuyer ont été et sont encore développés à plusieurs niveaux :
+
+* *International* – Un modèle très complet couvrant les types géométriques de base courants (ISO 19107) a été développé dans le cadre d'une campagne de normalisation internationale. Des efforts sont par ailleurs déployés pour faire apparaître un noyau satisfaisant aux principales exigences de la pratique (ISO 19137). Les concepts spatiaux de plusieurs langages de modélisation répandus ont été analysés à cette fin, parmi lesquels ceux d'INTERLIS. Il est recommandé à quiconque se préoccupe de la manière dont des surfaces de sections coniques ou des réseaux de triangles sont à modéliser de consulter les documents normatifs ou les projets de documents correspondants. La série ISO 19100 comprend également des modèles de données concernant des intervalles de temps (ISO 19108), des métadonnées (ISO 19115), des services (ISO 19119) et d'autres sujets. Bon nombre de ces normes en sont encore au stade de l'élaboration et nous manquons par conséquent de recul pour apprécier leur aptitude à satisfaire aux exigences de la pratique.
+* *National* – Des modèles standardisés existent en Suisse pour plusieurs domaines d'application. Leur utilisation est en partie prescrite par des lois et des ordonnances. Des modèles applicables à l'échelle du pays entier ont été élaborés pour la mensuration officielle, les réseaux de conduites et plus récemment, les adresses géocodées.
+* *Associations professionnelles* – Elles constituent une source supplémentaire de modèles de données sur lesquels prendre appui. Ainsi, la Société suisse des ingénieurs et des architectes a-t-elle élaboré un modèle INTERLIS pour les cadastres de conduites (eaux usées, gaz, eau, chauffage à distance, électricité, télécommunications, communication par câble).
+* *INTERLIS* – Il existe des modèles INTERLIS standard prédéfinis pour un nombre restreint de domaines fondamentaux. Ainsi en va-t-il des unités, pour lesquelles un modèle définissant le mètre, le Newton, le décibel, etc. est fourni avec les outils INTERLIS.
+
+Dans la mesure du possible, les modèles suisses sont harmonisés avec les normes ISO. Pour citer un exemple, un modèle national pour les métadonnées de données géographiques (telles que la provenance, la qualité, etc.) a été élaboré dans le respect de la norme ISO 19115. Il est disponible sous forme de description INTERLIS.
+
+Les mécanismes d'affinage d'INTERLIS permettent à une application concrète de faire appel à un modèle de données existant, sans pour autant avoir à le reprendre _tel quel_.
+
+[#_3_4]

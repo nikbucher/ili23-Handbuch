@@ -1,0 +1,15 @@
+[#_6_16]
+=== Les bonnes choses viennent d'en haut – Utiliser les modèles existants
+
+Les Ilinois ont plutôt bien fait les choses puisqu'ils n'ont pas tout récréé mais ont su se servir de modèles existants (Units, Beotie, Adresses, NatTour). Ils se sont cependant rendus coupables de quelques petites entorses à cette règle. Ainsi, la ligne béotienne (LigneBeotie) n'est-elle certainement pas propre au Val d'Ili et à ses remontées mécaniques mais devrait faire partie du modèle de données national béotien. De même, WGS84Coord et l'heure (du jour) ne sont pas véritablement des spécialités du val d'Ili.
+
+Les Ilinois se sont en ce sens comportés de manière très normale. Ce qu'ils n'ont pas trouvé ailleurs, ils l'ont ajouté à leur modèle. C'est compréhensible, mais pas vraiment optimal.
+
+[WARNING]
+Il ne faudrait pas simplement accepter l'absence de certaines définitions voire des définitions erronées à un niveau plus général (plus élevé), mais chercher à améliorer les modèles correspondants en collaboration avec les services compétents.
+
+C'est pourquoi il est également judicieux que des types de base soient prédéfinis à différents niveaux. INTERLIS met un certain nombre de modèles de base à la disposition des utilisateurs. D'autres modèles sont proposés par des communautés d'utilisateurs (par exemple des associations professionnelles). Certains enfin sont très spécifiques, comme celui des Remontées mécaniques de la Dent d'Ili.
+
+Un certain nombre de sources diffusant des modèles de données standardisés sont mentionnées au paragraphe <<_3_3>>.
+
+[#_6_17]

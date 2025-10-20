@@ -1,0 +1,10 @@
+[#_3_4]
+=== Formats for data exchange
+
+At some point all data have to be memorized in a specific format so that they can be stored and exchanged between software packages. More recent transfer formats are all based upon the _Extensible Markup Language_ (XML), a widespread format because of its extremely simple structure, its affinity with HTML (the format of web sites) and its derivation from SGML (a formerly frequently used format).
+
+For instance the _Geographic Markup Language_ (GML) is a strictly defined XML dialect propagated by OpenGIS, a manufacturer consortium of GIS-Software. INTERLIS, on the contrary, does not prescribe any specific XML dialect but supplies rules that allow the automatic derivation of an exchange format from the respective data model.
+
+All things considered the question of the data format is secondary: As long as data to be transmitted are based upon similar models their conversion from one format into another requires little effort.
+
+[#_3_5]

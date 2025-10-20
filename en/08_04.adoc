@@ -1,0 +1,24 @@
+[#_8_4]
+=== The Blue Mountains also are touristy – Baskets, replicas and polymorph reading
+
+Ilis Valley is not the only resort that sends data to the National Tourist Office; there are 162 other areas that do the same. They do not want to be bothered with looking after every areas data. They are happy to simply receive regional updates with current data from time to time.
+
+In the individual regions data are kept in the databases of the systems employed. Within the scope of INTERLIS we proceed on the assumption that the data of every topic of the data model are stored in one (or maybe several). Hence the alpine transport data of the Mount Ilis Alpine Transports are in one basket, those of the Blue Mountains Alpine Transports in another. Now if these data are sent from the Mount Ilis Alpine Transports or the Blue Mountains Alpine Transports to the National Tourist Office, then the corresponding basket becomes visible in the transfer file. The computer system of the national association (NatTourSys) reads these data and updates the data-base NatTourDB. Simultaneously they record where the objects come from.
+
+.Occasionally the National Tourist Office receives an update of their tourism data from the Mount Ilis, the «Blue Mountain Alpine Transports» and many other railway companies.
+image::img/image78.png[]
+
+
+Hence the data concerning the Ilis Valley pony lift exist twice: Once with the Mount Ilis Alpine Transports, once with the National Tourist Office. Of course this does not mean that from now on the children in Ilis Valley have got an extra ski run. We have only copied data and not built a new ski lift!
+
+Even from the electronical point of view everything is clear; these two data objects possess the same object identifier. This makes it obvious that we are dealing with replicas that stand for one single really existing pony lift.
+
+Other terms meaning replica are: substitute, duplicates, proxy-objects.
+
+It is important that an object identifier (such as «xAHTOUMIT04231336» in the example above) definitely is unequivocal. Otherwise it might accidentally happen that the Mount Ilis and the Blue Mountains Alpine Transports use the same identifier for two different objects. Consequently it no longer would be clear for the National Tourist Office whether when receiving an incremental update they are dealing with a modified object from Ilis Valley or from the Blue Mountains.
+
+An administrative authority of Ahland («AH») has assigned the index code «AHTOU» to the National Tourist Office. Subsequently the National Tourist Office determined the first part to be used in an identifier for every railway company (e.g. «AHTOUMIT» for the Mount Ilis Alpine Transports and «AHTOUBBB» for the Blue Mountain Alpine Transports). For the remaining part of the identifier the company itself respectively the program employed is responsible.
+
+With a full transfer object identifier do not have the same significance as with an incremental update. They need not be maintained; they merely serve the re-establishing of relationships between different objects (e.g. tariff zones and ticket types).
+
+[#_8_5]

@@ -5,59 +5,15 @@ Natürlich hat man das gute Funktionieren der neuen Lösung im Ilistal gebühren
 
 ++*++ ++*++ ++*++ ++*++ ++*++
 
-[#_10_1]
-=== I. Erinnerungen an den Startschuss
 
-Noch ist die Startpräsentation, wie man sich eine neue Ilistaler Webpage vorstellen könnte, in bester Erinnerung. Nach einigen imposanten Demonstrationen geriet man sich fast in die Haare. Zum Glück waren verschiedene Fachleute anwesend. Sonst hätten wir Laien gar nicht gemerkt, wie kontrovers die Meinungen unter den Fachleuten sind, wie schlecht Argumente und Gegenargumente – oder besser Schlagworte und Gegenschlagworte – wirklich zusammenpassen. Dank der Diskussion, die fast zu einem Disput wurde, sind wir hellhörig geworden.
+include::10_01.adoc[]
 
-[#_10_2]
-=== II. Sachen, Abbilder und der Zahn der Zeit
+include::10_02.adoc[]
 
-Der Beizug eines weiteren Fachmanns hat sich gelohnt. Die ersten Gespräche waren dann zwar etwas überraschend. Technische Schlagworte fehlten oder wurden wieder vom Tisch gefegt. Dafür folgte eine gründliche Auseinandersetzung mit der Sache.
+include::10_03.adoc[]
 
-Erste Erkenntnis: Sache ist nicht, was im Computer drinnen steckt oder gar, was er als Bilder, Tabellen und andere Präsentationen ausspuckt, sondern was in der Realität existiert und passiert.
+include::10_04.adoc[]
 
-Das, was im Computer drin ist, kann mit einem Holzmodell oder einem Sandkasten verglichen werden. Die Fotos, die wir davon aus verschiedenen Richtungen und mit verschiedener Beleuchtung machen, können mit dem Bildschirm oder mit Ausdrucken verglichen werden. Und eines ist ja auch bei Holzmodellen oder Sandkasten offensichtlich: Die Realität zum ersten Mal abzubilden ist eine Riesenarbeit. Bis da all die Häuser, Strassen, Bahnen, die in der Realität existieren, auch im Abbild in vereinfachter Form aufgebaut sind! Noch schlimmer als die Ersterfassung ist dann die Nachführung: Schon nach kurzer Zeit müssen Änderungen gemacht werden, um das Abbild aktuell zu halten. Und der Zahn der Zeit nagt an den Sand- und Gipsstrukturen. Da hat man es mit dem Computer schon besser! Natürlich muss auch hier nachgetragen werden, wenn sich die Realität ändert, aber wenigstens veralten die verbleibenden Informationen nicht.
+include::10_05.adoc[]
 
-Wirklich? Nein, wirklich nicht so schnell wie im Sandkasten. Aber nach wenigen Jahren möchten wir wieder einen neuen, leistungsfähigeren Computer kaufen, und nach nochmals etwas längerer Zeit ist auch die Software für die Bearbeitung nicht das Beste, was es gibt. Man möchte neue Programme einsetzen. Und wie bringt man jetzt das elektronische Abbild der Realität vom alten System aufs Neue? Wie bringt man quasi den Sand vom alten in den neuen Sandkasten, ohne dass er zwischen den Händen zerrieselt und das Werk neu aufge­baut werden muss?
-
-[#_10_3]
-=== III. Systemunabhängige Beschreibung der Struktur der Daten
-
-Damit man elektronische Abbilder der Realität – also Daten – von einem System auf ein anderes übertragen kann, braucht es klare Vorstellungen darüber, wie die Daten aussehen, wie sie strukturiert sind. Die Knacknuss dabei: Auch diese Strukturbeschreibungen müssen unabhängig von konkreten Systemen sein. Sie müssen so gemacht sein, dass sie von den Anwendungsfachleuten und von den technischen Fachleuten aller beteiligtenrStellen gleich interpretiert und verstanden werden. Im idealen Fall ist die Beschreibung sogar so aufgebaut, dass nicht nur Menschen, sondern auch Computerprogramme etwas damit an­fangen können. Es braucht ein formalisiertes Esperanto der Datenbeschreibung.
-
-In der Alltagssprache ist Esperanto ohne Bedeutung geblieben. Das Lebendigere, vielleicht auch das für den Stärkeren Bequemere hat sich durchgesetzt. Im technischen Bereich liegt die Sache aber etwas anders: Wer sich nicht um Systemunabhängigkeit bemüht, wird von Systemen abhängig. Und Systeme sind nun einmal relativ kurzlebig. Daher hat sich die Er­kenntnis, dass es ein Esperanto im Sinne von systemunabhängigen Normen braucht, trotz vieler De-facto-Standards etabliert. Mit der _Unified Modeling Language_ (UML) hat eine graphische Sprache im Bereich der Datenmodellierung weltweit eine recht grosse Verbreitung gefunden.
-
-In intensiven Gesprächen wurde ein Modell der Realität entworfen. Dabei galt es zunächst zu klären, welches überhaupt die massgeblichen Gegenstände sind, wie man sie am ver­ständlichsten benennt, wie sie zueinander in Beziehung stehen und welche weiteren Eigen­schaften sie haben. Das Protokoll dieser Gespräche hielt die Erkenntnisse immer in der UML-Bildersprache fest und ergänzte sie mit Erklärungen und Kommentaren. Da es sich zeigte, dass die Bilder durch viele Details überladen werden und zum Teil auch nicht die nötige Präzision aufweisen konnten, wurde mit INTERLIS noch ein zusätzliches Beschrei­bungsmittel eingesetzt: Ähnlich wie in einer Programmiersprache können damit die Daten­strukturen präzis beschrieben werden.
-
-Eine wichtige Eigenschaft, die durch UML und INTERLIS 2 unterstützt wird, besteht darin, dass auch Datenbeschreibungen, die anderswo gemacht wurden, genutzt werden können. So konnte man von Festlegungen der amtlichen Vermessung profitieren, zum Beispiel bei den Gebäudeadressen. Die Datenbeschreibung des nationalen Tourismusverbandes wurden nicht nur genutzt, sondern zusätzlich auch entsprechend den lokalen Bedürfnissen ergänzt.
-
-[#_10_4]
-=== IV. Systemunabhängiger Datentransfer
-
-Ähnlich wie bei der Beschreibung der Struktur der Daten verhält es sich mit den Daten selbst. Es braucht also nicht nur eine Norm für die Datenbeschreibung, sondern auch eine Norm für den Datentransfer. Beim Übertragen der Daten von einem System auf ein anderes wird quasi Esperanto gesprochen, innerhalb der einzelnen Systeme dagegen die jeweilige Muttersprache.
-
-Nachdem man sich so intensiv mit dem Aufbau der Daten auseinandergesetzt hat, möchte man sich eigentlich nicht mehr um diese Details kümmern. Hier hat sich der Einsatz von INTERLIS gleich nochmals gelohnt: Mit der Beschreibung der Datenstruktur ist nämlich auch gleich festgelegt, wie die zugehörigen Daten transferiert werden.
-
-Wichtig ist dabei, dass die Datenbeschreibung nicht nur von Menschen gelesen und verstanden werden kann. Wegen der formalen Sprachdefinition kann sie auch durch Com­puterprogramme gelesen werden. Aufgrund von Datenbeschreibung und Transferregeln ist klar, wie in der Folge der Datentransfer aufgebaut sein muss.
-
-[#_10_5]
-=== V. Unterschiedliche Auswirkungen auf die beteiligten Systeme
-
-Im Rahmen der Gesamtlösung wurden verschiedene Computersysteme eingesetzt. Ins­besondere konnten die bisherigen Systeme weiterhin genutzt werden. UML und INTERLIS schreiben nämlich nicht vor, wie die Systeme aufgebaut sein sollen, sondern nur, wie die Daten letztlich geliefert werden, damit sie der konzeptuellen Vorstellung entsprechen.
-
-Das System des Bauamtes war direkt in der Lage, die zu transferierenden Daten zu erstellen und empfangene Daten zu lesen. Beim System der Ilishornbahnen wurde ein Konverter eingesetzt, also ein Programm, welches die system-spezifischen Daten in ein neutrales Transferformat umsetzte. Bei den kleinen Erfassungssystemen an den Talstationen konnte mit einfachsten Programmen dafür gesorgt werden, dass auf Grund der Messung jeweils ein korrekter Datensatz als inkrementelle Nachlieferung an die Zentrale gesendet wird.
-
-Interessant ist auch ein Blick auf das System des nationalen Verbandes. Diesem konnten nämlich Dateien geschickt werden, die auch die durch uns definierten Zusätze enthalten. Dank dem Prinzip des polymorphen Lesens störte das überhaupt nicht.
-
-Ein Grund, dass dies alles möglich war, lag wohl auch daran, dass INTERLIS 2 auf dem internationalen Standard der _Extensible Markup Language_ (XML) aufbaut.
-
-[#_10_6]
-=== VI. Ausblick
-
-Auf Grund der gemachten Erfahrungen mit all den beteiligten Systemen sind wir zuversicht­lich, dass auch neue Wünsche und neue Systeme in unsere Lösung integriert werden kön­nen, ohne das Ganze zu gefährden. Damit können wir ein wichtiges Ziel erreichen: Unsere Lösungen sind keine Eintagsfliegen, sondern nachhaltig.
-
-++*++ ++*++ ++*++ ++*++ ++*++
-
-Die Gemeindepräsidentin flocht die wichtigsten Dinge in ihr Referat ein und erkannte richtig, dass der technische Erfolg nicht zuletzt dank der anfänglichen Distanz zur Technik zustande kam. Und beim Apéro freute sie sich insgeheim ganz besonders: Sie hatte wieder einmal eine gute Nase gehabt, als sie sich damals bei der ersten Präsentation im Gemeindehaus an das Gespräch mit ihrer Kollegin erinnerte und sich für ein sorgfältiges Vorgehen entschloss.
-
+include::10_06.adoc[]

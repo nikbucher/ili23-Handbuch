@@ -1,0 +1,15 @@
+[#_3_3]
+=== Standardized data models
+
+There is little sense in establishing each data model completely from scratch. On the contrary predefined models can be used and refined. At different levels models have been and continue to be developed that may serve as a basis for applications:
+
+* *International* – Within the scope of international endeavors for standardization a very comprehensive model for base geometry types (ISO 19107) has been developed. Current activities aim at getting to the very core of things, which would meet the most important requirements of practical operation (ISO 19137). For this spatial concepts of several common modeling languages have been analyzed, amongst others also those of INTERLIS. For instance whoever is concerned with the modeling of surfaces of a conic section or triangular networks is well advised to read the standard documents respectively the corresponding drafts. The series ISO-19100 also comprises data models for time intervals (ISO 19108), meta data (ISO 19115), services (ISO 19119), and more. However many of these standards still remain at planning stage and little can be said about their suitability for practical operation.
+* *National* – In Switzerland standardized models exist for several fields of application. To some extent their use is prescribed in laws and regulations. Nation-wide valid models have been worked out for cadastral surveying,  underground cadastre and recently also for geo-coded addresses.
+* *Trade associations* – Trade associations are a further source of data models that serve as a basis for your own applications. For instance the Swiss Association of Engineers and Architects has developed an INTERLIS-model for the recording and registering of utility services (waste water, gas, water, electricity, telecom, cable communication).
+* *INTERLIS* – INTERLIS predefines standard models for a few basic domains. For instance along with the INTERLIS-tools a model with units (units.ili) is supplied which defines meters, Newton, decibel etc.
+
+As far as possible Swiss models are in keeping with ISO-standards. For example a national model for meta data concerning geographical data (e.g. origin, quality etc.) has been developed in accordance with ISO 19115. This model exists in the form of an INTERLIS-description.
+
+Thanks to INTERLIS and its refinement–mechanisms a concrete application may fall back on an already existing data model without having to accept it _as it is_.
+
+[#_3_4]

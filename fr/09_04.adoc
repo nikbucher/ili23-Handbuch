@@ -1,0 +1,14 @@
+[#_9_4]
+=== Quand les arbres cachent la forêt – Degré de spécification
+
+Il serait illusoire de vouloir modéliser le monde réel de façon que les atomes composant ses éléments soient les objets de données effectifs. Le procédé serait du reste particulièrement laborieux. De même, on ne va pas décomposer un bâtiment jusqu'au niveau des briques et des tuiles dont il est fait. Mais quand alors parlons-nous d'arbres isolés et quand d'une forêt, sans répertorier les arbres dont elle se compose ?
+
+Cela dépend bien entendu de l'objectif assigné au système. Il ne s'agit pas uniquement de rechercher un modèle aussi pertinent que possible, il doit également être aisé à mettre en œuvre. Le modèle est-il compréhensible ? Est-il possible de définir un dialogue pour la saisie et la mise à jour des données que le personnel prévu pour ces tâches puisse facilement maîtriser ?
+
+Un modèle simple dont les différentes classes d'objets ne sont pas trop interdépendantes peut attirer l'attention de ce point de vue.
+
+Plus un modèle est compliqué, plus il est important que l'on parvienne à mettre en place une interface utilisateur intuitivement compréhensible. Il est dangereux dans de telles situations d'étendre un modèle de base en n'ajoutant pas simplement des attributs supplémentaires mais en définissant de nouvelles relations. Le risque qu'un dialogue d'interface conçu pour le modèle de base perde son élégance et sa clarté est très élevé.
+
+« Aussi simple que possible, aussi complexe que nécessaire», cette vérité s'applique une fois de plus. Mais nous savons tous que sa mise en pratique n'est pas toujours chose aisée.
+
+[#_9_5]

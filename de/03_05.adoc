@@ -1,0 +1,9 @@
+[#_3_5]
+=== Wichtige Informationsquellen
+
+Weitere Informationen können unter anderem von folgenden Quellen bezogen werden:
+
+* *http://www.interlis.ch[www.interlis.ch]* – Das Internet-Portal zu INTERLIS verweist auf Unterlagen, Kurse usw. im Zusammenhang mit INTERLIS. Von dieser Adresse können auch die Spezifikation des Standards und der vorliegende Text elektronisch bezogen werden. Schliesslich sind auf dieser Webseite auch Werkzeuge verfügbar. Zur Zeit sind dies ein Computerprogramm, mit dem INTERLIS-Modelle in der graphischen UML-Notation editiert werden können («UML-Editor»), und eine Softwarebibliothek zum Einlesen, Prüfen, Verändern und Ausgeben von INTERLIS-Modellen («INTERLIS-Compiler»).
+* *http://www.omg.org[www.omg.org]* – Von der Webseite der Object Management Group kann die Definition der Unified Modeling Language bezogen werden. Ausserdem sind dort allgemeine Unterlagen (wie Schulungsmaterial oder Pressetexte) zum Modellbasierten Ansatz zu finden.
+* *http://www.w3.org/[www.w3.org]* – Das _World Wide Web Consortium_ verwaltet unter anderem auch die Spezifikation von XML.
+

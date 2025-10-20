@@ -1,0 +1,19 @@
+[#_8_1]
+=== Loin des yeux, loin du coeur – Transfert intégral
+
+Souvenons-nous : les Ilinois ont soigneusement réfléchi aux données qui leur étaient nécessaires pour leurs applications et ont élaboré un modèle de données en conséquence. Les discussions ont fait apparaître l'utilité de recourir aussi bien à une vue d'ensemble graphique qu'à une description détaillée sous forme textuelle.
+
+Au terme d'un long processus, les Ilinois entrevoyaient enfin le couronnement de leurs efforts : l'acquisition du logiciel standard « LiftSys » et la mise en œuvre du modèle de données du Val d'Ili. Il y eut bien quelques tâtonnements au début, tout n'a pas fonctionné « comme sur des roulettes », comme l'avait pourtant clamé haut et fort le revendeur du logiciel LiftSys, mais les difficultés furent rapidement balayées. La saisie put alors débuter : remontées mécaniques, entreprises de transport en montagne, pistes de ski, etc, tout y passa.
+
+L'informaticien était très fier de montrer que l'ensemble des données du Val d'Ili pouvait être exporté dans un fichier INTERLIS 2 au moyen d'un simple clic de souris. Pourtant, dans l'assistance, certains ne parvenaient pas à se laisser véritablement convaincre et les critiquent fusèrent bientôt : avons-nous vraiment dû participer à toutes ces réunions pour aboutir à ce simple fichier ? Etait-ce vraiment nécessaire ?
+
+Cette objection fut bien vite rejetée cependant, lorsque le comptable se mit à détailler les dépenses qu'entraînait jusqu'alors l'échange de données. Toute transmission de données à l'Association nationale des offices de tourisme était immanquablement suivie de son lot d'ennuis. Et combien d'heures de travail ont été englouties à cause de cela !
+
+Il était donc possible, dorénavant, d'envoyer un fichier comprenant toutes les données du Val d'Ili à l'Association nationale qui pouvait alors les lire et les traiter sans la moindre difficulté.
+
+[NOTE]
+Le type de transfert le plus simple est le *transfert intégral*, dans le cadre duquel toutes les données sont transmises.
+
+Le fait que le transfert puisse se dérouler sans le moindre accroc, même lorsque les intervenants n'utilisent pas exactement le même modèle de données, résulte des propriétés de l'héritage, exposées au paragraphe <<_5_5>>.
+
+[#_8_2]

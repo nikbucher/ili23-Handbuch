@@ -1,0 +1,10 @@
+[#_3_4]
+=== Formats d'échange de données
+
+Toutes les données doivent tôt ou tard être enregistrées dans un format bien défini afin de pouvoir être stockées et échangées avec d'autres systèmes. Les formats d'échange les plus récents se basent tous sur XML (_Extensible Markup Language_), un format très largement répandu en raison de l'extrême simplicité de sa structure, de sa parenté avec HTML (le format des sites Internet) et de sa filiation directe avec SGML (un format autrefois très en vogue).
+
+GML (_Geographic Markup Language_) est par exemple un dialecte XML défini avec rigueur, diffusé par un consortium de producteurs de logiciels de SIG intitulé OpenGIS. INTERLIS ne prescrit en revanche aucun dialecte XML particulier, mais établit des règles à l'aide desquelles le format d'échange se déduit automatiquement du modèle de données concerné.
+
+La question du format de donnés est en fait secondaire : aussi longtemps que les données à transmettre reposent sur des modèles similaires, il est possible de convertir les données d'un format dans un autre moyennant un volume de travail restreint.
+
+[#_3_5]

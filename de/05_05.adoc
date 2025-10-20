@@ -1,0 +1,18 @@
+[#_5_5]
+=== Details interessieren nicht – Das Spezielle allgemeiner betrachten
+
+Wer sich allgemein nach den Bahnen im Land erkundigt, interessiert sich nicht dafür, ob es sich bei einem bestimmtes Exemplar nun um eine Bergbahn, ein Tram oder sonst irgendeine Unterart von Bahn handelt. Er will auch nicht wissen, welches Stangensystem eine Bahn benutzt, falls es denn eine Zahnradbahn sein sollte. Allein schon der Name (der gemäss Datenmodell für jede Bahn erfasst ist) reicht als Antwort.
+
+[NOTE]
+====
+Exemplare einer Unterklasse können immer auch verallgemeinernd im Sinn einer Oberklasse gesehen werden.
+
+_Der griechische Ausdruck für dieses Prinzip heisst Polymorphismus (Vielgestaltigkeit)._
+====
+
+Dies funktioniert aber nur unter einer Bedingung:
+
+[NOTE]
+Jede Erweiterung muss mit ihrer Basisdefinition *verträglich* sein. Verträglich heisst, dass jeder Wert, der mit der erweiterten Definition möglich ist, gemäss Regeln des Grundtyps (Text, Aufzählung, Zahl, Koordinate, etc.) auf die Basisdefinition abgebildet werden kann.
+
+[#_5_6]

@@ -1,0 +1,116 @@
+[#_6_1]
+=== Couronnes et centimes – Types de données numériques
+
+[#_6_1_1]
+==== Domaine de valeurs
+
+Un aller simple sur le funiculaire de la Dent d'Ili coûte 10 couronnes béotiennes et un forfait sportif annuel 635 couronnes. Comment modéliser alors le prix d'un billet ?
+
+Tout lecteur familier des langages de programmation pensera d'emblée à des valeurs entières (« Integer ») ou à des valeurs en virgule flottante (« Real »). Bon nombre de langages de programmation et de banques de données permettent de définir l'espace mémoire requis par une de ces valeurs ; la taille et la précision des valeurs mémorisables s'ensuivent alors (« short integer », «long integer», «double precision», etc.). On réfléchit ensuite à la plage dans laquelle ces valeurs peuvent évoluer et on opte pour la forme de mémorisation convenant le mieux.
+
+On ne souhaiterait toutefois pas avoir à se préoccuper du format de mémorisation au niveau conceptuel de la modélisation. Il est cependant possible d'indiquer les valeurs limites admissibles (minimum et maximum) dès ce stade et de définir le nombre de chiffres et l'exposant par la même occasion.
+
+Les tarifs s'échelonnant entre 10 et 635 couronnes, on pourrait écrire :
+
+[source]
+----
+Prix: 10 .. 635;
+----
+
+Ce faisant, on définirait aussi que le prix ne peut être ni inférieur à 10 couronnes ni supérieur à 635 couronnes, ce que l'on ne souhaiterait évidemment pas. 0 semble représenter une limite inférieure vraisemblable. Mais qu'en est-il de la limite supérieure ? Il est peu probable que le prix excède un jour 10'000 couronnes. Alors va pour 10'000 ? Lorsque les contraintes propres à une application ne permettent pas de définir une limite avec clarté, il n'y a aucun intérêt à choisir la valeur de telle manière qu'un format de mémorisation plus court (tel que _short integer_ acceptant des valeurs comprises entre –32768 et 32767) en devienne tout juste insuffisant.
+
+Dans le même ordre d'idées, il est également important de réfléchir au nombre de chiffres après la virgule nécessaires. Si les prix sont susceptibles d'intégrer des centimes, alors les limites sont à fixer avec deux décimales. Si l'on considère par exemple un attribut représentant un budget d'investissement, les sommes seront évidemment exprimées en millions de couronnes ; lorsqu'il ne s'agit que d'ordres de grandeur, deux chiffres sont suffisants. Mais ceux-ci peuvent se rapporter aux milliers, aux millions ou aux milliards.
+
+[source]
+----
+Prix: 0.00 .. 9999.99;
+Budget: 0.00E6 .. 999.99E6;
+ProduitNationalBrut : 0.0E0 .. 9.9E20;
+----
+
+Le nombre de chiffres définit la précision : « 4.3 millions » (4.3E6 = 4.3 · 106) constitue une information moins précise que « 4300000 ».
+
+[#_6_1_2]
+==== Unités
+
+S'agit-il maintenant de couronnes, de francs, d'euros ou de dollars ? L'unité est d'une importance capitale et pas seulement dans le cas de l'argent. C'est pourquoi il est recommandé de l'intégrer directement au type et non d'en faire un simple commentaire ou une partie du nom de l'attribut :
+
+[source]
+----
+UNIT
+  Couronne EXTENDS MONEY;
+
+CLASS TypeBillet =
+  Prix: 0 .. 9999 [Couronnes];
+END TypeBillet;
+----
+
+Les couronnes (ou francs suisses, euros, dollars, etc.) sont définies comme unité et peuvent être utilisées lors de la définition d'un type numérique. La plupart des unités courantes (parmi lesquelles CHF, EUR, USD) n'ont cependant pas à être définies directement puisqu'elles existent déjà dans le modèle spécifique des unités (units.ili, cf. § <<_3_3>>).
+
+[WARNING]
+Par souci de clarté, nous recommandons de toujours indiquer des unités. Outre de très nombreuses unités physiques, le modèle des unités d'INTERLIS comprend également des unités monétaires de même que des unités de dénombrement ou des pourcentages.
+
+[#_6_1_3]
+==== Hériter des types numériques
+
+Comme il est acquis que les Remontées mécaniques de la Dent d'Ili n'émettront jamais de billets coûtant plus de mille couronnes, l'idée de le définir dans une classe particulière pourrait aisément germer :
+
+[source]
+----
+CLASS TypeBillet (EXTENDED) =
+  Prix (EXTENDED): 0 .. 1000 [Couronnes];
+END TypeBillet;
+----
+
+Cet exemple concret ne se justifie pas pleinement ici, mais dans certains cas en pratique, il est tout à fait judicieux de restreindre le domaine de valeurs hérité.
+
+Les Ilinois n'ont toutefois pas le droit de modifier les domaines de valeurs du modèle national comme bon leur semble : le principe selon lequel chaque valeur ilinoise doit également être admissible dans le modèle de base de l'Association nationale doit pouvoir s'appliquer. Dans le cas contraire, il ne serait plus garanti que l'Association nationale puisse prendre en charge des données du Val d'Ili sans rencontrer de problème.
+
+Une plage tarifaire allant de 0 .. 1000 constitue par conséquent une restriction admissible du domaine prévu au plan national, lequel s'échelonne entre 0 .. 9999. Si l'on souhaitait cependant étendre le domaine de valeurs dans le Val d'Ili – pour par exemple passer à une plage de 0 .. 15000 – alors des types de billets coûtant entre 10000 et 15000 couronnes ne seraient plus corrects du point de vue de l'Association nationale. Une telle définition n'est par conséquent pas admise.
+
+Les Ilinois veulent également avoir la possibilité d'émettre des billets dont le prix ne soit pas un nombre entier de couronnes mais réponde à la définition suivante :
+
+[source]
+----
+CLASS TypeBillet (EXTENDED) =
+  Prix (EXTENDED): 0.00 .. 1000.00 [Couronnes];
+END TypeBillet;
+----
+
+Est-elle compatible avec le modèle de base ? Oui, car chaque valeur respectant le modèle ilinois (7.35 par exemple) peut être arrondie à une valeur correcte (7 dans ce cas) du point de vue du modèle national.
+
+La définition ne serait plus admissible si elle englobait des valeurs violant les règles du modèle de base une fois arrondies. Pour prendre un exemple, une valeur maximale de 9999.99 arrondie à 10000 excèderait la limite supérieure de 9999 prescrite par l'Association nationale. Les Ilinois pourraient en revanche définir un domaine s'étendant entre 0.00 .. 9999.49, sans provoquer la moindre contradiction avec le modèle de base car la valeur de 9999.49 fournit à nouveau 9999, une fois arrondie.
+
+Il n'est pas non plus permis de renoncer à la précision dans le modèle spécialisé. Si le modèle national des offices de tourisme prévoyait par exemple un domaine compris entre 0.00 .. 1000.00, les Ilinois ne pourraient pas définir la plage de 0 .. 1000 dans leur spécialisa­tion.
+
+Encore un dernier point : les unités de l'extension doivent toujours coïncider avec celles du modèle de base !
+
+[#_6_1_4]
+==== Des limites encore inconnues
+
+L'Association nationale peut-elle définir le prix admissible pour un billet ? Si les limites restent parfaitement inconnues, l'emploi d'attributs abstraits peut permettre de renoncer à leur indication. Il reste toutefois possible de définir une unité.
+
+[source]
+----
+Prix (ABSTRACT): NUMERIC [Beotie.Couronne];
+----
+
+Et peut-être que l'unité elle-même reste floue. On sait seulement qu'il s'agit d'une unité monétaire (dans notre exemple).
+
+[source]
+----
+Prix (ABSTRACT): NUMERIC [MONEY];
+----
+
+L'unité est caractérisée si l'on procède de la sorte. Seules des unités concrétisant l'unité abstraite MONEY peuvent encore être définies dans le cadre d'une extension (cf. également § <<_5_4>> pour ce qui concerne les propriétés abstraites).
+
+[source]
+----
+Prix (EXTENDED): 0 .. 10000 [CHF]; !! permis
+Prix (EXTENDED): 0 .. 2000 [USD]; !! permis
+Prix (EXTENDED): 0 .. 1000 [m]; !! interdit, le metre concretisant
+                                 !! la longueur (LENGTH) et non la
+                                 !! monnaie (MONEY).
+----
+
+[#_6_2]

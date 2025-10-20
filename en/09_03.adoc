@@ -1,0 +1,12 @@
+[#_9_3]
+=== Time is ticking by at Mount Ilis – Life cycles
+
+Good, in other words adequate data models that are independent of any immediate use become more important the more durable and of general interest are the facts described by these data. Data that are intended for private purposes or for a project of clearly defined duration processed with a specific system, the data model is less important than with long-lived data.
+
+However as a rule data that describe real life are long-lived. The Mount Ilis itself only changes within geological periods. But even houses, railway companies and legal position have a life span of several years or decades. That is why real life objects will out-live the computer systems that describe their mappings.
+
+In order for these mappings of real life (i.e. the data objects) to out-live the specific computer systems (hardware and software) we need to have a clear perception of these data objects. We need a data model.
+
+This data model should be as system independent as possible because it is most likely that the next system will have different capacities. Maybe views will be generated automatically. Considering the relatively short life span of software packages, we should not be too concerned when structuring data with the present functionality of one specific software package.
+
+[#_9_4]

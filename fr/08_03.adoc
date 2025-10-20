@@ -1,0 +1,17 @@
+[#_8_3]
+=== La première fois et les fois suivantes – Livraison incrémentielle
+
+Dix-sept minutes sur le tire-fesses ? Les pauvres enfants seraient déjà à moitié gelés avant même d'avoir pu amorcer leur premier virage ! Une remontée pareille ne survivrait pas à sa première saison et ses données n'intéresseraient plus personne dans quarante ans.
+
+On finit par s'apercevoir que le tire-fesses n'avait pas été monstrueusement surdimensionné mais que quelqu'un avait fait une faute de frappe en entrant les données : le trajet ne dure pas dix-sept minutes, mais une seule.
+
+Cette valeur a bien sûr été promptement corrigée dans LiftSys. Fallait-il alors renvoyer la totalité des données à l'Association nationale des offices de tourisme ?
+
+[NOTE]
+Grâce à la *livraison incrémentielle*, toutes les données n'ont pas à être renvoyées au terme d'une modification, seuls les changements sont à trans-mettre, soit un volume de données bien plus faible. Le fait que les modifications soient documentées avec précision constitue un autre avantage de taille.
+
+Une livraison complémentaire à l'Association nationale a été générée à l'aide du logiciel LiftSys. Contrairement au transfert intégral, la livraison incrémentielle ne contenait pas la totalité des données du Val d'Ili mais uniquement les données des objets modifiés. Le fichier correspondant était donc de taille bien plus modeste et ainsi plus facile à manipuler.
+
+Il n'est cependant pas toujours opportun de procéder à des livraisons de données incrémentielles. L'Association nationale des offices de tourisme a par exemple externalisé l'exploitation du service Internet grâce auquel les touristes peuvent s'informer sur les prix des abonnements pratiqués pour les différentes remontées mécaniques. L'entreprise concernée reçoit donc périodiquement une copie des données au format INTERLIS 2. Ces données sont chargées via un logiciel de serveur répondant aux requêtes concrètes. Une livraison incrémentielle ne ferait qu'accroître les exigences posées à ce logiciel de serveur sans qu'un bénéfice tangible en soit retiré.
+
+[#_8_4]

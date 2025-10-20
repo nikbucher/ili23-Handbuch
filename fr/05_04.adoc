@@ -1,0 +1,20 @@
+[#_5_4]
+=== Mais nous ne voulons pas tant de détails – Propriétés abstraites
+
+Admettons qu'une association internationale souhaite garantir que la saisie des billets s'accompagne de celle de leur prix. Elle ne désire toutefois pas imposer d'unité monétaire pour l'indication du prix et la limite supérieure pour le prix n'est par ailleurs pas clairement définie. Ce qui est sûr, en revanche, c'est que « le prix » doit être une valeur numérique et qu'il est ici question d'argent : le prix n'est certainement pas indiqué en kilomètres / heure !
+
+[source]
+----
+CLASS TypeBilletInternational (ABSTRACT) =
+  Prix (ABSTRACT): NUMERIC [MONEY];
+END TypeBilletInternational;
+
+CLASS TypeBilletBeotie EXTENDS TypeBilletInternational =
+  Prix (EXTENDED): 0.00 .. 9999.99 [Beotie.Couronne];
+END TypeBilletBeotie;
+----
+
+[NOTE]
+Il n'est pas nécessaire de définir toutes les propriétés dans les moindres détails : des *propriétés abstraites* sont admises pour les classes abstraites. Il incombe alors aux sous-classes concrètes de les préciser. Ce type de propriétés se révèle particulièrement intéressant lorsqu'une chose est à réglementer au plan national ou international, sans pour autant que tous les détails en soient prescrits.
+
+[#_5_5]

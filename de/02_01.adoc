@@ -1,0 +1,29 @@
+[#_2_1]
+=== Aufbruchstimmung im Ilistal
+
+[#_2_1_1]
+==== Der Startschuss
+
+Die Ferienregion Ilistal hat sich entschlossen, ihre Webpage auf Vordermann zu bringen. Das vielfältige Transportangebot soll interaktiv mittels eines grafischen Dialogs abrufbar sein. Die Präsentation im Gemeindehaus war beeindruckend: Schöne Bilder, trendige Abkürzungen wie HTML, XML, GIS, SVG! Sogleich kamen natürlich weitere Wünsche auf. Im Bauamt entschloss man sich kürzlich, die Adressen nach der neuen Norm zu erfassen. Das könnte man doch nutzen! Der Direktor der Ilishornbahnen erinnert sich, dass der nationale Bergbahnenverband einen Dienst einrichten möchte, über den das landesweite Bergbahn­angebot verfügbar ist. Dabei sollen auch die Fahrpreise und insbesondere die verschiedenen Verbundabonnemente abrufbar sein. Sein Kollege, der für die technischen Belange zustän­dig ist, macht darauf aufmerksam, dass er auf seinem Compi die ganze Infrastruktur ver­walte. Informationen über die Bahntrassees und die Pisten könne er schon liefern. Da sei aber nicht alles klar. Kürzlich habe er nämlich auf dem Bauamt gefragt, ob er nicht die Daten der neuen Überbauung «Im Oberboden» haben könne. Sie hätten es dann schliesslich hin­gekriegt. Einige Informationen seien zwar verloren gegangen. Die seien aber nicht so wichtig gewesen.
+
+Da wird die Gemeindepräsidentin hellhörig. Eine Kollegin, die in einer Gemeinde nahe der Hauptstadt tätig ist, hat ihr doch erzählt, dass sie in einem Teilbereich bereits die dritte Software im Einsatz hätten. Zusatzwünsche, die sie eigentlich normal fand, führten jeweils zur vollständigen Überarbeitung. Sie hätten dann Unterstützung von einem Informatiker erhalten, der weniger von den verschiedenen Techniken sprach. Vielmehr habe man zuerst gemeinsam überlegt, welche Daten mit den Problemen verbunden seien. Seitdem man so vorgehe, sei es auch viel besser möglich, schrittweise Erfolge zu erzielen.
+
+Die Gemeindepräsidentin, eine freundliche aber entschlossene Frau, beauftragt darum den Bausekretär, sich zusammen mit dem technischen Leiter der Ilishornbahnen um die Sache zu kümmern. Als Fachmann zieht sie den Informatiker ihrer Kollegin bei.
+
+[#_2_1_2]
+==== Erste Auslegeordnung
+
+Beim ersten Gespräch der Arbeitsgruppe purzelten die verschiedenen Stichworte und Argumente anfänglich noch wild durcheinander: Mit welchem Programmpaket arbeitet der nationale Verband? Meint man nur die Bahnunternehmung oder jede einzelne Bahn, jeden Skilift? Die einzelnen Bahnen, aber auch die Gebäude sind ja bereits in der amtlichen Vermessung enthalten. Wie kann man diese Daten brauchen? Was passiert, wenn Daten ändern, wenn neue Daten hinzukommen? Aber mein Programmpaket versteht nur DXF! Und ich nur Bahnhof!
+
+Das gab das Zeichen, um kurz inne zu halten. Man erinnerte sich an die alte römische Devise «Divide et impera» und begann Ordnung zu machen, um der Sache Herr zu werden. Im Vordergrund standen zuerst folgende Fragen:
+
+* Wer braucht welche Daten?
+* Wer erfasst sie und führt sie nach?
+
+.Die verschiedenen Beteiligten und die Datenströme.
+image::img/image1.png[]
+
+
+Aber wie kommen die Daten nun vom Bearbeiter zum Nutzer? E-Mail, FTP, DXF, ASCII – schon ging's wieder los. Der Informatiker empfahl, diese Frage mal etwas zurückzustellen und sich darum zu kümmern, wie die Daten modelliert seien. Modelliert? Wir wollen doch eine Informatiklösung und kein Holzmodell für unser schönes Ilistal. Die Frage, was ein Datenmodell ist, sprengte den Rahmen der ersten Sitzung. Nur soviel: Es soll beschreiben, wie die Daten aufgebaut sind. Welche Eigenschaften haben die verschiedenen Objekte? Welche Objekte stehen mit welchen anderen Objekten in Beziehung? Und das nicht einfach als Aufsatz, sondern in einer klaren, präzisen bildlichen oder formalen Sprache!
+
+[#_2_2]

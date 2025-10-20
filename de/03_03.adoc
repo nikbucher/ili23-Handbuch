@@ -1,0 +1,15 @@
+[#_3_3]
+=== Standardisierte Datenmodelle
+
+Es macht wenig Sinn, jedes Datenmodell vollständig von Grund auf neu zu erstellen. Stattdessen können vordefinierte Modelle benutzt und verfeinert werden. Auf verschiedenen Stufen wurden und werden Modelle entwickelt, auf denen Anwendungen aufbauen können:
+
+* *International* – Im Rahmen von internationalen Normierungsbestrebungen wurde unter anderem ein sehr umfassendes Modell für Basis-Geometrietypen (ISO 19107) entwickelt. Es sind Bestrebungen in Gang, einen Kern herauszuschälen, welcher den wichtigsten Anforderungen der Praxis entspricht (ISO 19137). Hierfür werden die räumlichen Konzepte mehrerer verbreiteter Modellierungssprachen analysiert, unter anderem auch jene von INTERLIS. Wer sich Gedanken darüber macht, wie etwa Kegelschnittflächen oder Dreiecksnetze zu modellieren sind, ist beraten, sich in die Normdokumente bzw. die entsprechenden Entwürfe einzulesen. Die ISO-19100-Serie umfasst auch Datenmodelle für Zeitabschnitte (ISO 19108), Metadaten (ISO 19115), Dienste (ISO 19119), und anderes mehr. Allerdings sind viele dieser Normen noch im Entwurfsstadium, und es besteht noch wenig Erfahrung, wie tauglich sie in der Praxis sind.
+* *National* – In der Schweiz existieren für mehrere Anwendungsbereiche standardi­sierte Modelle. Teilweise ist ihre Verwendung in Gesetzen und Verordnungen vorge­schrieben. Für die amtliche Vermessung, für Leitungsnetze und seit kurzem auch für geo-codierte Adressen wurden landesweit gültige Modelle ausgearbeitet.
+* *Branchenverbände* – Eine weitere Quelle für Datenmodelle, auf denen eigene An­wendungen aufbauen können, sind die Branchenverbände. So hat der Schweizerische Ingenieur- und Architektenverband SIA ein INTERLIS-Modell für den Leitungskataster (Abwasser, Gas, Wasser, Fernwärme, Elektrizität, Telecom, Kabelkommunikation) aus­gearbeitet.
+* *INTERLIS* – Für einige wenige, sehr grundlegende Bereiche gibt INTERLIS Standardmodelle vor. So wird mit den INTERLIS-Werkzeugen unter anderem ein Modell mit Einheiten (units.ili) ausgeliefert, in dem Meter, Newton, Dezibel und ähnliches definiert werden.
+
+Die Schweizer Modelle werden nach Möglichkeit mit den ISO-Normen in Einklang gebracht. Beispielsweise wurde ein nationales Modell für Metadaten zu geographischen Daten (z.B. Herkunft, Qualität etc.) entsprechend ISO 19115 ausgearbeitet. Das Modell liegt als INTER­LIS-Beschreibung vor.
+
+Dank der Verfeinerungs-Mechanismen von INTERLIS kann eine konkrete Anwendung auf ein bereits bestehendes Datenmodell zurückgreifen, ohne dass es _tel quel_ übernommen werden müsste.
+
+[#_3_4]

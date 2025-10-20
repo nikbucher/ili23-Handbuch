@@ -1,0 +1,12 @@
+[#_9_3]
+=== Le temps produit-il son effet sur la Dent d'Ili ? – Cycles de vie
+
+Des modèles de données de qualité, autrement dit pertinents, non liés à une utilisation immédiate, sont d'autant plus importants que les situations décrites au moyen des données présentent une grande longévité et un caractère général. Dans le cas de données saisies à l'aide d'un système donné, dans l'optique d'un objectif de nature privée ou d'un projet clairement délimité, le modèle de données ne présente pas la même importance que s'il s'agit de données à longue durée de vie.
+
+Cependant, les données décrivant le monde réel se caractérisent généralement par leur longévité. La Dent d'Ili par exemple ne subit de modifications qu'à l'échelle géologique. Les bâtiments, les remontées mécaniques ou les statuts juridiques s'inscrivent dans une durée allant de quelques années à quelques décennies. Les objets du monde réel présentent donc des cycles de vie largement supérieurs à ceux des systèmes informatiques sur lesquels leurs représentations sont décrites.
+
+Pour que les représentations de la réalité, autrement dit les objets de données, aient une longévité supérieure à celle des systèmes informatiques (matériel et logiciels) sur lesquels elles sont installées, leur définition doit s'opérer avec le plus grand soin et un modèle de données est nécessaire à cette fin.
+
+Ce modèle de données doit être aussi indépendant que possible des systèmes, étant entendu que ces derniers possèdent des capacités aussi variées que différentes. La formation automatique de vues est même envisageable. Quoi qu'il en soit, les logiciels ayant une durée de vie relativement brève, il est déconseillé de se laisser trop fortement influencer par les fonctions qu'ils peuvent offrir, lors de la structuration des données.
+
+[#_9_4]

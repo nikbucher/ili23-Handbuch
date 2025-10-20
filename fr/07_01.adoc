@@ -1,0 +1,14 @@
+[#_7_1]
+=== Que signifie la conformité à une norme pour un système ? – Indépendance vis-à-vis de tout système
+
+Les modèles définis au moyen d'INTERLIS 2 sont installés sur différents logiciels tels que NatTourSys de l'Association nationale mais également LiftSys utilisé par les Remontées mécaniques de la Dent d'Ili. Ces systèmes sont donc en mesure de générer et de lire des fichiers correspondants. S'agit-il alors de systèmes INTERLIS ? Ou si l'on veut donner un tour plus général à la question : quand un système est-il conforme à une norme donnée ?
+
+Une description au niveau conceptuel n'a pas vocation à prescrire la manière dont un système informatique implémente la représentation proposée. En règle générale, les systèmes disposent de possibilités propres pour la mise en oeuvre d'applications concrètes. Dans le cas idéal, le modèle de données interne peut directement être dérivé des descriptions. Mais cette condition n'est pas indispensable. Il est parfaitement acceptable qu'un système ne puisse pas traiter directement les descriptions effectuées. Il lui suffit, pour être compatible, d'être directement ou indirectement capable (par exemple via des programmes de conversion supplémentaires) de traiter les données dans le respect de la norme. Une norme régissant la modélisation de données devrait renoncer à prescrire la manière dont un système doit concrètement convertir une application. La créativité des développeurs est alors sollicitée et le marché a les coudées franches. L'indépendance de la norme vis-à-vis de tout système est la condition indispensable pour que des changements de systèmes ne soient pas voués à l'échec pour cause d'incompatibilité avec les données.
+
+Un système n'est pas non plus dans l'obligation de posséder la palette complète des capacités que l'on escompte dans le contexte d'une description. Pour prendre un exemple, WebSys est uniquement en mesure de lire des données INTERLIS 2. La situation est encore plus aiguë dans le cas des systèmes transmettant les messages d'état des différentes remontées mécaniques à la centrale. Les données des messages sont intégrées d'une manière très simple dans des fichiers prétraités, structurés conformément à la norme.
+
+Si une application pose des exigences très particulières, il ne faut pas s'attendre à ce qu'elles soient couvertes par une norme à caractère général. Des contrats doivent donc être conclus avec les producteurs de systèmes pour garantir une assistance dans de telles éventualités. Une certaine réserve est toutefois de mise, dans la mesure où l'on y perd en indépendance vis-à-vis des systèmes tout en limitant par ailleurs le cercle des fournisseurs de systèmes potentiels.
+
+Deux exemples vont servir dans la suite à présenter la manière dont des aspects dépendant des systèmes peuvent être normalisés sans qu'une influence trop forte ne soit exercée sur l'organisation interne de ceux-ci.
+
+[#_7_2]

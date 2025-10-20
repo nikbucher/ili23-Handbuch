@@ -1,0 +1,18 @@
+[#_5_5]
+=== Details are of no interest – A closer look at the specific
+
+In general whoever demands information on the transport system of a country does not want to know whether one particular means of transport is a cable car, a tramway or some other sub type of railway. Nor would he want to find out what system of cogs is used by a line, if it were to be a cog rail. Nothing but its name (that according to the data model is captured for each means of transport) is sufficient as an answer.
+
+[NOTE]
+====
+Entities of a sub class can always be considered to be generalizing in terms of a super class.
+
+_The Greek expression for this principle is polymorphism._
+====
+
+However this applies on one condition:
+
+[NOTE]
+Each extension must be *compatible* with its basic definition. Compatible means that each value possible with the extended definition can be mapped onto the basic definition in accordance with the rules of the basic type (text, enumeration, number coordinate etc.).
+
+[#_5_6]

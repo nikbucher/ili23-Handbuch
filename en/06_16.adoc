@@ -1,0 +1,15 @@
+[#_6_16]
+=== All that is good comes from above – Using existing models
+
+The people from Ilis Valley are smart: Instead of reinventing everything, they are using existing models (Units, Ahland, Addresses, NatTour). All the same they have committed some sacrileges. For instance an AhlandLine surely is not typical for Ilis Valley and its alpine transports, but should rather belong to the customary data model of Ahland. The same goes for WGS84Coord and the TimeOfDay, which cannot count as Ilis Valley specialties.
+
+By normal standards those in charge in Ilis Valley have proceeded sensibly in as far as they added things they couldn't find anywhere else to their own model. Understandable, but not optimal.
+
+[WARNING]
+Missing or incorrect definitions at a more general (higher) level should not simply be accepted; it would be better to get together with the responsible authorities and to improve these models.
+
+This is why it is also sensible to predefine fundamental types at various levels. INTERLIS itself puts some basic models at your disposal. Other models will be provided by user communities (e.g. associations). There are others that are very specific such as the model of the Mount Ilis Alpine Transports.
+
+Paragraph <<_3_3>> names some sources for standardized data models.
+
+[#_6_17]

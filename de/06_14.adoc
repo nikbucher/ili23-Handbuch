@@ -1,0 +1,206 @@
+[#_6_14]
+=== Einzigartige Ilishornbahnen – Konsistenzbedingungen
+
+[#_6_14_1]
+==== Grundsätzliches
+
+Wir erinnern uns, dass die Ilishornbahnen für die einzelnen Bergbahnen jeweils den aktuel­len Zustand erfassen wollen, unter anderem das Wetter bei der Bergstation:
+
+[source]
+----
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+END Zustandsmeldung;
+----
+
+Mit dieser Definition wäre auch eine Meldung mit einer undefinierten Windrichtung und einer Windgeschwindigkeit von 60 km/h erlaubt. Das ist aber nicht die Meinung. Eine undefinierte Windrichtung soll Windstille bedeuten. Dann aber ist die Windgeschwindigkeit natürlich 0. Und umgekehrt soll bei einer Windgeschwindigkeit grösser Null immer auch die Windrichtung definiert sein.
+
+[NOTE]
+Situationen, in denen zwischen verschiedenen Attributen eines Objektes oder gar zwischen verschiedenen Objekten ein bestimmter Zusammenhang bestehen muss, werden mit *Konsistenzbedingungen* beschrieben.
+
+Eine Konsistenzbedingung wird in der Regel mit einer Formel beschrieben, deren Aus­wertung ergibt, ob die Bedingung erfüllt ist oder nicht. Mit einem solchen logischen Ausdruck kann die Windstille geregelt werden:
+
+[source]
+----
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+  MANDATORY CONSTRAINT
+    DEFINED (Windrichtung) == (Windgeschwindigkeit > 0);
+END Zustandsmeldung;
+----
+
+Genau dann wenn die Windrichtung definiert ist, muss die Windgeschwindigkeit grösser Null sein. Ist die Windrichtung nicht definiert, muss die Geschwindigkeit Null sein. Es wird also gefordert, die «Definiertheit» der Windrichtung solle gleich (==) der «Positivheit» der Wind­geschwindigkeit sein.
+
+Häufig sind aber Konsistenzbedingungen vermeidbar, wenn das Modell anders aufgebaut wird. Packt man die Windangaben in eine Struktur und sagt, dass diese Struktur als Ganzes fakultativ ist, braucht es keine Konsistenzbedingung. Bei Windstille fehlt das Strukturelement. Windet es, sind zwingend Windrichtung und Windgeschwindigkeit vorhanden.
+
+[source]
+----
+STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Wind;
+
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+END Zustandsmeldung;
+----
+
+[WARNING]
+Bei Konsistenzbedingungen – insbesondere wenn sie kompliziert sind – besteht immer der Verdacht, dass das optimale Modell noch nicht gefunden wurde. Andererseits macht es auch keinen Sinn, ein an sich einfaches Modell künstlich kompliziert zu machen, nur um eine Konsistenzbedingung zu vermeiden.
+
+[#_6_14_2]
+==== Plausibilitätsbedingungen
+
+Die Angestellten der Ilishornbahn verdienen allesamt nicht schlecht, aber der Direktor bezieht ein doch deutlich höheres Gehalt.
+
+Konsistenzbedingungen gelten üblicherweise für alle Objekte der betreffenden Klasse. In INTERLIS 2 werden sie als MANDATORY CONSTRAINT bezeichnet. Man spricht gelegent­lich von «harten» Bedingungen, weil sie immer erfüllt sein müssen. Nun gibt es aber auch Bedingungen, die in aller Regel, aber eben nicht immer erfüllt sind.
+
+Bei Attributen wie Monatssalär oder Körpergrösse muss der grundsätzlich zulässige Bereich relativ gross gewählt werden. Die Werte der meisten Objekte liegen aber unterhalb einer wesentlich tieferen Grenze. Ausnahmen sind dennoch möglich, wie zum Beispiel für den Lohn des Bahndirektors.
+
+[source]
+----
+ASSOCIATION Anstellung =
+  ...
+  Monatssalaer: MANDATORY 0 .. 20000 [Taler];
+  ...
+  CONSTRAINT >= 95%
+    Monatssalaer < 10000;
+END Anstellung;
+----
+
+Es wird geschätzt, dass das Monatssalär in mindestens (++>++=) 95% aller Fälle unter 10000 Talern liegt. Umfasst ein Modell solche «weichen» Bedingungen, wird es möglich, Daten bei der Eingabe auf ihre Plausibilität zu prüfen und statistisch zu kontrollieren.
+
+[#_6_14_3]
+==== Eindeutigkeitsbedingungen
+
+Wie werden die Personen identifiziert, die bei Bergbahngesellschaften arbeiten oder an ihnen beteiligt sind? Nahe liegend, aber ungeeignet wäre es, hierzu Name und Vorname zu verwenden:
+
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  UNIQUE Name, Vorname;
+END Person;
+----
+
+Es wäre dann unzulässig, zwei verschiedene Personen mit der gleichen Kombination von Name und Vorname aufzuführen. Der neue Lokomotivführer Hans Huber darf seine Arbeit also erst antreten, wenn zuvor sein Namensvetter in der Buchhaltung entlassen wird.
+
+Was wäre eine bessere Eindeutigkeitsbedingung? Warum überhaupt Eindeutigkeitsbedin­gungen?
+
+[NOTE]
+Eine *Eindeutigkeitsbedingung* dient nicht der Identifikation eines Objektes innerhalb eines Programmpakets. Stattdessen beschreibt es, welche Kombina­tionen von Attributen sachlich eindeutig sein müssen.
+
+[NOTE]
+Programm-intern und beim Datenaustausch ist ein Objekt durch eine technische *Objektidentifikation* gekennzeichnet. Diese hat keinerlei Bedeutung für die Anwendung.
+
+Es braucht also nicht für jede Objektklasse eine Eindeutigkeitsbedingung, nur damit ein Objekt identifizierbar ist. Es reicht, wenn das Datenobjekt, welches der effektiven Person ent­spricht, bei der Eingabe gefunden werden kann. Hierfür können auch Attribute, Beziehungen usw. herangezogen werden, ohne dass eine Kombination eindeutig sein muss.
+
+Will man jedoch eine system-externe Identifikation, die zum Beispiel für Menschen verständlich ist, braucht es ein Attribut oder eine Kombination von Attributen, deren Werte über alle Objekte eindeutig sind. Häufig werden dafür künstliche Attribute geschaffen (Versicherungsnummer, Kundennummer, Artikelnummer, usw.)
+
+[WARNING]
+Künstliche Identifikatoren sind wo immer möglich zu vermeiden. Wo sie dennoch nötig sind, ist darauf zu achten, dass sie nicht Inhalte anderer Attribute in redundanter Form enthalten.
+
+Bei den Ilishornbahnen wurde dieses Problem auf simple Weise gelöst: Man hat einfach eine Personalnummer eingeführt. Stösst eine Person neu zu den Ilishornbahnen, wird ihr eine Nummer zugewiesen, die noch nicht vergeben ist.
+
+[source]
+----
+CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  Personalnummer: 1 .. 9999;
+  UNIQUE Personalnummer;
+END Person;
+----
+
+Heikler würde die Sache, wenn die Klasse, durch die Personen beschrieben sind, nicht durch die Ilishornbahnen, sondern durch den nationalen Verband definiert wäre. Die Personal­nummern aller Personen im Rahmen des Verbandes müssten dann eindeutig sein – auch wenn sie dezentral erfasst werden. Gäbe es zwei gleiche Nummern (z.B. eine bei den Ilishornbahnen, eine bei den Blaubergbahnen), wäre die Bedingung verletzt.
+
+[NOTE]
+Eindeutigkeitsbedingungen gelten immer für alle Objekte, die der Klasse ent­sprechen, für welche die Bedingung gilt – auch wenn die Entsprechung nur indirekt (in Form einer Erweiterung der Klasse) ist.
+
+Eine Bahngesellschaft kann mehrere Namen tragen. Es soll aber pro Sprache nur eine ein­zige Bahnbezeichnung geben können; die Ilishornbahnen dürfen somit keinen zweiten deutschsprachigen Namen führen. Allerdings gilt diese Einschränkung nur lokal, also pro Gesellschaft: Schliesslich besitzen ja auch die Blaubergbahnen einen deutschsprachigen Namen. Über alle Gesellschaften hinweg gesehen gibt es also durchaus mehr als einen Namen in derselben Sprache. Die Sprache von Bahnbezeichnungen muss nur für eine be­stimmte Bahngesellschaft eindeutig sein.
+
+[NOTE]
+Weist ein Objekt Unterstrukturen auf, soll die Eindeutigkeit – anders als bei den eigentlichen Objekten – in der Regel nicht «global» für die Elemente von sämt­lichen Unterstrukturen gelten. Sie bezieht sich meist nur «lokal» auf die Unter­strukturelemente von einem einzigen Objekt.
+
+[source]
+----
+STRUCTURE Bezeichnung =
+  Name: TEXT*100;
+  Sprache: TEXT*2;
+END Bezeichnung;
+
+STRUCTURE Bahnbezeichung EXTENDS Bezeichnung =
+  Kurzbezeichnung: TEXT*10;
+END Bahnbezeichnung;
+
+CLASS Bahngesellschaft =
+  Namen: BAG {1..*} OF Bahnbezeichnung;
+  UNIQUE
+    (LOCAL) Namen : Sprache;
+END Bahngesellschaft;
+----
+
+Wie aber erreicht man, dass die Kurzbezeichnungen der verschiedenen Bahnen nicht kolli­die­ren? Sowohl die Blaubergbahnen wie die Buntbergbahnen möchten doch primär einmal BBB heissen. In INTERLIS 2 können Konsistenzbedingungen nicht nur für Objektklassen bzw. lokale Strukturelemente, sondern auch für Sichten (vgl. Abschnitt <<_6_17>>) formuliert wer­den. Mit einer bestimmten Sicht können aus Strukturelementen quasi eigenständige Objekte gemacht werden. Für diese kann dann wieder eine Eindeutigkeitsbedingung formuliert wer­den.
+
+[#_6_14_4]
+==== Existenzerfordernis
+
+Im Gegensatz zu Zahnrad- und Standseilbahnen ist der Trasseeverlauf von Luftseilbahnen, Gondelbahnen, Skiliften usw. nicht einfach beliebig, sondern an die Tal- und Bergstation sowie an die Masten gebunden.
+
+Diesen Zusammenhang möchte man ausdrücken. Die Linien von INTERLIS 2 verbinden je­doch Stützpunkte, die primär Koordinaten sind und keinen Bezug zu Modellobjekten wie etwa Masten aufweisen. Der Zusammenhang zwischen dem Trasseeverlauf und anderen Objekten kann aber als Konsistenzbedingung formuliert werden.
+
+Mit der folgenden Definition muss sich jeder Punkt des Trasseeverlaufs auf die Lage eines Masts (Mast:Lage), die Lage der Talstation einer Bergbahn (Bergbahn:LageTalstation) oder (OR) die Lage der Bergstation einer Bergbahn (Bergbahn:LageBergstation) abstützen.
+
+[source]
+----
+CLASS BodenunabhaengigeBahn EXTENDS Bergbahn =
+  EXISTENCE CONSTRAINT
+    Trasseeverlauf REQUIRED IN
+      Mast:Lage
+      OR
+      Bergbahn:LageTalstation
+      OR
+      Bergbahn:LageBergstation;
+END BodenunabhaengigeBahn;
+----
+
+Solche Existenzbedingungen sind nicht nur im Zusammenhang mit Linien, sondern auch bei gewöhnlichen Attributen formulierbar. Konzeptuell können sie immer als eine schwache Form einer Beziehung betrachtet werden.
+
+[#_6_14_5]
+==== Vererbung von Konsistenzbedingungen
+
+Bereits bei der Bergbahn selbst wurde eine Konsistenzbedingung formuliert: Der Trassee­verlauf muss bei der Talstation beginnen und bei der Bergstation enden. Oder anders gesagt, der erste Punkt des Trasseeverlaufs (Trassee -++>++ Segments++[++FIRST++]++ -++>++ SegmentEndPoint) muss gleich der Lage der Talstation sein, und (AND) der letzte Punkt des Trasseeverlaufs (Trassee -++>++ Segments++[++LAST++]++ -++>++ SegmentEndPoint) muss mit der Lage der Bergstation zusammenfallen.
+
+Abschnitt <<_7_3>> erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.
+
+[source]
+----
+CLASS Bergbahn =
+  LageTalstation: Ahland.LandesKoord3;
+  LageBergstation: Ahland.LandesKoord3;
+  Trasseeverlauf: Ahland.LinieNormal;
+  MANDATORY CONSTRAINT
+    Trassee -> Segments[FIRST] -> SegmentEndPoint == PARENT == LageTalstation
+    AND
+    Trassee -> Segments[LAST] -> SegmentEndPoint == PARENT == LageBergstation;
+END Bergbahn;
+----
+
+Was bedeutet eine solche Definition für allfällige Erweiterungen dieser Klasse?
+
+[NOTE]
+Konsistenzbedingungen können durch Klassenerweiterungen nicht ausser Kraft gesetzt werden. Erweiterungen können nur zusätzliche Bedingungen definieren.
+
+[#_6_15]

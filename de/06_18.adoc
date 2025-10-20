@@ -1,0 +1,7 @@
+[#_6_18]
+=== Namen sind Schall und Rauch – Schema in einer Fremdsprache
+
+Eine Bergbahn ist auf Französisch nicht anders als auf Deutsch. Sie besitzt dieselben Eigenschaften, sie steht mit denselben anderen Klassen in Beziehung, usw. Man mag sich zwar darüber streiten, ob wirklich alles in jeder Sprache gleich gut gesagt werden kann, aber für ein Datenmodell gilt: Die eigentlichen Konzepte sind in jeder Sprache dieselben. Was von einer Sprache zur nächsten wechselt, sind nur ihre Namen.
+
+Wer ein Modell in eine Fremdsprache übersetzen möchte, braucht daher nur alle Bezeich­nungen und Anmerkungen auszutauschen. Die eigentliche Struktur – im UML-Diagramm also die Kästchen und Linien – bleibt unverändert. Für INTERLIS-Beschreibungen gibt es ein Werkzeug (den so genannten INTERLIS-Compiler), das prüft, ob eine Übersetzung tatsächlich nur andere Namen verwendet, oder ob beim Übersetzen versehentlich auch die Struktur des Modells gewechselt hat.
+

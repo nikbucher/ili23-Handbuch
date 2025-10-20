@@ -1,0 +1,19 @@
+[#_8_1]
+=== Aus den Augen, aus dem Sinn – Volltransfer
+
+Erinnern wir uns: Die Ilistaler hatten sorgfältig überlegt, welche Daten sie für ihre geplante Anwendung benötigen und ihre Vorstellungen mit einem Datenmodell dokumentiert. In den Gesprächen hatte es sich als nützlich erwiesen, sowohl mit einer graphischen Übersicht als auch mit einer detaillierten Beschreibung in Textform zu arbeiten.
+
+Nach all den langen Diskussionen waren die Ilistaler nun so weit: Das Standard-Programm­paket «LiftSys» wurde beschafft und anhand des Ilistaler Datenmodells eingerichtet. Zwar klappte es doch nicht ganz so auf Anhieb, wie der LiftSys-Verkäufer behauptet hatte, aber die Schwierigkeiten liessen sich rasch beseitigen. Schliesslich konnten die Bahnen, Bahn­gesellschaften, Skipisten usw. des Ilistals erfasst werden.
+
+Stolz führte der Informatiker vor, wie sämtliche Ilistaler Daten mit einem einzigen Mausklick in eine INTERLIS 2-Datei exportiert werden konnten. Manche im Publikum konnten sich jedoch nicht so schnell begeistern. Es wurden kritische Fragen gestellt: Für diese eine Datei hatte man nun so viele Sitzungen ausgestanden? War das wirklich nötig gewesen?
+
+Der Einwand war allerdings schnell entkräftet, als der Buchhalter vorrechnete, mit wie vielen Talern der Aufwand für den Datenaustausch bisher jährlich zu Buche geschlagen hatte. Je­des Mal, wenn man dem nationalen Tourismusverband Daten geschickt hatte, hatte es Ärger gegeben. Wie viele Arbeitsstunden waren da verloren gegangen!
+
+Neu war es also möglich, dem nationalen Verband eine Datei mit sämtlichen Daten aus dem Ilistal schicken, und dieser konnte sie problemlos weiterverarbeiten.
+
+[NOTE]
+Die einfachste Transferart ist der *Volltransfer*, bei dem alle Daten vollständig übermittelt werden.
+
+Dass der Transfer auch dann reibungslos abläuft, wenn die Beteiligten nicht genau dasselbe Daten­modell benutzen, hängt mit der Vererbung zusammen, die in Abschnitt <<_5_5>> erläutert wird.
+
+[#_8_2]

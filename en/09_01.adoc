@@ -1,0 +1,14 @@
+[#_9_1]
+=== There are many routes up to Mount Ilis – The correct model does not exist
+
+In Ilis Valley they are quite aware of the fact that their model is not above all criticism. Since in reality Ilis Valley does not exist we have not bothered to question the model again and again from different angels. It was our primary intention to introduce the different aspects of modeling and their corresponding tools.
+
+Nevertheless with every model the question arises: Is this model correct? Or actually the question might rather be: Is this model good enough?
+
+It is clearly short sighted to consider a model correct or good if it formally meets all the requirements of the description language. Just because a model is accepted by the INTERLIS-compiler does not mean that it is in actual fact good.
+
+Going by the proverb «Many roads lead to Rome» – or in our case to Mount Ilis – is more to the point. Evidently there are many possibilities of modeling one specific circumstance. But not every possible model is as satisfactory as another. After all there are also wide, narrow, steep, passable, rough and scenic paths up to Mount Ilis. Today the best way may be different from the one we took yesterday. Needs, opinions and criticisms can vary.
+
+In the following paragraphs we look at different verdict criteria for the modeling of data.
+
+[#_9_2]

@@ -1,0 +1,147 @@
+[#_6_9]
+=== Une piste est-elle une ligne ou une surface ? – Types géométriques
+
+[#_6_9_1]
+==== Vue conceptuelle simple d'une ligne
+
+Du point de vue du skieur, les besoins sont clairs : il veut savoir où commence la piste, où elle s'arrête et avoir une idée sommaire de son tracé. Et puis aussi s'il y a une auberge en bord de piste et si celle-ci sillonne à travers bois ou descend sur des versants découverts. Il suffit, pour toutes ces informations, de décrire le tracé de la piste sous forme de ligne.
+
+Par type de ligne, on entend d'abord ce que l'expression laisse explicitement supposer : une liaison plus ou moins compliquée entre deux points.
+
+Pris dans ce sens, le type de ligne n'est rien d'autre qu'un type numérique ou mieux encore, un type de coordonnées. Les points composant la ligne devant être décrits par des coordonnées, il est indispensable qu'un type de ligne soit toujours lié à un type de coordonnées.
+
+Avec INTERLIS, ou pourrait écrire :
+
+[source]
+----
+LigneBeotie = POLYLINE VERTEX Beotie.CoordNational;
+
+CLASS Piste =
+  Trace: LigneBeotie;
+END Piste;
+----
+
+Le tracé de la piste est décrit au moyen de lignes basées sur des coordonnées exprimées dans le système national béotien. En conséquence, les points d'appui des lignes dans le système national béotien prennent appui sur le type de coordonnées du système national.
+
+[#_6_9_2]
+==== Tronçons de lignes
+
+Il est évident que la piste reliant la Dent d'Ili à Ia Crête d'Ili est une ligne complexe. En revanche, le tracé des pistes à proximité des tire-fesses est relativement simple. Sont-elles toutes descriptibles par le même type ? La solution réside dans la subdivision de la ligne considérée comme un tout en plusieurs tronçons de ligne. Chacun de ceux-ci présente lui-même une géométrie simple (telle qu'un segment de droite ou un arc de cercle) et est consécutif au tronçon qui le précède.
+
+Cette situation pourrait également être décrite dans le modèle conceptuel, mais cela constituerait une contrainte superflue. Une fois que l'on sait que les lignes sont toujours structurées de la sorte, il n'est plus nécessaire d'y revenir.
+
+.Le tracé d'une piste est représenté par une ligne, elle-même constituée de tronçons de diverses sortes : des segments de droite, des arcs de cercle, etc.
+image::img/image43.png[]
+
+
+Il est toutefois judicieux d'indiquer les types de tronçons de lignes autorisés pour un type de ligne particulier :
+
+[source]
+----
+LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Beotie.CoordNational;
+----
+
+Cette définition INTERLIS 2 précise que les lignes du type indiqué peuvent comprendre des segments de droite et des arcs de cercles.
+
+Dans de nombreux cas – dont les pistes font partie – il ne présente aucun intérêt de permettre aux lignes d'être en intersection avec elles-mêmes. Les restrictions de cette nature font aussi partie du modèle conceptuel. En raison d'imprécisions inhérentes aux travaux de mensuration (ou parfois aux calculs qui s'ensuivent), il est cependant possible qu'une forme en principe exempte de tout recouvrement présente subitement l'un ou l'autre léger chevauchement. C'est pourquoi le recouvrement maximal encore admissible fait partie intégrante du modèle. Il est indiqué dans les unités des coordonnées associées.
+
+Le système de coordonnées national béotien utilisant le mètre comme unité, la définition ci-dessous permet des recouvrements n'excédant pas 2 centimètres :
+
+[source]
+----
+LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS)
+              VERTEX Beotie.CoordNational
+              WITHOUT OVERLAPS > 0.02;
+----
+
+.De petits recoupements sont parfois inévitables. La définition de la taille maximale d'un tel recouvrement (la flèche sur le graphique) fait partie intégrante du modèle.
+image::img/image44.png[]
+
+
+[#_6_9_3]
+==== Lignes orientées
+
+Un skieur s'attend naturellement à ce que les tronçons de ligne de la piste reliant la Dent d'Ili à la Crête d'Ili commencent aux abords de la Dent d'Ili pour finir sur la Crête d'Ili. Ils souhaitent descendre la piste et non chausser les peaux de phoque pour la remonter ! La direction présente cependant peu d'intérêt pour la description d'autres objets (tels que des sentiers de randonnée). Lorsque la direction des lignes est d'importance, elle doit donc figurer dans le modèle conceptuel.
+
+[source]
+----
+LigneBeotieOrientee = DIRECTED POLYLINE VERTEX Beotie.CoordNational;
+
+CLASS Piste =
+  Trace: LigneBeotieOrientee;
+END Piste;
+----
+
+[#_6_9_4]
+==== Surfaces
+
+Le service des pistes des Remontées mécaniques de la Dent d'Ili s'est demandé si la description des pistes répondait à ses besoins. Après réflexion, il a conclu qu'une représentation sous forme de surface était préférable afin que la définition des secteurs à préparer soit toujours parfaitement claire.
+
+[source]
+----
+DOMAIN
+  LigneBeotieOrientee = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS)
+                        VERTEX Beotie.CoordNational;
+
+  SurfaceBeotie = SURFACE WITH (STRAIGHTS, ARCS)
+                  VERTEX Beotie.CoordNational;
+
+CLASS Piste =
+  Trace: LigneBeotieOrientee;
+  Preparee: SurfaceBeotie;
+END Piste;
+----
+
+Un peu avant l'arrivée sur la Crête d'Ili, un grand arbre occupe le milieu de la piste – ou, formulé différemment, la piste contourne l'arbre par la gauche et la droite.
+
+.Un grand arbre occupe le milieu de la piste. La situation peut être source d'angoisse pour les skieurs, mais ne trouble absolument pas le modèle de données : la piste est une seule et même surface, malgré l'enclave.
+image::img/image45.png[]
+
+
+La surface à préparer est-elle encore une surface unique ? Par surfaces, on entend toujours – au moins au sens d'INTERLIS – des zones d'un seul tenant. Et même si elles comportent des vides ou des enclaves, elles restent des zones d'un seul tenant et peuvent par conséquent être décrites comme des surfaces.
+
+[NOTE]
+Une surface présente un *contour extérieur* et un seul. Elle peut en revanche ne présenter aucun *contour intérieur* (enclave) comme elle peut en présenter un ou même plusieurs.
+
+Au sommet, sous la Dent d'Ili, différentes pistes débutent si près les unes des autres qu'il en résulte une seule et même surface préparée. Quelle portion de surface faut-il alors attribuer à quelle piste ? Deux pistes se croisent dans le Vallon d'Ili. La surface correspondante est donc saisie deux fois. Et cela gêne bien évidemment l'estimation du temps nécessaire à la préparation des pistes.
+
+En conséquence, le service des pistes a opté pour une autre modélisation : les surfaces à préparer ne sont pas directement affectées aux pistes mais sont gérées comme des tronçons de pistes indépendants. Chacun de ces tronçons de pistes est une surface mais aucun recouvrement ne doit être permis entre tronçons, puisqu'une portion de terrain ne doit être préparée qu'une seule fois.
+
+[source]
+----
+DOMAIN
+  PartitionTerritoireBeotie = AREA WITH (STRAIGHTS, ARCS)
+                              VERTEX Beotie.CoordNational;
+
+CLASS EtatPiste =
+  SurfacePreparee: PartitionTerritoireBeotie;
+END EtatPiste;
+----
+
+De telles surfaces exemptes de tout recouvrement étant relativement fréquentes, un type spécifique (intitulé AREA, soit aire) a été introduit dans INTERLIS. On ne parle alors plus de surfaces mais de partitions de territoires.
+
+.Dans le cas du type de surface ordinaire (SURFACE, à gauche), les surfaces de différents objets peuvent se chevaucher. Rien ne s'oppose par exemple, à ce que la même portion de terrain appartienne simultanément à deux pistes de ski. Il est en revanche exigé, dans le cas d'une partition du territoire (AREA, à droite), que chacun des points du terrain soit affecté sans la moindre équivoque à un objet s'il n'appartient pas à la surface résiduelle (représentée en noir). Les portions de terrain préparées par le service des pistes en constituent un exemple.
+image::img/image46.png[] image:img/image47.png[]
+
+
+[#_6_9_5]
+==== Types de lignes tridimensionnels
+
+Si le type de coordonnées associé à la définition d'une ligne est de nature tridimensionnelle, le type de ligne sera lui aussi tridimensionnel. INTERLIS 2 renonce dans ce contexte à gérer la troisième dimension avec les mêmes droits que les deux premières, car les trois dimensions peuvent toujours être subdivisées en deux composantes, la planimétrie et l'altimétrie, dans les applications géographiques.
+
+[NOTE]
+INTERLIS 2 accepte des lignes à 2.5 dimensions.
+
+On suppose en fait que chaque point d'appui (point séparant deux tronçons de lignes) est défini en planimétrie et en altimétrie et que l'altitude d'un point du tronçon de ligne est interpolée à partir de ses points d'appui, en fonction de la distance le séparant du point de départ du tronçon.
+
+.INTERLIS accepte des lignes à 2.5 dimensions : l'altitude entre deux points d'appui fait toujours l'objet d'une interpolation linéaire. A l'endroit où un quart du tronçon C – D (en projection sur le plan) est parcouru, un quart de la dénivelée entre ces deux points a également été vaincu.
+image::img/image48.png[]
+
+
+Ne faudrait-il pas alors modéliser le tracé de la piste au moyen d'un type de ligne à trois dimensions ? D'un point de vue purement technique, cela ne poserait manifestement aucun problème et il faut bien reconnaître que l'altitude joue un rôle prépondérant dans le domaine du ski. L'inconvénient, en revanche, est que l'altitude du tracé de la piste n'est pas une grandeur indépendante : si l'on connaît sa position en planimétrie, l'altitude se déduit de la forme du terrain. L'altitude du tracé peut par conséquent se calculer à partir des positions en planimétrie et d'un modèle du terrain. D'un point de vue conceptuel, il est donc préférable de renoncer à la composante altimétrique pour le tracé de la piste.
+
+Il peut toutefois en aller autrement de routes ou de voies ferrées, puisque l'altitude du tracé ne correspond pas à celle du terrain dans le cas de ponts ou de tunnels. De plus, une telle précision est exigée pour les altitudes qu'une déduction à partir du modèle de terrain ne peut même pas être envisagée dans ce contexte. Dans certains cas, il peut se révéler judicieux de modéliser les ouvrages d'art (avec leurs altitudes) indépendamment du tracé. Le tracé altimétrique effectif est alors calculé à partir du modèle aux abords des ouvrages d'art et il est fait appel au modèle de terrain ailleurs.
+
+Le volume de travail requis par la saisie et la mise à jour devrait constituer un critère de poids pour la prise de cette décision.
+
+[#_6_10]

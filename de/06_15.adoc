@@ -1,0 +1,53 @@
+[#_6_15]
+=== Wie eng gehören Betriebsentscheide zur Bahn? – Unabhängige Themen
+
+[#_6_15_1]
+==== Allgemeines
+
+Betriebsentscheide beziehen sich jeweils auf eine bestimmte Bergbahn. Entsprechend sind die beiden Klassen durch eine Assoziation verbunden.
+
+.Die Klassen IhBBergbahn und Betriebsentscheid sind durch eine Assoziation verbunden.
+image::img/image68.png[]
+
+
+Dennoch sind die Objekte der beiden Klassen recht unterschiedlich. Es braucht einiges, bis eine Bergbahn erstellt ist und bis sich irgendwelche Eigenschaften ändern. Solche Änderun­gen (und auch die der Billette) werden immer durch die Direktion beschlossen. Betriebs­entscheide werden jedoch täglich durch den Betriebsleiter gefällt.
+
+Noch extremer ist es mit den Zustandsmeldungen: Bei den wichtigeren Bergbahnen werden sie sogar automatisch alle zwanzig Minuten erzeugt. Zum Erfassen und Bearbeiten der Daten werden teilweise auch unterschiedliche Programmpakete eingesetzt. Diesen Sach­verhalt möchte man im Konzept irgendwie darstellen.
+
+[NOTE]
+*Themen* (Topics) ordnen die Modelldefinition gemäss *Zuständigkeiten und zeitlichem Verhalten*.
+
+Damit eröffnet sich die Möglichkeit, dass auf einem bestimmten Computersystem nicht alle Daten vorhanden sein müssen, oder dass bestimmte Themen nur gelesen, nie aber verändert werden.
+
+[NOTE]
+Zu einem Thema können mehrere *Behälter* existieren, die Daten enthalten, die diesem Thema entsprechen.
+
+Das Computersystem der Ilishornbahnen umfasst z.B. je einen Behälter für die Bergbahnen, die Billette und die verschiedenen betrieblichen Aspekte. Der nationale Verband führt auch je einen Behälter für die Bergbahnen und die Billette. Die Ilishornbahnen schicken dem Verband immer die Änderungen, die sich in den Behältern der Bergbahnen und der Billette ergeben haben. Die Blauhornbahnen und alle weiteren Bahngesellschaften schicken dem Verband ebenfalls die Änderungen oder periodisch eine Kopie ihrer Datenbehälter. Der Verband integriert die Daten dieser Behälter dann in die eigenen Behälter.
+
+Dank der Gliederung der Modelle in verschiedene Themen können die Daten gezielt geliefert werden. Es brauchen nur die Behälter jener Themen übermittelt werden, die für den Empfän­ger relevant sind.
+
+[#_6_15_2]
+==== Unabhängigkeit von Themen
+
+Wird eine Bergbahn abgebrochen, wird als Folge das Datenobjekt gelöscht. Die Änderung wird nun auch dem nationalen Verband mitgeteilt. Wenn dabei aber nur der Behälter der Bergbahnen übermittelt wird, entsteht beim nationalen Verband ein Widerspruch in den Daten: Es gibt noch Tarifbereiche, die mit der Bergbahn verbunden sind, obwohl diese gelöscht wurde. Offensichtlich sind Beziehungen, die über Themengrenzen hinweg gehen, besonders heikel.
+
+[NOTE]
+Themen sollen möglichst wenig voneinander abhängen. Beziehungen, die über Themengrenzen hinwegführen, sind möglichst zu vermeiden. Im Modell sind sie speziell zu kennzeichnen.
+
+In grafischen Darstellungen von Modellen sind solche Beziehungen relativ einfach erkenn­bar, wenn die Darstellung die Themen und die Beziehungen klar zeigt. In der textlichen Darstellung von INTERLIS 2 muss der Sachverhalt mit dem Schlüsselwort EXTERNAL gekennzeichnet werden. Sie sind zudem nur zulässig, wenn die Themen als voneinander abhängig deklariert wurden (DEPENDS ON). Gegenseitige Abhängigkeiten (auch indirekte) sind unzulässig.
+
+Aber wie sollen Beziehungen über Themengrenzen vermieden werden, ohne als Folge einfach alles im selben Thema zu halten?
+
+[#_6_15_3]
+==== Die Verantwortung von Sender und Empfänger
+
+Die Beziehung zwischen Betriebsentscheid und Bergbahn, auf den er sich bezieht, lässt sich nun aber mal nicht vermeiden. Dennoch macht es Sinn, die Bergbahnen und die Betriebsentscheide in verschiedenen Themen zu halten. Und bei dieser Beziehung ist es auch kein Problem, dass die Dinge nicht zusammenpassen. Beide Themen und ihre zugehörigen Behälter werden ja durch die Ilishornbahnen nachgeführt. Vor allem bei schnelllebigen Objekten, die über Beziehungen in verschiedenen Themen angesprochen werden, sind Konflikte aber nicht immer auszuschliessen.
+
+INTERLIS 2 legt dabei folgende Regelung fest:
+
+[NOTE]
+Die Korrektheit der Beziehungen innerhalb eines Behälters liegt in der Verantwortung des Senders. Der Empfänger muss damit fertig werden, dass Ob­jekte, die an einer themenübergreifenden Beziehung beteiligt sind, zu einem be­stimmten Zeitpunkt nicht bekannt sind. Der Empfänger darf aber davon aus­gehen, dass auch die themenübergreifenden Beziehungen stimmen, wenn die Versionen der beteiligten Behälter zusammenpassen.
+
+Die erste Regel, wonach ein Behälter in sich korrekt sein muss, ist auch dann zu beachten, wenn ein Behälter aus irgendeinem Grund aufgeteilt wird.
+
+[#_6_16]

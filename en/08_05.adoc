@@ -1,0 +1,11 @@
+[#_8_5]
+=== The pony lift in the «Tal der gelben Murmeltiere» – Foreign languages in data transfer
+
+Just behind the Black Tooth lies the «Tal der gelben Murmeltiere». Disregarding the fact that German is spoken over there and that the indigenous marmot have an intensively colored coat, it is hardly any different from Ilis Valley.
+
+Above all their local pony lift is also an all-time favorite with the kids. But how will the national tourism association find out about its travel time? After all the designations used in the data model will reappear in the structure of the transfer files. That is how come the Ilis Valley data feature lines such as ++<++Duration++>++3++<++/Duration++>++. If the data model is translated into another language, then of course the corresponding transfer format changes as well.
+
+So how does the National Tourist Office handles the fact that for instance the transfer file from one valley contains the line ++<++Duration++>++3++<++/Duration++>++, but the one from the neighboring valley says ++<++Dauer++>++3++<++/Dauer++>++?
+
+The National Tourist Office does not have to buy separate software for everyone of the native languages. INTERLIS makes sure that in spite of multilingual applications a smooth transfer is guaranteed, on the sole condition that due to translation the data model has not undergone any changes in its structure. As already mentioned in paragraph <<_6_18>> a tool (the so-called INTERLIS-Compiler) is available that checks the translation of a data model with regard to its structural conformity with the original.
+

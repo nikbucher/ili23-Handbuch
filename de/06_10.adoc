@@ -1,0 +1,101 @@
+[#_6_10]
+=== Wie bläst der Wind? – Strukturen
+
+[#_6_10_1]
+==== Mehrgliedrige Eigenschaften
+
+Kurz vor der Ilisegg ziehen sich die Leute auf dem Sessellift vom Ilistäli die Kappe fest über die Ohren: Hier pfeift der Wind so richtig. Beim Wind ist eben nicht nur die Windgeschwindigkeit, sondern auch die Richtung aus der er kommt, massgebend. Führt man diese beiden Eigenschaften im Rahmen einer Klassenbeschreibung einfach zusammen mit anderen Attributen auf, kommt dieser Sachverhalt wenig zum Ausdruck.
+
+[source]
+----
+CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Wetter;
+----
+
+Für Situationen, wo ein Sachverhalt nicht durch einen einzigen, sondern durch mehrere Werte beschrieben wird, ist es sinnvoll, eine Struktur (Windangabe) zu definieren, welche die verschiedenen Eigenschaften (Windrichtung, Windgeschwindigkeit) umfasst.
+
+[source]
+----
+STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Windangabe;
+----
+
+Mit Struktur verwandte Begriffe sind: Datentyp, strukturierter Datentyp, ...
+
+Überall, wo eine Aussage über den Wind gemacht wird, kann diese Struktur verwendet werden.
+
+[source]
+----
+CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
+END Wetter;
+
+CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: Windangabe;
+END Windmesser;
+----
+
+[#_6_10_2]
+==== Mehrere Strukturelemente
+
+Der Windmesser auf der Ilisegg ist noch etwas spezieller: Er zeigt nicht einfach den aktuellen Wert, sondern gleich die letzten sechs gemessenen Werte an. Deswegen werden die Ohren zwar nicht wärmer, aber erstaunlich ist es ja schon, wie schnell die Verhältnisse manchmal ändern können.
+
+[source]
+----
+CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: LIST {6} OF Windangabe;
+END Windmesser;
+----
+
+Das Attribut Wind umfasst also sechs Elemente (Messwerte je mit Windrichtung und Windgeschwindigkeit). Mit LIST OF wird ausgesagt, dass die Reihenfolge relevant ist (z.B. der neuste Wert zuerst). Wäre die Reihenfolge nicht relevant, würde man BAG OF schreiben. Ähnlich wie bei den Beziehungen kann angegeben werden, wie viele Elemente minimal und maximal aufgeführt sein können.
+
+[#_6_10_3]
+==== Strukturen und Klassen
+
+Strukturen und (Objekt-)Klassen sind einander formal sehr ähnlich. Sachlich bestehen aber erhebliche Unterschiede. Eine Klasse (Bahngesellschaft, Windmesser) beschreibt, wie Objekte aufgebaut sind. Eine Struktur beschreibt, wie kompliziertere Eigenschaften von Objekten (Windangabe) aufgebaut sind. Eine Struktur dient also dem gleichen Zweck wie ein Wertebereich, nämlich der Beschreibung wie ein Attribut aufgebaut ist. Manchmal bedarf es nur dann einer Struktur, wenn die Eigenschaft detaillierter beschrieben werden soll, während bei einfacher Beschreibung die Angabe eines Wertebereichs genügt (vgl. Abschnitt <<_6_12>>).
+
+Die Instanzen von Klassen sind Objekte mit einer Eigenständigkeit (Ilishornbahnen, Windmesser auf der Ilisegg). Die Instanzen von Strukturen sind Strukturelemente (Wind mit 180 km/h aus NE). Der Wert eines Strukturattributes kann genau ein Strukturelement oder eine Menge von Strukturelementen (BAG OF, LIST OF) umfassen.
+
+[NOTE]
+Eine *Struktur* ist formal einer Objektklasse, sachlich einem Wertebereich sehr ähnlich. Die entsprechenden Exemplare, die *Strukturelemente*, haben aber keine eigene Identität, sondern sind Werte von Attributen eines Objektes.
+
+Objekte können miteinander in Beziehung stehen (vgl. Abschnitt <<_6_13>>). Werte (von Wertebereichen oder Strukturen) können dies nicht. Man kann allerdings gleichartige Werte verschiedener Objekte (und verschiedener Klassen) miteinander vergleichen und so in eine Beziehung bringen (vgl. Abschnitt <<_6_17>>). So könnte man den Preis für den Wanderer-Pass mit dem Preis für das Holzfällersteak vergleichen, das man im Falle des Fussmarsches im Bergrestaurant Ilishorn essen würde. Deswegen besteht aber keine Beziehung zwischen dem Wanderer-Pass und dem Holzfällersteak.
+
+Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf ein anderes Objekt verwiesen wird (vgl. Abschnitt <<_6_11_3>>). Auf einen Wert oder ein Strukturelement kann nie verwiesen werden, sie haben keine Identität.
+
+[#_6_10_4]
+==== Linien sind spezielle Strukturen
+
+Das Attribut Verlauf der Piste (vgl. Abschnitt <<_6_9_1>>) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt <<_6_9_2>>). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:
+
+[source]
+----
+STRUCTURE AhlandSegment (ABSTRACT) =
+  SegmentEndPoint: MANDATORY Ahland.LandesKoord;
+END AhlandSegment;
+
+STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) =
+END AhlandStartSegment;
+
+STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) =
+END AhlandStraightSegment;
+
+STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) =
+  ArcPoint: MANDATORY Ahland.LandesKoord;
+  Radius: Length;
+END AhlandArcSegment;
+
+CLASS Piste =
+  Verlauf: LIST {2..*} OF AhlandSegment;
+END Piste;
+----
+
+[#_6_11]

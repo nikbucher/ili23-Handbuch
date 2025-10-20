@@ -1,129 +1,13 @@
 [#_8]
 == Les données du Val d'Ili s'exportent
 
-[#_8_1]
-=== Loin des yeux, loin du coeur – Transfert intégral
 
-Souvenons-nous : les Ilinois ont soigneusement réfléchi aux données qui leur étaient nécessaires pour leurs applications et ont élaboré un modèle de données en conséquence. Les discussions ont fait apparaître l'utilité de recourir aussi bien à une vue d'ensemble graphique qu'à une description détaillée sous forme textuelle.
+include::08_01.adoc[]
 
-Au terme d'un long processus, les Ilinois entrevoyaient enfin le couronnement de leurs efforts : l'acquisition du logiciel standard « LiftSys » et la mise en œuvre du modèle de données du Val d'Ili. Il y eut bien quelques tâtonnements au début, tout n'a pas fonctionné « comme sur des roulettes », comme l'avait pourtant clamé haut et fort le revendeur du logiciel LiftSys, mais les difficultés furent rapidement balayées. La saisie put alors débuter : remontées mécaniques, entreprises de transport en montagne, pistes de ski, etc, tout y passa.
+include::08_02.adoc[]
 
-L'informaticien était très fier de montrer que l'ensemble des données du Val d'Ili pouvait être exporté dans un fichier INTERLIS 2 au moyen d'un simple clic de souris. Pourtant, dans l'assistance, certains ne parvenaient pas à se laisser véritablement convaincre et les critiquent fusèrent bientôt : avons-nous vraiment dû participer à toutes ces réunions pour aboutir à ce simple fichier ? Etait-ce vraiment nécessaire ?
+include::08_03.adoc[]
 
-Cette objection fut bien vite rejetée cependant, lorsque le comptable se mit à détailler les dépenses qu'entraînait jusqu'alors l'échange de données. Toute transmission de données à l'Association nationale des offices de tourisme était immanquablement suivie de son lot d'ennuis. Et combien d'heures de travail ont été englouties à cause de cela !
+include::08_04.adoc[]
 
-Il était donc possible, dorénavant, d'envoyer un fichier comprenant toutes les données du Val d'Ili à l'Association nationale qui pouvait alors les lire et les traiter sans la moindre difficulté.
-
-[NOTE]
-Le type de transfert le plus simple est le *transfert intégral*, dans le cadre duquel toutes les données sont transmises.
-
-Le fait que le transfert puisse se dérouler sans le moindre accroc, même lorsque les intervenants n'utilisent pas exactement le même modèle de données, résulte des propriétés de l'héritage, exposées au paragraphe <<_5_5>>.
-
-[#_8_2]
-=== Des signes cabalistiques à profusion – Règles de transfert sur la base de XML
-
-Mais que contenait ce fichier ? Pour le savoir, on l'ouvrit dans un éditeur de texte normal :
-
-.Le tire-fesses du Val d'Ili, extrait du transfert intégral des données du Val d'Ili. La norme INTERLIS fixe le degré de spécification d'un tel fichier de transfert pour un modèle de données bien défini.
-[source,xml]
-----
-<?xml version="1.0" encoding="utf-8"?>
-...
-<BASKET BID="xBOTOURDI01234567" TOPICS="IlisTour.RemonteesMecaniques">
-  <IlisTour.Remontees_RDI.Remontee_RDI TID="xBOTOURDI04231336">
-    <Noms>
-      <NatTour.Designation>
-        <Nom>Tire-fesses Ili-village</Nom> <1>
-        <Langue>fr</Langue>
-      </NatTour.Designation>
-    </Noms>
-    ...
-    <PosStationSup>
-      <P>
-        <C1>8020.60</C1>
-        <C2>13188.62</C2>
-        <C3>1789.04</C3>
-      </P>
-    </PosStationSup>
-    <DureeTrajet>
-      <Beotie.DureeEnMinutes>
-        <LapsTemps>3</LapsTemps>
-      </Beotie.DureeEnMinutes>
-    </DureeTrajet>
-    <Genre>Remonte_pente</Genre>
-    ...
-    <ImageStationSuperieure>
-      http://www.ilishornbahnen.com/webcam?bahn=pony4
-    </ImageStationSuperieure>
-    ...
-  </IlisTour.Remontees_RDI.Remontee_RDI>
-</BASKET>
-...
-----
-
-Beaucoup de signes « inférieur à » et « supérieur à », une référence à XML tout au début (on en a déjà entendu parler de ça !), entourée de points d'interrogation... Ah, enfin quelque chose d'un peu plus simple :
-
-<1> le tire-fesses d'Ili-village.
-
-La structure du fichier de transfert est différente selon le modèle de données mais elle n'est évidemment pas quelconque : la norme INTERLIS contient des règles précises, prescrivant la manière dont le format XML associé se déduit d'un modèle de données.
-
-Soit, tout cela est un peu compliqué – mais il a tout de même été possible d'utiliser LiftSys sans même avoir à saisir manuellement tous ces signes cabalistiques. Et sans même recourir à un logiciel particulier, on a pu se rendre compte que la durée du trajet avec le tire-fesses était de 3 minutes.
-
-Selon l'informaticien, il devrait encore être possible, dans 40 ans, d'utiliser ces données, même si les fournisseurs des programmes initiaux font faillite entre temps, que quinze nouvelles versions du programme se sont succédé dans l'intervalle ou que les ordinateurs changent radicalement d'aspect d'ici là. Cette affirmation semblait crédible, preuve en était bien que sans la moindre documentation, en se contentant de lire la version papier présentée, les données étaient compréhensibles (non sans mal tout de même).
-
-Mais que signifie donc ce texte étrange, « TID="xBOTOURDI04231336" »? Il désigne tout simplement le tire-fesses au sein du fichier de transfert. La valeur ne joue un rôle que dans le cadre du transfert : cette identification d'objet est présente partout où il est fait référence au tire-fesses dans le fichier de transfert. Il a été indiqué, lors de l'installation de LiftSys, que toutes les identifications devaient débuter par xBOTOURDI, comme l'Association nationale des offices de tourisme l'avait demandé dans son courrier.
-
-Les identifications d'objets débutent par un code de pays conforme à la norme ISO 3166 (ch pour la Suisse, fr pour la France, etc.) et comprennent six caractères supplémentaires, attribués par un service central habilité à les délivrer. Les huit autres caractères sont automatiquement attribués par le système informatique.
-
-L'annexe D du manuel de référence d'INTERLIS explique en détail l'attribution des identifications d'objets.
-
-[#_8_3]
-=== La première fois et les fois suivantes – Livraison incrémentielle
-
-Dix-sept minutes sur le tire-fesses ? Les pauvres enfants seraient déjà à moitié gelés avant même d'avoir pu amorcer leur premier virage ! Une remontée pareille ne survivrait pas à sa première saison et ses données n'intéresseraient plus personne dans quarante ans.
-
-On finit par s'apercevoir que le tire-fesses n'avait pas été monstrueusement surdimensionné mais que quelqu'un avait fait une faute de frappe en entrant les données : le trajet ne dure pas dix-sept minutes, mais une seule.
-
-Cette valeur a bien sûr été promptement corrigée dans LiftSys. Fallait-il alors renvoyer la totalité des données à l'Association nationale des offices de tourisme ?
-
-[NOTE]
-Grâce à la *livraison incrémentielle*, toutes les données n'ont pas à être renvoyées au terme d'une modification, seuls les changements sont à trans-mettre, soit un volume de données bien plus faible. Le fait que les modifications soient documentées avec précision constitue un autre avantage de taille.
-
-Une livraison complémentaire à l'Association nationale a été générée à l'aide du logiciel LiftSys. Contrairement au transfert intégral, la livraison incrémentielle ne contenait pas la totalité des données du Val d'Ili mais uniquement les données des objets modifiés. Le fichier correspondant était donc de taille bien plus modeste et ainsi plus facile à manipuler.
-
-Il n'est cependant pas toujours opportun de procéder à des livraisons de données incrémentielles. L'Association nationale des offices de tourisme a par exemple externalisé l'exploitation du service Internet grâce auquel les touristes peuvent s'informer sur les prix des abonnements pratiqués pour les différentes remontées mécaniques. L'entreprise concernée reçoit donc périodiquement une copie des données au format INTERLIS 2. Ces données sont chargées via un logiciel de serveur répondant aux requêtes concrètes. Une livraison incrémentielle ne ferait qu'accroître les exigences posées à ce logiciel de serveur sans qu'un bénéfice tangible en soit retiré.
-
-[#_8_4]
-=== Les montagnes bleues sont elles aussi touristiques – Conteneurs, répliques, lecture polymorphe
-
-L'Association nationale des offices de tourisme ne reçoit pas uniquement des données du Val d'Ili, mais de 163 régions différentes. Elle ne voudrait donc pas avoir à se préoccuper de la manière dont chacune de celles-ci souhaite gérer ses propres données mais se contenter de recevoir de temps à autre une livraison complémentaire contenant les données réactualisées de la région concernée.
-
-Dans les régions, les données sont gérées dans les banques de données des systèmes utilisés. Dans le cadre d'INTERLIS, on part de l'hypothèse que les données de chacun des thèmes du modèle sont mémorisées dans un ou plusieurs conteneurs de données. Ainsi, les données relatives aux lignes des Remontées mécaniques de la Dent d'Ili sont-elles gérées dans un conteneur et celles des Remontés mécaniques des montagnes bleues dans un autre. Si les données des Remontées mécaniques de la Dent d'Ili ou celles des Remontées mécaniques des montagnes bleues sont à présent transmises à l'Association nationale des offices de tourisme, le conteneur concerné apparaît également dans le fichier de transfert. Le système informatique de l'Association nationale (NatTourSys) lit les données et met la banque de données NatTourDB à jour. La provenance des objets peut être établie lors de ce processus.
-
-.L'Association nationale des offices de tourisme reçoit de temps à autre une livraison complémentaire de données touristiques transmises par les Remontées mécaniques de la Dent d'Ili, les Remontées mécaniques des montagnes bleues ou par toute autre entreprise affiliée à l'Association.
-image::img/image78.png[]
-
-
-Ainsi, les données relatives au tire-fesses du Val d'Ili sont donc disponibles deux fois : auprès des Remontées mécaniques de la Dent d'Ili et auprès de l'Association nationale des offices de tourisme. Cela ne signifie bien évidemment pas que les enfants peuvent godiller sur une nouvelle piste dans le Val d'Ili. Seules les données ont été copiées, aucune nouvelle remontée n'a été construite !
-
-Au plan informatique, les choses sont également claires puisque les deux objets de données portent la même identification. Il s'agit donc de répliques, représentant le même tire-fesses existant réellement.
-
-Les notions suivantes sont apparentées aux répliques : substitut, duplicata, objet proxy.
-
-Il est important que l'identification d'objet (telle que «xBOTOURDI04231336» dans l'exemple précédent) soit véritablement unique. Si tel n'est pas le cas, les Remontées mécaniques de la Dent d'Ili et celles des montagnes bleues pourraient accidentellement utiliser la même identification pour deux objets différents. Et par suite, il ne serait pas clair pour l'Association nationale des offices de tourisme, lors d'une livraison incrémentielle, si la modification concerne un objet du Val d'Ili ou des montagnes bleues.
-
-Un service administratif béotien (« BO ») ayant attribué l'identification « BOTOU » à l'Association nationale des offices de tourisme, cette dernière a ensuite figé la première partie de l'identification attribuée à chaque société de remontées mécaniques (par exemple « BOTOURDI » pour les Remontées mécaniques de la Dent d'Ili et « BOTOURMB » pour les Remontées mécaniques des montagnes bleues). Le reste de l'identification incombe alors à chaque entreprise de transport ou plus précisément au logiciel qu'elle met en œuvre.
-
-Les identifications d'objets n'ont pas la même signification dans le cadre d'un transfert intégral et dans celui d'une livraison incrémentielle : elles n'ont pas à être reçues, leur seul rôle consiste à permettre la reconstitution des relations entre les différents objets (par exemple entre les zones tarifaires et les types de billets). 
-
-[#_8_5]
-=== Le tire-fesses du « Tal der gelben Murmeltiere » – Langues étrangères et transfert de données
-
-Le « Tal der gelben Murmeltiere » se trouve sur le versant opposé de l'Aiguille Noire. En dehors du fait que l'on y parle allemand et que les marmottes de cette vallée possèdent une fourrure aux tons dorés, la différence par rapport au Val d'Ili n'est pas criante.
-
-En plus, un tire-fesses y réjouit le coeur des enfants. Comment la durée de son trajet est-elle transmise à l'Association nationale des offices de tourisme puisque les désignations utilisées dans le cadre du modèle se reflètent aussi dans la constitution du fichier de transfert ? Ainsi, les données du Val d'Ili comportent des lignes telles que ++<++LapsTemps++>++3++<++/LapsTemps++>++. Si l'on traduit le modèle de données dans une autre langue, le format de transfert correspondant subit lui aussi des modifications.
-
-Comment l'Association nationale des offices de tourisme gère-t-elle alors le fait que le fichier de transfert d'une vallée contient la ligne ++<++LapsTemps++>++3++<++/LapsTemps++>++ et que celui de la vallée voisine contient la ligne ++<++Dauer++>++3++<++/Dauer++>++?
-
-L'Association n'a pas besoin de faire l'acquisition d'un logiciel séparé pour chacune des langues nationales. INTERLIS veille à ce que le transfert se passe sans accroc, en dépit de son caractère multilingue. La seule condition à respecter est que la structure du modèle de données ne subisse aucune modification lors de la traduction. Comme évoqué au paragraphe <<_6_18>>, un outil (le compilateur INTERLIS) est à la disposition des utilisateurs pour vérifier si la structure d'un modèle de données traduit présente une structure identique à celle de l'original.
-
+include::08_05.adoc[]

@@ -1,0 +1,34 @@
+[#_5_6]
+=== Vererbung im Grossen
+
+Nicht immer ist die Unterscheidung zwischen Ober- und Unterklasse rein sachlich gerechtfertigt. Auch organisatorische Gründe können den Ausschlag geben.
+
+Beispielsweise ist man im Ilistal mit der Vorstellung, die sich der nationale Tourismusverband von einer Bergbahn macht, im Prinzip zwar einverstanden. Ganz zufrieden ist man jedoch nicht:
+
+* Für die Bahnen aufs Ilishorn wäre es interessant, den Trasseeverlauf zu kennen. Würde er erfasst, könnte man den Verlauf in die Kärtchen einzeichnen, die der Ver­kehrsverein gratis an Touristen abgibt.
+* Ausserdem möchten die Ilistaler erfassen, welche Bahnen sich für Wanderer und Schlittler eignen.
+
+Beides sind Eigenschaften, die an sich jede Bergbahn tragen kann – nur fehlen sie eben im nationalen Modell. Natürlich haben die Ilistaler den nationalen Verband darum gebeten, sein Modell anzupassen. Aber von dort war nur zu hören, man habe weder die Zeit noch das Geld, wegen der Extrawürste eines Bergtals im ganzen Land die Computersysteme zu ändern. Was nun?
+
+Die einen fanden, man solle doch den nationalen Verband einfach ignorieren. Die da oben seien ja doch nur ein Haufen von Bürokraten, ohne jegliches Verständnis für die Anliegen vor Ort! (Es fielen auch noch andere Worte, die aber nichts zur Sache tun.)
+
+Andere konnten die Sicht des nationalen Verbands durchaus verstehen – wenn da jedes Täli kommen würde! Und ausserdem würde man ja doch auch vom nationalen Verband profitieren: Mit den Daten, die man ihm schickt, wird schliesslich auch Material für und über das Ilistal produziert.
+
+Sollten die Ilistaler also auf ihre Sonderwünsche verzichten? Oder alle Daten doppelt erfas­sen – einmal für sich selber, einmal für den nationalen Verband?
+
+.Der nationale Tourismusverband ist nicht bereit, sein Modell an die Ilistaler Spezial­wünsche anzupassen. Dank der Vererbung können die Ilistaler dennoch ihre Daten erfassen: Ihr Thema Bergbahnen übernimmt alles vom nationalen Thema Bergbahnen, erweitert es aber um eine Objektklasse IhBBergbahn mit zusätzlichen Eigenschaften.
+image::img/image29.png[]
+
+
+Dank der Vererbung liess sich der Konflikt auflösen. Die Bahnen werden im Ilistal als IhB­Bergbahn erfasst, inklusive aller Zusätze. Nachdem IhBBergbahn eine Unterklasse von Bergbahn (gemäss Nationalverband) ist, kann jede IhBBergbahn auch als normale Bergbahn gelesen werden. Daher können die Ilistaler ihre Daten unverändert dem nationalen Verband schicken.
+
+[NOTE]
+====
+Vererbung kann auch dazu benutzt werden, föderalistische Eigenheiten zu unter­stützen.
+
+_Genau genommen liegt es am Polymorphismus, der durch die Vererbung ermöglicht wird: Jedes Exemplar einer Unterklasse kann immer auch als zur Oberklasse gehörend betrachtet werden (vgl. Abschnitt <<_5_5>>). Damit kann der nationale Verband die Daten von jeder Bergbahn im Land verarbei­ten, auch wenn es eigentlich sich um ein Exemplar einer örtlichen Unterklasse von «Bergbahn» handelt, die der nationale Verband gar nicht kennt._
+====
+
+Die Vererbung geht bei INTERLIS sehr weit: Nicht nur Klassen und Themen, sondern auch Wertebereiche (Typen), Sichten, Grafikdefinitionen, in einem gewissen Sinn sogar Einheiten können übernommen und präzisiert werden.
+
+[#_5_7]

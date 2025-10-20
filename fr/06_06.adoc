@@ -1,0 +1,33 @@
+[#_6_6]
+=== Délais d'attente et durées des trajets – Domaines de valeurs
+
+Les délais d'attente sur les remontées mécaniques et les durées des trajets correspondants sont indiqués en minutes.
+
+[source]
+----
+CLASS RemonteeMecanique =
+  DureeTrajet: 0 .. 200 [min];
+END RemonteeMecanique;
+
+CLASS EtatRemonteeMecanique =
+  DelaiAttente: 0 .. 200 [min];
+END EtatRemonteeMecanique;
+----
+
+Ces deux propriétés peuvent accepter des valeurs issues du même domaine. Cette communauté peut être soulignée par un domaine de valeurs défini explicitement (DOMAIN) :
+
+[source]
+----
+DOMAIN
+  DureeEnMinutes = 0 .. 200 [min];
+
+CLASS RemonteeMecanique =
+  DureeTrajet: DureeEnMinutes;
+END RemonteeMecanique;
+
+CLASS EtatRemonteeMecanique =
+  DelaiAttente: DureeEnMinutes;
+END EtatRemonteeMecanique;
+----
+
+[#_6_7]

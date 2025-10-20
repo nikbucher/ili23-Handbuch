@@ -1,0 +1,7 @@
+[#_9_5]
+=== L'orchestre d'Ili-les-Bains en concert – La modélisation de données est exigeante
+
+Lorsque les percussions, les cordes, les bois et les cuivres nous enchantent en jouant à l'unisson, nous oublions bien vite l'énorme travail fourni en amont. Que de gammes et de répétitions pour chacun des membres de l'orchestre, depuis l'époque où, enfant, il s'essayait maladroitement à la flûte traversière ! Et même aujourd'hui, alors que tous ont acquis une parfaite maîtrise de leur instrument, ils répètent inlassablement, ensemble et séparément.
+
+Il faut espérer que la modélisation de données s'effectue avec le même sérieux. Quiconque veut comprendre des modèles doit posséder une connaissance au moins passive des instruments. Quiconque veut définir des modèles est bien inspiré s'il répète ses gammes inlassablement jusqu'à maîtriser parfaitement ses instruments (classes, types d'attributs, relations, héritage, etc.). Et même si le résultat semble excellent, il n'est jamais inutile de repenser au modèle, de le soumettre au jugement d'autrui et de le considérer sous des angles différents. Ce n'est qu'ainsi que des modèles pertinents pourront être élaborés, des modèles simples et compréhensibles adaptés à la pratique et adoptés par les praticiens.
+

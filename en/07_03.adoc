@@ -1,0 +1,29 @@
+[#_7_3]
+=== On crooked ways – Line forms
+
+Maybe somebody would come up with the idea to describe the course of the ski run other than by means of straights and arcs. Maybe he would rather use clothoides, splines or Bézier-curves instead. INTERLIS 2 does not supply these forms directly but it permits the definition of new forms for line segments.
+
+A line consists of an ordered set of line segments. They are considered a concrete extension of the abstract structure _LineSegment_. If you choose to use additional forms besides the pre-defined types of line segments (straights and arcs), then you can extend _LineSegment_ with a suitable structure.
+
+Again such a definition is subject to an agreement with the manufacturers. After all the systems will have to come to terms with these line forms. Above all it is desirable that these forms will be represented correctly on the screen and on paper.
+
+.INTERLIS-lines are composed of individual segments. Straights and arcs are predefined. The abstract structure for line segments can be extended by additional forms.
+image::img/image75.png[]
+
+
+The end point of each segment is at the same time the start point for the next. That is why the start point is not part of the line segment. A special start segment defines where the first segment begins.
+
+An end point does not sufficiently define an arc. That is why arcs not only have an end point but also an auxiliary point that is also on the line. It should be approximately in the middle between start and end point, because this will render calculations more precise.
+
+.This line consists of four segments: A start segment with end point A, an arc segment with end point B, a straight segment with end point C, and a second arc segment with end point D. the auxiliary points of the arcs are on the line and displayed in black.
+image::img/image76.png[]
+
+
+Of course the radius of an arc can always be computed from the coordinates of the vertices. However mathematical inaccuracies may lead to calculated values that diverge from the one intended. If the radius is of conceptual importance for the application, this is unacceptable. Hence arc segments optionally can feature a value for the radius.
+
+If the radius is indicated, the exact position of the line is defined with this value. In this case the auxiliary point would only serve to select one of the four possible connecting lines.
+
+.If the radius _r_ is indicated, the auxiliary point H only serves to select one of the four possible arcs, which link points A and B.
+image::img/image77.png[]
+
+

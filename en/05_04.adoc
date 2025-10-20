@@ -1,0 +1,20 @@
+[#_5_4]
+=== We do not want to give such precise orders – Abstract properties
+
+Let's assume an international association wishes to ensure that tickets are captured with their prices. Then again it does not want to dictate a certain currency and consequently it is not clear where a sensible upper limit for the price could be set. Nevertheless it is not contested that «price» should be a number and that we deal with money. After all prices are not measured in kilometers per hour!
+
+[source]
+----
+CLASS TicketTypeWorldwide (ABSTRACT) =
+  Price (ABSTRACT): NUMERIC [MONEY];
+END TicketTypeWorldwide;
+
+CLASS TicketTypeAhland EXTENDS TicketTypeWorldwide =
+  Price (EXTENDED): 0.00 .. 9999.99 [Ahland.Sovereign];
+END TicketTypeAhland;
+----
+
+[NOTE]
+Not all properties have to be defined down to the last detail: with abstract classes *abstract properties* are admissible. It is then up to the concrete sub classes, to specify these properties. For instance this is handy when regulating something on national or international level without prescribing every single detail right from the beginning.
+
+[#_5_5]

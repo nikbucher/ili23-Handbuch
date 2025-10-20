@@ -1,0 +1,28 @@
+[#_5_3]
+=== Is there really such a thing? – Abstract classes
+
+Some classes are purely mental tools: They do not represent actually existing items. For instance there is not one single living being in this world that would only be living being without being something more specific at the same time. Similarly a data model might determine that there is no railway as such but that every railway would have to be either a tramway line, an alpine transport etc.
+
+[NOTE]
+If a class should not feature any concrete objects, it is declared *abstract*.
+
+Very often in a data model all its super classes will be abstract and only its very last, most specific classes will be concrete.
+
+[source]
+----
+CLASS Railway (ABSTRACT) =
+  Name: TEXT*100;
+END Railway;
+
+CLASS AlpineTransport EXTENDS Railway =
+  PosBottomStation: NationalCoord;
+  PosTopStation: NationalCoord;
+END AlpineTransport;
+
+CLASS TramwayLine EXTENDS Railway =
+END TramwayLine;
+----
+
+Figure 28: Railway as an abstract class: If it is required that there be no objects that are only railway without also being alpine transport or tramway line this is shown in the diagram in italics. On the right hand side the same is stated in the notation of INTERLIS.
+
+[#_5_4]

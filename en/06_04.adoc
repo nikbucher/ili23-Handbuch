@@ -1,0 +1,33 @@
+[#_6_4]
+=== Ilis Valley is concise – Strings and their rules of inheritance
+
+As a general rule designations may consist of names of any chosen length. Nevertheless the national association has determined that the name of any alpine transport may not exceed a total of 100 signs. In general of course the names tend to be much shorter, but one would like to be on the safe side.
+
+[source]
+----
+STRUCTURE RailwayDesignation EXTENDS Designation =
+  Name (EXTENDED): TEXT*100;
+END RailwayDesignation;
+----
+
+Whenever the length of a text attribute is discretionary or as yet completely unknown, the indication of its length can be omitted. If obviously this length will be determined within the scope of an extension of class, the attribute will be qualified as abstract:
+
+[source]
+----
+Description (ABSTRACT): TEXT;
+----
+
+Some means of transport in Ilis Valley have installed a web camera, which continually registers the environment of the top station. Tourists may judge themselves whether the trip is worthwhile. The Internet address of the current picture also represents a (somewhat particular) form of text.
+
+[source]
+----
+CLASS MITAlpineTransport =
+  ...
+  PictureTopStation: URI;
+  ...
+END MITAlpineTransport;
+----
+
+Internet addresses have got nothing in common with the Swiss canton of Uri – if anything then with Geneva where the first Web-Browser was developed at CERN. URI simply is the abbreviation of _Uniform Resource Identifier._ _Uniform Resource Locators (URLs)_, mainly used for web sites, are special URIs.
+
+[#_6_5]

@@ -1,0 +1,66 @@
+[#_6_11]
+=== Comment s'exprime-t-on dans le Val d'Ili ? – Multilinguisme
+
+[#_6_11_1]
+==== Un attribut par langue
+
+Dans le modèle actuel, un nom et un nom abrégé sont associés à une société de remontées mécaniques. Comment intégrer alors le fait qu'en allemand, les Remontées mécaniques de la Dent d'Ili (RDI) se transforment en _Ilishornbahnen (IhB)_ ?
+
+Il est tentant de vouloir étendre la classe d'objets des sociétés de remontées mécaniques pour y ajouter le nom allemand et le nom abrégé qui lui est associé :
+
+.La classe d'objets des sociétés de remontées mécaniques avec le nom et le nom abrégé qui lui sont associés, en français et en allemand.
+image::img/image49.png[]
+
+
+Le problème serait alors réglé. Mais que se passerait-il alors si un beau jour, on désirait saisir le nom et le nom abrégé associé dans une troisième, une quatrième voire une cinquième langue ? Pas grand chose, en fait – il ne s'agit jamais que d'une petite modification du modèle de données !
+
+[WARNING]
+Il est effectivement très facile d'agrandir une case sur le papier et d'y rajouter quelques lignes supplémentaires. Cependant, une fois le système informatique mis en place, une petite modification de cette nature peut très bien causer plus de travail qu'il n'y paraît : les formulaires de saisie sont à revoir, les logiciels à adapter, les données à saisir une nouvelle fois, etc.
+
+[#_6_11_2]
+==== Désignations liées à une langue en tant qu'éléments structurés
+
+Il vaut donc mieux que la langue effective n'apparaisse pas dans le modèle de données. Dans la nouvelle version suivante, un ensemble de désignations est affecté à une société de remontées mécaniques. La capacité à gérer plusieurs langues étant une demande fréquemment exprimée, la structure DesignationEntreprise hérite de la structure de base Designation qui englobe la langue et un texte.
+
+[source]
+----
+STRUCTURE Designation =
+  Nom: TEXT;
+  Langue: TEXT*2;
+END Designation;
+
+STRUCTURE DesignationEntreprise EXTENDS Designation =
+  Nom(EXTENDED): TEXT*100;
+  NomAbrege: TEXT*10;
+END DesignationEntreprise;
+
+CLASS SocieteRemonteesMecaniques =
+  Noms: BAG {1..*} OF DesignationEntreprise;
+END SocieteRemonteesMecaniques;
+----
+
+Ou sous la forme d'un diagramme :
+
+.Plusieurs désignations sont affectées à une société de remontées mécaniques. Une entreprise pouvant posséder plusieurs noms, il est aisément possible d'enregistrer de nouveaux noms dans d'autres langues. Les détails de l'affectation (les informations telles que 1..* ou le rectangle plein) seront abordés ultérieurement dans le contexte des relations.
+image::img/image50.png[]
+
+
+[WARNING]
+Notez toutefois que tout attribut textuel n'a pas nécessairement vocation à être multilingue. Les noms de famille des personnes ne sont par exemple pas traduits.
+
+Seules de nouvelles données sont à saisir pour ajouter des désignations dans une autre langue. Aucune adaptation du modèle de données n'est requise dans ce cadre.
+
+[#_6_11_3]
+==== Les éléments structurés peuvent renvoyer à des objets
+
+Qui sait que l'abréviation officielle du romanche est rm ? Du point de vue de l'Association nationale, les langues entrant en ligne de compte pour la désignation des sociétés de remontées mécaniques sont clairement identifiées. Seul un nom abrégé est d'ordinaire à prendre en compte lors de la saisie d'une entreprise. On peut s'en souvenir aisément, raison pour laquelle l'Association nationale des offices de tourisme a bâti son modèle dans le respect de la description précédente.
+
+Si tel n'avait pas été le cas, on aurait sans doute opté pour un modèle dans lequel les langues sont des objets de plein droit. L'objet linguistique aurait ainsi contenu l'abréviation et par exemple le nom sous forme textuelle, dans la langue elle-même et en anglais.
+
+.Dans cette variante, la désignation de la langue (une structure) renvoie à la langue (une classe d'objets normale).
+image::img/image51.png[]
+
+
+La désignation renvoie ainsi à la langue. Ce renvoi n'en constitue pas pour autant une relation de plein droit (cf. § <<_6_13>>), les désignations ne possédant pas d'identité propre. Du point de vue de l'objet linguistique, il n'existe donc pas non plus d'accès direct aux éléments de désignation, lequel devrait être établi par l'intermédiaire d'une vue (cf. § <<_6_17>>).
+
+[#_6_12]

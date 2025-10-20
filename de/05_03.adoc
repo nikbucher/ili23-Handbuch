@@ -1,0 +1,28 @@
+[#_5_3]
+=== Gibt es das denn überhaupt? – Abstrakte Klassen
+
+Manche Klassen sind rein gedankliche Hilfsmittel: Es gibt von ihnen keine real existierenden Exemplare. Beispielsweise gibt es kein einziges Lebewesen auf der Welt, das nur Lebewesen, nicht aber auch noch etwas Spezielleres wäre. Ebenso könnte ein Datenmodell festlegen, dass es keine Bahn an und für sich geben soll, sondern dass jede Bahn entweder eine Bergbahn, eine Tramlinie etc. sein müsse.
+
+[NOTE]
+Soll es von einer Klasse keine konkreten Objekte geben können, wird sie als *abstrakt* erklärt.
+
+Häufig sind in einem Datenmodell sogar alle Oberklassen abstrakt und nur die untersten, speziellsten Klassen konkret.
+
+[source]
+----
+CLASS Bahn (ABSTRACT) =
+  Name: TEXT*100;
+END Bahn;
+
+CLASS Bergbahn EXTENDS Bahn =
+  LageTalstation: LandesKoord;
+  LageBergstation: LandesKoord;
+END Bergbahn;
+
+CLASS Tramlinie EXTENDS Bahn =
+END Tramlinie;
+----
+
+Abbildung 28: Bahn als abstrakte Klasse: Soll es keine Objekte geben können, die nur Bahn sind, ohne auch Bergbahn oder Tramlinie zu sein, wird dies im Diagramm mittels Schrägschrift bezeichnet. Rechts dasselbe Modell in der Schreibweise von INTERLIS.
+
+[#_5_4]

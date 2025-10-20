@@ -1,0 +1,33 @@
+[#_6_4]
+=== Les Ilinois se restreignent – Chaînes de caractères et règles d'héritage associées
+
+Les désignations peuvent fondamentalement comprendre des noms de longueur quelconque. L'Association nationale a cependant décidé que le nom d'une remontée mécanique devait comporter au plus 100 caractères. Les noms sont bien plus courts que cela en règle générale, on souhaitait simplement se donner une marge de sécurité suffisante.
+
+[source]
+----
+STRUCTURE DesignationEntreprise EXTENDS Designation =
+  Nom (EXTENDED): TEXT*100;
+END DesignationEntreprise;
+----
+
+Si la longueur d'un attribut textuel est quelconque ou reste totalement inconnue, on peut renoncer à indiquer cette information. En revanche, s'il est clair que la longueur sera fixée dans le cadre d'une extension de classe, l'attribut est à définir comme étant abstrait :
+
+[source]
+----
+Description (ABSTRACT): TEXT;
+----
+
+Une web-cam est installée sur certaines lignes du Val d'Ili, filmant en continu les alentours de la station supérieure afin que les touristes tentés de s'y rendre puissent voir si le jeu en vaut la chandelle. L'adresse Internet de l'image actuelle constitue également un type de texte (d'un genre un peu particulier toutefois).
+
+[source]
+----
+CLASS Remontee_RDI =
+  ...
+  ImageStationSuperieure: URI;
+  ...
+END Remontee_RDI;
+----
+
+Contrairement aux apparences, les adresses Internet sont sans lien avec le canton suisse du même nom, tout au plus existe-t-il un lien avec le canton de Genève puisque c'est au CERN qu'a été développé le premier navigateur Internet. URI est ici l'abréviation d'_Uniform Resource Identifier._ Les URL (_Uniform Resource Locators)_ généralement utilisés pour les pages Internet sont une forme particulière d'URI.
+
+[#_6_5]

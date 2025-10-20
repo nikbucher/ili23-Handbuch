@@ -1,0 +1,66 @@
+[#_6_3]
+=== Existe-t-il également des pistes de ski bleu clair ? – Enumérations structurées
+
+[#_6_3_1]
+==== Enumérations ordinaires et droit d'héritage associé
+
+Trois couleurs ont été sélectionnées pour décrire sommairement le niveau de difficulté des pistes de ski : bleu, rouge et noir. Ces niveaux de difficultés, par ailleurs ordonnés, sont les seuls admis. Le bleu désigne une piste facile, le rouge une piste d'un niveau plus difficile et le noir est réservé aux pistes les plus exigeantes. Cette situation est décrite par la définition suivante :
+
+[source]
+----
+CLASS Piste =
+  NiveauDifficulte : (bleu, rouge, noir : FINAL) ORDERED;
+END Piste;
+----
+
+Si la mention FINAL était omise, l'énumération pourrait être complétée dans le cadre d'une extension, ce qui pourrait présenter un intérêt pour le genre de remontée mécanique :
+
+[source]
+----
+!! Modele de l'Association nationale des offices de tourisme
+CLASS RemonteeMecanique =
+  Genre: (CheminFerCremaillere, Funiculaire, Telepherique,
+          Remonte_pente, Telesiege, Telecabine);
+END RemonteeMecanique;
+
+!! Modele du Val d'Ili
+CLASS Remontee_RDI EXTENDS RemonteeMecanique =
+  Genre (EXTENDED): (BusDesNeiges);
+END Remontee_RDI;
+----
+
+Dans la classe étendue, l'élément bus des neiges – une exclusivité du Val d'Ili – est rajouté à la fin de l'énumération existante. Mais que peut bien en faire l'Association nationale des offices de tourisme ? Pour elle, exclusivité ou pas, le «bus des neiges» est parfaitement inconnu.
+
+[NOTE]
+Chaque extension (horizontale) peut être complétée par des valeurs supplémentaires, tant que cette possibilité n'est pas explicitement exclue par la mention *FINAL*. Si l'intérêt d'un utilisateur se limite aux valeurs définies dans la classe de base, toutes les valeurs supplémentaires sont regroupées sous l'appellation générique *OTHER*.
+
+Pour la classe de base, la valeur bus des neiges (comme toute autre valeur supplémentaire) se fond dans une masse indistincte : OTHER. Cependant, si la mention FINAL a été indiquée, OTHER n'est plus possible. Si une énumération est définie comme étant cyclique (*CIRCULAR*), de tels compléments ne sont jamais possibles puisque par cyclique, on entend que la première valeur de la liste fait à nouveau suite à la dernière, que l'on ne saurait d'ailleurs pas distinguer sans cela.
+
+[source]
+----
+DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+----
+
+[#_6_3_2]
+==== Sous-énumérations
+
+Il a donc été décidé de ne pas modéliser les différents genres de remontées mécaniques par un nombre trop élevé de classes. Au grand dam des amis du rail : qui sait, la connaissance des systèmes de crémaillères pourrait bien nous servir à quelque chose, un jour ou l'autre...
+
+Il est possible de définir une sous-énumération pour chaque valeur d'une énumération. Cela peut s'effectuer directement au sein de la définition de base ou ultérieurement, dans le cadre d'une extension.
+
+[source]
+----
+CLASS Remontee_RDI EXTENDS RemonteeMecanique =
+  Genre (EXTENDED): (CheminFerCremaillere (Riggenbach, Abt, vonRoll));
+END Remontee_RDI;
+
+JourDeLaSemaine : (JourOuvrable (lundi, mardi, mercredi,
+                                 jeudi, vendredi, samedi),
+                   dimanche);
+----
+
+Si une telle sous-énumération est définie dans une extension, elle est sans objet du point de vue de la base, de sorte que pour l'Association nationale des offices de tourisme, une voie à crémaillère Riggenbach est un chemin de fer à crémaillère comme un autre.
+
+Les sous-énumérations peuvent à leur tour être étendues par des valeurs supplémentaires, pour autant que la dernière valeur de la liste ne soit pas suivie de la mention FINAL. Par ailleurs, les différentes valeurs d'une sous-énumération peuvent elles aussi être précisées par des sous-énumérations, si bien que de véritables arborescences d'énumérations peuvent en résulter.
+
+[#_6_4]

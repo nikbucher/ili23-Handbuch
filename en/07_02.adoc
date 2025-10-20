@@ -1,0 +1,71 @@
+[#_7_2]
+=== The exchange rate of the Euro varies daily – Parameters and functions
+
+For each ticket type its price is known in the national currency. In the interest of foreign tourists it should also be published in Euro and US-dollars. Then again it is unpractical to alter the prices for all ticket types following every fluctuation in the corresponding exchange rates. They should rather be computed from the national currency.
+
+[source]
+----
+CLASS TicketType=
+  Name: Text*100;
+  Price_SOVEREIGN: 0.00 .. 5000.00 [Ahland.Sovereign];
+  Price_EUR: 0 .. 4000 [EUR] := SOVEREIGNtoEUR (Price_SOVEREIGN);
+  Price_USD: 0 .. 4000 [USD] := SOVEREIGNtoUSD (Price_SOVEREIGN);
+END TicketType;
+----
+
+Whenever data are presented in the system or are prepared as data for the WebSys, the prices in Euro and dollar are newly calculated from the prices in the national currency. The conversion results from the two functions SOVEREIGNtoEUR respectively SOVEREIGNtoUSD. But how should LiftSys in particular, or any other system know what the essence of this function should be?
+
+From the conceptual point of view the most important information consists of the fact that the two prices in foreign currency are treated as independent data but will be derived from the price in sovereigns. It is enough to determine names and their parameters for a certain function.
+
+[source]
+----
+FUNCTION SOVEREIGNtoEUR (Sovereign: NUMERIC [Ahland.Sovereign]): NUMERIC [EUR]
+  // Conversion in Euro //;
+----
+
+The actual performance of the function is only indicated as an explanation between //. Its implementation is still up to the systems. Such definitions should be limited to some few basic models because they have to be prearranged with the systems manufacturers. In INTERLIS 2 the existence of such an agreement is remarked with a contract. Functions can only be defined in models with such a contract.
+
+[source]
+----
+CONTRACTED MODEL IlisTour AT http://www.interlis.ch/models/ahland
+  VERSION "2008-01" =
+  ...
+END IlisTour;
+----
+
+If we aim at keeping the number of functions as small as possible, they have to be formulated in as general a manner as possible. For instance instead of using SOVEREIGNToEUR, a universally applicable function for the division could be defined.
+
+[source]
+----
+FUNCTION Division (Dividend: NUMERIC, Divisor: NUMERIC): NUMERIC;
+----
+
+It must be admitted that thus we renounce certain possibilities of control because there is no certainty that the first indication is a sum in the national currency. Using the form stated below this could be guaranteed.
+
+[source]
+----
+FUNCTION ToCurrency (Sovereign: NUMERIC [Ahland.Sovereign],
+                     ExchangeRate: NUMERIC [Ahland.Sovereign]):
+                     NUMERIC [MONEY];
+----
+
+But where does the exchange rate come from? For such cases we might intend certain values, e.g. the exchange rate for Euro or US–dollars, to be available as parameters within the systems. As this again has some impact on the systems, the definition of system parameters is only permitted within the scope of contracts.
+
+[source]
+----
+PARAMETER
+  EURExchangeRate: 0.000 .. 5.000 [Ahland.Sovereign]; !! Price of one euro
+                                                        !! in sovereigns
+  USDExchangeRate: 0.000 .. 5.000 [Ahland.Sovereign];
+
+CLASS TicketType =
+  Name: Text*100;
+  Price_SOVEREIGN: 0.00 .. 5000.00 [Ahland.Sovereign];
+  Price_EUR: 0 .. 4000 [EUR] := ToCurrency
+             (Price_SOVEREIGN, PARAMETER EURExchangeRate);
+  Price_USD: 0 .. 4000 [USD] := ToCurrency
+             (Price_SOVEREIGN, PARAMETER USDExchangeRate);
+END TicketType;
+----
+
+[#_7_3]

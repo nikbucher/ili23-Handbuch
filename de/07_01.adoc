@@ -1,0 +1,14 @@
+[#_7_1]
+=== Was sind normgerechte Systeme? – Systemneutralität
+
+Verschiedene Programmpakete, so das NatTourSys des nationalen Verbandes, aber auch das von den Ilishorn-Bahnen verwendete LiftSys, haben die mittels INTERLIS 2 definierten Modelle implementiert. Sie sind in der Lage, entsprechende Dateien zu erstellen und zu lesen. Sind das nun INTERLIS-Systeme? Allgemein gefragt: Wann erfüllt ein System eine bestimmte Norm?
+
+Eine Beschreibung auf konzeptuellem Niveau hat nicht das Ziel, vorzuschreiben, wie ein Computersystem die beschriebene Vorstellung implementiert. In der Regel werden die Systeme ihre eigenen Möglichkeiten besitzen, um konkrete Anwendungen zu realisieren. Im Idealfall kann das interne Datenmodell direkt aus den Beschreibungen abgeleitet werden. Dies ist jedoch keine Voraussetzung. Es ist durchaus zulässig, dass ein System die Beschreibungen nicht direkt verarbeiten kann. Um kompatibel zu sein, genügt es, wenn ein System direkt oder indirekt (z.B. durch zusätzliche Konversionsprogramme) in der Lage ist, die Daten gemäss der Norm zu behandeln. Eine Norm zur Datenmodellierung sollte darauf verzichten, vorzuschreiben, wie die Systeme eine Anwendung konkret umsetzen. Hier ist Kreativität gefragt, hier soll der Markt spielen. Die Systemunabhängigkeit der Norm ist die Voraussetzung dafür, dass gewünschte Systemwechsel nicht an der Unverträglichkeit der Daten scheitern.
+
+Ein System muss auch nicht die ganze Palette von Fähigkeiten haben, die man sich im Zusammenhang mit einer Beschreibung vorstellen kann. So ist das WebSys z.B. nur in der Lage, INTERLIS 2-Daten einzulesen. Noch extremer ist es mit den Systemen, welche die Zustandsmeldungen von den einzelnen Bergbahnen zur Zentrale schicken. Auf einfachste Art werden Meldungsdaten in vorbereitete Dateien eingefügt, welche gemäss den Regeln der Norm aufgebaut sind.
+
+Stellt eine Anwendung sehr spezielle Anforderungen, kann nicht erwartet werden, dass sie von einer allgemein anwendbaren Norm abgedeckt werden. Die Unterstützung für solche Fälle muss vertraglich mit den Systemherstellern geregelt werden. Allerdings ist dabei Zurückhaltung angebracht, verliert man doch damit einen Teil der Systemunabhängigkeit und schränkt den Kreis der möglichen Systemanbieter ein.
+
+Nachfolgend wird anhand von zwei Beispielen aufgezeigt, wie systemabhängige Aspekte normiert werden können, ohne dass dafür die Interna der Systeme zu stark beeinflusst werden.
+
+[#_7_2]

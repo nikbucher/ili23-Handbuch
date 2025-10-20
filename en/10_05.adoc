@@ -1,0 +1,12 @@
+[#_10_5]
+=== V. Different effects on the systems concerned
+
+Within the scope of the global solution different computer systems were in use. Above all it was possible to continue using systems already installed. UML and INTERLIS do not prescribe the way systems have to be structured. They are only concerned with the final delivery of data, which has to be in accordance with their conceptual conception.
+
+The system of the department of construction was immediately capable of generating data that had to be transferred and of reading data received. With the system of the Mount Ilis Alpine Transports a converter was employed, in other words a program that converted system specific data into a neutral transfer format. With the small collecting systems at the bottom stations it was only a matter of introducing the simplest of programs, which ensured that based upon the measurements a correct data set was sent as an incremental update to the central office.
+
+It is also interesting to have a look at the system of the National Tourist Office. It was possible to send them files containing supplements defined by us. Thanks to the principle of polymorph reading this was of no consequence.
+
+One reason that rendered this practicable may have been the fact that  INTERLIS 2 is based upon the international standard of the _Extensible Markup Language_ (XML).
+
+[#_10_6]

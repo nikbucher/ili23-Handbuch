@@ -1,0 +1,33 @@
+[#_6_6]
+=== Wartezeiten und Fahrzeiten – Wertebereiche
+
+Wartezeiten an den Bergbahnen und die Fahrzeiten der Bergbahnen werden beide in Minu­ten festgehalten.
+
+[source]
+----
+CLASS Bergbahn =
+  Fahrzeit: 0 .. 200 [min];
+END Bergbahn;
+
+CLASS Bergbahnstatus =
+  Wartezeit: 0 .. 200 [min];
+END Bergbahnstatus;
+----
+
+Beide Eigenschaften können Werte aus demselben Bereich annehmen. Mit einem ausdrücklich definierten Wertebereich (DOMAIN) lässt sich diese Gemeinsamkeit betonen:
+
+[source]
+----
+DOMAIN
+  ZeitdauerInMinuten = 0 .. 200 [min];
+
+CLASS Bergbahn =
+  Fahrzeit: ZeitdauerInMinuten;
+END Bergbahn;
+
+CLASS Bergbahnstatus =
+  Wartezeit: ZeitdauerInMinuten;
+END Bergbahnstatus;
+----
+
+[#_6_7]

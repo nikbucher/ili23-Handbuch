@@ -1,0 +1,8 @@
+[#_4_1]
+=== Overview of the data model
+
+.UML-representation of the data model. For the sake of clarity topics, structures, value domains and attributes do not appear. We refer to <<_6>>, which deals more extensively with details.
+image::img/image20.png[]
+
+
+[#_4_2]

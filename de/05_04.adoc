@@ -1,0 +1,20 @@
+[#_5_4]
+=== So genau wollen wir das nicht vorschreiben – Abstrakte Eigenschaften
+
+Angenommen, ein internationaler Verband möchte sicherstellen, dass Billette mit ihren Preisen erfasst werden. Er will aber keine bestimmte Währung für die Preisangabe vor­schreiben, und entsprechend ist auch nicht klar, was eine sinnvolle Obergrenze für den Preis wäre. Fest steht andererseits, dass «Preis» eine Zahl sein soll, und dass es sich um Geld handelt. Schliesslich werden Preise nicht in Kilometern pro Stunde gemessen!
+
+[source]
+----
+CLASS BillettartWeltweit (ABSTRACT) =
+  Preis (ABSTRACT): NUMERIC [MONEY];
+END BillettartWeltweit;
+
+CLASS BillettartAhland EXTENDS BillettartWeltweit =
+  Preis (EXTENDED): 0.00 .. 9999.99 [Ahland.Taler];
+END BillettartAhland;
+----
+
+[NOTE]
+Nicht alle Eigenschaften müssen bis ins Detail festgelegt werden: Bei abstrakten Klassen sind *abstrakte Eigenschaften* zulässig. Es liegt dann an den konkreten Unterklassen, diese Eigenschaften zu präzisieren. Dies ist zum Beispiel dann nützlich, wenn etwas auf internationaler oder nationaler Stufe allgemein geregelt werden soll, ohne gleich jedes Detail vorzuschreiben.
+
+[#_5_5]

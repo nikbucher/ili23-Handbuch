@@ -1,0 +1,12 @@
+[#_10_3]
+=== III. Systemunabhängige Beschreibung der Struktur der Daten
+
+Damit man elektronische Abbilder der Realität – also Daten – von einem System auf ein anderes übertragen kann, braucht es klare Vorstellungen darüber, wie die Daten aussehen, wie sie strukturiert sind. Die Knacknuss dabei: Auch diese Strukturbeschreibungen müssen unabhängig von konkreten Systemen sein. Sie müssen so gemacht sein, dass sie von den Anwendungsfachleuten und von den technischen Fachleuten aller beteiligtenrStellen gleich interpretiert und verstanden werden. Im idealen Fall ist die Beschreibung sogar so aufgebaut, dass nicht nur Menschen, sondern auch Computerprogramme etwas damit an­fangen können. Es braucht ein formalisiertes Esperanto der Datenbeschreibung.
+
+In der Alltagssprache ist Esperanto ohne Bedeutung geblieben. Das Lebendigere, vielleicht auch das für den Stärkeren Bequemere hat sich durchgesetzt. Im technischen Bereich liegt die Sache aber etwas anders: Wer sich nicht um Systemunabhängigkeit bemüht, wird von Systemen abhängig. Und Systeme sind nun einmal relativ kurzlebig. Daher hat sich die Er­kenntnis, dass es ein Esperanto im Sinne von systemunabhängigen Normen braucht, trotz vieler De-facto-Standards etabliert. Mit der _Unified Modeling Language_ (UML) hat eine graphische Sprache im Bereich der Datenmodellierung weltweit eine recht grosse Verbreitung gefunden.
+
+In intensiven Gesprächen wurde ein Modell der Realität entworfen. Dabei galt es zunächst zu klären, welches überhaupt die massgeblichen Gegenstände sind, wie man sie am ver­ständlichsten benennt, wie sie zueinander in Beziehung stehen und welche weiteren Eigen­schaften sie haben. Das Protokoll dieser Gespräche hielt die Erkenntnisse immer in der UML-Bildersprache fest und ergänzte sie mit Erklärungen und Kommentaren. Da es sich zeigte, dass die Bilder durch viele Details überladen werden und zum Teil auch nicht die nötige Präzision aufweisen konnten, wurde mit INTERLIS noch ein zusätzliches Beschrei­bungsmittel eingesetzt: Ähnlich wie in einer Programmiersprache können damit die Daten­strukturen präzis beschrieben werden.
+
+Eine wichtige Eigenschaft, die durch UML und INTERLIS 2 unterstützt wird, besteht darin, dass auch Datenbeschreibungen, die anderswo gemacht wurden, genutzt werden können. So konnte man von Festlegungen der amtlichen Vermessung profitieren, zum Beispiel bei den Gebäudeadressen. Die Datenbeschreibung des nationalen Tourismusverbandes wurden nicht nur genutzt, sondern zusätzlich auch entsprechend den lokalen Bedürfnissen ergänzt.
+
+[#_10_4]
