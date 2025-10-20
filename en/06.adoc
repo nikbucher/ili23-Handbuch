@@ -15,7 +15,10 @@ When modeling at conceptual level most likely one would not want to be bothered 
 
 Since prices lie between 10 and 635 sovereigns we could then write:
 
+[source]
+----
 Price: 10 .. 635;
+----
 
 However this would also decide that the price can never be less than 10 sovereigns or more than 635 sovereigns, which of course is very undesirable. As a lower limit 0 seems plausible. But the upper limit? It is unlikely to be more than 10'000 sovereigns. So 10'000? Wherever because of a particular application a precise limit cannot be determined, in any case it would not make sense to select the value just so that shorter storage (e.g__. short integer__ with value between –32768 and 32767) would not be sufficient.
 
@@ -1203,9 +1206,12 @@ In a conceptual model we only want to describe those implicit relationships that
 
 Not least of conceptual importance are relationships that in some cases have to be defined explicitly and in other cases can be derived. Their derivation may depend on the geography or other characteristics. For instance Ilis Valley has introduced a special tariff zone described as a surface which comprehends all alpine transports whose bottom and top station lie within this surface.
 
-CLASS TariffZoneInRegion EXTENDS NatTour.TicketsZone = +
-Area: AhlandSurface; +
+[source]
+----
+CLASS TariffZoneInRegion EXTENDS NatTour.TicketsZone =
+  Area: AhlandSurface;
 END TariffZoneInRegion;
+----
 
 The relationship between this special tariff zone and the alpine transports in the corresponding tariff zone can be automatically established by means of views (cf. paragraph <<_6_17>>).
 
@@ -1373,15 +1379,18 @@ We wish to express this context. However the lines of INTERLIS 2 connect vertice
 
 Using the following definition every point within the course of the track has to rely either on the position of a pylon (Pylon:Position), the position of the bottom station of an alpine transport (AlpineTransport:PosBottomStation) or (OR) the position of the top station of an alpine transport (AlpineTransport:PosTopStation).
 
-CLASS GroundIndependentTransport EXTENDS AlpineTransport = +
-EXISTENCE CONSTRAINT +
-TrackCourse REQUIRED IN +
-Pylon:Position +
-OR +
-AlpineTransport:PosBottomStation +
-OR +
-AlpineTransport:PosTopStation; +
+[source]
+----
+CLASS GroundIndependentTransport EXTENDS AlpineTransport =
+  EXISTENCE CONSTRAINT
+    TrackCourse REQUIRED IN
+      Pylon:Position
+      OR
+      AlpineTransport:PosBottomStation
+      OR
+      AlpineTransport:PosTopStation;
 END GroundIndependentTransport;
+----
 
 Such existence constraints cannot only be formulated in connection with lines but also with ordinary attributes. In conceptual terms they can always be considered a weak form of a relationship.
 
@@ -1505,10 +1514,10 @@ The most essential characteristic of a view is its *formation law*. It determine
 
 For instance the view «PersonWithIndicationOfAge» is derived from the object class «Person» the so called basis. One individual PersonWithIndicationOfAge will possess the same characteristics (ALL OF) with exactly the same values as the original person. In addition the view supplements one more characteristic «Age». The age results from (:=) the difference between year of birth and current year.
 
-VIEW PersonWithIndicationOfAge +
 [source]
 ----
-PROJECTION OF Person;
+VIEW PersonWithIndicationOfAge
+  PROJECTION OF Person;
 =
   ALL OF Person;
   Age: 0 .. 150 [y] := Difference (Person -> YearOfBirth,

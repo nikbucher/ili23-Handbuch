@@ -1017,19 +1017,25 @@ In der Beziehung zwischen Bahngesellschaft und Bergbahn ist die Bahngesellschaft
 
 Der Rollenname wird in der Grafik am Ende der Beziehungslinie auf der Seite des Inhabers der Rolle angeschrieben. Wenn er sich aber nicht vom Klassennamen unterscheidet, wird der Rollenname meistens weggelassen.
 
-ASSOCIATION = +
-Betreiberin -- ++{++1} Bahngesellschaft; +
-Bahn -- ++{*++} Bergbahn; +
+[source]
+----
+ASSOCIATION =
+  Betreiberin -- {1} Bahngesellschaft;
+  Bahn -- {*} Bergbahn;
 END;
+----
 
 Abbildung 48: Gemäss diesem Modell ist es möglich, nach der Betreiberin einer Bergbahn zu fragen. «Betreiberin» ist eine _Rolle_, welche die Klasse «Bahngesellschaft» gegenüber der Klasse «Bergbahn» einnimmt. Unten ist die Beziehung zwischen Bahngesellschaft und Bergbahn in der Schreibweise von INTERLIS wiedergegeben.
 
 Es ist durchaus normal, dass Rollennamen gewählt werden, die sich nicht von den Klassen­namen unterscheiden. In der Beziehung Bergbahn – Tarifbereich macht es z.B. wenig Sinn, weitere Namen einzuführen. Allerdings ist der Bedarf nach zusätzlichen Namen ganz offen­sichtlich gegeben, wenn eine Beziehung zwischen Objekten der gleichen Klasse besteht. So möchte man auch darstellen können, dass eine Bahngesellschaft andere Bahngesellschaften als Tochtergesellschaften besitzt.
 
-ASSOCIATION = +
-Tochter -- ++{*++} Bahngesellschaft; +
-Mutter -- ++{++0..1} Bahngesellschaft; +
+[source]
+----
+ASSOCIATION =
+  Tochter -- {*} Bahngesellschaft;
+  Mutter -- {0..1} Bahngesellschaft;
 END;
+----
 
 Abbildung 49: Eine Bahngesellschaft kann einerseits Mutter, andererseits auch Tochter einer anderen Bahngesellschaft sein. In solchen Fällen eignet sich der Klassenname nicht als Rollen­name. Das Beispiel ist links in der graphischen Schreibweise von UML, rechts in der textuellen von INTERLIS wiedergegeben.
 
@@ -1078,14 +1084,17 @@ Diverse Billettarten berechtigen zur Fahrt auf Bergbahnen, die von verschiedenen
 
 Beziehungen können auch Attribute aufweisen und haben so den Charakter von speziellen Klassen.
 
-ASSOCIATION Anteil = +
-Beteiligter -- ++{*++} Bahngesellschaft; +
-Billettart -- ++{*++} Billettart; +
- +
-ATTRIBUTE +
-Anteil: 0.00 .. 100.00 ++[++Units.Percent++]++; +
- +
+[source]
+----
+ASSOCIATION Anteil =
+  Beteiligter -- {*} Bahngesellschaft;
+  Billettart -- {*} Billettart;
+
+  ATTRIBUTE
+    Anteil: 0.00 .. 100.00 [Units.Percent];
+
 END Anteil;
+----
 
 Abbildung 51: Eine Bahngesellschaft ist zu einem festgelegten Prozentsatz am Erlös aus dem Verkauf einer bestimmten Art von Billetten beteiligt. Der vereinbarte Anteil ist weder eine Eigenschaft der Bahngesellschaft noch der Billettart. Stattdessen handelt es sich um eine Eigenschaft ihrer Beziehung. Solche Situationen werden mit Beziehungsklassen modelliert.
 
@@ -1094,16 +1103,19 @@ Abbildung 51: Eine Bahngesellschaft ist zu einem festgelegten Prozentsatz am Erl
 
 Um einen besseren Überblick über die Billettverkäufe zu erhalten, möchte der nationale Verband in Zukunft noch festhalten, welche Verkaufsstelle von welcher Billettart in welcher Saison wie viele Exemplare verkauft hat.
 
-ASSOCIATION Verkauf = +
-Verkaufsstelle -- ++{*++} Verkaufsstelle; +
-Saison -- ++{*++} Saison; +
-Billettart -- ++{*++} Billettart;
+[source]
+----
+ASSOCIATION Verkauf =
+  Verkaufsstelle -- {*} Verkaufsstelle;
+  Saison -- {*} Saison;
+  Billettart -- {*} Billettart;
 
-ATTRIBUTE +
-Anzahl: 1 .. 999999 ++[++Units.CountedObjects++]++; +
-Betrag: 0.00 .. 9999999.99 ++[++Ahland.Taler++]++;
+  ATTRIBUTE
+    Anzahl: 1 .. 999999 [Units.CountedObjects];
+    Betrag: 0.00 .. 9999999.99 [Ahland.Taler];
 
 END Verkauf;
+----
 
 Abbildung 52: Der Verkauf wird pro Verkaufsstelle, Billettart und Saison erfasst. Es handelt sich um eine mehrgliedrige Beziehung zwischen drei gleichberechtigten Partnern (den Klassen Verkaufsstelle, Billettart und Saison). Dagegen ist «Verkauf» eine Beziehungsklasse, welche Eigenschaften der Beziehung (zum Beispiel die Anzahl verkaufter Billette sowie den umgesetzten Betrag) festhält.
 

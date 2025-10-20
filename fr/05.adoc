@@ -33,17 +33,20 @@ L'héritage constitue un moyen remarquable permettant d'établir une hiérarchie
 image::img/image25.png[]
 
 
-CLASS Ligne++_++Remontee = +
-Nom: TEXT++*++100; +
-END Ligne++_++Remontee; +
- +
-CLASS RemonteeMecanique EXTENDS Ligne++_++Remontee = +
-PosStationInf: CoordNational; +
-PosStationSup: CoordNational; +
-END RemonteeMecanique; +
- +
-CLASS LigneTramway EXTENDS Ligne++_++Remontee = +
+[source]
+----
+CLASS Ligne_Remontee =
+  Nom: TEXT*100;
+END Ligne_Remontee;
+
+CLASS RemonteeMecanique EXTENDS Ligne_Remontee =
+  PosStationInf: CoordNational;
+  PosStationSup: CoordNational;
+END RemonteeMecanique;
+
+CLASS LigneTramway EXTENDS Ligne_Remontee =
 END LigneTramway;
+----
 
 .La ligne de montagne (ou remontée mécanique) et la ligne de tramway reprennent (« héritent de ») la propriété de nom de leur sur-classe de lignes / remontées sans que celle-ci ait à être répétée. Une remontée mécanique possède des propriétés supplémentaires en plus de celles qu'elle hérite, à savoir la position des stations inférieure et supérieure (en coordonnées nationales). A droite, la même situation est décrite en notation INTERLIS.
 image::img/image26.png[]
@@ -57,18 +60,21 @@ Les sous-classes reprennent ou *héritent* toujours de toutes les propriétés d
 
 Dans le cas général, disposer de cent caractères pour le nom d'une ligne / remontée peut sembler raisonnable. Il a bien été question, à une certaine époque, d'exploiter un «Remonte-pente destiné aux lugeurs de sept à septante-sept ans du secteur de la Dent d'Ili » avant que l'on finisse par se décider au dernier moment pour le nom de « tire-fesses », au grand soulagement du syndicat d'initiative.
 
-CLASS Ligne++_++Remontee = +
-Nom: TEXT++*++100; +
-END Ligne++_++Remontee; +
- +
-CLASS RemonteeMecanique EXTENDS Ligne++_++Remontee = +
-PosStationInf: CoordNational; +
-PosStationSup: CoordNational; +
-END RemonteeMecanique; +
- +
-CLASS LigneTramway EXTENDS Ligne++_++Remontee = +
-**Nom (EXTENDED): TEXT++*++5; +
-**END LigneTramway;
+[source]
+----
+CLASS Ligne_Remontee =
+  Nom: TEXT*100;
+END Ligne_Remontee;
+
+CLASS RemonteeMecanique EXTENDS Ligne_Remontee =
+  PosStationInf: CoordNational;
+  PosStationSup: CoordNational;
+END RemonteeMecanique;
+
+CLASS LigneTramway EXTENDS Ligne_Remontee =
+  Nom (EXTENDED): TEXT*5;
+END LigneTramway;
+----
 
 .Cinq caractères suffisent amplement pour le nom d'une ligne de tramway : le type de la propriété de nom est donc affiné (ou précisé) par la sous-classe. A droite, à nouveau la même situation décrite en notation INTERLIS.
 image::img/image27.png[]
@@ -93,17 +99,20 @@ Une classe est déclarée comme étant *abstraite* si aucun objet concret ne peu
 
 Il est fréquent que toutes les sur-classes d'un modèle de données soient de type abstrait et que seules les sous-classes spécialisées des niveaux inférieurs soient concrètes.
 
-CLASS Ligne++_++Remontee *(ABSTRACT)* = +
-Nom: TEXT++*++100; +
-END Ligne++_++Remontee; +
- +
-CLASS RemonteeMecanique EXTENDS Ligne++_++Remontee = +
-PosStationInf: CoordNational; +
-PosStationSup: CoordNational; +
-END RemonteeMecanique; +
- +
-CLASS LigneTramway EXTENDS Ligne++_++Remontee = +
+[source]
+----
+CLASS Ligne_Remontee (ABSTRACT) =
+  Nom: TEXT*100;
+END Ligne_Remontee;
+
+CLASS RemonteeMecanique EXTENDS Ligne_Remontee =
+  PosStationInf: CoordNational;
+  PosStationSup: CoordNational;
+END RemonteeMecanique;
+
+CLASS LigneTramway EXTENDS Ligne_Remontee =
 END LigneTramway;
+----
 
 Figure 28 : La classe des lignes / remontées comme classe abstraite : s'il ne peut y avoir d'objet se contentant d'être une ligne / remontée sans être simultanément une remontée mécanique ou une ligne de tramway, par exemple, alors le nom de la classe correspondante figure en italique sur le diagramme. A droite, le même modèle est décrit en notation INTERLIS.
 

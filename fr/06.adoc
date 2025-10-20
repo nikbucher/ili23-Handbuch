@@ -1026,10 +1026,13 @@ Figure 48 : Il est possible, selon ce modèle, de s'enquérir de l'exploitant d'
 
 Il est parfaitement normal que le choix des noms de rôles se porte sur des noms identiques à ceux des classes. Dans la relation liant par exemple une remontée mécanique à une zone tarifaire, introduire des noms supplémentaires présente peu d'intérêt. Il en va toutefois différemment lorsqu'une relation lie des objets de la même classe et les noms supplémentaires sont alors bien utiles. On souhaiterait par ailleurs représenter le fait qu'une société de remontées mécaniques possède d'autres entreprises qui sont alors ses filiales.
 
+[source]
+----
 ASSOCIATION =
   Filiale -- {*} SocieteRemonteesMecaniques;
   Mere -- {0..1} SocieteRemonteesMecaniques;
 END;
+----
 
 Figure 49 : Une société de remontées mécaniques peut aussi bien être la société mère d'une autre entreprise de transport que l'une de ses filiales. Dans de tels cas, le nom de classe n'est plus approprié en tant que nom de rôle. L'exemple ci-dessus est présenté à gauche dans le formalisme graphique UML et à droite en notation textuelle INTERLIS.
 
@@ -1078,6 +1081,8 @@ Des billets de divers types donnent le droit d'emprunter des remontées mécaniq
 
 Les relations peuvent également se voir affecter des attributs de sorte qu'elles peuvent être conçues comme des classes d'un genre un peu spécifique.
 
+[source]
+----
 ASSOCIATION Pourcentage =
   Participant -- {*} SocieteRemonteesMecaniques;
   TypeBillet -- {*} TypeBillet;
@@ -1086,6 +1091,7 @@ ASSOCIATION Pourcentage =
     Pourcentage: 0.00 .. 100.00 [Units.Percent];
 
 END Pourcentage;
+----
 
 Figure 51 : Une société de remontées mécaniques se voit rétrocéder un pourcentage prédéfini du produit de la vente d'un type de billet donné qui n'est une propriété ni de l'entreprise de transport, ni du type de billet mais bien de la relation qui les unit. De telles situations sont modélisées par l'intermédiaire de classes relationnelles.
 
@@ -1094,6 +1100,8 @@ Figure 51 : Une société de remontées mécaniques se voit rétrocéder un pour
 
 Désireuse d'avoir une vue d'ensemble plus fine de la vente des billets, l'Association nationale souhaiterait pouvoir connaître la ventilation des ventes des différents types de billets, point de vente par point de vente et saison par saison.
 
+[source]
+----
 ASSOCIATION Vente =
   PointVente –- {*} PointVente;
   Saison –- {*} Saison;
@@ -1104,6 +1112,7 @@ ASSOCIATION Vente =
     Montant: 0.00 .. 9999999.99 [Beotie.Couronne];
 
 END Vente;
+----
 
 Figure 52 : La vente est ventilée par points de vente, types de billets et saisons. Il s'agit d'une relation multiple entre trois partenaires égaux (les classes des points de vente, des types de billets et des saisons). La vente est en revanche une classe relationnelle définissant les propriétés de la relation (par exemple le nombre de billets vendus de même que le montant encaissé).
 
