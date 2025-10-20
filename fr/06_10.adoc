@@ -6,6 +6,8 @@
 
 Peu avant la Crête d'Ili, les personnes assises sur le télésiège se mettent soudain à se couvrir les oreilles et à remonter leur col : le vent est vraiment cinglant ici. Dans le cas du vent, il importe non seulement de connaître sa vitesse mais également la direction dans laquelle il souffle. Si l'on se contente de réunir ces deux propriétés avec d'autres attributs dans le cadre d'une description de classe, elles perdent de leur vigueur.
 
+[#listing-06_10-01]
+.link:#listing-06_10-01[Listing 06.10-01]
 [source]
 ----
 CLASS Temps =
@@ -17,6 +19,8 @@ END Temps;
 
 En conséquence, lorsqu'une situation n'est pas décrite par une seule valeur mais par plusieurs, il est judicieux de définir une structure (InfoVent) englobant ces propriétés (direction du vent, vitesse du vent).
 
+[#listing-06_10-02]
+.link:#listing-06_10-02[Listing 06.10-02]
 [source]
 ----
 STRUCTURE InfoVent =
@@ -29,6 +33,8 @@ Notions apparentées aux structures : types de données, types de données struc
 
 Cette structure peut être utilisée partout où un avis concernant le vent est émis.
 
+[#listing-06_10-03]
+.link:#listing-06_10-03[Listing 06.10-03]
 [source]
 ----
 CLASS Temps =
@@ -47,6 +53,8 @@ END Anemometre;
 
 L'anémomètre de la Crête d'ili est un peu particulier : il n'indique pas uniquement la valeur actuelle mais présente aussi les six dernières valeurs mesurées. Les gens n'en sont pas réchauffés pour autant mais sont généralement surpris de constater la vitesse à laquelle les changements peuvent se produire.
 
+[#listing-06_10-04]
+.link:#listing-06_10-04[Listing 06.10-04]
 [source]
 ----
 CLASS Anemometre =
@@ -76,6 +84,8 @@ Il est nécessaire, dans certains cas, de renvoyer vers un autre objet pour la d
 
 L'attribut du tracé de la piste (cf. § <<_6_9_1>>) est défini comme LigneBeotie, laquelle est à son tour définie comme une polyligne (POLYLINE). Une polyligne peut être comprise comme un ensemble de tronçons de lignes (cf. § <<_6_9_2>>). La définition en tant que polyligne n'est en fait qu'une notation abrégée pour un ensemble ordonné de structures, les éléments structurés correspondant à une définition spécifique :
 
+[#listing-06_10-05]
+.link:#listing-06_10-05[Listing 06.10-05]
 [source]
 ----
 STRUCTURE SegmentBeotie (ABSTRACT) =

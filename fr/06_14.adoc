@@ -6,6 +6,8 @@
 
 Vous vous souvenez que les Remontées mécaniques de la Dent d'Ili souhaitent pouvoir saisir l'état actuel de chacune de leurs lignes et entre autres les conditions météo prévalant à la station supérieure :
 
+[#listing-06_14-01]
+.link:#listing-06_14-01[Listing 06.14-01]
 [source]
 ----
 CLASS MessageEtat =
@@ -24,6 +26,8 @@ Des situations dans lesquelles un lien préétabli doit exister entre différent
 
 Une règle d'intégrité est d'ordinaire décrite au moyen d'une formule dont l'exploitation révèle si la règle est respectée ou non. Le calme plat peut donc être régi par une expression logique du type suivant :
 
+[#listing-06_14-02]
+.link:#listing-06_14-02[Listing 06.14-02]
 [source]
 ----
 CLASS MessageEtat =
@@ -41,6 +45,8 @@ Si la direction du vent est définie, alors sa vitesse doit être supérieure à
 
 Cependant, les règles d'intégrité peuvent fréquemment être évitées en structurant le modèle différemment. Si l'on intègre les informations relatives au vent au sein d'une structure que l'on définit comme un tout facultatif, plus aucune règle d'intégrité n'est nécessaire. L'élément structuré fait défaut en cas de calme plat et s'il vente, la direction et la vitesse du vent sont nécessaires disponibles.
 
+[#listing-06_14-03]
+.link:#listing-06_14-03[Listing 06.14-03]
 [source]
 ----
 STRUCTURE InfoVent =
@@ -68,6 +74,8 @@ Les règles d'intégrité s'appliquent généralement à tous les objets de la c
 
 S'agissant d'attributs tels que le salaire mensuel ou la taille d'une personne, le domaine d'admissibilité retenu doit être relativement étendu. Les valeurs de la plupart des objets se concentrent cependant dans un domaine bien plus restreint. Des exceptions sont toutefois possibles, cas par exemple du salaire du directeur.
 
+[#listing-06_14-04]
+.link:#listing-06_14-04[Listing 06.14-04]
 [source]
 ----
 ASSOCIATION Salariat =
@@ -86,6 +94,8 @@ On estime que le salaire mensuel est inférieur à 10'000 couronnes dans au moin
 
 Comment les salariés ou les actionnaires des entreprises de transport en montagne sont-ils identifiés ? Il serait très tentant mais inapproprié d'utiliser le nom et le prénom à cet effet :
 
+[#listing-06_14-05]
+.link:#listing-06_14-05[Listing 06.14-05]
 [source]
 ----
 CLASS Personne =
@@ -114,6 +124,8 @@ Les identificateurs artificiels sont autant que possible à éviter. Lorsqu'ils 
 
 Ce problème a été résolu d'une manière très simple pour les Remontées mécaniques de la Dent d'Ili, en introduisant tout bêtement un numéro personnel. Dès qu'une personne rejoint les Remontées mécaniques de la Dent d'Ili, un numéro non encore attribué lui est affecté.
 
+[#listing-06_14-06]
+.link:#listing-06_14-06[Listing 06.14-06]
 [source]
 ----
 CLASS Personne =
@@ -134,6 +146,8 @@ Une société de remontées mécaniques peut porter plusieurs noms, mais il ne d
 [NOTE]
 Si un objet comporte des sous-structures, l'unicité ne doit généralement pas s'appliquer « globalement » aux éléments de l'ensemble des sous-structures, au contraire du cas des objets effectifs. Elle ne se rapporte d'ordinaire que « localement » aux éléments de sous-structure d'un seul objet.
 
+[#listing-06_14-07]
+.link:#listing-06_14-07[Listing 06.14-07]
 [source]
 ----
 STRUCTURE Designation =
@@ -163,6 +177,8 @@ Ce lien doit pouvoir être exprimé. Les lignes d'INTERLIS 2 relient toutefois d
 
 Avec la définition suivante, chaque point du tracé doit s'appuyer sur la position d'un pylône (Pylone:Position), de la station inférieure d'une remontée mécanique (RemonteeMecanique:PosStationInf) ou (OR) de la station supérieure d'une remontée mécanique (RemonteeMecanique:PosStationSup).
 
+[#listing-06_14-08]
+.link:#listing-06_14-08[Listing 06.14-08]
 [source]
 ----
 CLASS RemonteeDependanteTerrain EXTENDS RemonteeMecanique =
@@ -185,6 +201,8 @@ Une règle d'intégrité a déjà été formulée pour la remontée mécanique e
 
 Le paragraphe <<_7_3>> expose la manière dont les lignes sont construites et présente l'attribut SegmentEndPoint, symbolisant le point final d'un segment de ligne.
 
+[#listing-06_14-09]
+.link:#listing-06_14-09[Listing 06.14-09]
 [source]
 ----
 CLASS RemonteeMecanique =

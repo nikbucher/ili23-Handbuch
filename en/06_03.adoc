@@ -6,6 +6,8 @@
 
 In order to achieve a rough distinction between the difficulty degrees of ski runs, three colors had been chosen: blue, red, black. These and only these difficulty degrees should prevail. Furthermore they all relate to an order. Blue depicts a simple ski run, a red run is more difficult than a blue one, and a black one is the most demanding. The following definition would describe this circumstance:
 
+[#listing-06_03-01]
+.link:#listing-06_03-01[Listing 06.03-01]
 [source]
 ----
 CLASS SkiRun =
@@ -15,6 +17,8 @@ END SkiRun;
 
 If the FINAL-indication were to be missing, then this enumeration could still be added onto in an extension. For instance in the case of different kinds of alpine transport this might make sense:
 
+[#listing-06_03-02]
+.link:#listing-06_03-02[Listing 06.03-02]
 [source]
 ----
 !! Model of the National Tourist Office
@@ -36,6 +40,8 @@ Each (horizontal) extension can be complemented with further value as long as it
 
 For the basic class the value snow bus - and other possible values - are only recognizable as OTHER. However if FINAL is indicated, then the value OTHER no longer can occur. If an enumeration is defined as circular (*CIRCULAR*) then such extensions are impossible because circular means that the highest value is followed by the lowest and hence it would be impossible to know which of them is the highest.
 
+[#listing-06_03-03]
+.link:#listing-06_03-03[Listing 06.03-03]
 [source]
 ----
 WindDirection: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
@@ -48,6 +54,8 @@ Thu s it had been decided not to model the different kinds of alpine transport w
 
 For each value of an enumeration a sub-enumeration can be defined. This may happen directly within the basic definition or only in an extension.
 
+[#listing-06_03-04]
+.link:#listing-06_03-04[Listing 06.03-04]
 [source]
 ----
 CLASS MITAlpineTransport EXTENDS AlpineTransport

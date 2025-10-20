@@ -22,6 +22,8 @@ Il est effectivement très facile d'agrandir une case sur le papier et d'y rajou
 
 Il vaut donc mieux que la langue effective n'apparaisse pas dans le modèle de données. Dans la nouvelle version suivante, un ensemble de désignations est affecté à une société de remontées mécaniques. La capacité à gérer plusieurs langues étant une demande fréquemment exprimée, la structure DesignationEntreprise hérite de la structure de base Designation qui englobe la langue et un texte.
 
+[#listing-06_11-01]
+.link:#listing-06_11-01[Listing 06.11-01]
 [source]
 ----
 STRUCTURE Designation =

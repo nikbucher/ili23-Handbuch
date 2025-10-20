@@ -6,6 +6,8 @@
 
 Just before Ilis Rock travelers on the chair lift from Ilis Dale pull their hats tightly over their ears: At this spot the wind tends to rip and whistle. When it comes to wind, it is not only speed that is decisive, but also direction. If, in a class description, both these properties simply appear along with other attributes, not enough emphasis will be put on this relevant fact.
 
+[#listing-06_10-01]
+.link:#listing-06_10-01[Listing 06.10-01]
 [source]
 ----
 CLASS Weather =
@@ -17,6 +19,8 @@ END Weather;
 
 In situations where a specific fact cannot be described by only one value, it makes sense to define a structure combining both characteristics (wind direction, wind speed).
 
+[#listing-06_10-02]
+.link:#listing-06_10-02[Listing 06.10-02]
 [source]
 ----
 STRUCTURE IndicationOfWind =
@@ -29,6 +33,8 @@ Other concepts related to structure are: data type, structured data type, ....
 
 This particular structure can be used whenever we deal with comments on wind.
 
+[#listing-06_10-03]
+.link:#listing-06_10-03[Listing 06.10-03]
 [source]
 ----
 CLASS Weather =
@@ -47,6 +53,8 @@ END WindMeter;
 
 The wind-meter stationed at Ilis Rock is more special yet: It does not only display the current value, but also six values recorded previously. While this of course does not warm your ears, it is still quite astonishing to note how swiftly conditions can change.
 
+[#listing-06_10-04]
+.link:#listing-06_10-04[Listing 06.10-04]
 [source]
 ----
 CLASS WindMeter =
@@ -76,6 +84,8 @@ In some cases it is necessary to refer to another object in order to describe a 
 
 The attribute course of a ski run (cf. paragraph <<_6_9_1>>) is defined as AhlandLine, which in turn is defined as POLYLINE. A POLYLINE may be understood as a set of segments of a line (cf. paragraph <<_6_9_2>>). Thus the definition as POLYLINE is nothing but a shortened notation for an ordered set of structures, the structures elements corresponding to a certain structure definition:
 
+[#listing-06_10-05]
+.link:#listing-06_10-05[Listing 06.10-05]
 [source]
 ----
 STRUCTURE AhlandSegment (ABSTRACT) =

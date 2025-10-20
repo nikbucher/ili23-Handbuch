@@ -8,6 +8,8 @@ Soll es von einer Klasse keine konkreten Objekte geben können, wird sie als *ab
 
 Häufig sind in einem Datenmodell sogar alle Oberklassen abstrakt und nur die untersten, speziellsten Klassen konkret.
 
+[#listing-05_03-01]
+.link:#listing-05_03-01[Listing 05.03-01]
 [source]
 ----
 CLASS Bahn (ABSTRACT) =

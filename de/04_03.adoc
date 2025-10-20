@@ -8,6 +8,8 @@ Drei Punkte (...) zeigen die Auslassungen an; die Kästchen rechts sind lediglic
 .Die Bergbahnen auf das Ilishorn sind ein Teil der Daten, die in einer Transferdatei enthalten sind (Wiederholung von Abbildung 11). Die nachfolgende Datei enthält einige Daten für den Ponylift Ilisdorf.
 image::img/image11.png[]
 
+[#listing-04_03-01]
+.link:#listing-04_03-01[Listing 04.03-01]
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>

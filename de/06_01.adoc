@@ -12,6 +12,8 @@ Bei der Modellierung auf konzeptueller Stufe möchte man sich aber eigentlich ni
 
 Da sich die Preise zwischen 10 und 635 Talern bewegen, könnte man also schreiben:
 
+[#listing-06_01-01]
+.link:#listing-06_01-01[Listing 06.01-01]
 [source]
 ----
 Preis: 10 .. 635;
@@ -21,6 +23,8 @@ Damit würde man aber auch festlegen, dass ein Preis nie kleiner als 10 Taler un
 
 Dabei ist es natürlich auch wichtig zu überlegen, wie viele Nachkommastellen nötig sind. Wenn die Preise auch Groschen aufweisen können, werden die Schranken eben mit jeweils zwei Nachkommastellen festgelegt. Bei einem Attribut, das z.B. ein Investitionsbudget dar­stellt, möchte man sich nur mit Millionen abgeben; wo es nur um Grössenordnungen geht, reichen zwei Ziffern. Diese können sich aber auf Tausend, eine Million oder gar eine Milliarde beziehen.
 
+[#listing-06_01-02]
+.link:#listing-06_01-02[Listing 06.01-02]
 [source]
 ----
 Preis: 0.00 .. 9999.99;
@@ -35,6 +39,8 @@ Die Anzahl der Stellen bezeichnet die Genauigkeit: «4.3 Millionen» (4.3E6 = 4.
 
 Sind das jetzt Taler, Franken, Euro oder Dollar? Die Einheit ist – nicht nur beim Geld – von entscheidender Bedeutung. Darum ist es empfehlenswert, die Einheit nicht nur als Kommentar oder als Teil des Attributnamens anzugeben, sondern als Bestandteil des Typs:
 
+[#listing-06_01-03]
+.link:#listing-06_01-03[Listing 06.01-03]
 [source]
 ----
 UNIT
@@ -55,6 +61,8 @@ Im Interesse der Klarheit wird empfohlen, immer Einheiten anzugeben. Das INTERLI
 
 Da die Ilishornbahnen nie Billette abgeben werden, die mehr als tausend Taler kosten, könnte man auf die Idee kommen, dies in einer eigenen Klasse zu definieren:
 
+[#listing-06_01-04]
+.link:#listing-06_01-04[Listing 06.01-04]
 [source]
 ----
 CLASS Billettart (EXTENDED) =
@@ -70,6 +78,8 @@ Eine Preisangabe 0 .. 1000 ist also eine zulässige Einschränkung des national 
 
 Die Ilistaler wollen auch die Möglichkeit haben, Billette auszugeben, deren Preis nicht zwin­gend ein voller Talerbetrag ist. Man möchte folgende Definition schreiben:
 
+[#listing-06_01-05]
+.link:#listing-06_01-05[Listing 06.01-05]
 [source]
 ----
 CLASS Billettart (EXTENDED) =
@@ -90,6 +100,8 @@ Und noch etwas: Die Einheiten der Erweiterung müssen immer mit derjenigen der B
 
 Kann der nationale Verband festlegen, welcher Preis für ein Billett zulässig ist? Sind die Schranken noch völlig unbekannt, kann – im Rahmen abstrakter Attribute – auf ihre An­gabe verzichtet werden. Es ist aber möglich, dennoch bereits eine Einheit festzulegen.
 
+[#listing-06_01-06]
+.link:#listing-06_01-06[Listing 06.01-06]
 [source]
 ----
 Preis (ABSTRACT): NUMERIC [Ahland.Taler];
@@ -97,6 +109,8 @@ Preis (ABSTRACT): NUMERIC [Ahland.Taler];
 
 Vielleicht ist sogar die Einheit noch unklar. Man weiss erst, dass es sich z.B. um eine Währung handelt.
 
+[#listing-06_01-07]
+.link:#listing-06_01-07[Listing 06.01-07]
 [source]
 ----
 Preis (ABSTRACT): NUMERIC [MONEY];
@@ -104,6 +118,8 @@ Preis (ABSTRACT): NUMERIC [MONEY];
 
 Damit ist immerhin der Charakter der Einheit festgelegt. In einer Erweiterung können damit nur noch Einheiten definiert werden, die Konkretisierungen der abstrakten Einheit MONEY sind (zu abstrakten Eigenschaften siehe auch Abschnitt <<_5_4>>).
 
+[#listing-06_01-08]
+.link:#listing-06_01-08[Listing 06.01-08]
 [source]
 ----
 Preis (EXTENDED): 0 .. 10000 [CHF]; !! erlaubt

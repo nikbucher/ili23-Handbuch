@@ -8,6 +8,8 @@ La question « où ? » appelle une réponse liée à un lieu ponctuel du monde 
 
 Ainsi, il convient de définir, pour chacune des dimensions d'un type de coordonnées comme pour tout type numérique, le domaine dans lequel les valeurs admissibles peuvent évoluer de même que l'unité qui leur est associée.
 
+[#listing-06_07-01]
+.link:#listing-06_07-01[Listing 06.07-01]
 [source]
 ----
 Position: COORD 500.00 .. 91000.00 [m],
@@ -49,6 +51,8 @@ image::img/image35.png[]
 
 La carte est enfin recouverte d'un réseau de fines lignes perpendiculaires les unes aux autres : le *système de coordonnées* de la carte. En conséquence, le système de coordonnées sur lequel se fonde le type de coordonnées retenu est également à indiquer.
 
+[#listing-06_07-02]
+.link:#listing-06_07-02[Listing 06.07-02]
 [source]
 ----
 Pos: COORD 480000 .. 850000.00 [m] {SysBeotie[1]},
@@ -66,6 +70,8 @@ Les données relatives à un métamodèle sont dites « méta- » englobantes en
 
 Dans les cas les plus simples, où le système de coordonnées auquel se réfèrent les coordonnées est sans ambiguïté, en raison du champ d'application et du domaine d'utilisation du modèle de données, il peut être renoncé à l'indication explicite de cette information. Il est toutefois judicieux de laisser transparaître le système de coordonnées, ne serait-ce que dans le nom du type des coordonnées.
 
+[#listing-06_07-03]
+.link:#listing-06_07-03[Listing 06.07-03]
 [source]
 ----
 CoordNational = COORD 500.00 .. 91000.00 [m],
@@ -76,6 +82,8 @@ Pos: CoordNational;
 
 Les Ilinois ont préféré recourir à une définition précise pour exclure tout risque de confusion :
 
+[#listing-06_07-04]
+.link:#listing-06_07-04[Listing 06.07-04]
 [source]
 ----
 REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
@@ -84,6 +92,8 @@ REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
 
 Ils ont défini leur système sur la base du modèle général de systèmes de coordonnées (CoordSys). C'est pourquoi un objet de la classe GeoCartesian2D, du nom de SysBeotie, a été introduit pour la planimétrie au sein des données correspondantes. L'existence de cette entrée de données est signalée dans le modèle par OBJECTS OF, de sorte que le système de coordonnées "SysBeotie" y est ainsi disponible. Lors de l'utilisation du système, le nom de l'ensemble de métadonnées (CoordSystems) ne doit être mentionné que si plusieurs ensembles de ce type sont définis dans la partie concernée de la modélisation.
 
+[#listing-06_07-05]
+.link:#listing-06_07-05[Listing 06.07-05]
 [source]
 ----
 CoordNational = COORD 500.00 .. 91000.00 [m] {CoordSystems.SysBeotie[1]},
@@ -95,6 +105,8 @@ CoordNational = COORD 500.00 .. 91000.00 [m] {CoordSystems.SysBeotie[1]},
 
 Les Ilinois souhaiteraient également proposer leurs coordonnées sous forme de coordonnées géographiques exprimées dans le système mondial WGS84 afin qu'un service spécifique puisse être offert aux touristes disposant d'un capteur GPS basique.
 
+[#listing-06_07-06]
+.link:#listing-06_07-06[Listing 06.07-06]
 [source]
 ----
 WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
@@ -110,6 +122,8 @@ END RemonteeMecanique;
 
 Il est cependant manifeste qu'un lien direct unit les deux attributs. Les coordonnées nationales peuvent être converties en coordonnées WGS84. La définition détaillée d'une telle conversion n'est toutefois pas du ressort de la description conceptuelle des données. Mais il est souhaitable d'indiquer que ces coordonnées peuvent être déduites les unes des autres par voie de calcul.
 
+[#listing-06_07-07]
+.link:#listing-06_07-07[Listing 06.07-07]
 [source]
 ----
 !! Conversion de coordonnees du systeme national beotien en WGS84.
@@ -128,6 +142,8 @@ END RemonteeMecanique;
 
 Il va de soi que les skieurs et les randonneurs évoluant autour de la Dent d'Ili ne peuvent se satisfaire de coordonnées planimétriques. Si le coeur des skieurs se met à battre la chamade dès lors qu'on leur annonce de fortes dénivelées, une sourde angoisse étreint celui des randonneurs, la sueur leur perle sur le front et leurs genoux se dérobent soudain sous eux. Qu'elles soient synonymes de bonnes ou de mauvaises nouvelles, tout le monde veut connaître les altitudes ! En conséquence, les types de cordonnées peuvent également présenter trois dimensions.
 
+[#listing-06_07-08]
+.link:#listing-06_07-08[Listing 06.07-08]
 [source]
 ----
 CoordNational3 = COORD 500.00 .. 91000.00 [m] {SysBeotie[1]},

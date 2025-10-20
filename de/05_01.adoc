@@ -32,6 +32,8 @@ image::img/image25.png[]
 
 Einen Hinweis darauf, ob sich das Unterteilen in spezielle Klassen lohnt, geben die jeweili­gen Eigenschaften. So hat jede Bahn einen Namen, aber nur Bergbahnen besitzen eine Tal- und eine Bergstation.
 
+[#listing-05_01-01]
+.link:#listing-05_01-01[Listing 05.01-01]
 [source]
 ----
 CLASS Bahn =

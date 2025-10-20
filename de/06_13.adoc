@@ -10,6 +10,8 @@ In der Beziehung zwischen Bahngesellschaft und Bergbahn ist die Bahngesellschaft
 
 Der Rollenname wird in der Grafik am Ende der Beziehungslinie auf der Seite des Inhabers der Rolle angeschrieben. Wenn er sich aber nicht vom Klassennamen unterscheidet, wird der Rollenname meistens weggelassen.
 
+[#listing-06_13-01]
+.link:#listing-06_13-01[Listing 06.13-01]
 [source]
 ----
 ASSOCIATION =
@@ -22,6 +24,8 @@ Abbildung 48: Gemäss diesem Modell ist es möglich, nach der Betreiberin einer 
 
 Es ist durchaus normal, dass Rollennamen gewählt werden, die sich nicht von den Klassen­namen unterscheiden. In der Beziehung Bergbahn – Tarifbereich macht es z.B. wenig Sinn, weitere Namen einzuführen. Allerdings ist der Bedarf nach zusätzlichen Namen ganz offen­sichtlich gegeben, wenn eine Beziehung zwischen Objekten der gleichen Klasse besteht. So möchte man auch darstellen können, dass eine Bahngesellschaft andere Bahngesellschaften als Tochtergesellschaften besitzt.
 
+[#listing-06_13-02]
+.link:#listing-06_13-02[Listing 06.13-02]
 [source]
 ----
 ASSOCIATION =
@@ -52,6 +56,8 @@ image::img/image55.png[] image:img/image56.png[] image:img/image57.png[]
 
 Die Schreibweise in INTERLIS ist der graphischen Darstellung nachempfunden. Der Rollen­name muss jedoch auch dann geschrieben werden, wenn er sich nicht vom Namen der Klasse unterscheidet.
 
+[#listing-06_13-03]
+.link:#listing-06_13-03[Listing 06.13-03]
 [source]
 ----
 ASSOCIATION =
@@ -77,6 +83,8 @@ Diverse Billettarten berechtigen zur Fahrt auf Bergbahnen, die von verschiedenen
 
 Beziehungen können auch Attribute aufweisen und haben so den Charakter von speziellen Klassen.
 
+[#listing-06_13-04]
+.link:#listing-06_13-04[Listing 06.13-04]
 [source]
 ----
 ASSOCIATION Anteil =
@@ -96,6 +104,8 @@ Abbildung 51: Eine Bahngesellschaft ist zu einem festgelegten Prozentsatz am Erl
 
 Um einen besseren Überblick über die Billettverkäufe zu erhalten, möchte der nationale Verband in Zukunft noch festhalten, welche Verkaufsstelle von welcher Billettart in welcher Saison wie viele Exemplare verkauft hat.
 
+[#listing-06_13-05]
+.link:#listing-06_13-05[Listing 06.13-05]
 [source]
 ----
 ASSOCIATION Verkauf =
@@ -198,6 +208,8 @@ Im konzeptuellen Modell sollen nur diejenigen impliziten Beziehungen beschrieben
 
 Von konzeptueller Bedeutung sind nicht zuletzt Beziehungen, die in einigen Fällen explizit definiert werden müssen und in anderen Fällen ableitbar sind. Die Ableitung kann sich auf die Geographie oder auf andere Eigenschaften abstützen. Beispielsweise führten die Ilistaler einen speziellen Tarifbereich ein, der als Fläche umschrieben ist und alle Bergbahnen umfasst, deren Tal- und Bergstation innerhalb der Fläche liegt.
 
+[#listing-06_13-06]
+.link:#listing-06_13-06[Listing 06.13-06]
 [source]
 ----
 CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich =

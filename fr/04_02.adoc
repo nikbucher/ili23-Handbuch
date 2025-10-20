@@ -8,6 +8,8 @@ Nous recommandons un bref survol du modèle de données de notre exemple avant l
 [#_4_2_1]
 ==== Beotie.ili – Modèle de base national
 
+[#listing-04_02-01]
+.link:#listing-04_02-01[Listing 04.02-01]
 [source]
 ----
 !! Le present modele a ete redige dans la version 2.3 d’INTERLIS.
@@ -95,6 +97,8 @@ END Beotie.
 
 Le modèle des adresses de bâtiments n'est pas reproduit car il couvrirait plusieurs pages dont seule une petite partie serait d'intérêt dans le contexte du Val d'Ili. Le modèle de l'office de tourisme du Val d'Ili établit cependant une relation entre les auberges et l'entrée d'immeuble définie dans le modèle des adresses.
 
+[#listing-04_02-02]
+.link:#listing-04_02-02[Listing 04.02-02]
 [source]
 ----
 INTERLIS 2.3;
@@ -117,6 +121,8 @@ END Adresses.
 [#_4_2_3]
 ==== NatTour.ili – Modèle de l'Association nationale des offices de tourisme
 
+[#listing-04_02-03]
+.link:#listing-04_02-03[Listing 04.02-03]
 [source]
 ----
 INTERLIS 2.3;
@@ -297,6 +303,8 @@ END NatTour.
 [#_4_2_4]
 ==== IlisTour.ili – Modèle de l'office de tourisme du Val d'Ili
 
+[#listing-04_02-04]
+.link:#listing-04_02-04[Listing 04.02-04]
 [source]
 ----
 INTERLIS 2.3;

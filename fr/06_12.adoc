@@ -6,6 +6,8 @@
 
 L'Association nationale a prévu une solution simple, fondée sur un attribut pour la durée de validité des types de billets, basé sur le nombre de jours (avec un chiffre après la virgule).
 
+[#listing-06_12-01]
+.link:#listing-06_12-01[Listing 06.12-01]
 [source]
 ----
 DureeValidite : 0.0 .. 1000.0 [d];
@@ -33,6 +35,8 @@ A quoi pourrait alors ressembler une meilleure solution ?
 
 Des propriétés d'objets telles que la durée de validité ne peuvent pas toujours être décrites avec une précision suffisante par une valeur unique. Un groupe d'attributs est parfois requis et il peut même être judicieux de prévoir des extensions. La structure sert à cela.
 
+[#listing-06_12-02]
+.link:#listing-06_12-02[Listing 06.12-02]
 [source]
 ----
 STRUCTURE Duree (ABSTRACT) =
@@ -54,6 +58,8 @@ END TypeBillet;
 
 La durée de validité d'un type de billet donné est décrite par une instance (un élément structuré) de la structure DureeAujourdHui, DureeEnJours, DureeEnMois, etc. On pourrait même préciser la modélisation un peu plus en veillant à ce que l'unité d'un laps de temps explicite (jour, mois, etc.) soit toujours une durée et en définissant une énumération pour les durées implicites (semaine, saison, etc.) :
 
+[#listing-06_12-03]
+.link:#listing-06_12-03[Listing 06.12-03]
 [source]
 ----
 STRUCTURE Duree (ABSTRACT) =
@@ -88,6 +94,8 @@ Une modélisation précise, détaillée et appropriée est fondamentalement à p
 
 Les durées ne concernent pas uniquement les billets. Tous les vendredis, les Ilinois organisent une compétition de ski ouverte aux hôtes de la station. Les temps de parcours sont mesurés en minutes, secondes et centièmes de secondes. Il est tout naturel de définir une structure à cette fin, présentant les attributs Minutes et Secondes :
 
+[#listing-06_12-04]
+.link:#listing-06_12-04[Listing 06.12-04]
 [source]
 ----
 STRUCTURE DureeEnMinutes EXTENDS Duree =
@@ -98,6 +106,8 @@ END DureeEnMinutes;
 
 Afin que le lien entre les minutes et les secondes puisse être exprimé, une possibilité supplémentaire est proposée :
 
+[#listing-06_12-05]
+.link:#listing-06_12-05[Listing 06.12-05]
 [source]
 ----
 STRUCTURE DureeEnMinutes EXTENDS Duree =
@@ -115,6 +125,8 @@ La compétition de ski ouverte aux hôtes de la station est toujours organisée 
 
 Comment le domaine des valeurs admissibles (de 30 secondes à 3 minutes et 30 secondes) peut-il à présent être défini ? La solution réside dans des domaines de valeurs formatés :
 
+[#listing-06_12-06]
+.link:#listing-06_12-06[Listing 06.12-06]
 [source]
 ----
 DOMAIN DureeenMinSec = FORMAT BASED ON DureeenMinutes

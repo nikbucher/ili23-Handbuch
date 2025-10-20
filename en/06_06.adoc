@@ -3,6 +3,8 @@
 
 Both waiting times at stations and duration of rides are noted in minutes.
 
+[#listing-06_06-01]
+.link:#listing-06_06-01[Listing 06.06-01]
 [source]
 ----
 CLASS AlpineTransport =
@@ -16,6 +18,8 @@ END StatusAlpineTransport;
 
 Both properties can adopt values of the same range. With a specifically defined value range (DOMAIN) this common factor can be highlighted further:
 
+[#listing-06_06-02]
+.link:#listing-06_06-02[Listing 06.06-02]
 [source]
 ----
 DOMAIN

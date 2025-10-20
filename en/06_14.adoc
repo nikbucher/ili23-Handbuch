@@ -6,6 +6,8 @@
 
 We recall that the Mount Ilis Alpine Transports want to report information on current conditions for each of their alpine transports, amongst others the weather at the top station:
 
+[#listing-06_14-01]
+.link:#listing-06_14-01[Listing 06.14-01]
 [source]
 ----
 CLASS InformationOnCondition =
@@ -23,6 +25,8 @@ Situations where a certain connection has to exist between different attributes 
 
 As a rule consistency constraints are described by a formula whose interpretation will tell whether the condition is fulfilled or not. Thanks to such a logical expression we will come to terms with a lull:
 
+[#listing-06_14-02]
+.link:#listing-06_14-02[Listing 06.14-02]
 [source]
 ----
 CLASS InformationOnCondition =
@@ -40,6 +44,8 @@ Precisely when the wind direction is defined, then the wind speed must be greate
 
 Very often consistency constraints could be omitted if only the model were structured differently. If we wrap up all indications regarding wind in a structure, and then state that this structure, there is no need for a consistency constraint. With no wind the structure element is missing. If it is blowing then forcibly there must be both wind direction and wind speed.
 
+[#listing-06_14-03]
+.link:#listing-06_14-03[Listing 06.14-03]
 [source]
 ----
 STRUCTURE IndicationOfWind =
@@ -67,6 +73,8 @@ In general consistency constraints apply to all objects of the corresponding cla
 
 With attributes such as monthly salaries and body-height the generally admissible scope must be relatively. However the values of most objects will lie below a considerably lower limit, but exceptions may occur, for instance the salary of the managing director.
 
+[#listing-06_14-04]
+.link:#listing-06_14-04[Listing 06.14-04]
 [source]
 ----
 ASSOCIATION Employment =
@@ -85,6 +93,8 @@ We estimate that in a minimum of (>=) 95% of all cases the monthly salary is bel
 
 How can we identify persons that either work for the company or are participants? It might seem obvious to use names and first names but this would be quite unsuitable:
 
+[#listing-06_14-05]
+.link:#listing-06_14-05[Listing 06.14-05]
 [source]
 ----
 CLASS Person =
@@ -113,6 +123,8 @@ Wherever possible avoid artificial identifiers. If nevertheless they are necessa
 
 For the Mount Ilis Alpine Transports a simple solution has been found for this problem: A number for every employee has been introduced. Anybody new at the Mount Ilis Alpine Transports will be assigned a number that has not been bestowed on before.
 
+[#listing-06_14-06]
+.link:#listing-06_14-06[Listing 06.14-06]
 [source]
 ----
 CLASS Person =
@@ -133,6 +145,8 @@ One railway company may possess several names. However per language there should
 [NOTE]
 If an object features sub structures, uniqueness – as opposed to the actual objects – as a rule should not apply «globally» to the elements of all sub-structures. In most cases it only refers «locally» to the sub-structure elements of one single object.
 
+[#listing-06_14-07]
+.link:#listing-06_14-07[Listing 06.14-07]
 [source]
 ----
 STRUCTURE Designation =
@@ -162,6 +176,8 @@ We wish to express this context. However the lines of INTERLIS 2 connect vertice
 
 Using the following definition every point within the course of the track has to rely either on the position of a pylon (Pylon:Position), the position of the bottom station of an alpine transport (AlpineTransport:PosBottomStation) or (OR) the position of the top station of an alpine transport (AlpineTransport:PosTopStation).
 
+[#listing-06_14-08]
+.link:#listing-06_14-08[Listing 06.14-08]
 [source]
 ----
 CLASS GroundIndependentTransport EXTENDS AlpineTransport =
@@ -184,6 +200,8 @@ Already with the alpine transport itself a consistency constraint had been formu
 
 Paragraph <<_7_3>> explains the structure of polylines. It also deals with the attribute SegmentEndPoint, which stands for the end point of a line segment.
 
+[#listing-06_14-09]
+.link:#listing-06_14-09[Listing 06.14-09]
 [source]
 ----
 CLASS AlpineTransport =

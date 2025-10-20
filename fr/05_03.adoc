@@ -8,6 +8,8 @@ Une classe est déclarée comme étant *abstraite* si aucun objet concret ne peu
 
 Il est fréquent que toutes les sur-classes d'un modèle de données soient de type abstrait et que seules les sous-classes spécialisées des niveaux inférieurs soient concrètes.
 
+[#listing-05_03-01]
+.link:#listing-05_03-01[Listing 05.03-01]
 [source]
 ----
 CLASS Ligne_Remontee (ABSTRACT) =

@@ -23,6 +23,8 @@ Es ist ja tatsächlich keine grosse Sache, ein Kästchen auf Papier um einige Ze
 
 Besser ist es daher, wenn die konkrete Sprache gar nicht im Datenmodell vorkommt. In der folgenden neuen Version weist eine Bahngesellschaft eine Menge von Bahnbezeichnungen auf. Da der Umgang mit mehreren Sprachen ein häufiges Anliegen ist, erbt die Struktur Bahnbezeichnung die Grundstruktur Bezeichnung, welche die Sprache und einen Text umfasst.
 
+[#listing-06_11-01]
+.link:#listing-06_11-01[Listing 06.11-01]
 [source]
 ----
 STRUCTURE Bezeichung =

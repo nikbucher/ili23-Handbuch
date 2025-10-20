@@ -10,6 +10,8 @@ Dans la relation liant la société de remontées mécaniques à une ligne parti
 
 Sur le graphique, le nom du rôle figure à l'extrémité du trait de relation, du côté de son détenteur, mais il est généralement omis lorsqu'il est identique au nom de la classe.
 
+[#listing-06_13-01]
+.link:#listing-06_13-01[Listing 06.13-01]
 [source]
 ----
 ASSOCIATION =
@@ -22,6 +24,8 @@ Figure 48 : Il est possible, selon ce modèle, de s'enquérir de l'exploitant d'
 
 Il est parfaitement normal que le choix des noms de rôles se porte sur des noms identiques à ceux des classes. Dans la relation liant par exemple une remontée mécanique à une zone tarifaire, introduire des noms supplémentaires présente peu d'intérêt. Il en va toutefois différemment lorsqu'une relation lie des objets de la même classe et les noms supplémentaires sont alors bien utiles. On souhaiterait par ailleurs représenter le fait qu'une société de remontées mécaniques possède d'autres entreprises qui sont alors ses filiales.
 
+[#listing-06_13-02]
+.link:#listing-06_13-02[Listing 06.13-02]
 [source]
 ----
 ASSOCIATION =
@@ -52,6 +56,8 @@ image::img/image55.png[] image:img/image56.png[] image:img/image57.png[]
 
 La notation INTERLIS est très proche de la représentation graphique. Le nom du rôle doit cependant être figuré lorsqu'il se distingue du nom de la classe.
 
+[#listing-06_13-03]
+.link:#listing-06_13-03[Listing 06.13-03]
 [source]
 ----
 ASSOCIATION =
@@ -77,6 +83,8 @@ Des billets de divers types donnent le droit d'emprunter des remontées mécaniq
 
 Les relations peuvent également se voir affecter des attributs de sorte qu'elles peuvent être conçues comme des classes d'un genre un peu spécifique.
 
+[#listing-06_13-04]
+.link:#listing-06_13-04[Listing 06.13-04]
 [source]
 ----
 ASSOCIATION Pourcentage =
@@ -96,6 +104,8 @@ Figure 51 : Une société de remontées mécaniques se voit rétrocéder un pour
 
 Désireuse d'avoir une vue d'ensemble plus fine de la vente des billets, l'Association nationale souhaiterait pouvoir connaître la ventilation des ventes des différents types de billets, point de vente par point de vente et saison par saison.
 
+[#listing-06_13-05]
+.link:#listing-06_13-05[Listing 06.13-05]
 [source]
 ----
 ASSOCIATION Vente =
@@ -198,6 +208,8 @@ Le modèle conceptuel ne doit décrire que les relations implicites d'importance
 
 Les relations à définir explicitement dans certains cas et dérivables dans d'autres revêtent une grande importance au plan conceptuel. La dérivation peut se fonder sur la position géographique comme sur d'autres propriétés. Les Ilinois ont par exemple introduit une zone tarifaire spéciale, décrite par une surface et englobant toutes les remontées mécaniques dont les stations inférieure et supérieure se situent dans ses limites.
 
+[#listing-06_13-06]
+.link:#listing-06_13-06[Listing 06.13-06]
 [source]
 ----
 CLASS ZoneTarifaireDansSecteur EXTENDS NatTour.Billets.ZoneTarifaire =

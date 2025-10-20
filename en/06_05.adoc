@@ -11,6 +11,8 @@ Undefined is not simply 0 or some other slightly exceptional value. It is an ind
 
 For instance in INTERLIS 2 we would write:
 
+[#listing-06_05-01]
+.link:#listing-06_05-01[Listing 06.05-01]
 [source]
 ----
 CLASS Weather =

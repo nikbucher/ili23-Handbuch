@@ -3,6 +3,8 @@
 
 For a brief overview it is sufficient to roughly divide alpine transports: Cog rail, funiculars, aerial cable cars, ski lift, chair lifts, gondolas. In the simplest of cases the type would be noted as a text attribute.
 
+[#listing-06_02-01]
+.link:#listing-06_02-01[Listing 06.02-01]
 [source]
 ----
 CLASS AlpineTransport =
@@ -13,6 +15,8 @@ END AlpineTransport;
 
 Consequently people in charge of data input would be very free in their description. Aerial cable car, gondola, ski lift, ski-lift – it is to be feared that a virtual jungle of terms would result. This could be avoided by using an enumeration.
 
+[#listing-06_02-02]
+.link:#listing-06_02-02[Listing 06.02-02]
 [source]
 ----
 CLASS AlpineTransport =
@@ -38,6 +42,8 @@ But there are no means of alpine transport that are exclusively alpine transport
 
 In the textual notation of INTERLIS 2 abstract classes are pointed out with the indication (ABSTRACT) in brackets. As a side remark: The INTERLIS-units model «Units» features a unit «CountedObjects» for counted objects such as the number of people in a aerial cable car cabin.
 
+[#listing-06_02-03]
+.link:#listing-06_02-03[Listing 06.02-03]
 [source]
 ----
 CLASS AlpineTransport (ABSTRACT) =

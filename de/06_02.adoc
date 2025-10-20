@@ -3,6 +3,8 @@
 
 Für eine grobe Übersicht genügt es, die Bergbahnen grob einzuteilen: Zahnradbahn, Standseilbahn, Luftseilbahn, Skilift, Sessellift, Gondelbahn. Im einfachsten Fall wird die Art als Textattribut festgehalten.
 
+[#listing-06_02-01]
+.link:#listing-06_02-01[Listing 06.02-01]
 [source]
 ----
 CLASS Bergbahn =
@@ -13,6 +15,8 @@ END Bergbahn;
 
 Als Folge ist die Person, welche die Daten erfasst, in der Beschreibung sehr frei. Seilbahn, Schwebebahn, Skilift, Ski-Lift – es ist zu befürchten, dass ein rechter Wildwuchs an Be­zeichnungen entsteht. Vermeiden lässt sich dies mit einer Aufzählung.
 
+[#listing-06_02-02]
+.link:#listing-06_02-02[Listing 06.02-02]
 [source]
 ----
 CLASS Bergbahn =
@@ -38,6 +42,8 @@ Es gibt aber keine Bergbahnen, die ausschliesslich Bergbahn sind und nicht gleic
 
 In der textuellen Schreibweise von INTERLIS 2 werden abstrakte Klassen mit der Angabe (ABSTRACT) in Klammern bezeichnet. Nur nebenbei: Das INTERLIS-Einheitenmodell «Units» kennt eine Einheit «CountedObjects» für abgezählte Objekte wie zum Beispiel die Zahl der Personen in einer Luftseilbahnkabine.
 
+[#listing-06_02-03]
+.link:#listing-06_02-03[Listing 06.02-03]
 [source]
 ----
 CLASS Bergbahn (ABSTRACT) =

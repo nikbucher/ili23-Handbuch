@@ -3,6 +3,8 @@
 
 Comment exprimer un angle droit ? Par 90 degrés ou par pi / 2 ? Il ne s'agit que d'une question d'unité. Mais quand un angle est-il considéré comme étant positif et quand comme étant négatif ? Le sens de rotation (horaire ou anti-horaire) fait par conséquent partie de la définition d'un type d'angle.
 
+[#listing-06_08-01]
+.link:#listing-06_08-01[Listing 06.08-01]
 [source]
 ----
 DOMAIN
@@ -22,6 +24,8 @@ En effet, tout dépend de la direction origine et du sens de rotation des direct
 image::img/image42.png[]
 
 
+[#listing-06_08-02]
+.link:#listing-06_08-02[Listing 06.08-02]
 [source]
 ----
 CoordNational3 = COORD 500.00 .. 91000.00 [m] {SysBeotie[1]},

@@ -3,6 +3,8 @@
 
 Wartezeiten an den Bergbahnen und die Fahrzeiten der Bergbahnen werden beide in Minu­ten festgehalten.
 
+[#listing-06_06-01]
+.link:#listing-06_06-01[Listing 06.06-01]
 [source]
 ----
 CLASS Bergbahn =
@@ -16,6 +18,8 @@ END Bergbahnstatus;
 
 Beide Eigenschaften können Werte aus demselben Bereich annehmen. Mit einem ausdrücklich definierten Wertebereich (DOMAIN) lässt sich diese Gemeinsamkeit betonen:
 
+[#listing-06_06-02]
+.link:#listing-06_06-02[Listing 06.06-02]
 [source]
 ----
 DOMAIN

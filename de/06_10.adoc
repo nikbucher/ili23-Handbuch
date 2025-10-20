@@ -6,6 +6,8 @@
 
 Kurz vor der Ilisegg ziehen sich die Leute auf dem Sessellift vom Ilistäli die Kappe fest über die Ohren: Hier pfeift der Wind so richtig. Beim Wind ist eben nicht nur die Windgeschwindigkeit, sondern auch die Richtung aus der er kommt, massgebend. Führt man diese beiden Eigenschaften im Rahmen einer Klassenbeschreibung einfach zusammen mit anderen Attributen auf, kommt dieser Sachverhalt wenig zum Ausdruck.
 
+[#listing-06_10-01]
+.link:#listing-06_10-01[Listing 06.10-01]
 [source]
 ----
 CLASS Wetter =
@@ -17,6 +19,8 @@ END Wetter;
 
 Für Situationen, wo ein Sachverhalt nicht durch einen einzigen, sondern durch mehrere Werte beschrieben wird, ist es sinnvoll, eine Struktur (Windangabe) zu definieren, welche die verschiedenen Eigenschaften (Windrichtung, Windgeschwindigkeit) umfasst.
 
+[#listing-06_10-02]
+.link:#listing-06_10-02[Listing 06.10-02]
 [source]
 ----
 STRUCTURE Windangabe =
@@ -29,6 +33,8 @@ Mit Struktur verwandte Begriffe sind: Datentyp, strukturierter Datentyp, ...
 
 Überall, wo eine Aussage über den Wind gemacht wird, kann diese Struktur verwendet werden.
 
+[#listing-06_10-03]
+.link:#listing-06_10-03[Listing 06.10-03]
 [source]
 ----
 CLASS Wetter =
@@ -47,6 +53,8 @@ END Windmesser;
 
 Der Windmesser auf der Ilisegg ist noch etwas spezieller: Er zeigt nicht einfach den aktuellen Wert, sondern gleich die letzten sechs gemessenen Werte an. Deswegen werden die Ohren zwar nicht wärmer, aber erstaunlich ist es ja schon, wie schnell die Verhältnisse manchmal ändern können.
 
+[#listing-06_10-04]
+.link:#listing-06_10-04[Listing 06.10-04]
 [source]
 ----
 CLASS Windmesser =
@@ -76,6 +84,8 @@ Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf e
 
 Das Attribut Verlauf der Piste (vgl. Abschnitt <<_6_9_1>>) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt <<_6_9_2>>). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:
 
+[#listing-06_10-05]
+.link:#listing-06_10-05[Listing 06.10-05]
 [source]
 ----
 STRUCTURE AhlandSegment (ABSTRACT) =

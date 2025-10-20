@@ -11,6 +11,8 @@ Indéfini ne signifie pas simplement égal à 0 ou à toute autre valeur particu
 
 Dans INTERLIS 2, on écrira par exemple :
 
+[#listing-06_05-01]
+.link:#listing-06_05-01[Listing 06.05-01]
 [source]
 ----
 CLASS Meteo =

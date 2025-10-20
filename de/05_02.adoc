@@ -5,6 +5,8 @@ Hundert Zeichen für den Namen einer Bahn mag im allgemeinen Fall ja angemessen 
 
 Aber eine Tramlinie mit hundert Buchstaben? Hier reichen fünf Zeichen definitiv aus.
 
+[#listing-05_02-01]
+.link:#listing-05_02-01[Listing 05.02-01]
 [source]
 ----
 CLASS Bahn =

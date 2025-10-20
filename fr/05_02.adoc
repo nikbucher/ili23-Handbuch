@@ -3,6 +3,8 @@
 
 Dans le cas général, disposer de cent caractères pour le nom d'une ligne / remontée peut sembler raisonnable. Il a bien été question, à une certaine époque, d'exploiter un «Remonte-pente destiné aux lugeurs de sept à septante-sept ans du secteur de la Dent d'Ili » avant que l'on finisse par se décider au dernier moment pour le nom de « tire-fesses », au grand soulagement du syndicat d'initiative.
 
+[#listing-05_02-01]
+.link:#listing-05_02-01[Listing 05.02-01]
 [source]
 ----
 CLASS Ligne_Remontee =

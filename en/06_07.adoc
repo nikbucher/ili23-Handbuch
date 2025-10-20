@@ -8,6 +8,8 @@ We would link the idea of a place in real world, shaped like a point, with the q
 
 For each dimension of a coordinate type we have to determine, in the same way as with numeric types, in which admissible values may range and what unit they refer to.
 
+[#listing-06_07-01]
+.link:#listing-06_07-01[Listing 06.07-01]
 [source]
 ----
 Position: COORD 500.00 .. 91000.00 [m],
@@ -49,6 +51,8 @@ image::img/image35.png[]
 
 At the end the map is superposed with fine perpendicular lines: the *coordinate* *system* of the map. That is why with each coordinate type it has to be determined what coordinate system it is based upon.
 
+[#listing-06_07-02]
+.link:#listing-06_07-02[Listing 06.07-02]
 [source]
 ----
 Position: COORD 480000 .. 850000.00 [m] {AhlandSys[1]},
@@ -66,6 +70,8 @@ Data belonging to a meta model are «meta» in another more formal sense an info
 
 In simple cases here the application range of a data model will make it quite clear what coordinate system the coordinates actually belong to, you may omit the explicit indication of the coordinate system. Nevertheless it does make sense to make at least some sort of mention of the coordinate system in the name of the coordinate type.
 
+[#listing-06_07-03]
+.link:#listing-06_07-03[Listing 06.07-03]
 [source]
 ----
 NationalCoord = COORD 500.00 .. 91000.00 [m],
@@ -76,6 +82,8 @@ Position: NationalCoord;
 
 To avoid confusions, the responsible persons of Ilis Valley have given preference to a precise definition:
 
+[#listing-06_07-04]
+.link:#listing-06_07-04[Listing 06.07-04]
 [source]
 ----
 REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
@@ -84,6 +92,8 @@ REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
 
 Based upon the general model for coordinate systems (CoordSys), they have presented a precise definition of their national system. For its position they have registered an object of the class GeoCartesian2D with the name of AhlandSys. Within the model the existence of this data entry is referred to by means of OBJECTS OF. Thus the coordinate system AhlandSys becomes available in the model. When applying the system, there is no need to actually mention the name of our stock of meta data (CoordSystems), unless several such stocks of meta data were defined within the current modeling part.
 
+[#listing-06_07-05]
+.link:#listing-06_07-05[Listing 06.07-05]
 [source]
 ----
 LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
@@ -95,6 +105,8 @@ LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
 
 In order to offer a special service to those tourists that have a simple GPS-receiver at their disposal, Ilis Valley would like to make their coordinates also available as geographical coordinates in the global WGS84-System.
 
+[#listing-06_07-06]
+.link:#listing-06_07-06[Listing 06.07-06]
 [source]
 ----
 WGS84Coord = COORD -90.00000 .. 90.00000 [Units.Angle_Degree] {WGS84[1]},
@@ -110,6 +122,8 @@ END AlpineTransport;
 
 It seems obvious that both attributes are directly related. Projection coordinates can be converted into WGS84-coordinates. However it is not up to the conceptual description of data to render a detailed definition of such a conversion. Nevertheless it would be desirable to indicate that it is possible to calculate one set of coordinates from the others.
 
+[#listing-06_07-07]
+.link:#listing-06_07-07[Listing 06.07-07]
 [source]
 ----
 !! Conversion of coordinates from the Ahland projection system to WGS84.
@@ -128,6 +142,8 @@ END AlpineTransport;
 
 Of course projection coordinates are not enough for the skiers and hikers around the  Ilis. Big differences in altitude delight the skiers, while hikers will either fear perspiration or shaking knees. Altitudes definitely are sought after! That is why coordinate types may also display three dimensions.
 
+[#listing-06_07-08]
+.link:#listing-06_07-08[Listing 06.07-08]
 [source]
 ----
 NationalCoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},

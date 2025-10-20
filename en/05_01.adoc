@@ -30,6 +30,8 @@ Inheritance is a fabulous means of creating order in a complex world. On the oth
 image::img/image24.png[]
 
 
+[#listing-05_01-01]
+.link:#listing-05_01-01[Listing 05.01-01]
 [source]
 ----
 CLASS Railway =

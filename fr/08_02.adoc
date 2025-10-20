@@ -4,6 +4,8 @@
 Mais que contenait ce fichier ? Pour le savoir, on l'ouvrit dans un éditeur de texte normal :
 
 .Le tire-fesses du Val d'Ili, extrait du transfert intégral des données du Val d'Ili. La norme INTERLIS fixe le degré de spécification d'un tel fichier de transfert pour un modèle de données bien défini.
+[#listing-08_02-01]
+.link:#listing-08_02-01[Listing 08.02-01]
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>

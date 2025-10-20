@@ -3,6 +3,8 @@
 
 How big is a right angle? 90 Degrees or Pi / 2? This is a question of the unit in use. But when is the angle considered positive, when negative? Consequently the sense of rotation belongs to every type of angle: clockwise or counter clockwise.
 
+[#listing-06_08-01]
+.link:#listing-06_08-01[Listing 06.08-01]
 [source]
 ----
 DOMAIN
@@ -23,6 +25,8 @@ It all depends on the zero direction and how directions rotate. Whenever we spea
 image::img/image42.png[]
 
 
+[#listing-06_08-02]
+.link:#listing-06_08-02[Listing 06.08-02]
 [source]
 ----
 NationalCoord = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},

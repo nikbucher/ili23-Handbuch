@@ -3,6 +3,8 @@
 
 As a general rule designations may consist of names of any chosen length. Nevertheless the national association has determined that the name of any alpine transport may not exceed a total of 100 signs. In general of course the names tend to be much shorter, but one would like to be on the safe side.
 
+[#listing-06_04-01]
+.link:#listing-06_04-01[Listing 06.04-01]
 [source]
 ----
 STRUCTURE RailwayDesignation EXTENDS Designation =
@@ -12,6 +14,8 @@ END RailwayDesignation;
 
 Whenever the length of a text attribute is discretionary or as yet completely unknown, the indication of its length can be omitted. If obviously this length will be determined within the scope of an extension of class, the attribute will be qualified as abstract:
 
+[#listing-06_04-02]
+.link:#listing-06_04-02[Listing 06.04-02]
 [source]
 ----
 Description (ABSTRACT): TEXT;
@@ -19,6 +23,8 @@ Description (ABSTRACT): TEXT;
 
 Some means of transport in Ilis Valley have installed a web camera, which continually registers the environment of the top station. Tourists may judge themselves whether the trip is worthwhile. The Internet address of the current picture also represents a (somewhat particular) form of text.
 
+[#listing-06_04-03]
+.link:#listing-06_04-03[Listing 06.04-03]
 [source]
 ----
 CLASS MITAlpineTransport =

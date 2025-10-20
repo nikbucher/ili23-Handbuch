@@ -12,6 +12,8 @@ Pris dans ce sens, le type de ligne n'est rien d'autre qu'un type numérique ou 
 
 Avec INTERLIS, ou pourrait écrire :
 
+[#listing-06_09-01]
+.link:#listing-06_09-01[Listing 06.09-01]
 [source]
 ----
 LigneBeotie = POLYLINE VERTEX Beotie.CoordNational;
@@ -36,6 +38,8 @@ image::img/image43.png[]
 
 Il est toutefois judicieux d'indiquer les types de tronçons de lignes autorisés pour un type de ligne particulier :
 
+[#listing-06_09-02]
+.link:#listing-06_09-02[Listing 06.09-02]
 [source]
 ----
 LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Beotie.CoordNational;
@@ -47,6 +51,8 @@ Dans de nombreux cas – dont les pistes font partie – il ne présente aucun i
 
 Le système de coordonnées national béotien utilisant le mètre comme unité, la définition ci-dessous permet des recouvrements n'excédant pas 2 centimètres :
 
+[#listing-06_09-03]
+.link:#listing-06_09-03[Listing 06.09-03]
 [source]
 ----
 LigneBeotie = POLYLINE WITH (STRAIGHTS, ARCS)
@@ -63,6 +69,8 @@ image::img/image44.png[]
 
 Un skieur s'attend naturellement à ce que les tronçons de ligne de la piste reliant la Dent d'Ili à la Crête d'Ili commencent aux abords de la Dent d'Ili pour finir sur la Crête d'Ili. Ils souhaitent descendre la piste et non chausser les peaux de phoque pour la remonter ! La direction présente cependant peu d'intérêt pour la description d'autres objets (tels que des sentiers de randonnée). Lorsque la direction des lignes est d'importance, elle doit donc figurer dans le modèle conceptuel.
 
+[#listing-06_09-04]
+.link:#listing-06_09-04[Listing 06.09-04]
 [source]
 ----
 LigneBeotieOrientee = DIRECTED POLYLINE VERTEX Beotie.CoordNational;
@@ -77,6 +85,8 @@ END Piste;
 
 Le service des pistes des Remontées mécaniques de la Dent d'Ili s'est demandé si la description des pistes répondait à ses besoins. Après réflexion, il a conclu qu'une représentation sous forme de surface était préférable afin que la définition des secteurs à préparer soit toujours parfaitement claire.
 
+[#listing-06_09-05]
+.link:#listing-06_09-05[Listing 06.09-05]
 [source]
 ----
 DOMAIN
@@ -107,6 +117,8 @@ Au sommet, sous la Dent d'Ili, différentes pistes débutent si près les unes d
 
 En conséquence, le service des pistes a opté pour une autre modélisation : les surfaces à préparer ne sont pas directement affectées aux pistes mais sont gérées comme des tronçons de pistes indépendants. Chacun de ces tronçons de pistes est une surface mais aucun recouvrement ne doit être permis entre tronçons, puisqu'une portion de terrain ne doit être préparée qu'une seule fois.
 
+[#listing-06_09-06]
+.link:#listing-06_09-06[Listing 06.09-06]
 [source]
 ----
 DOMAIN

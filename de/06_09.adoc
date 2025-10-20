@@ -12,6 +12,8 @@ In diesem Sinn ist ein Linientyp nichts anderes als z.B. ein numerischer Typ ode
 
 In INTERLIS könnte man schreiben:
 
+[#listing-06_09-01]
+.link:#listing-06_09-01[Listing 06.09-01]
 [source]
 ----
 AhlandLinie = POLYLINE VERTEX Ahland.LandesKoord;
@@ -36,6 +38,8 @@ image::img/image43.png[]
 
 Es macht aber durchaus Sinn anzugeben, welche Arten von Linienstücken bei einem be­stimmten Linientyp vorkommen dürfen.
 
+[#listing-06_09-02]
+.link:#listing-06_09-02[Listing 06.09-02]
 [source]
 ----
 AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Ahland.LandesKoord;
@@ -47,6 +51,8 @@ In vielen Fällen – so auch bei den Pisten – macht es keinen Sinn, dass eine
 
 Nachdem das Ahländer Landes-Koordinatensystem Meter verwendet, sind mit dieser Defini­tion Überlappungen bis zu 2 cm erlaubt:
 
+[#listing-06_09-03]
+.link:#listing-06_09-03[Listing 06.09-03]
 [source]
 ----
 AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS)
@@ -64,6 +70,8 @@ wie gross die Überlappung (im Bild die Pfeilhöhe) höchstens sein darf.
 
 Als Skifahrer erwartet man natürlich, dass die Linienstücke der Piste vom Ilishorn zur Ilisegg beim Ilishorn beginnen und bei der Ilisegg enden. Man möchte ja hinunterfahren und nicht die Steigfelle montieren! Zur Beschreibung anderer Objekte (z.B. der Wanderwege) ist jedoch die Richtung nicht von Bedeutung. Wo die Richtung der Linien von Bedeutung ist, soll dies im konzeptuellen Modell auch angegeben werden.
 
+[#listing-06_09-04]
+.link:#listing-06_09-04[Listing 06.09-04]
 [source]
 ----
 AhlandLinieGerichtet = DIRECTED POLYLINE VERTEX Ahland.LandesKoord;
@@ -78,6 +86,8 @@ END Piste;
 
 Für den Pistendienst der Ilishornbahnen stellte sich die Frage, ob die Beschreibung der Pisten für seine Zwecke genügt. Damit immer klar ist, welche Bereiche jeweils präpariert werden müssen, wird eine Darstellung als Fläche vorgezogen.
 
+[#listing-06_09-05]
+.link:#listing-06_09-05[Listing 06.09-05]
 [source]
 ----
 DOMAIN
@@ -108,6 +118,8 @@ Oben beim Ilishorn liegen verschiedene Pisten anfänglich so nahe beieinander, d
 
 Der Pistendienst hat sich darum für eine andere Modellierung entschieden: Die zu präpa­rierenden Flächen werden nicht direkt den Pisten zugeordnet, sondern als eigenständige Pistenabschnitte geführt. Jeder Pistenabschnitt ist eine Fläche. Die Pistenabschnitte sollen sich aber nie überlappen, da ein bestimmter Geländeabschnitt schliesslich nur einmal prä­pariert werden muss.
 
+[#listing-06_09-06]
+.link:#listing-06_09-06[Listing 06.09-06]
 [source]
 ----
 DOMAIN

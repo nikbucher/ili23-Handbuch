@@ -3,6 +3,8 @@
 
 Les désignations peuvent fondamentalement comprendre des noms de longueur quelconque. L'Association nationale a cependant décidé que le nom d'une remontée mécanique devait comporter au plus 100 caractères. Les noms sont bien plus courts que cela en règle générale, on souhaitait simplement se donner une marge de sécurité suffisante.
 
+[#listing-06_04-01]
+.link:#listing-06_04-01[Listing 06.04-01]
 [source]
 ----
 STRUCTURE DesignationEntreprise EXTENDS Designation =
@@ -12,6 +14,8 @@ END DesignationEntreprise;
 
 Si la longueur d'un attribut textuel est quelconque ou reste totalement inconnue, on peut renoncer à indiquer cette information. En revanche, s'il est clair que la longueur sera fixée dans le cadre d'une extension de classe, l'attribut est à définir comme étant abstrait :
 
+[#listing-06_04-02]
+.link:#listing-06_04-02[Listing 06.04-02]
 [source]
 ----
 Description (ABSTRACT): TEXT;
@@ -19,6 +23,8 @@ Description (ABSTRACT): TEXT;
 
 Une web-cam est installée sur certaines lignes du Val d'Ili, filmant en continu les alentours de la station supérieure afin que les touristes tentés de s'y rendre puissent voir si le jeu en vaut la chandelle. L'adresse Internet de l'image actuelle constitue également un type de texte (d'un genre un peu particulier toutefois).
 
+[#listing-06_04-03]
+.link:#listing-06_04-03[Listing 06.04-03]
 [source]
 ----
 CLASS Remontee_RDI =

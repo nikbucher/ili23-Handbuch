@@ -6,6 +6,8 @@
 
 Trois couleurs ont été sélectionnées pour décrire sommairement le niveau de difficulté des pistes de ski : bleu, rouge et noir. Ces niveaux de difficultés, par ailleurs ordonnés, sont les seuls admis. Le bleu désigne une piste facile, le rouge une piste d'un niveau plus difficile et le noir est réservé aux pistes les plus exigeantes. Cette situation est décrite par la définition suivante :
 
+[#listing-06_03-01]
+.link:#listing-06_03-01[Listing 06.03-01]
 [source]
 ----
 CLASS Piste =
@@ -15,6 +17,8 @@ END Piste;
 
 Si la mention FINAL était omise, l'énumération pourrait être complétée dans le cadre d'une extension, ce qui pourrait présenter un intérêt pour le genre de remontée mécanique :
 
+[#listing-06_03-02]
+.link:#listing-06_03-02[Listing 06.03-02]
 [source]
 ----
 !! Modele de l'Association nationale des offices de tourisme
@@ -36,6 +40,8 @@ Chaque extension (horizontale) peut être complétée par des valeurs supplémen
 
 Pour la classe de base, la valeur bus des neiges (comme toute autre valeur supplémentaire) se fond dans une masse indistincte : OTHER. Cependant, si la mention FINAL a été indiquée, OTHER n'est plus possible. Si une énumération est définie comme étant cyclique (*CIRCULAR*), de tels compléments ne sont jamais possibles puisque par cyclique, on entend que la première valeur de la liste fait à nouveau suite à la dernière, que l'on ne saurait d'ailleurs pas distinguer sans cela.
 
+[#listing-06_03-03]
+.link:#listing-06_03-03[Listing 06.03-03]
 [source]
 ----
 DirectionVent: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
@@ -48,6 +54,8 @@ Il a donc été décidé de ne pas modéliser les différents genres de remonté
 
 Il est possible de définir une sous-énumération pour chaque valeur d'une énumération. Cela peut s'effectuer directement au sein de la définition de base ou ultérieurement, dans le cadre d'une extension.
 
+[#listing-06_03-04]
+.link:#listing-06_03-04[Listing 06.03-04]
 [source]
 ----
 CLASS Remontee_RDI EXTENDS RemonteeMecanique =

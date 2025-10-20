@@ -23,6 +23,8 @@ As a matter of fact it is no big deal to enlarge a little box on a piece of pape
 
 Hence it would be preferable not to state a concrete language in the data model. In the following new version one railway company displays a set of designations. As it is a common requirement to deal with several languages, the structure RailwayDesignation will inherit the basic structure designation, itself comprising the language and a text.
 
+[#listing-06_11-01]
+.link:#listing-06_11-01[Listing 06.11-01]
 [source]
 ----
 STRUCTURE Designation =

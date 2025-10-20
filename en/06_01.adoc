@@ -12,6 +12,8 @@ When modeling at conceptual level most likely one would not want to be bothered 
 
 Since prices lie between 10 and 635 sovereigns we could then write:
 
+[#listing-06_01-01]
+.link:#listing-06_01-01[Listing 06.01-01]
 [source]
 ----
 Price: 10 .. 635;
@@ -21,6 +23,8 @@ However this would also decide that the price can never be less than 10 sovereig
 
 Of course it is also important to consider the number of decimals necessary. If prices may feature pennies then the limit would have to be set with to decimals. With an attribute which for instance represents an investment budget you are likely to deal in millions, when dealing with dimensions two digits will be sufficient. However these may refer to a thousand, a million or even a billion.
 
+[#listing-06_01-02]
+.link:#listing-06_01-02[Listing 06.01-02]
 [source]
 ----
 Price: 0.00 .. 9999.99;
@@ -35,6 +39,8 @@ The number of decimals describes the precision: «4.3 Million» (4.3E6 = 4.3 ·
 
 Now do we deal with sovereigns, francs, Euro or dollars? Units are – not only where money is concerned – of paramount importance. That is why we recommend indicating the unit not only as a comment or part of the attribute name but actually as constituent of the type:
 
+[#listing-06_01-03]
+.link:#listing-06_01-03[Listing 06.01-03]
 [source]
 ----
 UNIT
@@ -55,6 +61,8 @@ In the interest of clarity we recommend indicating units at any time. The INTERL
 
 Since the Mount Ilis Alpine Transports will never issue tickets that cost over a thousand sovereigns, one might come up with the idea of defining this in its own class:
 
+[#listing-06_01-04]
+.link:#listing-06_01-04[Listing 06.01-04]
 [source]
 ----
 CLASS TicketType (EXTENDED) =
@@ -70,6 +78,8 @@ Thus an indication of price 0 .. 1000 is an admissible restriction of the value 
 
 The people in charge in Ilis Valley also insist on the possibility of issuing tickets with prices that not necessarily have to be an entire sovereign. One would like to write the following definition:
 
+[#listing-06_01-05]
+.link:#listing-06_01-05[Listing 06.01-05]
 [source]
 ----
 CLASS TicketType (EXTENDED) =
@@ -90,6 +100,8 @@ And furthermore: Units of the extension must always be in accordance with those 
 
 Can the National Tourist Office determine what price is admissible for a ticket? If the limits are still entirely unknown, then – within the scope of abstract attributes – their notation can be omitted. Nevertheless it is possible to already determine a unit.
 
+[#listing-06_01-06]
+.link:#listing-06_01-06[Listing 06.01-06]
 [source]
 ----
 Price (ABSTRACT): NUMERIC [Ahland.Sovereign];
@@ -97,6 +109,8 @@ Price (ABSTRACT): NUMERIC [Ahland.Sovereign];
 
 Maybe even the unit is still uncertain. It would only be known that e deal with e.g. a currency.
 
+[#listing-06_01-07]
+.link:#listing-06_01-07[Listing 06.01-07]
 [source]
 ----
 Price (ABSTRACT): NUMERIC [MONEY];
@@ -104,6 +118,8 @@ Price (ABSTRACT): NUMERIC [MONEY];
 
 Thus at least the character of the unit would be settled. Therefore in an extension only such units could be defined as would figure as concretes of the abstract unit MONEY (for further information concerning abstract properties also see paragraph <<_5_4>>).
 
+[#listing-06_01-08]
+.link:#listing-06_01-08[Listing 06.01-08]
 [source]
 ----
 Price (EXTENDED): 0 .. 10000 [CHF]; !! admissible

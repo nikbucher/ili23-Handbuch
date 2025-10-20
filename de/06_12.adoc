@@ -6,6 +6,8 @@
 
 Der nationale Verband hat eine simple Lösung und für die Gültigkeitsdauer von Billettarten ein Attribut vorgesehen, das die Anzahl Tage (mit einer Stelle nach dem Komma) vorsieht.
 
+[#listing-06_12-01]
+.link:#listing-06_12-01[Listing 06.12-01]
 [source]
 ----
 Gueltigkeitsdauer: 0.0 .. 1000.0 [d];
@@ -33,6 +35,8 @@ Wie könnte aber eine bessere Lösung aussehen?
 
 Objekteigenschaften wie die Gültigkeitsdauer können nicht immer durch einen einzigen Wert genügend präzis beschrieben werden. Manchmal braucht es eine Gruppe von Attributen, manchmal macht es Sinn, verschiedene Erweiterungen vorzusehen. Dafür bietet sich die Struktur an.
 
+[#listing-06_12-02]
+.link:#listing-06_12-02[Listing 06.12-02]
 [source]
 ----
 STRUCTURE Zeitdauer (ABSTRACT) =
@@ -54,6 +58,8 @@ END Billettart;
 
 Die Gültigkeitsdauer einer bestimmten Billettart ist mit einer Instanz (einem Strukturelement) der Struktur ZeitdauerHeute, ZeitdauerInTagen, ZeitdauerInMonaten, etc. beschrieben. Man könnte sogar noch etwas präziser modellieren und dafür sorgen, dass die Einheit einer expliziten Dauer (Tag, Monat, etc.) immer eine Zeitdauer sein muss und für implizite Zeitdauern (Woche, Saison, etc.) eine Aufzählung definieren:
 
+[#listing-06_12-03]
+.link:#listing-06_12-03[Listing 06.12-03]
 [source]
 ----
 STRUCTURE Zeitdauer (ABSTRACT) =
@@ -88,6 +94,8 @@ Eine präzise, detaillierte, sachgerechte Modellierung ist grundsätzlich anzust
 
 Zeitdauern gibt es nicht nur für Billette. Die Ilistaler veranstalten jeden Freitag ein Skirennen für ihre Gäste. Dort werden Rennzeiten in Minuten, Sekunden und deren Bruchteilen gemessen. Es ist nahe liegend, dafür eine Struktur zu definieren, welche die Attribute Minuten und Sekunden aufweist:
 
+[#listing-06_12-04]
+.link:#listing-06_12-04[Listing 06.12-04]
 [source]
 ----
 STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
@@ -98,6 +106,8 @@ END ZeitdauerInMinuten;
 
 Damit der Zusammenhang zwischen Minuten und Sekunden ausgedrückt werden kann, bietet sich eine zusätzliche Möglichkeit an:
 
+[#listing-06_12-05]
+.link:#listing-06_12-05[Listing 06.12-05]
 [source]
 ----
 STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
@@ -115,6 +125,8 @@ Das Gästeskirennen wird immer so gestaltet, dass selbst die Skilehrer sicher me
 
 Wie kann nun der zulässige Wertebereich (30 Sekunden bis 3 Minuten und 30 Sekunden) festgehalten werden? Die Lösung liegt in formatierten Wertebereichen:
 
+[#listing-06_12-06]
+.link:#listing-06_12-06[Listing 06.12-06]
 [source]
 ----
 DOMAIN ZeitdauerinMinSec = FORMAT BASED ON ZeitdauerInMinuten

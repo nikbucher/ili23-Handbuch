@@ -3,6 +3,8 @@
 
 Let's assume an international association wishes to ensure that tickets are captured with their prices. Then again it does not want to dictate a certain currency and consequently it is not clear where a sensible upper limit for the price could be set. Nevertheless it is not contested that «price» should be a number and that we deal with money. After all prices are not measured in kilometers per hour!
 
+[#listing-05_04-01]
+.link:#listing-05_04-01[Listing 05.04-01]
 [source]
 ----
 CLASS TicketTypeWorldwide (ABSTRACT) =

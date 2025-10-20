@@ -12,6 +12,8 @@ In this sense a line type is nothing but a numeric type or even better a coordin
 
 In INTERLIS we could write:
 
+[#listing-06_09-01]
+.link:#listing-06_09-01[Listing 06.09-01]
 [source]
 ----
 AhlandLine = POLYLINE VERTEX Ahland.NationalCoord;
@@ -36,6 +38,8 @@ image::img/image43.png[]
 
 It definitely makes sense to indicate which types of segments may occur with one specific line type.
 
+[#listing-06_09-02]
+.link:#listing-06_09-02[Listing 06.09-02]
 [source]
 ----
 AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Ahland.NationalCoord;
@@ -47,6 +51,8 @@ In many cases – and it is the same with ski runs – it does not make sense if
 
 Since the Ahland projection coordinate system uses meters, this defini­tion permits overlaps up to 2 cm:
 
+[#listing-06_09-03]
+.link:#listing-06_09-03[Listing 06.09-03]
 [source]
 ----
 AhlandLine = POLYLINE WITH (STRAIGHTS, ARCS)
@@ -64,6 +70,8 @@ to define the maximum overlap (in this figure the height of arrow).
 
 Of course any skier would expect the segments of the ski run from Mount Ilis to Ilis Rock to start at Mount Ilis and to end at Ilis Rock. After all the idea is to go downhill and not to climb up a slope! Then again for the description of other objects (e.g. hiking paths) direction is of no importance. Whenever the direction of lines is important this should be shown in the conceptual model.
 
+[#listing-06_09-04]
+.link:#listing-06_09-04[Listing 06.09-04]
 [source]
 ----
 AhlandLineDirected = DIRECTED POLYLINE VERTEX Ahland.NationalCoord;
@@ -78,6 +86,8 @@ END SkiRun;
 
 For the maintenance service of the Mount Ilis Alpine Transports the question arises whether the description of the ski runs fulfils their demands. In order to clarify which of the areas have to be prepared a presentation in the form of a surface seems preferable.
 
+[#listing-06_09-05]
+.link:#listing-06_09-05[Listing 06.09-05]
 [source]
 ----
 DOMAIN
@@ -108,6 +118,8 @@ At the very top of the Mount Ilis several ski runs are that close that as a resu
 
 That is why the maintenance service has decided to use a different form of modeling: instead of assigning the surfaces that are to be prepared directly to the ski runs, they are considered as independent segments of a ski run. Each segment is a surface. However these segments should never overlap, since one particular area will only have to be prepared once.
 
+[#listing-06_09-06]
+.link:#listing-06_09-06[Listing 06.09-06]
 [source]
 ----
 DOMAIN

@@ -8,6 +8,8 @@ Three dots (...) mark omissions; the boxes on the right are merely notes that do
 .All means of alpine transport up to Mount Ilis are part of the data contained in a transfer file (repetition of figure 11). The following file contains some data concerning the pony lift Ilis Ville.
 image::img/image10.png[]
 
+[#listing-04_03-01]
+.link:#listing-04_03-01[Listing 04.03-01]
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>

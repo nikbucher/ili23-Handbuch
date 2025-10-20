@@ -4,6 +4,8 @@
 Was war denn überhaupt in dieser Datei enthalten? Man öffnete sie mit einem normalen Text-Editor.
 
 .Der Ilistaler Ponylift als Teil des Volltransfers für die Ilistaler Daten. Der INTERLIS-Standard legt fest, wie genau eine solche Transferdatei für ein bestimmtes Datenmodell aufgebaut sein muss.
+[#listing-08_02-01]
+.link:#listing-08_02-01[Listing 08.02-01]
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>

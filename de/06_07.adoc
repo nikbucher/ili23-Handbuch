@@ -8,6 +8,8 @@ Mit der Frage «Wo?» ist die Vorstellung eines punktförmigen Ortes in der real
 
 Für jede Dimension eines Koordinatentyps muss darum wie für jeden numerischen Typ fest­gelegt werden, in welchem Zahlenbereich die zulässigen Werte liegen dürfen und welche Einheit mit ihr verbunden ist.
 
+[#listing-06_07-01]
+.link:#listing-06_07-01[Listing 06.07-01]
 [source]
 ----
 Lage: COORD 500.00 .. 91000.00 [m],
@@ -49,6 +51,8 @@ image::img/image35.png[]
 
 Zuletzt werden feine, rechtwinklig aufeinander stehende Linien über die Karte gelegt: Das *Koordinatensystem* der Karte. Bei jedem Koordinatentyp muss darum auch festgelegt werden, welches Koordinatensystem ihm zu Grunde liegt.
 
+[#listing-06_07-02]
+.link:#listing-06_07-02[Listing 06.07-02]
 [source]
 ----
 Lage: COORD 480000 .. 850000.00 [m] {AhlandSys[1]},
@@ -66,6 +70,8 @@ Die Daten zu einem Metamodell sind in einem anderen, formaleren Sinn «meta» al
 
 In den einfachen Fällen, wo es auf Grund des Anwendungs- und Einsatzgebietes eines Datenmodells klar ist, zu welchem Koordinatensystem die Koordinaten gehören, kann auf die explizite Angabe des Koordinatensystems verzichtet werden. Es macht aber Sinn, das Koordinatensystem mindestens im Namen des Koordinatentyps anklingen zu lassen.
 
+[#listing-06_07-03]
+.link:#listing-06_07-03[Listing 06.07-03]
 [source]
 ----
 LandesKoord = COORD 500.00 .. 91000.00 [m],
@@ -76,6 +82,8 @@ Lage: LandesKoord;
 
 Um Verwechslungen auszuschliessen haben die Ilistaler eine präzise Definition vorgezogen:
 
+[#listing-06_07-04]
+.link:#listing-06_07-04[Listing 06.07-04]
 [source]
 ----
 REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
@@ -84,6 +92,8 @@ REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
 
 Sie haben auf der Grundlage des allgemeinen Modells für Koordinatensysteme (CoordSys) ihr Landessystem präzis definiert. Für die Lage wurde dafür in den entsprechenden Daten ein Objekt der Klasse GeoCartesian2D mit dem Namen AhlandSys eingetragen. Die Existenz dieses Dateneintrags wird mittels OBJECTS OF im Modell angemerkt. Das Koordinatensystem „AhlandSys“ ist damit im Modell verfügbar. Bei der Anwendung des Systems muss der Name des Metadatenbestands (CoordSystems) nur erwähnt werden, wenn im aktuellen Modellierungsteil mehrere solche Metadatenbestände definiert sind.
 
+[#listing-06_07-05]
+.link:#listing-06_07-05[Listing 06.07-05]
 [source]
 ----
 LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
@@ -95,6 +105,8 @@ LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
 
 Damit denjenigen Touristen, die über einen einfachen GPS-Empfänger verfügen, ein besonderer Service geboten werden kann, möchten die Ilistaler ihre Koordinaten auch als geografische Koordinaten im globalen WGS84-System anbieten.
 
+[#listing-06_07-06]
+.link:#listing-06_07-06[Listing 06.07-06]
 [source]
 ----
 WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
@@ -110,6 +122,8 @@ END Bergbahn;
 
 Nun ist es aber offensichtlich, dass die beiden Attribute einen direkten Zusammenhang haben. Landeskoordinaten können doch in WGS84-Koordinaten umgerechnet werden. Die detaillierte Definition einer solchen Umrechnung ist aber nicht Aufgabe einer konzeptuellen Beschreibung der Daten. Es ist aber wünschenswert anzugeben, dass die einen Koordinaten aus den anderen gerechnet werden können.
 
+[#listing-06_07-07]
+.link:#listing-06_07-07[Listing 06.07-07]
 [source]
 ----
 !! Umrechnung von Koordinaten im Ahländer Landessystem zu WGS84.
@@ -128,6 +142,8 @@ END Bergbahn;
 
 Den Skifahrern und Wanderern rund um das Ilishorn genügen natürlich die Lagekoordinaten nicht. Grosse Höhendifferenzen lassen die Skifahrerherzen höher schlagen, während der Wanderer Schweissperlen oder schlotternde Knie befürchten muss. Höhen sind gefragt! Koordinatentypen können darum auch drei Dimensionen aufweisen.
 
+[#listing-06_07-08]
+.link:#listing-06_07-08[Listing 06.07-08]
 [source]
 ----
 LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},

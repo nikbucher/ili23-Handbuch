@@ -3,6 +3,8 @@
 
 Il suffit, pour un bref aperçu, de subdiviser sommairement les remontées mécaniques (ou lignes de montagne) : chemin de fer à crémaillère, funiculaire, téléphérique, remonte-pente, télésiège, télécabine. Dans le cas le plus simple, le genre est défini comme un attribut textuel.
 
+[#listing-06_02-01]
+.link:#listing-06_02-01[Listing 06.02-01]
 [source]
 ----
 CLASS RemonteeMecanique =
@@ -13,6 +15,8 @@ END RemonteeMecanique;
 
 Il en résulte que la personne amenée à saisir les données bénéficiera d'une grande liberté au niveau de la description. Télébenne, téléski, skilift, ski-lift – il est à craindre que les désignations les plus diverses se mettent à fleurir. Une énumération permettra de l'éviter :
 
+[#listing-06_02-02]
+.link:#listing-06_02-02[Listing 06.02-02]
 [source]
 ----
 CLASS RemonteeMecanique =
@@ -38,6 +42,8 @@ Il n'existe cependant pas de remontée mécanique qui soit simplement une remont
 
 Dans la notation textuelle d'INTERLIS 2, les classes abstraites sont signalées par la mention (ABSTRACT). En passant : «Units», le modèle INTERLIS des unités comporte une unité «CountedObjects» pour le décompte d'objets tels que le nombre de personnes à bord de la cabine d'un téléphérique.
 
+[#listing-06_02-03]
+.link:#listing-06_02-03[Listing 06.02-03]
 [source]
 ----
 CLASS RemonteeMecanique (ABSTRACT) =

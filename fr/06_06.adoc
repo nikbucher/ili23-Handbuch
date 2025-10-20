@@ -3,6 +3,8 @@
 
 Les délais d'attente sur les remontées mécaniques et les durées des trajets correspondants sont indiqués en minutes.
 
+[#listing-06_06-01]
+.link:#listing-06_06-01[Listing 06.06-01]
 [source]
 ----
 CLASS RemonteeMecanique =
@@ -16,6 +18,8 @@ END EtatRemonteeMecanique;
 
 Ces deux propriétés peuvent accepter des valeurs issues du même domaine. Cette communauté peut être soulignée par un domaine de valeurs défini explicitement (DOMAIN) :
 
+[#listing-06_06-02]
+.link:#listing-06_06-02[Listing 06.06-02]
 [source]
 ----
 DOMAIN

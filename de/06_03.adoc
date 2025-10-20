@@ -6,6 +6,8 @@
 
 Um den Schwierigkeitsgrad von Skipisten grob zu beschreiben, wurden drei Farben gewählt: blau, rot, schwarz. Es soll nur diese und keine anderen Schwierigkeitsgrade geben. Zudem sind sie geordnet. Blau bezeichnet eine einfache Piste, eine rote Piste ist schwieriger als eine blaue, eine schwarze am anspruchsvollsten. Dies wird mit der folgenden Definition be­schrieben:
 
+[#listing-06_03-01]
+.link:#listing-06_03-01[Listing 06.03-01]
 [source]
 ----
 CLASS Piste =
@@ -15,6 +17,8 @@ END Piste;
 
 Würde die FINAL-Angabe fehlen, könnte die Aufzählung in einer Erweiterung noch ergänzt werden. Zum Beispiel könnte dies bei der Art von Bergbahnen Sinn machen:
 
+[#listing-06_03-02]
+.link:#listing-06_03-02[Listing 06.03-02]
 [source]
 ----
 !! Modell des Nationalen Tourismusverbandes
@@ -36,6 +40,8 @@ Jede (horizontale) Erweiterung kann durch weitere Werte ergänzt werden, solange
 
 Für die Basisklasse ist der Wert Schneebus (und allfällige weitere Werte) nur noch als OTHER erkennbar. Wird jedoch FINAL angegeben, kann der Wert OTHER nicht mehr auftreten. Ist eine Aufzählung zyklisch (*CIRCULAR*) definiert, sind solche Ergänzungen nie möglich, heisst doch zyklisch, dass nach dem höchsten Wert wieder der niedrigste kommt und man sonst gar nicht wüsste, welches der höchste ist.
 
+[#listing-06_03-03]
+.link:#listing-06_03-03[Listing 06.03-03]
 [source]
 ----
 Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
@@ -48,6 +54,8 @@ Man hatte also beschlossen, die verschiedenen Arten von Bergbahnen nicht mit ein
 
 Für jeden Wert einer Aufzählung kann eine Unteraufzählung definiert werden. Dies kann direkt innerhalb der Basisdefinition oder erst in einer Erweiterung erfolgen.
 
+[#listing-06_03-04]
+.link:#listing-06_03-04[Listing 06.03-04]
 [source]
 ----
 CLASS IhBBergbahn EXTENDS Bergbahn =

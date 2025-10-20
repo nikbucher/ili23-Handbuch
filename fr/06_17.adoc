@@ -27,6 +27,8 @@ La propriété la plus importante d'une vue est sa *loi de formation.* Elle déf
 
 La vue « PersonneAvecIndicationDeSonAge » est par exemple déduite de la classe d'objets « Personne » que l'on appelle la base. Une PersonneAvecIndicationDeSonAge possède les mêmes propriétés (ALL OF) auxquelles les mêmes valeurs sont associées que la personne initiale. La vue ajoute cependant une propriété supplémentaire « Age ». L'âge, se déduit (:=) de la différence entre l'année de naissance et l'année en cours.
 
+[#listing-06_17-01]
+.link:#listing-06_17-01[Listing 06.17-01]
 [source]
 ----
 VIEW PersonneAvecIndicationDeSonAge
@@ -56,6 +58,8 @@ Mais concrètement, quelle remontée mécanique se trouve dans le secteur de que
 [NOTE]
 La loi de formation d'une vue la plus importante est certainement la *jonction (JOIN)*. Elle joint plusieurs objets de base au sein d'un objet-vue. La jonction revêt une importance particulière en tant que base pour des relations dérivées.
 
+[#listing-06_17-02]
+.link:#listing-06_17-02[Listing 06.17-02]
 [source]
 ----
 VIEW RemonteesMecaniquesDansSecteur
@@ -94,6 +98,8 @@ Une remontée mécanique n'apparaîtra pas sur la vue si elle ne se trouve dans 
 
 Si l'on souhaite répertorier toutes les coordonnées de stations inférieures et supérieures, on se heurte à un obstacle, à savoir au fait que ces coordonnées sont gérées sous forme d'attributs individuels de chacune des remontées mécaniques. L'*union (UNION)* permet cependant de les regrouper au sein d'un ensemble d'objets-vues égaux en droits.
 
+[#listing-06_17-03]
+.link:#listing-06_17-03[Listing 06.17-03]
 [source]
 ----
 VIEW CoordonneesStations
@@ -114,6 +120,8 @@ L'*agrégation (AGGREGATION)* et l'*inspection (INSPECTION)* sont liées aux att
 
 Pour le contrôle des billets, il est indispensable de connaître les types de billets valables sur chacune des remontées mécaniques. Il serait donc souhaitable de disposer d'un répertoire de toutes les remontées mécaniques indiquant les types de billets valables sur chacune d'entre elles. Les Ilinois désireraient par conséquent définir un modèle proche de ce qui suit, hors données de base :
 
+[#listing-06_17-04]
+.link:#listing-06_17-04[Listing 06.17-04]
 [source]
 ----
 CLASS TypeBillet =
@@ -134,6 +142,8 @@ Le dernier aspect de la question est heureusement déjà réglé puisqu'il exist
 
 Une vue liant les remontées mécaniques aux types de billets peut alors être définie sur cette base :
 
+[#listing-06_17-05]
+.link:#listing-06_17-05[Listing 06.17-05]
 [source]
 ----
 VIEW RemonteeMecaniqueEtTypeBilletValable
@@ -153,6 +163,8 @@ END RemonteeMecaniqueEtTypeBilletValable;
 
 Cette jonction combine les remontées mécaniques et les types de billets. Elle tient compte de la relation de validité et du fait qu'un type de billet est affecté à une zone tarifaire devant coïncider avec celle de la relation de validité. Ainsi, le but est déjà quasiment atteint. Les combinaisons admissibles de remontée mécanique et de type de billet sont disponibles sous forme d'objets-vues. On souhaiterait encore pouvoir les regrouper par remontée mécanique :
 
+[#listing-06_17-06]
+.link:#listing-06_17-06[Listing 06.17-06]
 [source]
 ----
 VIEW TypeBilletValableSurRemonteeMecanique
@@ -171,6 +183,8 @@ Un tel regroupement s'effectue au moyen d'une agrégation. Tous les objets de la
 
 La définition de la vue présentant l'ensemble des types de billets valables pour chacune des remontées mécaniques (vue TypeBilletValableSurRemonteeMecanique, cf. ci-dessus) a déjà été effectuée par l'Association nationale. Les Ilinois souhaitent pouvoir l'utiliser. Ils désirent cependant pouvoir y intégrer l'attribut de tracé qu'ils ont défini dans leur propre extension de la classe des remontées mécaniques.
 
+[#listing-06_17-07]
+.link:#listing-06_17-07[Listing 06.17-07]
 [source]
 ----
 VIEW Remontee_RDIEtTypeBilletValable

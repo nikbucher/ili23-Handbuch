@@ -4,6 +4,8 @@
 What was actually in this file? It was opened with a normal text editor.
 
 .The Ilis Valley pony lift as part of the full transfer for Ilis Valley data. The INTERLIS-standard defines the precision with which such a transfer file has to be structured for a certain data model.
+[#listing-08_02-01]
+.link:#listing-08_02-01[Listing 08.02-01]
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>

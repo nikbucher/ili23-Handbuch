@@ -27,6 +27,8 @@ The most essential characteristic of a view is its *formation law*. It determine
 
 For instance the view «PersonWithIndicationOfAge» is derived from the object class «Person» the so called basis. One individual PersonWithIndicationOfAge will possess the same characteristics (ALL OF) with exactly the same values as the original person. In addition the view supplements one more characteristic «Age». The age results from (:=) the difference between year of birth and current year.
 
+[#listing-06_17-01]
+.link:#listing-06_17-01[Listing 06.17-01]
 [source]
 ----
 VIEW PersonWithIndicationOfAge
@@ -56,6 +58,8 @@ But now which alpine transport actually does lie within the area of which tariff
 [NOTE]
 Possibly the most important formation law of a view is the *join (JOIN)*. It combines several basic objects into a view object. Especially as a basis for derived relationships the join is of major importance.
 
+[#listing-06_17-02]
+.link:#listing-06_17-02[Listing 06.17-02]
 [source]
 ----
 VIEW AlpineTransportsInRegion
@@ -93,6 +97,8 @@ If there is no tariff zone that corresponds to one particular alpine transport, 
 
 If we should wish to have a register of all coordinates of bottom and top station we are confronted with the fact that these coordinates are captured as individual attributes of the alpine transports. By using a *union (UNION)* they can be gathered into a set of equal view objects.
 
+[#listing-06_17-03]
+.link:#listing-06_17-03[Listing 06.17-03]
 [source]
 ----
 VIEW StationCoordinates
@@ -112,6 +118,8 @@ Here the set of all view objects equals the double set of all alpine transports.
 
 In order to check tickets, every alpine transport has to know what ticket type is valid. So they would still like a list of all alpine transports that indicates for every line which ticket types are valid. Independently of all basic data they would like to define something like the following model:
 
+[#listing-06_17-04]
+.link:#listing-06_17-04[Listing 06.17-04]
 [source]
 ----
 CLASS TicketType =
@@ -132,6 +140,8 @@ Luckily this last aspect has already been dealt with because there is an abstrac
 
 On this basis we can define a view which links alpine transports and ticket types:
 
+[#listing-06_17-05]
+.link:#listing-06_17-05[Listing 06.17-05]
 [source]
 ----
 VIEW AlpineTransportAndValidTicketType
@@ -151,6 +161,8 @@ END AlpineTransportAndValidTicketType;
 
 This combines alpine transport and ticket type. It takes into consideration the validity relationship and the fact that a tariff zone is assigned to every ticket type, which has to be in keeping with the validity relationship. So we have almost achieved our goal. The admissible combination of alpine transport and ticket type are available as view objects. Now we would like to unit them per alpine transport:
 
+[#listing-06_17-06]
+.link:#listing-06_17-06[Listing 06.17-06]
 [source]
 ----
 VIEW OnAlpineTransportValidTicketType
@@ -169,6 +181,8 @@ This result is achieved by means of an aggregation. Thereby all objects of the b
 
 The national association has already defined the view that lists all valid ticket types for every alpine transport (view «OnAlpineTransportValidTicketType», see above). In Ilis Valley they also want to use this view. But they also want to include the attribute TrackCourse in this view, which they have defined in their own extension of the class AlpineTransport.
 
+[#listing-06_17-07]
+.link:#listing-06_17-07[Listing 06.17-07]
 [source]
 ----
 VIEW MITAlpineTransportAndValidTicketType

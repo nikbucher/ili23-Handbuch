@@ -3,6 +3,8 @@
 
 Für jede Billettart ist der Preis in der Landeswährung bekannt. Im Interesse der ausländischen Touristen soll er auch in Euro und US-Dollar bekannt gegeben werden. Man möchte aber nicht bei jeder Änderung der entsprechenden Währungskurse die Preise für alle Billettarten wieder neu eingeben. Sie sollen vielmehr aus der Landeswährung berechnet werden.
 
+[#listing-07_02-01]
+.link:#listing-07_02-01[Listing 07.02-01]
 [source]
 ----
 CLASS Billettart =
@@ -17,6 +19,8 @@ Immer wenn die Daten im System präsentiert oder als Daten für das WebSys berei
 
 Die wichtigste Information besteht aus konzeptueller Sicht in der Tatsache, dass die beiden Fremdwährungspreise nicht als eigenständige Daten behandelt, sondern aus dem Talerpreis abgeleitet werden. Dafür reicht es aus, für eine bestimmte Funktion den Namen und ihre Parameter festzulegen.
 
+[#listing-07_02-02]
+.link:#listing-07_02-02[Listing 07.02-02]
 [source]
 ----
 FUNCTION TALERtoEUR (Taler: NUMERIC [Ahland.Taler]): NUMERIC [EUR]
@@ -25,6 +29,8 @@ FUNCTION TALERtoEUR (Taler: NUMERIC [Ahland.Taler]): NUMERIC [EUR]
 
 Die eigentliche Leistung der Funktion wird nur als Erläuterung zwischen // angegeben. Die Implementation bleibt Sache der Systeme. Solche Definitionen sollen auf wenige Basismodelle beschränkt sein, denn sie müssen mit den Herstellern der Systeme vereinbart werden. In INTERLIS 2 wird das Bestehen einer solchen Vereinbarung mit einem Kontrakt angemerkt. Funktionen können nur in solchen Modellen definiert werden, für die ein Kontrakt besteht.
 
+[#listing-07_02-03]
+.link:#listing-07_02-03[Listing 07.02-03]
 [source]
 ----
 CONTRACTED MODEL IlisTour AT http://www.interlis.ch/models/ahland
@@ -35,6 +41,8 @@ END IlisTour;
 
 Will man die Anzahl der Funktionen möglichst gering halten, müssen sie möglichst allgemein formuliert werden. Zum Beispiel könnte statt TALERToEUR eine allgemein verwendbare Funktion für die Division definiert werden.
 
+[#listing-07_02-04]
+.link:#listing-07_02-04[Listing 07.02-04]
 [source]
 ----
 FUNCTION Division (Dividend: NUMERIC, Divisor: NUMERIC): NUMERIC;
@@ -42,6 +50,8 @@ FUNCTION Division (Dividend: NUMERIC, Divisor: NUMERIC): NUMERIC;
 
 Allerdings vergibt man sich dabei auch wieder Kontrollmöglichkeiten, denn es besteht keine Gewissheit, dass die erste Angabe ein Betrag in der Landeswährung ist. Mit der nachfolgenden Form ist dies hingegen gewährleistet.
 
+[#listing-07_02-05]
+.link:#listing-07_02-05[Listing 07.02-05]
 [source]
 ----
 FUNCTION ToCurrency (Taler: NUMERIC [Ahland.Taler],
@@ -51,6 +61,8 @@ FUNCTION ToCurrency (Taler: NUMERIC [Ahland.Taler],
 
 Aber woher kommt der Wechselkurs? Man könnte für solche Fälle vorsehen, dass in den Systemen gewisse Werte wie der Euro- oder Dollarkurs als Parameter zur Verfügung stehen. Da auch damit wieder in die Systeme eingegriffen wird, ist auch die Definition von System-Parametern nur innerhalb von Kontrakten erlaubt.
 
+[#listing-07_02-06]
+.link:#listing-07_02-06[Listing 07.02-06]
 [source]
 ----
 PARAMETER

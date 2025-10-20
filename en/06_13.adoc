@@ -10,6 +10,8 @@ In the relationship between RailwayCompany and AlpineTransport the railway compa
 
 In the graphic representation the role name appears at the end of relationship line on the side of the holder of the role. However if it is no different from the class name, then in most cases the role name is omitted.
 
+[#listing-06_13-01]
+.link:#listing-06_13-01[Listing 06.13-01]
 [source]
 ----
 ASSOCIATION =
@@ -22,6 +24,8 @@ Figure 48: According to this model it is possible to inquire after the operator 
 
 It is quite common to select role names that do not differ from the class name. For instance in the relationship AlpineTransport – TariffZone there is little sense in introducing further names. Nevertheless the need for additional names is quite obvious if a relationship exists between objects of the same class. We might like to display the fact that one company owns other railway companies as subsidiary companies.
 
+[#listing-06_13-02]
+.link:#listing-06_13-02[Listing 06.13-02]
 [source]
 ----
 ASSOCIATION =
@@ -52,6 +56,8 @@ image::img/image55.png[] image:img/image56.png[] image:img/image57.png[]
 
 The INTERLIS notation is copied from the graphic representation. However the role name has to be written even if does not differ from the class name.
 
+[#listing-06_13-03]
+.link:#listing-06_13-03[Listing 06.13-03]
 [source]
 ----
 ASSOCIATION =
@@ -77,6 +83,8 @@ Various ticket types entitle to a ride on alpine transports run by different rai
 
 Relationships can also feature attributes and hence have the nature of special classes.
 
+[#listing-06_13-04]
+.link:#listing-06_13-04[Listing 06.13-04]
 [source]
 ----
 ASSOCIATION Quota =
@@ -96,6 +104,8 @@ Figure 51: A RailwayCompany has a predetermined Quota in the profits from the sa
 
 In order to gain a better overview of all the ticket sales, the National Tourist Office would like to record in the future which ticket counter has sold how many of one ticket type in which season.
 
+[#listing-06_13-05]
+.link:#listing-06_13-05[Listing 06.13-05]
 [source]
 ----
 ASSOCIATION Sale =
@@ -200,6 +210,8 @@ In a conceptual model we only want to describe those implicit relationships that
 
 Not least of conceptual importance are relationships that in some cases have to be defined explicitly and in other cases can be derived. Their derivation may depend on the geography or other characteristics. For instance Ilis Valley has introduced a special tariff zone described as a surface which comprehends all alpine transports whose bottom and top station lie within this surface.
 
+[#listing-06_13-06]
+.link:#listing-06_13-06[Listing 06.13-06]
 [source]
 ----
 CLASS TariffZoneInRegion EXTENDS NatTour.TicketsZone =

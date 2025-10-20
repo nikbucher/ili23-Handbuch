@@ -6,6 +6,8 @@
 
 Wir erinnern uns, dass die Ilishornbahnen für die einzelnen Bergbahnen jeweils den aktuel­len Zustand erfassen wollen, unter anderem das Wetter bei der Bergstation:
 
+[#listing-06_14-01]
+.link:#listing-06_14-01[Listing 06.14-01]
 [source]
 ----
 CLASS Zustandsmeldung =
@@ -24,6 +26,8 @@ Situationen, in denen zwischen verschiedenen Attributen eines Objektes oder gar 
 
 Eine Konsistenzbedingung wird in der Regel mit einer Formel beschrieben, deren Aus­wertung ergibt, ob die Bedingung erfüllt ist oder nicht. Mit einem solchen logischen Ausdruck kann die Windstille geregelt werden:
 
+[#listing-06_14-02]
+.link:#listing-06_14-02[Listing 06.14-02]
 [source]
 ----
 CLASS Zustandsmeldung =
@@ -41,6 +45,8 @@ Genau dann wenn die Windrichtung definiert ist, muss die Windgeschwindigkeit gr�
 
 Häufig sind aber Konsistenzbedingungen vermeidbar, wenn das Modell anders aufgebaut wird. Packt man die Windangaben in eine Struktur und sagt, dass diese Struktur als Ganzes fakultativ ist, braucht es keine Konsistenzbedingung. Bei Windstille fehlt das Strukturelement. Windet es, sind zwingend Windrichtung und Windgeschwindigkeit vorhanden.
 
+[#listing-06_14-03]
+.link:#listing-06_14-03[Listing 06.14-03]
 [source]
 ----
 STRUCTURE Windangabe =
@@ -68,6 +74,8 @@ Konsistenzbedingungen gelten üblicherweise für alle Objekte der betreffenden K
 
 Bei Attributen wie Monatssalär oder Körpergrösse muss der grundsätzlich zulässige Bereich relativ gross gewählt werden. Die Werte der meisten Objekte liegen aber unterhalb einer wesentlich tieferen Grenze. Ausnahmen sind dennoch möglich, wie zum Beispiel für den Lohn des Bahndirektors.
 
+[#listing-06_14-04]
+.link:#listing-06_14-04[Listing 06.14-04]
 [source]
 ----
 ASSOCIATION Anstellung =
@@ -86,6 +94,8 @@ Es wird geschätzt, dass das Monatssalär in mindestens (++>++=) 95% aller Fäll
 
 Wie werden die Personen identifiziert, die bei Bergbahngesellschaften arbeiten oder an ihnen beteiligt sind? Nahe liegend, aber ungeeignet wäre es, hierzu Name und Vorname zu verwenden:
 
+[#listing-06_14-05]
+.link:#listing-06_14-05[Listing 06.14-05]
 [source]
 ----
 CLASS Person =
@@ -114,6 +124,8 @@ Künstliche Identifikatoren sind wo immer möglich zu vermeiden. Wo sie dennoch 
 
 Bei den Ilishornbahnen wurde dieses Problem auf simple Weise gelöst: Man hat einfach eine Personalnummer eingeführt. Stösst eine Person neu zu den Ilishornbahnen, wird ihr eine Nummer zugewiesen, die noch nicht vergeben ist.
 
+[#listing-06_14-06]
+.link:#listing-06_14-06[Listing 06.14-06]
 [source]
 ----
 CLASS Person =
@@ -134,6 +146,8 @@ Eine Bahngesellschaft kann mehrere Namen tragen. Es soll aber pro Sprache nur ei
 [NOTE]
 Weist ein Objekt Unterstrukturen auf, soll die Eindeutigkeit – anders als bei den eigentlichen Objekten – in der Regel nicht «global» für die Elemente von sämt­lichen Unterstrukturen gelten. Sie bezieht sich meist nur «lokal» auf die Unter­strukturelemente von einem einzigen Objekt.
 
+[#listing-06_14-07]
+.link:#listing-06_14-07[Listing 06.14-07]
 [source]
 ----
 STRUCTURE Bezeichnung =
@@ -163,6 +177,8 @@ Diesen Zusammenhang möchte man ausdrücken. Die Linien von INTERLIS 2 verbinden
 
 Mit der folgenden Definition muss sich jeder Punkt des Trasseeverlaufs auf die Lage eines Masts (Mast:Lage), die Lage der Talstation einer Bergbahn (Bergbahn:LageTalstation) oder (OR) die Lage der Bergstation einer Bergbahn (Bergbahn:LageBergstation) abstützen.
 
+[#listing-06_14-08]
+.link:#listing-06_14-08[Listing 06.14-08]
 [source]
 ----
 CLASS BodenunabhaengigeBahn EXTENDS Bergbahn =
@@ -185,6 +201,8 @@ Bereits bei der Bergbahn selbst wurde eine Konsistenzbedingung formuliert: Der T
 
 Abschnitt <<_7_3>> erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.
 
+[#listing-06_14-09]
+.link:#listing-06_14-09[Listing 06.14-09]
 [source]
 ----
 CLASS Bergbahn =

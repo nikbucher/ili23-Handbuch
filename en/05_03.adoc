@@ -8,6 +8,8 @@ If a class should not feature any concrete objects, it is declared *abstract*.
 
 Very often in a data model all its super classes will be abstract and only its very last, most specific classes will be concrete.
 
+[#listing-05_03-01]
+.link:#listing-05_03-01[Listing 05.03-01]
 [source]
 ----
 CLASS Railway (ABSTRACT) =

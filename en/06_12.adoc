@@ -6,6 +6,8 @@
 
 The National Tourist Office provides a simple solution in the form of an attribute for the validity of ticket types, which shows the number of days (with one decimal).
 
+[#listing-06_12-01]
+.link:#listing-06_12-01[Listing 06.12-01]
 [source]
 ----
 Validity: 0.0 .. 1000.0 [d];
@@ -33,6 +35,8 @@ But what then would be a better solution?
 
 It is not always possible to describe with sufficient precision object characteristics such as validity by one single value. Sometimes a whole group of attributes is necessary, sometimes it makes sense to plan several extensions. That is where structures provide a convenient solution.
 
+[#listing-06_12-02]
+.link:#listing-06_12-02[Listing 06.12-02]
 [source]
 ----
 STRUCTURE LengthOfTime (ABSTRACT) =
@@ -54,6 +58,8 @@ END TicketType;
 
 The validity of one particular ticket type is described by means of an instance (a structure element) of the structure LengthOfTimeToday, LengthOfTimeInDays, LengthOfTimeInMonths etc. We could even go further in our modeling and make sure that the units of an explicit duration (day, month etc.) always have to be a length of time and define an enumeration for implicit duration (week, season etc.):
 
+[#listing-06_12-03]
+.link:#listing-06_12-03[Listing 06.12-03]
 [source]
 ----
 STRUCTURE LengthOfTime (ABSTRACT) =
@@ -88,6 +94,8 @@ Basically we aim at a precise, detailed and appropriate modeling. However one sh
 
 Length of time does not only exist for tickets. Every Friday Ilis Valley organizes a ski race for their guests. Racing times are measured in minutes, seconds and their fractions. For this we could define a structure, which features the attributes hours, minutes and seconds: It seems natural to define a structure featuring the attributes minutes and seconds:
 
+[#listing-06_12-04]
+.link:#listing-06_12-04[Listing 06.12-04]
 [source]
 ----
 STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime =
@@ -98,6 +106,8 @@ END LengthOfTimeInMinutes;
 
 To express the relationship between minutes and seconds, the following additional solution presents itself:
 
+[#listing-06_12-05]
+.link:#listing-06_12-05[Listing 06.12-05]
 [source]
 ----
 STRUCTURE LengthOfTimeInMinutes EXTENDS LengthOfTime =
@@ -115,6 +125,8 @@ The traditional ski race for guests is always designed in a way that even skiing
 
 How do we record the admissible domain (from 30 seconds to 3 minutes and 30 seconds)? The solution is provided by formatted domains:
 
+[#listing-06_12-06]
+.link:#listing-06_12-06[Listing 06.12-06]
 [source]
 ----
 DOMAIN LengthOfTimeinMinSec = FORMAT BASED ON LengthOfTimeInMinutes

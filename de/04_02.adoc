@@ -8,6 +8,8 @@ Es wird empfohlen, das Beispiel-Datenmodell nur grob zu überfliegen und dann Ka
 [#_4_2_1]
 ==== Ahland.ili – Das nationale Grundlagenmodell
 
+[#listing-04_02-01]
+.link:#listing-04_02-01[Listing 04.02-01]
 [source]
 ----
 !! Das nachfolgende Modell ist in der Version 2.3 von INTERLIS geschrieben.
@@ -92,6 +94,8 @@ END Ahland.
 
 Das Modell für Gebäudeadressen wird nicht abgedruckt, denn es würde mehrere Seiten umfassen und ist im Zusammenhang des Ilistals nicht im Detail von Interesse. Das Ilistaler Tourismus-Modell etabliert jedoch eine Beziehung zwischen Gasthäusern und den im Adressmodell definierten Hauseingängen.
 
+[#listing-04_02-02]
+.link:#listing-04_02-02[Listing 04.02-02]
 [source]
 ----
 INTERLIS 2.3;
@@ -114,6 +118,8 @@ END Adressen.
 [#_4_2_3]
 ==== NatTour.ili – Das Modell des Nationalen Tourismus-Verbands
 
+[#listing-04_02-03]
+.link:#listing-04_02-03[Listing 04.02-03]
 [source]
 ----
 INTERLIS 2.3;
@@ -293,6 +299,8 @@ END NatTour.
 [#_4_2_4]
 ==== IlisTour.ili – Das Ilistaler Tourismus-Modell
 
+[#listing-04_02-04]
+.link:#listing-04_02-04[Listing 04.02-04]
 [source]
 ----
 INTERLIS 2.3;

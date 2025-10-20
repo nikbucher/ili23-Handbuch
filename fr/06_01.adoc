@@ -12,6 +12,8 @@ On ne souhaiterait toutefois pas avoir à se préoccuper du format de mémorisat
 
 Les tarifs s'échelonnant entre 10 et 635 couronnes, on pourrait écrire :
 
+[#listing-06_01-01]
+.link:#listing-06_01-01[Listing 06.01-01]
 [source]
 ----
 Prix: 10 .. 635;
@@ -21,6 +23,8 @@ Ce faisant, on définirait aussi que le prix ne peut être ni inférieur à 10 c
 
 Dans le même ordre d'idées, il est également important de réfléchir au nombre de chiffres après la virgule nécessaires. Si les prix sont susceptibles d'intégrer des centimes, alors les limites sont à fixer avec deux décimales. Si l'on considère par exemple un attribut représentant un budget d'investissement, les sommes seront évidemment exprimées en millions de couronnes ; lorsqu'il ne s'agit que d'ordres de grandeur, deux chiffres sont suffisants. Mais ceux-ci peuvent se rapporter aux milliers, aux millions ou aux milliards.
 
+[#listing-06_01-02]
+.link:#listing-06_01-02[Listing 06.01-02]
 [source]
 ----
 Prix: 0.00 .. 9999.99;
@@ -35,6 +39,8 @@ Le nombre de chiffres définit la précision : « 4.3 millions » (4.3E6 = 4.3 
 
 S'agit-il maintenant de couronnes, de francs, d'euros ou de dollars ? L'unité est d'une importance capitale et pas seulement dans le cas de l'argent. C'est pourquoi il est recommandé de l'intégrer directement au type et non d'en faire un simple commentaire ou une partie du nom de l'attribut :
 
+[#listing-06_01-03]
+.link:#listing-06_01-03[Listing 06.01-03]
 [source]
 ----
 UNIT
@@ -55,6 +61,8 @@ Par souci de clarté, nous recommandons de toujours indiquer des unités. Outre 
 
 Comme il est acquis que les Remontées mécaniques de la Dent d'Ili n'émettront jamais de billets coûtant plus de mille couronnes, l'idée de le définir dans une classe particulière pourrait aisément germer :
 
+[#listing-06_01-04]
+.link:#listing-06_01-04[Listing 06.01-04]
 [source]
 ----
 CLASS TypeBillet (EXTENDED) =
@@ -70,6 +78,8 @@ Une plage tarifaire allant de 0 .. 1000 constitue par conséquent une restrictio
 
 Les Ilinois veulent également avoir la possibilité d'émettre des billets dont le prix ne soit pas un nombre entier de couronnes mais réponde à la définition suivante :
 
+[#listing-06_01-05]
+.link:#listing-06_01-05[Listing 06.01-05]
 [source]
 ----
 CLASS TypeBillet (EXTENDED) =
@@ -90,6 +100,8 @@ Encore un dernier point : les unités de l'extension doivent toujours coïncider
 
 L'Association nationale peut-elle définir le prix admissible pour un billet ? Si les limites restent parfaitement inconnues, l'emploi d'attributs abstraits peut permettre de renoncer à leur indication. Il reste toutefois possible de définir une unité.
 
+[#listing-06_01-06]
+.link:#listing-06_01-06[Listing 06.01-06]
 [source]
 ----
 Prix (ABSTRACT): NUMERIC [Beotie.Couronne];
@@ -97,6 +109,8 @@ Prix (ABSTRACT): NUMERIC [Beotie.Couronne];
 
 Et peut-être que l'unité elle-même reste floue. On sait seulement qu'il s'agit d'une unité monétaire (dans notre exemple).
 
+[#listing-06_01-07]
+.link:#listing-06_01-07[Listing 06.01-07]
 [source]
 ----
 Prix (ABSTRACT): NUMERIC [MONEY];
@@ -104,6 +118,8 @@ Prix (ABSTRACT): NUMERIC [MONEY];
 
 L'unité est caractérisée si l'on procède de la sorte. Seules des unités concrétisant l'unité abstraite MONEY peuvent encore être définies dans le cadre d'une extension (cf. également § <<_5_4>> pour ce qui concerne les propriétés abstraites).
 
+[#listing-06_01-08]
+.link:#listing-06_01-08[Listing 06.01-08]
 [source]
 ----
 Prix (EXTENDED): 0 .. 10000 [CHF]; !! permis

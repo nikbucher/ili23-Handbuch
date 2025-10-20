@@ -3,6 +3,8 @@
 
 Wie gross ist ein rechter Winkel? 90 Grad oder Pi / 2? Das ist eine Frage der Einheit, die verwendet wird. Aber wann gilt der Winkel als positiv, wann als negativ? Zu einem Winkeltyp gehört darum der Drehsinn: Uhrzeigersinn oder Gegenuhrzeigersinn.
 
+[#listing-06_08-01]
+.link:#listing-06_08-01[Listing 06.08-01]
 [source]
 ----
 DOMAIN
@@ -23,6 +25,8 @@ Es kommt eben drauf an, wo die Nullrichtung ist und wie die Richtungen drehen. W
 image::img/image42.png[]
 
 
+[#listing-06_08-02]
+.link:#listing-06_08-02[Listing 06.08-02]
 [source]
 ----
 LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},

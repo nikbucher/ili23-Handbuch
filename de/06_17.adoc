@@ -27,6 +27,8 @@ Die wesentlichste Eigenschaft einer Sicht ist ihr *Bildungsgesetz.* Es legt fest
 
 Beispielsweise ist die Sicht «PersonMitAltersangabe» von der Objektklasse «Person» abgeleitet, der so genannten Basis. Eine einzelne PersonMitAltersangabe trägt dieselben Eigenschaften (ALL OF) mit genau denselben Werten wie die ursprüngliche Person. Zusätzlich fügt die Sicht aber noch eine weitere Eigenschaft «Alter» hinzu. Das Alter be­stimmt sich (:=) aus der Differenz von Jahrgang und laufendem Jahr.
 
+[#listing-06_17-01]
+.link:#listing-06_17-01[Listing 06.17-01]
 [source]
 ----
 VIEW PersonMitAltersangabe
@@ -56,6 +58,8 @@ Aber welche Bergbahn liegt nun konkret in der Gegend von welchem Tarifbereich? A
 [NOTE]
 Das wohl wichtigste Bildungsgesetz einer Sicht ist die *Verbindung (JOIN)*. Sie verbindet mehrere Basisobjekte zu einem Sichtobjekt. Die Verbindung ist insbesondere als Basis für abgeleitete Beziehungen von Bedeutung.
 
+[#listing-06_17-02]
+.link:#listing-06_17-02[Listing 06.17-02]
 [source]
 ----
 VIEW BergbahnenInGegend
@@ -95,6 +99,8 @@ Gibt es zu einer Bergbahn keinen Tarifbereich, kommt sie in der Sicht nicht vor.
 
 Möchte man ein Verzeichnis aller Koordinaten von Tal- und Bergstationen, steht dem die Tatsache entgegen, dass diese Koordinaten als einzelne Attribute der Bergbahnen aufbewahrt sind. Mit der *Vereinigung (UNION)* können sie aber zu einer Menge von gleichberechtigten Sichtobjekten zusammengefasst werden.
 
+[#listing-06_17-03]
+.link:#listing-06_17-03[Listing 06.17-03]
 [source]
 ----
 VIEW StationsKoordinaten
@@ -114,6 +120,8 @@ Die Menge der Sichtobjekte ist hier gleich der doppelten Menge der Bergbahnen. E
 
 Für die Billettkontrolle muss man bei jeder Bergbahn wissen, welche Billettarten gültig sind. Man möchte doch ein Verzeichnis aller Bergbahnen, in dem bei jeder Bergbahn die gültigen Billettarten aufgeführt sind. Losgelöst von den Basisdaten möchte man etwa folgendes Modell definieren:
 
+[#listing-06_17-04]
+.link:#listing-06_17-04[Listing 06.17-04]
 [source]
 ----
 CLASS Billettart =
@@ -134,6 +142,8 @@ Der letzte Aspekt ist zum Glück schon erledigt, weil es eine abstrakte Beziehun
 
 Auf dieser Basis kann eine Sicht definiert werden, welche die Bergbahnen mit den Billett­arten verbindet:
 
+[#listing-06_17-05]
+.link:#listing-06_17-05[Listing 06.17-05]
 [source]
 ----
 VIEW BergbahnUndGueltigeBillettart
@@ -153,6 +163,8 @@ END BergbahnUndGueltigeBillettart;
 
 Diese Verbindung kombiniert Bergbahn und Billettart. Sie berücksichtigt dabei die Gültigkeits­beziehung und dass einer Billettart ein Tarifbereich zugeordnet ist, der mit jenem der Gültigkeits-Beziehung übereinstimmen muss. Damit ist das Ziel schon fast erreicht. Die zulässigen Kombinationen von Bergbahn und Billettart sind als Sichtobjekte verfügbar. Nur möchte man sie noch pro Bergbahn zusammenfassen:
 
+[#listing-06_17-06]
+.link:#listing-06_17-06[Listing 06.17-06]
 [source]
 ----
 VIEW AufBergbahnGueltigeBillettart
@@ -171,6 +183,8 @@ Eine solche Zusammenfassung erfolgt mit einer Aggregation. Damit werden alle Obj
 
 Bereits der nationale Verband hat die Sicht definiert, die alle gültigen Billettarten für jede Bergbahn aufführt (Sicht «AufBergbahnGueltigeBillettart», siehe oben). Die Ilistaler wollen diese Sicht auch benutzen. Sie möchten aber auch in dieser Sicht das Attribut Trasseeverlauf einbeziehen, das sie in der eigenen Erweiterung der Klasse Bergbahn definiert haben.
 
+[#listing-06_17-07]
+.link:#listing-06_17-07[Listing 06.17-07]
 [source]
 ----
 VIEW IhBBergbahnUndGueltigeBillettart
