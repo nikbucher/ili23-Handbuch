@@ -1,9 +1,0 @@
-[#_4]
-== Application à l'exemple du Val d'Ili
-
-
-include::04_01.adoc[]
-
-include::04_02.adoc[]
-
-include::04_03.adoc[]

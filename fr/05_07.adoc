@@ -1,7 +1,0 @@
-[#_5_7]
-=== Héritage simple et multiple
-
-Certains langages de modélisation permettent l'héritage simultané à partir de plusieurs éléments de base. Une classe peut ainsi affiner plusieurs sur-classes en même temps.
-
-Les informaticiens sont très partagés sur la question de savoir si cela est judicieux ou non. Les modèles à héritage multiple sont fréquemment plus difficiles à décrypter, raison pour laquelle INTERLIS ne reconnaît que l'héritage simple.
-

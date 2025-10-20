@@ -1,7 +1,0 @@
-[#_6_18]
-=== What's in a name? – Schemata in a foreign language
-
-An alpine transport is no different in French than it is in German. It still has the same characteristics; it entertains relationships with the same classes etc. We might argue whether terms in different languages express the same meaning, but where data models are concerned it holds: The actual concepts are the same in whatever language. The only thing that changes from one language to the next is names.
-
-Whoever wants to translate a model into a foreign language only needs to exchange designations and remarks. The structure itself – in UML-diagram the little boxes and lines –remains the same. For INTERLIS-descriptions there is a tool (the so-called INTERLIS-compiler), that checks whether a translation in actual fact only uses different names or if during the translation accidentally the structure of the model also has been changed.
-

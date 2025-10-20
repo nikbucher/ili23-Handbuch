@@ -1,9 +1,0 @@
-[#_7]
-== Pleins feux sur les systèmes du Val d'Ili
-
-
-include::07_01.adoc[]
-
-include::07_02.adoc[]
-
-include::07_03.adoc[]

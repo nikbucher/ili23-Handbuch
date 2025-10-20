@@ -1,9 +1,0 @@
-[#_3_5]
-=== Sources documentaires importantes
-
-Vous pouvez obtenir des informations complémentaires sur les sites suivants :
-
-* *http://www.interlis.ch/[www.interlis.ch]* – Le portail Internet relatif à INTERLIS renvoie à des documents, des sessions de formation, etc. en rapport avec INTERLIS. Il est également possible, à partir de ce site, de télécharger les spécifications de la norme et le présent document. Des outils sont par ailleurs à votre disposition. Il s'agit actuellement d'un logiciel permettant l'édition en notation graphique UML (« éditeur UML ») de modèles INTERLIS et d'une bibliothèque de logiciels destinés à la lecture, au contrôle, à la modification et à la sortie de modèles INTERLIS (« compilateur INTERLIS »).
-* *http://www.omg.org/[www.omg.org]* – Le site Internet de l'Object Management Group permet d'accéder à la définition du langage UML (Unified Modeling Language). Vous y trouverez également une documentation générale (comprenant des documents de formation ou des communiqués de presse) relative à la méthode fondée sur un modèle.
-* *http://www.w3.org/[www.w3.org]* – Entre autres activités, le _World Wide Web Consortium_ gère les spécifications de XML.
-

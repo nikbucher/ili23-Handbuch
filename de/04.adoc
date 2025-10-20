@@ -1,9 +1,0 @@
-[#_4]
-== Das Beispiel Ilistal konkret
-
-
-include::04_01.adoc[]
-
-include::04_02.adoc[]
-
-include::04_03.adoc[]

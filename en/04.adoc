@@ -1,9 +1,0 @@
-[#_4]
-== For example Ilis Valley in particular
-
-
-include::04_01.adoc[]
-
-include::04_02.adoc[]
-
-include::04_03.adoc[]

@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.25">
+<title>Das Datenmodell unter der Lupe</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_6"><a class="anchor" href="#_6"></a>Das Datenmodell unter der Lupe</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_6_1"><a class="anchor" href="#_6_1"></a>Taler und Groschen – Numerische Datentypen</h3>
+<div class="sect3">
+<h4 id="_6_1_1"><a class="anchor" href="#_6_1_1"></a>Wertebereich</h4>
+<div class="paragraph">
+<p>Ein Einzelbillett für eine einfache Fahrt mit der Standseilbahn auf das Ilishorn kostet 10 Ah­länder Taler, ein Jahressportpass 635 Taler. Wie soll nun der Preis eines Billettes modelliert werden?</p>
+</div>
+<div class="paragraph">
+<p>Wer sich an Programmiersprachen gewohnt ist, denkt sicher sofort an ganze Zahlen («Integer») oder Fliesskommazahlen («Real»). Bei vielen Programmiersprachen und Daten­banken lässt sich festlegen, wie viel Speicherplatz eine Zahl benötigt; hieraus folgen Grösse und Genauigkeit der speicherbaren Zahlen («short integer», «long integer», «double precision», etc.). Man überlegt sich dann, in welchem Bereich die Werte etwa liegen können, und wählt die passende Speicherform.</p>
+</div>
+<div class="paragraph">
+<p>Bei der Modellierung auf konzeptueller Stufe möchte man sich aber eigentlich nicht um die Speicherform kümmern. Es ist aber möglich, den höchsten und den tiefsten zulässigen Wert anzugeben und dabei gleich noch die Stellenzahl sowie den Exponenten festzulegen.</p>
+</div>
+<div class="paragraph">
+<p>Da sich die Preise zwischen 10 und 635 Talern bewegen, könnte man also schreiben:</p>
+</div>
+<div id="listing-06_01-01" class="listingblock">
+<div class="title"><a href="#listing-06_01-01">Listing 06.01-01</a></div>
+<div class="content">
+<pre class="highlight"><code>Preis: 10 .. 635;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Damit würde man aber auch festlegen, dass ein Preis nie kleiner als 10 Taler und nie grösser als 635 Taler sein kann. Das möchte man natürlich nicht. Als untere Schranke ist 0 plausibel. Aber die obere Schranke? Mehr als 10'000 Taler werden es ja kaum sein. Also 10'000? Wo eine Schranke auf Grund der Anwendung nicht genau festgelegt werden kann, macht es jedenfalls keinen Sinn, den Wert so zu wählen, dass eine kürzere Speicherform (z.B<em>. short integer</em> mit Werten zwischen –32768 und 32767) gerade nicht mehr ausreicht.</p>
+</div>
+<div class="paragraph">
+<p>Dabei ist es natürlich auch wichtig zu überlegen, wie viele Nachkommastellen nötig sind. Wenn die Preise auch Groschen aufweisen können, werden die Schranken eben mit jeweils zwei Nachkommastellen festgelegt. Bei einem Attribut, das z.B. ein Investitionsbudget dar­stellt, möchte man sich nur mit Millionen abgeben; wo es nur um Grössenordnungen geht, reichen zwei Ziffern. Diese können sich aber auf Tausend, eine Million oder gar eine Milliarde beziehen.</p>
+</div>
+<div id="listing-06_01-02" class="listingblock">
+<div class="title"><a href="#listing-06_01-02">Listing 06.01-02</a></div>
+<div class="content">
+<pre class="highlight"><code>Preis: 0.00 .. 9999.99;
+Budget: 0.00E6 .. 999.99E6;
+Bruttosozialprodukt: 0.0E0 .. 9.9E20;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Anzahl der Stellen bezeichnet die Genauigkeit: «4.3 Millionen» (4.3E6 = 4.3 · 106) ist eine weniger genaue Angabe als «4300000».</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_1_2"><a class="anchor" href="#_6_1_2"></a>Einheiten</h4>
+<div class="paragraph">
+<p>Sind das jetzt Taler, Franken, Euro oder Dollar? Die Einheit ist – nicht nur beim Geld – von entscheidender Bedeutung. Darum ist es empfehlenswert, die Einheit nicht nur als Kommentar oder als Teil des Attributnamens anzugeben, sondern als Bestandteil des Typs:</p>
+</div>
+<div id="listing-06_01-03" class="listingblock">
+<div class="title"><a href="#listing-06_01-03">Listing 06.01-03</a></div>
+<div class="content">
+<pre class="highlight"><code>UNIT
+  Taler EXTENDS MONEY;
+
+CLASS Billettart =
+  Preis: 0 .. 9999 [Taler];
+END Billettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Taler (oder Schweizerfranken, Euro, Dollar, etc.) werden als Einheit definiert und können dann bei der Definition eines numerischen Typs benutzt werden. Die meisten gängigen Einheiten (darunter auch CHF, EUR, USD) müssen jedoch nicht selbst definiert werden, sondern stehen über das spezielle Einheiten-Modell (units.ili, vgl. Abschnitt <a href="#_3_3">[_3_3]</a>) zur Verfügung.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Im Interesse der Klarheit wird empfohlen, immer Einheiten anzugeben. Das INTERLIS-Einheitenmodell umfasst neben zahlreichen physikalischen Einheiten auch solche für verbreitete Währungen und für Anzahl, Prozente und Promille.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_1_3"><a class="anchor" href="#_6_1_3"></a>Numerische Typen erben</h4>
+<div class="paragraph">
+<p>Da die Ilishornbahnen nie Billette abgeben werden, die mehr als tausend Taler kosten, könnte man auf die Idee kommen, dies in einer eigenen Klasse zu definieren:</p>
+</div>
+<div id="listing-06_01-04" class="listingblock">
+<div class="title"><a href="#listing-06_01-04">Listing 06.01-04</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Billettart (EXTENDED) =
+  Preis (EXTENDED): 0 .. 1000 [Taler];
+END Billettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In dieser Anwendung macht dieses konkrete Beispiel eher wenig Sinn. Es gibt aber durchaus Fälle in der Praxis, wo es sinnvoll ist, den ererbten Wertebereich einzuschränken.</p>
+</div>
+<div class="paragraph">
+<p>Die Ilistaler dürfen nun allerdings nicht die Wertebereiche des nationalen Modells beliebig verändern: Es gilt das Prinzip, dass jeder Ilistaler Wert auch im Basismodell des Nationalverbands zulässig sein muss. Sonst wäre nicht mehr sichergestellt, dass der nationale Verband problemlos Daten aus dem Ilistal übernehmen kann.</p>
+</div>
+<div class="paragraph">
+<p>Eine Preisangabe 0 .. 1000 ist also eine zulässige Einschränkung des national vorgesehe­nen Bereichs 0 .. 9999. Würde man den Wertebereich im Ilistal aber ausdehnen – etwa mit der Angabe 0 .. 15000 – dann wären Billettarten, die zwischen 10000 und 15000 Taler kos­ten, aus der Sicht des nationalen Verbandes nicht korrekt. Eine solche Definition ist darum unzulässig.</p>
+</div>
+<div class="paragraph">
+<p>Die Ilistaler wollen auch die Möglichkeit haben, Billette auszugeben, deren Preis nicht zwin­gend ein voller Talerbetrag ist. Man möchte folgende Definition schreiben:</p>
+</div>
+<div id="listing-06_01-05" class="listingblock">
+<div class="title"><a href="#listing-06_01-05">Listing 06.01-05</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Billettart (EXTENDED) =
+  Preis (EXTENDED): 0.00 .. 1000.00 [Taler];
+END Billettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aber ist das mit dem Basismodell verträglich? Ja, denn jeder Wert gemäss Ilistaler Modell (z.B. 7.35) kann mit mathematischer Rundung auf einen korrekten Wert des nationalen Modells abgebildet werden (z.B. 7).</p>
+</div>
+<div class="paragraph">
+<p>Die Definition wäre dann unzulässig, wenn sie Werte umfassen würde, die gerundet das Basismodell verletzen. Beispielsweise würde ein Maximalwert von 9999.99 nach dem Runden zu 10000 – dies wäre mehr als die vom nationalen Verband vorgegebenen 9999. Dagegen könnten die Ilistaler einen Bereich 0.00 .. 9999.49 definieren, ohne dem Basis­modell zu widersprechen, denn 9999.49 ergibt nach der Rundung wieder 9999.</p>
+</div>
+<div class="paragraph">
+<p>Ebenfalls unzulässig ist es, im spezialisierten Modell auf Genauigkeit zu verzichten. Würde das nationale Tourismusmodell zum Beispiel einen Bereich von 0.00 .. 1000.00 vorsehen, könnten die Ilistaler in ihrer Spezialisierung nicht die Angabe 0 .. 1000 machen.</p>
+</div>
+<div class="paragraph">
+<p>Und noch etwas: Die Einheiten der Erweiterung müssen immer mit derjenigen der Basis übereinstimmen!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_1_4"><a class="anchor" href="#_6_1_4"></a>Schranken noch unbekannt</h4>
+<div class="paragraph">
+<p>Kann der nationale Verband festlegen, welcher Preis für ein Billett zulässig ist? Sind die Schranken noch völlig unbekannt, kann – im Rahmen abstrakter Attribute – auf ihre An­gabe verzichtet werden. Es ist aber möglich, dennoch bereits eine Einheit festzulegen.</p>
+</div>
+<div id="listing-06_01-06" class="listingblock">
+<div class="title"><a href="#listing-06_01-06">Listing 06.01-06</a></div>
+<div class="content">
+<pre class="highlight"><code>Preis (ABSTRACT): NUMERIC [Ahland.Taler];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Vielleicht ist sogar die Einheit noch unklar. Man weiss erst, dass es sich z.B. um eine Währung handelt.</p>
+</div>
+<div id="listing-06_01-07" class="listingblock">
+<div class="title"><a href="#listing-06_01-07">Listing 06.01-07</a></div>
+<div class="content">
+<pre class="highlight"><code>Preis (ABSTRACT): NUMERIC [MONEY];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Damit ist immerhin der Charakter der Einheit festgelegt. In einer Erweiterung können damit nur noch Einheiten definiert werden, die Konkretisierungen der abstrakten Einheit MONEY sind (zu abstrakten Eigenschaften siehe auch Abschnitt <a href="#_5_4">[_5_4]</a>).</p>
+</div>
+<div id="listing-06_01-08" class="listingblock">
+<div class="title"><a href="#listing-06_01-08">Listing 06.01-08</a></div>
+<div class="content">
+<pre class="highlight"><code>Preis (EXTENDED): 0 .. 10000 [CHF]; !! erlaubt
+Preis (EXTENDED): 0 .. 2000 [USD]; !! erlaubt
+Preis (EXTENDED): 0 .. 1000 [m]; !! verboten, da Meter eine Konkre-
+                                  !! tisierung von LENGTH und nicht
+                                  !! von MONEY ist.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_2"><a class="anchor" href="#_6_2"></a>Arten von Bergbahnen – Modellierung von Arten von Objekten</h3>
+<div class="paragraph">
+<p>Für eine grobe Übersicht genügt es, die Bergbahnen grob einzuteilen: Zahnradbahn, Standseilbahn, Luftseilbahn, Skilift, Sessellift, Gondelbahn. Im einfachsten Fall wird die Art als Textattribut festgehalten.</p>
+</div>
+<div id="listing-06_02-01" class="listingblock">
+<div class="title"><a href="#listing-06_02-01">Listing 06.02-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Bergbahn =
+  Name: TEXT*100;
+  Art: TEXT*50;
+END Bergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Als Folge ist die Person, welche die Daten erfasst, in der Beschreibung sehr frei. Seilbahn, Schwebebahn, Skilift, Ski-Lift – es ist zu befürchten, dass ein rechter Wildwuchs an Be­zeichnungen entsteht. Vermeiden lässt sich dies mit einer Aufzählung.</p>
+</div>
+<div id="listing-06_02-02" class="listingblock">
+<div class="title"><a href="#listing-06_02-02">Listing 06.02-02</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Bergbahn =
+  Name: TEXT*100;
+  Art: (Zahnradbahn,
+        Standseilbahn,
+        Luftseilbahn
+        Skilift,
+        Sessellift,
+        Gondelbahn);
+END Bergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Da jetzt alle zulässigen Möglichkeiten aufgezählt sind, herrscht Ordnung. Oft möchte man nun noch weitere Attribute anfügen, z.B. die Anzahl der Plätze in der Bahn. Bei Stand- und Luftseilbahn ist dies das Fassungsvermögen der ganzen Kabine, bei den Ski- und Sesselliften die Anzahl Personen pro Einzelfahrt. Bei der Zahnradbahn, wo mehrere Wagen zusammengekuppelt werden können, macht die Angabe jedoch keinen Sinn. Dafür interessiert dort vielleicht das Zahnstangensystem. Soll jetzt die Klasse Bergbahn einfach alle Attribute aufweisen, die zum Beschreiben der verschiedenen Arten nötig sind?</p>
+</div>
+<div class="paragraph">
+<p>Wenn die verschiedenen Arten jeweils eigene Eigenschaften (Attribute oder Beziehungen) aufweisen, ist es sinnvoll, eigene Klassen zu definieren, welche die Basisklasse beerben (vgl. <a href="#_5">[_5]</a>).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image30.png" alt="image30">
+</div>
+<div class="title">Figure 1. Zahnradbahnen, Standseilbahnen, etc. sind spezielle Bergbahnen. Es gibt jedoch keine Bergbahnen an und für sich: Alle «konkreten» Bergbahnen gehören immer zu einer der Unterklassen. <em>Bergbahn</em> ist damit eine abstrakte Klasse, was im Diagramm mittels Schrägschrift bezeichnet wird.</div>
+</div>
+<div class="paragraph">
+<p>Es gibt aber keine Bergbahnen, die ausschliesslich Bergbahn sind und nicht gleichzeitig auch einer Unterklasse angehören. Die Klasse Bergbahn wird dann als «abstrakt» deklariert. Eine konkrete Bergbahn muss dann immer eine Zahnradbahn, eine Luftseilbahn, usw. sein.</p>
+</div>
+<div class="paragraph">
+<p>In der textuellen Schreibweise von INTERLIS 2 werden abstrakte Klassen mit der Angabe (ABSTRACT) in Klammern bezeichnet. Nur nebenbei: Das INTERLIS-Einheitenmodell «Units» kennt eine Einheit «CountedObjects» für abgezählte Objekte wie zum Beispiel die Zahl der Personen in einer Luftseilbahnkabine.</p>
+</div>
+<div id="listing-06_02-03" class="listingblock">
+<div class="title"><a href="#listing-06_02-03">Listing 06.02-03</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Bergbahn (ABSTRACT) =
+  Name: Text*100;
+END Bergbahn;
+
+CLASS Zahnradbahn EXTENDS Bergbahn =
+  Stangensystem: (Riggenbach, Abt, vonRoll);
+END Zahnradbahn;
+
+CLASS Standseilbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 999 [Units.CountedObjects];
+END Standseilbahn;
+
+CLASS Luftseilbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 999 [Units.CountedObjects];
+END Luftseilbahn;
+
+CLASS Skilift EXTENDS Bergbahn =
+  PersonenProFahrt: 0 .. 10 [Units.CountedObjects];
+END Skilift;
+
+CLASS Sessellift EXTENDS Bergbahn =
+  PersonenProFahrt: 0 .. 24 [Units.CountedObjects];
+END Sessellift;
+
+CLASS Gondelbahn EXTENDS Bergbahn =
+  Fassungsvermoegen: 0 .. 99 [Units.CountedObjects];
+END Gondelbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Für die Sitzung wurde extra ein Eisenbahner eingeladen, der längere Zeit über Zahnrad­bahnen referierte. Die Anwesenden lernten viel darüber, was für Zahnstangensysteme welt­weit im Einsatz sind und welche Vor- und Nachteile sie jeweils besitzen. Schliesslich fragten sich die Ilistaler aber, was genau die Zahnstangensysteme eigentlich mit ihrem Projekt zu schaffen haben. Es konnte sich auch niemand vorstellen, wie diese und andere Angaben jemals in einem zukünftigen Ausbauschritt von Belang werden könnten. Daher wurde dieses Modell verworfen, weil es zu sehr ins Detail geht und am Ende lediglich Kosten für das Erfassen und Pflegen unnötiger Daten verursacht hätte.</p>
+</div>
+<div class="paragraph">
+<p>Siehe auch Abschnitt <a href="#_5_1">[_5_1]</a> zur Verlockung, beim Modellieren allzu sehr ins Detail zu gehen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_3"><a class="anchor" href="#_6_3"></a>Gibt es auch hellblaue Skipisten? – Strukturierte Aufzählungen</h3>
+<div class="sect3">
+<h4 id="_6_3_1"><a class="anchor" href="#_6_3_1"></a>Gewöhnliche Aufzählungen und ihr Erbrecht</h4>
+<div class="paragraph">
+<p>Um den Schwierigkeitsgrad von Skipisten grob zu beschreiben, wurden drei Farben gewählt: blau, rot, schwarz. Es soll nur diese und keine anderen Schwierigkeitsgrade geben. Zudem sind sie geordnet. Blau bezeichnet eine einfache Piste, eine rote Piste ist schwieriger als eine blaue, eine schwarze am anspruchsvollsten. Dies wird mit der folgenden Definition be­schrieben:</p>
+</div>
+<div id="listing-06_03-01" class="listingblock">
+<div class="title"><a href="#listing-06_03-01">Listing 06.03-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Piste =
+  Schwierigkeitsgrad: (blau, rot, schwarz: FINAL) ORDERED;
+END Piste;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Würde die FINAL-Angabe fehlen, könnte die Aufzählung in einer Erweiterung noch ergänzt werden. Zum Beispiel könnte dies bei der Art von Bergbahnen Sinn machen:</p>
+</div>
+<div id="listing-06_03-02" class="listingblock">
+<div class="title"><a href="#listing-06_03-02">Listing 06.03-02</a></div>
+<div class="content">
+<pre class="highlight"><code>!! Modell des Nationalen Tourismusverbandes
+CLASS Bergbahn =
+  Art: (Zahnradbahn, Standseilbahn, Luftseilbahn,
+       Skilift, Sessellift, Gondelbahn);
+END Bergbahn;
+
+!! Modell Ilistal
+CLASS IhBBergbahn EXTENDS Bergbahn =
+  Art (EXTENDED): (Schneebus);
+END IhBBergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In der erweiterten Klasse wird der Aufzählung noch das Element Schneebus – das neuste vom Neuen – am Ende der bisherigen Aufzählung beigefügt. Aber was fängt der nationale Tourismusverband damit an? Dort ist «Schneebus» doch ein unbekannter Wert.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Jede (horizontale) Erweiterung kann durch weitere Werte ergänzt werden, solange dies nicht ausdrücklich mit <strong>FINAL</strong> ausgeschlossen wird. Interessiert sich jemand für die Werte nur allgemein gemäss der Basisklasse, werden diese Werte alle in den Wert <strong>OTHER</strong> übersetzt.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Für die Basisklasse ist der Wert Schneebus (und allfällige weitere Werte) nur noch als OTHER erkennbar. Wird jedoch FINAL angegeben, kann der Wert OTHER nicht mehr auftreten. Ist eine Aufzählung zyklisch (<strong>CIRCULAR</strong>) definiert, sind solche Ergänzungen nie möglich, heisst doch zyklisch, dass nach dem höchsten Wert wieder der niedrigste kommt und man sonst gar nicht wüsste, welches der höchste ist.</p>
+</div>
+<div id="listing-06_03-03" class="listingblock">
+<div class="title"><a href="#listing-06_03-03">Listing 06.03-03</a></div>
+<div class="content">
+<pre class="highlight"><code>Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_3_2"><a class="anchor" href="#_6_3_2"></a>Unteraufzählungen</h4>
+<div class="paragraph">
+<p>Man hatte also beschlossen, die verschiedenen Arten von Bergbahnen nicht mit einer ganzen Landschaft von Klassen zu modellieren. Aber die Bahnfreunde waren nicht recht einverstanden: Das Stangensystem der Zahnradbahnen könnte ja vielleicht doch noch irgendwann einmal von Interesse sein&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Für jeden Wert einer Aufzählung kann eine Unteraufzählung definiert werden. Dies kann direkt innerhalb der Basisdefinition oder erst in einer Erweiterung erfolgen.</p>
+</div>
+<div id="listing-06_03-04" class="listingblock">
+<div class="title"><a href="#listing-06_03-04">Listing 06.03-04</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS IhBBergbahn EXTENDS Bergbahn =
+  Art (EXTENDED): (Zahnradbahn (Riggenbach, Abt, vonRoll));
+END IhBBergbahn;
+
+Wochentag: (Werktag (Montag, Dienstag, Mittwoch,
+                     Donnerstag, Freitag, Samstag),
+            Sonntag);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wird eine solche Unteraufzählung in einer Erweiterung definiert, ist sie aus der Sicht der Basis einfach nicht von Belang. Aus der Sicht des nationalen Tourismusverbands würde also auch eine Riggenbach-Zahnradbahn eine Zahnradbahn sein.</p>
+</div>
+<div class="paragraph">
+<p>Auch Unteraufzählungen können wieder um weitere Werte ergänzt werden, sofern ihr letzter Wert nicht als FINAL erklärt wurde. Die einzelnen Werte einer Unteraufzählung können zudem wiederum durch Unteraufzählungen präzisiert werden, so dass ganze Aufzählungs­bäume entstehen.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_4"><a class="anchor" href="#_6_4"></a>Ilistaler halten sich kurz – Zeichenketten und ihre Erbregeln</h3>
+<div class="paragraph">
+<p>Bezeichnungen können grundsätzlich beliebig lange Namen enthalten. Der nationale Verband hat jedoch festgelegt, dass der Name einer Bergbahn höchstens 100 Zeichen aufweisen darf. In der Regel sind die Namen natürlich durchaus kürzer, man wollte einfach sicher gehen.</p>
+</div>
+<div id="listing-06_04-01" class="listingblock">
+<div class="title"><a href="#listing-06_04-01">Listing 06.04-01</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung =
+  Name (EXTENDED): TEXT*100;
+END Bahnbezeichnung;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ist die Länge eines Text-Attributes beliebig oder noch vollkommen unbekannt, kann auf die Angabe der Länge verzichtet werden. Ist es klar, dass die Länge im Rahmen einer Klassenerweiterung noch festgelegt wird, wird das Attribut als abstrakt bezeichnet:</p>
+</div>
+<div id="listing-06_04-02" class="listingblock">
+<div class="title"><a href="#listing-06_04-02">Listing 06.04-02</a></div>
+<div class="content">
+<pre class="highlight"><code>Beschreibung (ABSTRACT): TEXT;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Manche Bahnen im Ilistal haben eine Web-Kamera installiert, die laufend die Umgebung der Bergstation aufnimmt. Interessierte Touristen können so sehen, ob sich die Reise lohnt. Die Internet-Adresse des aktuellen Bildes ist ebenfalls eine (etwas besondere) Art von Text.</p>
+</div>
+<div id="listing-06_04-03" class="listingblock">
+<div class="title"><a href="#listing-06_04-03">Listing 06.04-03</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS IhBBergbahn =
+  ...
+  BildBergstation: URI;
+  ...
+END IhBBergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Internet-Adressen haben aber nichts mit einem Schweizer Kanton zu tun – oder wenn schon, dann allenfalls mit Genf, wo am CERN der erste Web-Browser entwickelt wurde. URI ist schlicht die Abkürzung von <em>Uniform Resource Identifier.</em> Die meist für Web-Seiten benutzten <em>Uniform Resource Locators (URLs)</em> sind spezielle URIs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_5"><a class="anchor" href="#_6_5"></a>Windstille – Fakultative und obligatorische Attribute</h3>
+<div class="paragraph">
+<p>Als aktuelle Betriebsdaten werden auch aktuelle Wetterdaten wie Temperatur sowie Richtung und Stärke des Windes gemeldet. Bei Windstille macht die Angabe der Windrichtung keinen Sinn. Die anderen Angaben sollen immer gemacht werden.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Die Tatsache, dass ein Attribut <strong>undefiniert</strong> sein kann, bzw. dass es immer definiert sein muss, ist Teil des Modells.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Undefiniert ist nicht einfach 0 oder sonst irgendein etwas besonderer Wert. Es ist ein eigenständiger Wert, der genau die Tatsache der Undefiniertheit wiedergibt.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In INTERLIS 2 schreibt man zum Beispiel:</p>
+</div>
+<div id="listing-06_05-01" class="listingblock">
+<div class="title"><a href="#listing-06_05-01">Listing 06.05-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Wetter;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Temperatur und Windgeschwindigkeit sind also obligatorisch (MANDATORY). Da die Windrichtung nicht obligatorisch verlangt wird, ist sie fakultativ. Der konkrete Wert darf damit undefiniert sein. In Erweiterungen ist es zulässig, aus fakultativen Attributen obligatorische zu machen. Obligatorische Attribute dürfen aber nicht zu fakultativen werden, da gemäss der Basisklasse der Wert «undefiniert» nicht erlaubt ist.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_6"><a class="anchor" href="#_6_6"></a>Wartezeiten und Fahrzeiten – Wertebereiche</h3>
+<div class="paragraph">
+<p>Wartezeiten an den Bergbahnen und die Fahrzeiten der Bergbahnen werden beide in Minu­ten festgehalten.</p>
+</div>
+<div id="listing-06_06-01" class="listingblock">
+<div class="title"><a href="#listing-06_06-01">Listing 06.06-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Bergbahn =
+  Fahrzeit: 0 .. 200 [min];
+END Bergbahn;
+
+CLASS Bergbahnstatus =
+  Wartezeit: 0 .. 200 [min];
+END Bergbahnstatus;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Beide Eigenschaften können Werte aus demselben Bereich annehmen. Mit einem ausdrücklich definierten Wertebereich (DOMAIN) lässt sich diese Gemeinsamkeit betonen:</p>
+</div>
+<div id="listing-06_06-02" class="listingblock">
+<div class="title"><a href="#listing-06_06-02">Listing 06.06-02</a></div>
+<div class="content">
+<pre class="highlight"><code>DOMAIN
+  ZeitdauerInMinuten = 0 .. 200 [min];
+
+CLASS Bergbahn =
+  Fahrzeit: ZeitdauerInMinuten;
+END Bergbahn;
+
+CLASS Bergbahnstatus =
+  Wartezeit: ZeitdauerInMinuten;
+END Bergbahnstatus;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_7"><a class="anchor" href="#_6_7"></a>Wo liegt das Ilistal? – Koordinatentypen</h3>
+<div class="sect3">
+<h4 id="_6_7_1"><a class="anchor" href="#_6_7_1"></a>Grundsätzliches zu Koordinatentypen</h4>
+<div class="paragraph">
+<p>Mit der Frage «Wo?» ist die Vorstellung eines punktförmigen Ortes in der realen Welt verbunden. Ein solcher Ort kann mittels einer Koordinate beschrieben werden. Eine Koordinate ist typischerweise ein Zahlenpaar das die Lage, oder ein Zahlentripel das die Lage und Höhe, eines Ortes beschreibt.</p>
+</div>
+<div class="paragraph">
+<p>Für jede Dimension eines Koordinatentyps muss darum wie für jeden numerischen Typ fest­gelegt werden, in welchem Zahlenbereich die zulässigen Werte liegen dürfen und welche Einheit mit ihr verbunden ist.</p>
+</div>
+<div id="listing-06_07-01" class="listingblock">
+<div class="title"><a href="#listing-06_07-01">Listing 06.07-01</a></div>
+<div class="content">
+<pre class="highlight"><code>Lage: COORD 500.00 .. 91000.00 [m],
+            700.00 .. 23000.00 [m];
+
+XLage: 500.00 .. 91000.00 [m];
+YLage: 700.00 .. 23000.00 [m];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Unterschied zwischen einem Lageattribut mit einem Koordinatentyp und je einem numerischen Attribut für die X- und die Y-Richtung ist auf den ersten Blick klein. Dank der Definition als Koordinatentyp ist es aber offensichtlich, dass die beiden Angaben zusammen­gehören. Diese Eigenschaft kann durch die Programmpakete auch ausgenützt werden. So sind viele Programme dafür eingerichtet, kartesische Koordinatenwerte grafisch darzustellen.</p>
+</div>
+<div class="paragraph">
+<p>Kartesische Koordinatenwerte? Als kartesische Koordinaten werden Koordinaten bezeichnet, deren Dimensionen senkrecht aufeinander stehen. Mit der Definition der obigen Lagekoordi­naten wird also ein rechteckiges Fenster von etwa 90 mal 22 Kilometer Ausdehnung beschrieben. Ein Rückfall ins Mittelalter? Ist nun die Erde im Ilistal wieder zur Scheibe ge­worden?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_7_2"><a class="anchor" href="#_6_7_2"></a>Die umwickelte Zwetschge – Was ist ein Koordinatensystem?</h4>
+<div class="paragraph">
+<p>Schon für Ptolemäus war die Erde eine Kugel. Die Vermesser (oder die Geodäten, wie sie heissen, wenn es um die gehobeneren Fragen der Vermessungstechnik geht) mussten sich schon lange von dieser Sicht abwenden, weil sie allzu sehr vereinfacht.</p>
+</div>
+<div class="paragraph">
+<p>Eine brauchbare Annäherung der Erdoberfläche ist das Ellipsoid, also jene Fläche, die entsteht, wenn sich eine Ellipse um ihre zentrale Achse dreht.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image31.png" alt="] image:img/image32.png[">
+</div>
+<div class="title">Figure 2. Dreht sich eine Ellipse um ihre eigene Achse, entsteht im Raum eine flachgedrückte Kugel. Mit einem solchen Ellipsoid kann die Form der Erdoberfläche angenähert werden.<br></div>
+</div>
+<div class="paragraph">
+<p>(Alle Abbildungen in diesem Abschnitt und in Abschnitt <a href="#_6_7_5">Dreidimensionale Koordinaten</a> aus: K. Christoph Graf, Verwendung geodätischer Abbildungen bei der Geocodierung von Satelliten-Bildern. Zürich, 1988. Teilweise wurden die Illustrationen vereinfacht. Ursprüngliche Bildquellen siehe dort).</p>
+</div>
+<div class="paragraph">
+<p>Je nach Weltgegend werden anders gelegene Ellipsoide benutzt, sonst würde die An­näherung zu ungenau. Beispielsweise verwendet die Schweiz das gleiche Ellipsoid wie Deutschland, aber ein leicht anderes als Schweden oder Frankreich.</p>
+</div>
+<div class="paragraph">
+<p>Als räumliche Gebilde sind Ellipsoide jedoch etwas mühselig zu handhaben. Aus diesem Grund bilden Geodäten das Ellipsoid auf eine Fläche ab. Hierzu legen sie einen Zylinder oder Kegel an das Ellipsoid an und beleuchten es von innen, so dass das Landschaftsbild auf den Zylinder oder den Kegel projiziert wird.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image33.png" alt="] image:img/image34.png[">
+</div>
+<div class="title">Figure 3. Das Ellipsoid wird in einen Zylinder (links) oder Kegel (rechts) gewickelt. Anschliessend wird es von innen beleuchtet.</div>
+</div>
+<div class="paragraph">
+<p>Als nächstes wird der Zylinder oder Kegel mit einer Schere aufgeschnitten, abgerollt und flach auf den Tisch gelegt – fertig ist die Karte!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image35.png" alt="image35">
+</div>
+<div class="title">Figure 4. Nach erfolgter Projektion wird der Zylinder (bzw. Kegel) aufgeschnitten und abgerollt. Ein gewölbter Körper wie etwa ein Ellipsoid oder eine Kugel könnte zwar aufgeschnitten, aber nicht flach abgerollt werden.</div>
+</div>
+<div class="paragraph">
+<p>Zuletzt werden feine, rechtwinklig aufeinander stehende Linien über die Karte gelegt: Das <strong>Koordinatensystem</strong> der Karte. Bei jedem Koordinatentyp muss darum auch festgelegt werden, welches Koordinatensystem ihm zu Grunde liegt.</p>
+</div>
+<div id="listing-06_07-02" class="listingblock">
+<div class="title"><a href="#listing-06_07-02">Listing 06.07-02</a></div>
+<div class="content">
+<pre class="highlight"><code>Lage: COORD 480000 .. 850000.00 [m] {AhlandSys[1]},
+            60000 .. 320000.00 [m] {AhlandSys[2]};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die erste Dimension der Koordinate entspricht der ersten Achse des Koordinatensystems mit Namen «AhlandSys», die zweite Dimension der zweiten Achse des gleichen Systems.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_7_3"><a class="anchor" href="#_6_7_3"></a>Angaben zum Koordinatensystem – Metadaten</h4>
+<div class="paragraph">
+<p>Ist «AhlandSys» ein kartesisches, ein ellipsoidisches System? Wie heissen die Achsen? Gibt es Zusammenhänge (z.B. Kartenprojektionen) zu anderen Koordinatensystemen? All diese Angaben können selbst wieder mittels Daten beschrieben werden. Damit klar ist, wie diese Daten strukturiert sind, wird dafür ebenfalls ein Datenmodell formuliert. Ein solches Modell heisst Metamodell, die zugehörigen Daten Metadaten, weil sie dazu dienen, die eigentlichen Daten zu beschreiben.</p>
+</div>
+<div class="paragraph">
+<p>Die Daten zu einem Metamodell sind in einem anderen, formaleren Sinn «meta» als Angaben zu Herkunft oder Preis (vgl. Abschnitt <a href="#_3_3">[_3_3]</a>). Für beides ist jedoch unglücklicherweise dieselbe Bezeich­nung verbreitet.</p>
+</div>
+<div class="paragraph">
+<p>In den einfachen Fällen, wo es auf Grund des Anwendungs- und Einsatzgebietes eines Datenmodells klar ist, zu welchem Koordinatensystem die Koordinaten gehören, kann auf die explizite Angabe des Koordinatensystems verzichtet werden. Es macht aber Sinn, das Koordinatensystem mindestens im Namen des Koordinatentyps anklingen zu lassen.</p>
+</div>
+<div id="listing-06_07-03" class="listingblock">
+<div class="title"><a href="#listing-06_07-03">Listing 06.07-03</a></div>
+<div class="content">
+<pre class="highlight"><code>LandesKoord = COORD 500.00 .. 91000.00 [m],
+                    700.00 .. 23000.00 [m];
+
+Lage: LandesKoord;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Um Verwechslungen auszuschliessen haben die Ilistaler eine präzise Definition vorgezogen:</p>
+</div>
+<div id="listing-06_07-04" class="listingblock">
+<div class="title"><a href="#listing-06_07-04">Listing 06.07-04</a></div>
+<div class="content">
+<pre class="highlight"><code>REFSYSTEM BASKET CoordSystems ~ CoordSys.CoordsysTopic
+  OBJECTS OF GeoCartesian2D: AhlandSys;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sie haben auf der Grundlage des allgemeinen Modells für Koordinatensysteme (CoordSys) ihr Landessystem präzis definiert. Für die Lage wurde dafür in den entsprechenden Daten ein Objekt der Klasse GeoCartesian2D mit dem Namen AhlandSys eingetragen. Die Existenz dieses Dateneintrags wird mittels OBJECTS OF im Modell angemerkt. Das Koordinatensystem „AhlandSys“ ist damit im Modell verfügbar. Bei der Anwendung des Systems muss der Name des Metadatenbestands (CoordSystems) nur erwähnt werden, wenn im aktuellen Modellierungsteil mehrere solche Metadatenbestände definiert sind.</p>
+</div>
+<div id="listing-06_07-05" class="listingblock">
+<div class="title"><a href="#listing-06_07-05">Listing 06.07-05</a></div>
+<div class="content">
+<pre class="highlight"><code>LandesKoord = COORD 500.00 .. 91000.00 [m] {CoordSystems.AhlandSys[1]},
+                    700.00 .. 23000.00 [m] {CoordSystems.AhlandSys[2]};</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_7_4"><a class="anchor" href="#_6_7_4"></a>Verschiedene Koordinatensysteme</h4>
+<div class="paragraph">
+<p>Damit denjenigen Touristen, die über einen einfachen GPS-Empfänger verfügen, ein besonderer Service geboten werden kann, möchten die Ilistaler ihre Koordinaten auch als geografische Koordinaten im globalen WGS84-System anbieten.</p>
+</div>
+<div id="listing-06_07-06" class="listingblock">
+<div class="title"><a href="#listing-06_07-06">Listing 06.07-06</a></div>
+<div class="content">
+<pre class="highlight"><code>WGS84Coord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]};
+
+CLASS Bergbahn =
+  LageTalstation: LandesKoord;
+  LageTalstationWGS: WGS84Koord;
+  ....
+END Bergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nun ist es aber offensichtlich, dass die beiden Attribute einen direkten Zusammenhang haben. Landeskoordinaten können doch in WGS84-Koordinaten umgerechnet werden. Die detaillierte Definition einer solchen Umrechnung ist aber nicht Aufgabe einer konzeptuellen Beschreibung der Daten. Es ist aber wünschenswert anzugeben, dass die einen Koordinaten aus den anderen gerechnet werden können.</p>
+</div>
+<div id="listing-06_07-07" class="listingblock">
+<div class="title"><a href="#listing-06_07-07">Listing 06.07-07</a></div>
+<div class="content">
+<pre class="highlight"><code>!! Umrechnung von Koordinaten im Ahländer Landessystem zu WGS84.
+!! Funktionen werden in Abschnitt 7.2 diskutiert.
+FUNCTION AhlandToWGS84 (Ah: Ahland.LandesKoord): WGS84Koord;
+
+CLASS Bergbahn =
+  LageTalstation: Ahland.LandesKoord;
+  LageTalstationWGS: WGS84Koord := AhlandToWGS84 (LageTalstation);
+  ....
+END Bergbahn;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_7_5"><a class="anchor" href="#_6_7_5"></a>Dreidimensionale Koordinaten</h4>
+<div class="paragraph">
+<p>Den Skifahrern und Wanderern rund um das Ilishorn genügen natürlich die Lagekoordinaten nicht. Grosse Höhendifferenzen lassen die Skifahrerherzen höher schlagen, während der Wanderer Schweissperlen oder schlotternde Knie befürchten muss. Höhen sind gefragt! Koordinatentypen können darum auch drei Dimensionen aufweisen.</p>
+</div>
+<div id="listing-06_07-08" class="listingblock">
+<div class="title"><a href="#listing-06_07-08">Listing 06.07-08</a></div>
+<div class="content">
+<pre class="highlight"><code>LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                     700.00 .. 23000.00 [m] {AhlandSys[2]},
+                     0.00 .. 9000.00 [m] {AhlandHoehenSys[1]};
+
+WGS84Koord = COORD -90.00000 .. 90.00000 [Angle_Degree] {WGS84[1]},
+                   0.00000 .. 359.99999 CIRCULAR [Angle_Degree]
+                   {WGS84[2]},
+                   -2000.00 .. 9000.00 [m] {WGS84H[1]};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bei den Höhen stellt sich noch ein besonderes Problem. Wo ist eigentlich die Höhe 0? Wie kann man die Höhe eines Punktes gegenüber dieser Höhe 0 bestimmen? Die Geodäten unterscheiden vor allem zwischen den Höhen gemäss dem Schwerefeld der Erde (Schwere- oder Geoid-Höhe; 0 ist die Höhe der gedachten Fortsetzung des Meeres unter den Kontinenten) und Höhen gemäss der geometrischen Annäherung der Erde (Ellipsoid-Höhe; 0 ist die Oberfläche des Ellipsoids).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image36.png" alt="image36">
+</div>
+<div class="title">Figure 5. Das Schwerefeld der Erde: Beim Geoid wird die Meeresoberfläche in Gedanken unter den Kontinenten fortgesetzt. Gebirgsmassive, Meeresgräben etc. beeinflussen das Schwerefeld und verformen so die gedachte Wasseroberfläche. Diese Zeichnung ist sehr stark überhöht.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image37.png" alt="image37">
+</div>
+<div class="title">Figure 6. Je nach gewähltem Bezugssystem besitzt Punkt Q eine andere Höhe.</div>
+</div>
+<div class="paragraph">
+<p>Die Landeskoordinatensysteme verwenden typischerweise Geoidhöhen. Darum bezieht sich die dritte Dimension der Landeskoordinaten auch nicht einfach auf die dritte Achse des Landessystems, sondern auf die erste Achse eines speziellen Höhen­systems.</p>
+</div>
+<div class="paragraph">
+<p>Dagegen werden die Koordinaten bei GPS-Messungen rein geometrisch aus Satelliten­positionen bestimmt, ohne dass das Schwerefeld der Erde eine Rolle spielen würde. WGS84-Höhen sind also Ellipsoidhöhen.</p>
+</div>
+<div class="paragraph">
+<p>image::img/image38.png[]<br>
+.Die Schwerehöhe kann bis zu einigen Metern von der Ellipsoidhöhe abweichen. Gezeigt sind die Abweichungen zum jeweils üblichen Ellipsoid der Schweiz, von Frankreich und dem ehemaligen West-Deutschland.
+image::img/image39.png[] <span class="image"><img src="img/image40.png" alt="image40"></span></p>
+</div>
+<div class="paragraph">
+<p>Die Umrechnung zwischen Schwerehöhen und Ellipsoidhöhen kann vor allem dort ein Problem sein, wo der Bereich der zulässigen Koordinaten ein Gebiet abdeckt, dessen Schwerefeld nicht mehr homogen ist. Zum Glück sind diese Fragen bei der Modellierung nur von geringer Bedeutung. Einen kleinen Gedanken sind sie aber dennoch wert.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_8"><a class="anchor" href="#_6_8"></a>Ist Null im Norden? – Festlegungen für Winkel und Richtungen</h3>
+<div class="paragraph">
+<p>Wie gross ist ein rechter Winkel? 90 Grad oder Pi / 2? Das ist eine Frage der Einheit, die verwendet wird. Aber wann gilt der Winkel als positiv, wann als negativ? Zu einem Winkeltyp gehört darum der Drehsinn: Uhrzeigersinn oder Gegenuhrzeigersinn.</p>
+</div>
+<div id="listing-06_08-01" class="listingblock">
+<div class="title"><a href="#listing-06_08-01">Listing 06.08-01</a></div>
+<div class="content">
+<pre class="highlight"><code>DOMAIN
+  WinkelImUhrzeigersinn = -179 .. 180 CIRCULAR CLOCKWISE;
+  WinkelImGegenuhrzeigersinn = -179 .. 180 CIRCULAR COUNTERCLOCKWISE;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn wir auf dem Ilishorn stehen, möchten wir vielleicht wissen, in welche Richtung wir schauen müssen, um das Krummhorn zu sehen. 50 Grad? 40 Grad? 310 Grad?</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image41.png" alt="image41">
+</div>
+<div class="title">Figure 7. Wer das Ilishorn besteigt, wird für die Mühen mit einer prächtigen Bergsicht belohnt.<br></div>
+</div>
+<div class="paragraph">
+<p>Aber in welchem Winkel ist das Krummhorn zu sehen? Ist nicht klar, auf welches Koordinatensystem sich die Frage bezieht, lässt sich keine Antwort geben.</p>
+</div>
+<div class="paragraph">
+<p>Es kommt eben drauf an, wo die Nullrichtung ist und wie die Richtungen drehen. Wenn von Richtungen gesprochen wird, muss darum immer auch von einem Bezugssystem ge­sprochen werden. Richtungen stehen darum in engem Zusammenhang mit Koordinaten­typen. Es macht ja auch Sinn, die Distanz und die Richtung zwischen zwei über Koordinaten definierten Punkten zu bestimmen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image42.png" alt="image42">
+</div>
+<div class="title">Figure 8. Die Angabe von Achsen und Drehsinn gehört zur Definition eines Koordinatensystems.</div>
+</div>
+<div id="listing-06_08-02" class="listingblock">
+<div class="title"><a href="#listing-06_08-02">Listing 06.08-02</a></div>
+<div class="content">
+<pre class="highlight"><code>LandesKoord3 = COORD 500.00 .. 91000.00 [m] {AhlandSys[1]},
+                     700.00 .. 23000.00 [m] {AhlandSys[2]},
+                     -200.00 .. 14000.00 [m] {AhlandHoehenSys[1]},
+                     ROTATION 2 -&gt; 1;
+
+Richtung = 0.0 .. 359.9 CIRCULAR [Angle_Degree] {AhlandSys};</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_9"><a class="anchor" href="#_6_9"></a>Ist eine Piste eine Linie oder eine Fläche? – Geometrietypen</h3>
+<div class="sect3">
+<h4 id="_6_9_1"><a class="anchor" href="#_6_9_1"></a>Einfache konzeptuelle Sicht einer Linie</h4>
+<div class="paragraph">
+<p>Vom Standpunkt der Skifahrer aus gesehen ist der Bedarf klar: Sie wollen wissen, wo die Piste beginnt, wo sie endet und wo sie grob durchführt. Gibt es ein Gasthaus am Pistenrand? Führt die Piste über freie Hänge oder durch den Wald? Für diese Information genügt es, den Pistenverlauf als Linie zu beschreiben.</p>
+</div>
+<div class="paragraph">
+<p>Unter einem Linientyp darf man sich zunächst genau das vorstellen, was das Wort ver­spricht: Eine mehr oder minder komplizierte Verbindung zwischen zwei Punkten.</p>
+</div>
+<div class="paragraph">
+<p>In diesem Sinn ist ein Linientyp nichts anderes als z.B. ein numerischer Typ oder besser noch ein Koordinatentyp. Da die an der Linie beteiligten Punkte durch Koordinaten beschrie­ben werden müssen, ist es zwingend, dass ein Linientyp immer mit einem Koordinatentyp verbunden sein muss.</p>
+</div>
+<div class="paragraph">
+<p>In INTERLIS könnte man schreiben:</p>
+</div>
+<div id="listing-06_09-01" class="listingblock">
+<div class="title"><a href="#listing-06_09-01">Listing 06.09-01</a></div>
+<div class="content">
+<pre class="highlight"><code>AhlandLinie = POLYLINE VERTEX Ahland.LandesKoord;
+
+CLASS Piste =
+  Verlauf: AhlandLinie;
+END Piste;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Pistenverlauf wird mittels Linien beschrieben, die auf dem Ahländer Landes-Koordinatensystem basieren. Die Stützpunkte der Linien im Ahländer Landessystem stützen sich deshalb auf den Koordinatentyp des Landessystems ab.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_9_2"><a class="anchor" href="#_6_9_2"></a>Linienstücke</h4>
+<div class="paragraph">
+<p>Es ist offensichtlich: Die Piste vom Ilishorn zur Ilisegg ist eine komplizierte Linie. Die Pisten bei den Ponyliften dagegen relativ einfach. Alles mit demselben Typ beschreibbar? Die Lösung liegt darin, dass die Linie als Ganzes in einzelne Linienstücke aufgeteilt wird. Jedes Linienstück ist selbst eine einfache Geometrie (z.B. eine Gerade, ein Stück eines Kreisbogens) und schliesst jeweils an das Vorgängerstück an.</p>
+</div>
+<div class="paragraph">
+<p>Diesen Sachverhalt könnte man im konzeptuellen Modell auch darstellen. Das wäre aber eher eine überflüssige Belastung. Wenn man einmal weiss, dass Linien immer so aufgebaut sind, muss dies ja nicht mehr dargestellt werden.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image43.png" alt="image43">
+</div>
+<div class="title">Figure 9. Der Verlauf einer Piste ist eine Linie. Diese bestehen ihrerseits aus einzelnen Linienstücken, von denen es verschiedene Arten gibt: Geradenstücke, Kreisbogen­stücke, etc.</div>
+</div>
+<div class="paragraph">
+<p>Es macht aber durchaus Sinn anzugeben, welche Arten von Linienstücken bei einem be­stimmten Linientyp vorkommen dürfen.</p>
+</div>
+<div id="listing-06_09-02" class="listingblock">
+<div class="title"><a href="#listing-06_09-02">Listing 06.09-02</a></div>
+<div class="content">
+<pre class="highlight"><code>AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX Ahland.LandesKoord;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mit dieser INTERLIS 2-Definition wird angegeben, dass Linien dieses Typs Geraden- und Kreisbogenstücke aufweisen dürfen.</p>
+</div>
+<div class="paragraph">
+<p>In vielen Fällen – so auch bei den Pisten – macht es keinen Sinn, dass eine Linie Schnittpunkte mit sich selbst aufweist. Solche Einschränkungen gehören auch zum konzeptuellen Modell. Aufgrund von Ungenauigkeiten beim Vermessen (und teils auch beim Berechnen) ist es jedoch möglich, dass eine an sich überlappungsfreie Form ganz leichte Überlappungen aufweist. Aus diesem Grund ist die maximal noch zulässige Überlappung Teil des Modells. Sie wird in den Einheiten der zugehörigen Koordinaten angegeben.</p>
+</div>
+<div class="paragraph">
+<p>Nachdem das Ahländer Landes-Koordinatensystem Meter verwendet, sind mit dieser Defini­tion Überlappungen bis zu 2 cm erlaubt:</p>
+</div>
+<div id="listing-06_09-03" class="listingblock">
+<div class="title"><a href="#listing-06_09-03">Listing 06.09-03</a></div>
+<div class="content">
+<pre class="highlight"><code>AhlandLinie = POLYLINE WITH (STRAIGHTS, ARCS)
+              VERTEX Ahland.LandesKoord
+              WITHOUT OVERLAPS &gt; 0.02;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image44.png" alt="image44">
+</div>
+<div class="title">Figure 10. Kleine Überschneidungen sind manchmal nicht vermeidbar. Es ist Teil des Modells,<br></div>
+</div>
+<div class="paragraph">
+<p>wie gross die Überlappung (im Bild die Pfeilhöhe) höchstens sein darf.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_9_3"><a class="anchor" href="#_6_9_3"></a>Gerichtete Linien</h4>
+<div class="paragraph">
+<p>Als Skifahrer erwartet man natürlich, dass die Linienstücke der Piste vom Ilishorn zur Ilisegg beim Ilishorn beginnen und bei der Ilisegg enden. Man möchte ja hinunterfahren und nicht die Steigfelle montieren! Zur Beschreibung anderer Objekte (z.B. der Wanderwege) ist jedoch die Richtung nicht von Bedeutung. Wo die Richtung der Linien von Bedeutung ist, soll dies im konzeptuellen Modell auch angegeben werden.</p>
+</div>
+<div id="listing-06_09-04" class="listingblock">
+<div class="title"><a href="#listing-06_09-04">Listing 06.09-04</a></div>
+<div class="content">
+<pre class="highlight"><code>AhlandLinieGerichtet = DIRECTED POLYLINE VERTEX Ahland.LandesKoord;
+
+CLASS Piste =
+  Verlauf: AhlandLinieGerichtet;
+END Piste;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_9_4"><a class="anchor" href="#_6_9_4"></a>Flächen</h4>
+<div class="paragraph">
+<p>Für den Pistendienst der Ilishornbahnen stellte sich die Frage, ob die Beschreibung der Pisten für seine Zwecke genügt. Damit immer klar ist, welche Bereiche jeweils präpariert werden müssen, wird eine Darstellung als Fläche vorgezogen.</p>
+</div>
+<div id="listing-06_09-05" class="listingblock">
+<div class="title"><a href="#listing-06_09-05">Listing 06.09-05</a></div>
+<div class="content">
+<pre class="highlight"><code>DOMAIN
+  AhlandLinieGerichtet = DIRECTED POLYLINE WITH (STRAIGHTS, ARCS)
+                         VERTEX Ahland.LandesKoord;
+
+  AhlandFlaeche = SURFACE WITH (STRAIGHTS, ARCS)
+                  VERTEX Ahland.LandesKoord;
+
+CLASS Piste =
+  Verlauf: AhlandLinieGerichtet;
+  Praepariert: AhlandFlaeche;
+END Piste;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kurz vor der Ilisegg steht mitten in der Piste ein grosser Baum – oder anders gesagt, die Piste geht links und rechts am Baum vorbei.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image45.png" alt="image45">
+</div>
+<div class="title">Figure 11. Mitten in der Piste steht ein grosser Baum. Für Skifahrer mag die Lage brenzlig sein, aber um das Datenmodell braucht man sich nicht zu sorgen: Trotz der Enklave ist die Piste eine einzige Fläche.</div>
+</div>
+<div class="paragraph">
+<p>Ist die zu präparierende Fläche noch eine einzige Fläche? Mit Flächen – mindestens im Sinne von INTERLIS – sind immer zusammenhängende Bereiche gemeint. Auch wenn sie im Innern Aussparungen (Löcher, Enklaven) haben, sind es immer noch zusammen­hängende Bereiche und können damit als eine Fläche beschrieben werden.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Eine Fläche hat genau eine <strong>äussere Begrenzung</strong>. Sie darf keine, eine oder mehrere <strong>innere Begrenzungen</strong> (Enklaven) haben.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Oben beim Ilishorn liegen verschiedene Pisten anfänglich so nahe beieinander, dass eine gemeinsame präparierte Fläche entsteht. Welcher Flächenteil soll nun welcher Piste zugeordnet werden? Im Ilistäli kreuzen sich zwei Pisten. Damit wird die Fläche ja doppelt erfasst. Für die Abschätzung des Arbeitsaufwandes für die Präparierung stört das natürlich.</p>
+</div>
+<div class="paragraph">
+<p>Der Pistendienst hat sich darum für eine andere Modellierung entschieden: Die zu präpa­rierenden Flächen werden nicht direkt den Pisten zugeordnet, sondern als eigenständige Pistenabschnitte geführt. Jeder Pistenabschnitt ist eine Fläche. Die Pistenabschnitte sollen sich aber nie überlappen, da ein bestimmter Geländeabschnitt schliesslich nur einmal prä­pariert werden muss.</p>
+</div>
+<div id="listing-06_09-06" class="listingblock">
+<div class="title"><a href="#listing-06_09-06">Listing 06.09-06</a></div>
+<div class="content">
+<pre class="highlight"><code>DOMAIN
+  AhlandGebietseinteilung = AREA WITH (STRAIGHTS, ARCS)
+                            VERTEX Ahland.LandesKoord;
+
+CLASS Pistenzustand =
+  PraeparierteFlaeche: AhlandGebietseinteilung;
+END Pistenzustand;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Da solche überlappungsfreien Flächen recht häufig vorkommen, wurde dafür in INTERLIS ein eigener Typ (AREA) eingeführt. Statt von Flächen wird von Gebietseinteilungen gesprochen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image46.png" alt="] image:img/image47.png[">
+</div>
+<div class="title">Figure 12. Beim gewöhnlichen Flächentyp (SURFACE, links) dürfen sich die Flächen verschiedener Objekte überlappen. Beispielsweise spricht nichts dagegen, wenn dasselbe Stück Land gleichzeitig zu zwei Skipisten gehört. Dagegen wird bei einer Gebietseinteilung (AREA, rechts) gefordert, dass jeder Punkt im Land eindeutig einem Objekt zugeordnet werden kann, wenn er nicht zur Restfläche (schwarz dargestellt) gehört. Ein Beispiel sind die Abschnitte, welche der Pistendienst präpariert.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_9_5"><a class="anchor" href="#_6_9_5"></a>Dreidimensionale Linientypen</h4>
+<div class="paragraph">
+<p>Ist der zur Liniendefinition gehörige Koordinatentyp ein dreidimensionaler Typ, ist auch der Linientyp dreidimensional. INTERLIS 2 verzichtet dabei darauf, die dritte Dimension gleichberechtigt zu den ersten beiden zu führen, da in geographischen Anwendungen die drei Dimensionen immer in die Lage und eine Höheninformation aufgeteilt werden können.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+INTERLIS 2 unterstützt Linien mit 2.5 Dimensionen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dabei wird davon ausgegangen, dass jeder Stützpunkt (Punkt zwischen zwei Linienstücken) mit Lage und Höhe definiert ist und die Höhe auf dem Linienstück entsprechend der Länge des Kurvenstückteils linear interpoliert wird.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image48.png" alt="image48">
+</div>
+<div class="title">Figure 13. INTERLIS unterstützt 2.5-dimensionale Linien: Die Höhe zwischen zwei Stützpunkten wird immer linear interpoliert. An jener Stelle, wo auf dem Boden ein Viertel des Weges zwischen C und D zurückgelegt wurde, ist auch ein Viertel des Höhenunterschieds überwunden.</div>
+</div>
+<div class="paragraph">
+<p>Sollte man den Pistenverlauf nun nicht mit einem dreidimensionalen Linientyp modellieren? Rein technisch wäre dies offenbar kein Problem, und die Höhe spielt schliesslich beim Ski­fahren eine wichtige Rolle. Dagegen spricht aber, dass die Höhe des Pistenverlaufs keine unabhängige Grösse ist: Kennt man die Lage, ergibt sich die Höhe aus der Geländeform. Die Höhe des Pistenverlaufs kann damit anhand seiner Lage und einem Geländemodell berech­net werden. Aus konzeptueller Sicht ist es darum vorzuziehen, auf die Höheninformation beim Pistenverlauf zu verzichten.</p>
+</div>
+<div class="paragraph">
+<p>Anders kann es bei Strassen und Eisenbahnen sein, denn bei Brücken und Tunnels stimmt die Höhe nicht mit der Terrainhöhe überein. Allenfalls wird auch für die Höhe eine so grosse Genauigkeit gefordert, dass eine Ableitung aus dem Geländemodell nicht in Frage kommt. In gewissen Fällen kann es auch Sinn machen, die Kunstbauten (mit Höhe) unabhängig vom Trasseeverlauf zu modellieren. In diesem Fall würde die effektive Trasseehöhe im Bereich der Kunstbauten aus dem Modell errechnet; an den übrigen Stellen würde auf das Gelände­modell zurückgegriffen.</p>
+</div>
+<div class="paragraph">
+<p>Ein wichtiges Entscheidungskriterium in dieser Frage dürfte der Aufwand für Erfassung und Nachführung sein.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_10"><a class="anchor" href="#_6_10"></a>Wie bläst der Wind? – Strukturen</h3>
+<div class="sect3">
+<h4 id="_6_10_1"><a class="anchor" href="#_6_10_1"></a>Mehrgliedrige Eigenschaften</h4>
+<div class="paragraph">
+<p>Kurz vor der Ilisegg ziehen sich die Leute auf dem Sessellift vom Ilistäli die Kappe fest über die Ohren: Hier pfeift der Wind so richtig. Beim Wind ist eben nicht nur die Windgeschwindigkeit, sondern auch die Richtung aus der er kommt, massgebend. Führt man diese beiden Eigenschaften im Rahmen einer Klassenbeschreibung einfach zusammen mit anderen Attributen auf, kommt dieser Sachverhalt wenig zum Ausdruck.</p>
+</div>
+<div id="listing-06_10-01" class="listingblock">
+<div class="title"><a href="#listing-06_10-01">Listing 06.10-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Wetter;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Für Situationen, wo ein Sachverhalt nicht durch einen einzigen, sondern durch mehrere Werte beschrieben wird, ist es sinnvoll, eine Struktur (Windangabe) zu definieren, welche die verschiedenen Eigenschaften (Windrichtung, Windgeschwindigkeit) umfasst.</p>
+</div>
+<div id="listing-06_10-02" class="listingblock">
+<div class="title"><a href="#listing-06_10-02">Listing 06.10-02</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Windangabe;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mit Struktur verwandte Begriffe sind: Datentyp, strukturierter Datentyp, &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Überall, wo eine Aussage über den Wind gemacht wird, kann diese Struktur verwendet werden.</p>
+</div>
+<div id="listing-06_10-03" class="listingblock">
+<div class="title"><a href="#listing-06_10-03">Listing 06.10-03</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Wetter =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
+END Wetter;
+
+CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: Windangabe;
+END Windmesser;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_10_2"><a class="anchor" href="#_6_10_2"></a>Mehrere Strukturelemente</h4>
+<div class="paragraph">
+<p>Der Windmesser auf der Ilisegg ist noch etwas spezieller: Er zeigt nicht einfach den aktuellen Wert, sondern gleich die letzten sechs gemessenen Werte an. Deswegen werden die Ohren zwar nicht wärmer, aber erstaunlich ist es ja schon, wie schnell die Verhältnisse manchmal ändern können.</p>
+</div>
+<div id="listing-06_10-04" class="listingblock">
+<div class="title"><a href="#listing-06_10-04">Listing 06.10-04</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Windmesser =
+  Standort: MANDATORY LandesKoord;
+  Wind: LIST {6} OF Windangabe;
+END Windmesser;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Das Attribut Wind umfasst also sechs Elemente (Messwerte je mit Windrichtung und Windgeschwindigkeit). Mit LIST OF wird ausgesagt, dass die Reihenfolge relevant ist (z.B. der neuste Wert zuerst). Wäre die Reihenfolge nicht relevant, würde man BAG OF schreiben. Ähnlich wie bei den Beziehungen kann angegeben werden, wie viele Elemente minimal und maximal aufgeführt sein können.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_10_3"><a class="anchor" href="#_6_10_3"></a>Strukturen und Klassen</h4>
+<div class="paragraph">
+<p>Strukturen und (Objekt-)Klassen sind einander formal sehr ähnlich. Sachlich bestehen aber erhebliche Unterschiede. Eine Klasse (Bahngesellschaft, Windmesser) beschreibt, wie Objekte aufgebaut sind. Eine Struktur beschreibt, wie kompliziertere Eigenschaften von Objekten (Windangabe) aufgebaut sind. Eine Struktur dient also dem gleichen Zweck wie ein Wertebereich, nämlich der Beschreibung wie ein Attribut aufgebaut ist. Manchmal bedarf es nur dann einer Struktur, wenn die Eigenschaft detaillierter beschrieben werden soll, während bei einfacher Beschreibung die Angabe eines Wertebereichs genügt (vgl. Abschnitt <a href="#_6_12">Wie ticken die Ilistaler? – Modellierung von Zeit</a>).</p>
+</div>
+<div class="paragraph">
+<p>Die Instanzen von Klassen sind Objekte mit einer Eigenständigkeit (Ilishornbahnen, Windmesser auf der Ilisegg). Die Instanzen von Strukturen sind Strukturelemente (Wind mit 180 km/h aus NE). Der Wert eines Strukturattributes kann genau ein Strukturelement oder eine Menge von Strukturelementen (BAG OF, LIST OF) umfassen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Eine <strong>Struktur</strong> ist formal einer Objektklasse, sachlich einem Wertebereich sehr ähnlich. Die entsprechenden Exemplare, die <strong>Strukturelemente</strong>, haben aber keine eigene Identität, sondern sind Werte von Attributen eines Objektes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Objekte können miteinander in Beziehung stehen (vgl. Abschnitt <a href="#_6_13">Tarifbereiche, Zustandsmeldungen – Beziehungen</a>). Werte (von Wertebereichen oder Strukturen) können dies nicht. Man kann allerdings gleichartige Werte verschiedener Objekte (und verschiedener Klassen) miteinander vergleichen und so in eine Beziehung bringen (vgl. Abschnitt <a href="#_6_17">Tarifbereiche interessieren nicht – Sichten</a>). So könnte man den Preis für den Wanderer-Pass mit dem Preis für das Holzfällersteak vergleichen, das man im Falle des Fussmarsches im Bergrestaurant Ilishorn essen würde. Deswegen besteht aber keine Beziehung zwischen dem Wanderer-Pass und dem Holzfällersteak.</p>
+</div>
+<div class="paragraph">
+<p>Für gewisse Fälle ist es nötig, dass zur Beschreibung einer Eigenschaft auf ein anderes Objekt verwiesen wird (vgl. Abschnitt <a href="#_6_11_3">Strukturelemente dürfen auf Objekte verweisen</a>). Auf einen Wert oder ein Strukturelement kann nie verwiesen werden, sie haben keine Identität.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_10_4"><a class="anchor" href="#_6_10_4"></a>Linien sind spezielle Strukturen</h4>
+<div class="paragraph">
+<p>Das Attribut Verlauf der Piste (vgl. Abschnitt <a href="#_6_9_1">Einfache konzeptuelle Sicht einer Linie</a>) ist als AhlandLinie, diese als POLYLINE definiert. Eine POLYLINE kann man als eine Menge von Linienstücken verstehen (vgl. Abschnitt <a href="#_6_9_2">Linienstücke</a>). Die Definition als POLYLINE ist also nur eine abgekürzte Schreibweise für eine geordnete Menge von Strukturen, wobei die Strukturelemente einer bestimmten Strukturdefinition entsprechen:</p>
+</div>
+<div id="listing-06_10-05" class="listingblock">
+<div class="title"><a href="#listing-06_10-05">Listing 06.10-05</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE AhlandSegment (ABSTRACT) =
+  SegmentEndPoint: MANDATORY Ahland.LandesKoord;
+END AhlandSegment;
+
+STRUCTURE AhlandStartSegment EXTENDS AhlandSegment (FINAL) =
+END AhlandStartSegment;
+
+STRUCTURE AhlandStraightSegment EXTENDS AhlandSegment (FINAL) =
+END AhlandStraightSegment;
+
+STRUCTURE AhlandArcSegment EXTENDS AhlandSegment (FINAL) =
+  ArcPoint: MANDATORY Ahland.LandesKoord;
+  Radius: Length;
+END AhlandArcSegment;
+
+CLASS Piste =
+  Verlauf: LIST {2..*} OF AhlandSegment;
+END Piste;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_11"><a class="anchor" href="#_6_11"></a>Wie wird im Ilistal gesprochen? – Mehrsprachigkeit</h3>
+<div class="sect3">
+<h4 id="_6_11_1"><a class="anchor" href="#_6_11_1"></a>Pro Sprache ein Attribut</h4>
+<div class="paragraph">
+<p>Im bisherigen Modell besitzt eine Bahngesellschaft einen Namen sowie eine Kurzbezeichnung. Wie kann damit erfasst werden, dass die Ilishornbahnen (IhB) auf Französisch <em>Remontées mécaniques de la Dent d&#8217;Ili (RDI)</em> heissen?</p>
+</div>
+<div class="paragraph">
+<p>Es liegt nahe, die Objektklasse Bahngesellschaft um den französische Namen und die Kurz­bezeichnung zu ergänzen:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image49.png" alt="image49">
+</div>
+<div class="title">Figure 14. Die Objektklasse Bahngesellschaft mit Namen und Kurzbezeichnung,<br></div>
+</div>
+<div class="paragraph">
+<p>jeweils auf Deutsch und Französisch.</p>
+</div>
+<div class="paragraph">
+<p>Damit wäre der Fall klar. Was aber, wenn eines Tages der Wunsch aufkommen sollte, den Namen auch noch in einer dritten, vierten oder fünften Sprache zu erfassen? An sich kein Problem – es handelt sich ja nur um eine kleine Änderung des Datenmodells!</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Es ist ja tatsächlich keine grosse Sache, ein Kästchen auf Papier um einige Zeilen zu erweitern. Wenn aber das Computersystem erst einmal realisiert worden ist, kann auch eine derart kleine Änderung aufwändig sein: Eingabeformulare wechseln, Programme müssen angepasst werden, Daten sind neu zu erfassen, usw.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_11_2"><a class="anchor" href="#_6_11_2"></a>Sprachabhängige Bezeichnungen als Strukturelemente</h4>
+<div class="paragraph">
+<p>Besser ist es daher, wenn die konkrete Sprache gar nicht im Datenmodell vorkommt. In der folgenden neuen Version weist eine Bahngesellschaft eine Menge von Bahnbezeichnungen auf. Da der Umgang mit mehreren Sprachen ein häufiges Anliegen ist, erbt die Struktur Bahnbezeichnung die Grundstruktur Bezeichnung, welche die Sprache und einen Text umfasst.</p>
+</div>
+<div id="listing-06_11-01" class="listingblock">
+<div class="title"><a href="#listing-06_11-01">Listing 06.11-01</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Bezeichung =
+  Name: TEXT;
+  Sprache: TEXT*2;
+END Bezeichnung;
+
+STRUCTURE Bahnbezeichnung EXTENDS Bezeichnung =
+  Name (EXTENDED): TEXT*100;
+  Kurzbezeichnung: TEXT*10;
+END Bahnbezeichnung;
+
+CLASS Bahngesellschaft =
+  Namen: BAG {1..*} OF Bahnbezeichnung;
+END Bahngesellschaft;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Oder bildlich:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image50.png" alt="image50">
+</div>
+<div class="title">Figure 15. Einer Bahngesellschaft sind Bahnbezeichnungen zugeordnet. Da eine Gesellschaft mehrere Namen besitzen kann, ist es ohne Aufwand möglich, neue Namen in anderen Sprachen aufzunehmen. Die Details der Zuordnung (Angaben wie 1..* oder das aus­gefüllte Viereck) werden weiter unten im Zusammenhang mit Beziehungen diskutiert.</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Zu beachten ist aber, dass nicht jedes Text-Attribut mehrsprachig sein muss. Familien­namen von Personen werden zum Beispiel nicht übersetzt.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Um Bezeichnungen in einer anderen Sprache hinzuzufügen, sind nur neue Daten zu erfassen. Das Datenmodell muss deswegen nicht angepasst werden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_11_3"><a class="anchor" href="#_6_11_3"></a>Strukturelemente dürfen auf Objekte verweisen</h4>
+<div class="paragraph">
+<p>Wer kennt schon die Sprachabkürzung für das Rätoromanische? rr? rm! Im Rahmen des nationalen Verbandes ist es klar, welche Sprachen für die Bezeichnungen der Bahngesell­schaften in Frage kommen. Bei der Erfassung einer Bahn ist in der Regel nur eine Ab­kürzung zu beachten. Die kann man sich gut merken, weshalb der nationale Tourismus­verband sein Modell wie oben beschrieben aufgebaut hat.</p>
+</div>
+<div class="paragraph">
+<p>Wäre dies nicht der Fall gewesen, hätte man ein Modell gewählt, bei dem die Sprachen eigentliche Objekte sind. Das Sprachobjekt würde die Abkürzung und z.B. den Namen je als Text in der eigenen Sprache und in englisch enthalten.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image51.png" alt="image51">
+</div>
+<div class="title">Figure 16. In dieser Variante verweist die (Sprach)Bezeichnung (eine Struktur) auf die Sprache (eine normale Objektklasse).</div>
+</div>
+<div class="paragraph">
+<p>Die Bezeichnung verweist so auf die Sprache. Dieser Verweis ist aber nicht eine vollwertige Beziehung (vgl. Abschnitt <a href="#_6_13">Tarifbereiche, Zustandsmeldungen – Beziehungen</a>), da die Bezeichnungen keine Identität haben. Aus Sicht des Sprachobjektes besteht darum auch kein direkter Zugang zu den Bezeichnungselementen. Dieser müsste über eine Sicht etabliert werden (vgl. Abschnitt <a href="#_6_17">Tarifbereiche interessieren nicht – Sichten</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_12"><a class="anchor" href="#_6_12"></a>Wie ticken die Ilistaler? – Modellierung von Zeit</h3>
+<div class="sect3">
+<h4 id="_6_12_1"><a class="anchor" href="#_6_12_1"></a>Für einfache Ansprüche genügend</h4>
+<div class="paragraph">
+<p>Der nationale Verband hat eine simple Lösung und für die Gültigkeitsdauer von Billettarten ein Attribut vorgesehen, das die Anzahl Tage (mit einer Stelle nach dem Komma) vorsieht.</p>
+</div>
+<div id="listing-06_12-01" class="listingblock">
+<div class="title"><a href="#listing-06_12-01">Listing 06.12-01</a></div>
+<div class="content">
+<pre class="highlight"><code>Gueltigkeitsdauer: 0.0 .. 1000.0 [d];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn man es – wie die Ilistaler – etwas genauer nimmt, stellen sich verschiedene Fragen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ein Billett, das am Ausgabetag gültig ist, hat doch nicht die gleiche Gültigkeit wie eines, das 24 Stunden gültig ist.</p>
+</li>
+<li>
+<p>Ein Monat hat mal 28, mal 30, mal 31 Tage.</p>
+</li>
+<li>
+<p>Ein Jahr mal 365, mal 366 Tage.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Auf Anfrage erhielten die Ilistaler vom nationalen Verband die Antwort, dass folgendes gelte:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>0.9: am Ausgabetag;</p>
+</li>
+<li>
+<p>30.0: einen Monat;</p>
+</li>
+<li>
+<p>365.0: ein Jahr.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Solche Behelfslösungen sind manchmal verlockend, weil sie auf den ersten Blick einfach sind. Aber was, wenn mit 30.0 Tagen wirklich so viele Tage und nicht ein Monat gemeint ist? Darum ist Vorsicht angesagt!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Wie könnte aber eine bessere Lösung aussehen?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_12_2"><a class="anchor" href="#_6_12_2"></a>Zeitdauer als Struktur</h4>
+<div class="paragraph">
+<p>Objekteigenschaften wie die Gültigkeitsdauer können nicht immer durch einen einzigen Wert genügend präzis beschrieben werden. Manchmal braucht es eine Gruppe von Attributen, manchmal macht es Sinn, verschiedene Erweiterungen vorzusehen. Dafür bietet sich die Struktur an.</p>
+</div>
+<div id="listing-06_12-02" class="listingblock">
+<div class="title"><a href="#listing-06_12-02">Listing 06.12-02</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Zeitdauer (ABSTRACT) =
+END Zeitdauer;
+
+STRUCTURE ZeitdauerHeute EXTENDS Zeitdauer =
+END ZeitdauerHeute;
+
+STRUCTURE ZeitdauerInTagen EXTENDS Zeitdauer =
+  Dauer: MANDATORY Tage [d];
+END ZeitdauerInTagen;
+
+....
+
+CLASS Billettart =
+  Gueltigkeitsdauer: Zeitdauer;
+END Billettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Gültigkeitsdauer einer bestimmten Billettart ist mit einer Instanz (einem Strukturelement) der Struktur ZeitdauerHeute, ZeitdauerInTagen, ZeitdauerInMonaten, etc. beschrieben. Man könnte sogar noch etwas präziser modellieren und dafür sorgen, dass die Einheit einer expliziten Dauer (Tag, Monat, etc.) immer eine Zeitdauer sein muss und für implizite Zeitdauern (Woche, Saison, etc.) eine Aufzählung definieren:</p>
+</div>
+<div id="listing-06_12-03" class="listingblock">
+<div class="title"><a href="#listing-06_12-03">Listing 06.12-03</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Zeitdauer (ABSTRACT) =
+END Zeitdauer;
+
+STRUCTURE ZeitdauerImplizit EXTENDS Zeitdauer =
+  Dauer: MANDATORY (Tag, Woche, Monat, Jahr);
+END ZeitdauerImplizit;
+
+STRUCTURE ZeitdauerExplizit (ABSTRACT) EXTENDS Zeitdauer =
+  Dauer (ABSTRACT): MANDATORY NUMERIC [TIME];
+END ZeitdauerExplizit;
+
+STRUCTURE ZeitdauerInMinuten EXTENDS ZeitdauerExplizit =
+  Dauer (EXTENDED): MANDATORY 0 .. 200 [Units.min];
+END ZeitdauerInMinuten;
+
+STRUCTURE ZeitdauerInTagen EXTENDS ZeitdauerExplizit =
+  Dauer (EXTENDED): MANDATORY 0 .. 1000 [d];
+END inTagen;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image52.png" alt="image52">
+</div>
+<div class="title">Figure 17. Zeitdauer in einer detaillierten Modellierung mit Strukturen. Damit ist es möglich, dass die Gültigkeitsdauer eines Billetts je nach Bedarf ein Monat (ZeitdauerImplizit; links) oder exakt dreissig Tage (ZeitdauerInTagen; rechts) ist.</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Eine präzise, detaillierte, sachgerechte Modellierung ist grundsätzlich anzustreben. Man muss sich dabei aber immer bewusst sein, dass sie nur einen Sinn macht, wenn sie auch umgesetzt werden kann. Was bedeutet es für die Programmpakete? Und vor allem: Was bedeutet es für die Leute, die Daten erfassen und bearbeiten? Und um­gekehrt: Was bedeutet es, wenn man vom möglichst korrekten Modell abweicht? Es kann also auch besser sein, sich mit der einfachen Lösung zufrieden zu geben.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_12_3"><a class="anchor" href="#_6_12_3"></a>Genaue Zeitdauer</h4>
+<div class="paragraph">
+<p>Zeitdauern gibt es nicht nur für Billette. Die Ilistaler veranstalten jeden Freitag ein Skirennen für ihre Gäste. Dort werden Rennzeiten in Minuten, Sekunden und deren Bruchteilen gemessen. Es ist nahe liegend, dafür eine Struktur zu definieren, welche die Attribute Minuten und Sekunden aufweist:</p>
+</div>
+<div id="listing-06_12-04" class="listingblock">
+<div class="title"><a href="#listing-06_12-04">Listing 06.12-04</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
+  Minuten: 0 .. 9999.99 [min];
+  Sekunden: 0.00 .. 59.99 [s];
+END ZeitdauerInMinuten;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Damit der Zusammenhang zwischen Minuten und Sekunden ausgedrückt werden kann, bietet sich eine zusätzliche Möglichkeit an:</p>
+</div>
+<div id="listing-06_12-05" class="listingblock">
+<div class="title"><a href="#listing-06_12-05">Listing 06.12-05</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE ZeitdauerInMinuten EXTENDS Zeitdauer =
+  Minuten: 0 .. 9999.99 [min];
+  CONTINOUS SUBDIVISION Sekunden: 0.00 .. 59.99 [s];
+END ZeitdauerInMinuten;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Damit ist nichts darüber ausgesagt, in welcher Form solche Zeitdauern in einem Computer gespeichert werden. Es handelt sich nur um ein Mittel, möglichst konzeptnah zu beschrei­ben, was man wirklich will.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_12_4"><a class="anchor" href="#_6_12_4"></a>Formatierte Darstellung von Strukturen</h4>
+<div class="paragraph">
+<p>Das Gästeskirennen wird immer so gestaltet, dass selbst die Skilehrer sicher mehr als dreissig Sekunden für die Abfahrt benötigen. Wer mehr als drei Minuten und dreissig Sekunden braucht, erhält am Ziel einen wärmenden Tee, die Zeit wird jedoch nicht festgehalten.</p>
+</div>
+<div class="paragraph">
+<p>Wie kann nun der zulässige Wertebereich (30 Sekunden bis 3 Minuten und 30 Sekunden) festgehalten werden? Die Lösung liegt in formatierten Wertebereichen:</p>
+</div>
+<div id="listing-06_12-06" class="listingblock">
+<div class="title"><a href="#listing-06_12-06">Listing 06.12-06</a></div>
+<div class="content">
+<pre class="highlight"><code>DOMAIN ZeitdauerinMinSec = FORMAT BASED ON ZeitdauerInMinuten
+  ( Minuten ":" Sekunden );
+
+CLASS Rennzeit =
+  Vorname: TEXT*50;
+  Name: TEXT*50;
+  Laufzeit: FORMAT ZeitdauerinMinSec "0:30" .. "3:30";
+END Rennzeit;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ein formatierter Wertebereich nimmt auf eine Struktur Bezug und legt fest, wie aus den einzelnen Attributen der Struktur und aus Textkonstanten eine Zeichenkette entsteht, die den Wert wiedergibt. In dieser Form können Wertebereichseinschränkungen festgelegt werden. Die formatierte Darstellung wird auch für den Datentransfer verwendet. Damit ist es zum Teil möglich, gewisse extern verlangte Darstellungsformen direkt zu unterstützen. Dies kann insbesondere für die XML-konforme Darstellung von Zeitdauern und Zeitpunkten genutzt werden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_12_5"><a class="anchor" href="#_6_12_5"></a>Zeitpunkte</h4>
+<div class="paragraph">
+<p>Statusmeldungen über das Wetter, die Wartezeiten, die Pistenverhältnisse sollen im Ilistal immer mit dem Zeitpunkt versehen werden, in dem der Zustand festgestellt wurde. Erster Gedanke: Uhrzeit in Stunden und Minuten. Ja, damit man Statistiken erstellen kann, gehört natürlich noch das Datum dazu. Das sollte genügen!</p>
+</div>
+<div class="paragraph">
+<p>Wirklich? Die Ilishornbahnen führen in schönen Vollmondnächten Sonderkurse zum Ilishorn, damit dort die beliebte Dracula-Party steigen kann. Da werden natürlich auch mitten in der Nacht Statusmeldungen geschickt. Auch um 2.30 Uhr. Auch an jenem Sonntag in der Früh, als von der Sommer- auf die Winterzeit umgestellt wurde. Allerdings gab es da ein grosses Durcheinander: Die neuste Meldung war plötzlich älter als die letzte! Natürlich: Alle Zeiten zwischen 2.00 und 3.00 gab es in jener Nacht doppelt, einmal gemäss Sommerzeit, einmal gemäss Winterzeit.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Bei Zeitpunkten ist es immer wichtig zu wissen, welches das Bezugssystem ist.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Meinen wir Sommerzeit, Winterzeit, UTC? Je internationaler, desto wichtiger! Da kommt man schnell einmal auf den Gedanken, alles in UTC festzuhalten und es dem Computer zu überlassen, die Daten dem Benützer gemäss seiner aktuellen Zeitzone zu präsentieren.</p>
+</div>
+<div class="paragraph">
+<p>INTERLIS 2 bietet die Möglichkeit an, nicht nur den Wertebereich und die Einheit, sondern auch das Bezugssystem zu beschreiben. Für die UTC-Zeiten sind bereits formatierte Wertebereiche gemäss den XML-Regeln vordefiniert (XMLTime, XMLDate, XMLDateTime).</p>
+</div>
+<div class="paragraph">
+<p>Gerade Öffnungs- oder Betriebszeiten werden aber vorzugsweise in der lokalen Zeit be­schrieben. Mitternacht ist eben um 24.00 Uhr, unabhängig davon, ob gerade Sommer- oder Winterzeit ist. Dies sind aber nicht eigentliche Zeitpunkte. Vielmehr beschreiben sie Differen­zen zu Mitternacht gemäss der aktuell gültigen Zeit.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Überall dort, wo die Zeit, vor allem aber wo Zeitpunkte von Bedeutung sind, ist höchste Aufmerksamkeit geboten.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_13"><a class="anchor" href="#_6_13"></a>Tarifbereiche, Zustandsmeldungen – Beziehungen</h3>
+<div class="sect3">
+<h4 id="_6_13_1"><a class="anchor" href="#_6_13_1"></a>Rollen</h4>
+<div class="paragraph">
+<p>Was ist nun eine Bahngesellschaft für eine bestimmte Bergbahn? Eigentümerin? Betreiberin!</p>
+</div>
+<div class="paragraph">
+<p>In der Beziehung zwischen Bahngesellschaft und Bergbahn ist die Bahngesellschaft in der Rolle der Betreiberin.</p>
+</div>
+<div class="paragraph">
+<p>Der Rollenname wird in der Grafik am Ende der Beziehungslinie auf der Seite des Inhabers der Rolle angeschrieben. Wenn er sich aber nicht vom Klassennamen unterscheidet, wird der Rollenname meistens weggelassen.</p>
+</div>
+<div id="listing-06_13-01" class="listingblock">
+<div class="title"><a href="#listing-06_13-01">Listing 06.13-01</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION =
+  Betreiberin -- {1} Bahngesellschaft;
+  Bahn -- {*} Bergbahn;
+END;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abbildung 48: Gemäss diesem Modell ist es möglich, nach der Betreiberin einer Bergbahn zu fragen. «Betreiberin» ist eine <em>Rolle</em>, welche die Klasse «Bahngesellschaft» gegenüber der Klasse «Bergbahn» einnimmt. Unten ist die Beziehung zwischen Bahngesellschaft und Bergbahn in der Schreibweise von INTERLIS wiedergegeben.</p>
+</div>
+<div class="paragraph">
+<p>Es ist durchaus normal, dass Rollennamen gewählt werden, die sich nicht von den Klassen­namen unterscheiden. In der Beziehung Bergbahn – Tarifbereich macht es z.B. wenig Sinn, weitere Namen einzuführen. Allerdings ist der Bedarf nach zusätzlichen Namen ganz offen­sichtlich gegeben, wenn eine Beziehung zwischen Objekten der gleichen Klasse besteht. So möchte man auch darstellen können, dass eine Bahngesellschaft andere Bahngesellschaften als Tochtergesellschaften besitzt.</p>
+</div>
+<div id="listing-06_13-02" class="listingblock">
+<div class="title"><a href="#listing-06_13-02">Listing 06.13-02</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION =
+  Tochter -- {*} Bahngesellschaft;
+  Mutter -- {0..1} Bahngesellschaft;
+END;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abbildung 49: Eine Bahngesellschaft kann einerseits Mutter, andererseits auch Tochter einer anderen Bahngesellschaft sein. In solchen Fällen eignet sich der Klassenname nicht als Rollen­name. Das Beispiel ist links in der graphischen Schreibweise von UML, rechts in der textuellen von INTERLIS wiedergegeben.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_2"><a class="anchor" href="#_6_13_2"></a>Stärke einer Beziehung</h4>
+<div class="paragraph">
+<p>Assoziation, Aggregation und Komposition sind Ausdrücke für unterschiedliche Stärken von Beziehungen.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Assoziation</strong> – Die Beziehung zwischen Tarifbereich und Bergbahn ist recht lose. Zwei Objekte sind einander zugeordnet, ohne dass eines dem anderen untergeordnet wäre. Die Assoziation ist eine Beziehung unter Gleichberechtigten. Meist sind in einem Datenmodell die Mehrzahl der Beziehungen gewöhnliche Assoziationen.</p>
+</li>
+<li>
+<p><strong>Aggregation</strong> – Eine Bergbahn ist ein recht selbständiges Objekt. Es braucht aber immer eine Bahngesellschaft, um sie zu betreiben. Die Bahngesellschaft ist der Bergbahn übergeordnet.</p>
+</li>
+<li>
+<p><strong>Komposition</strong> – Eine sehr enge Beziehung besteht zwischen einer Bergbahn und ihren Masten. Ein Mast macht eigentlich nur im Zusammenhang mit einer bestimmten Bergbahn einen Sinn. Die Komposition ist die Beziehung zwischen einem Ganzen und seinen (meist physischen) Bestandteilen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Die Einteilung gemäss diesen Stärken ist nicht immer einfach. Aus Sicht der Informatik gibt es aber noch weitere Regeln, die den Entscheid manchmal vereinfachen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Löschen</strong> – Wird eine Bahngesellschaft gelöscht, hat das auf die zugeordneten Bergbahnen nur zur Folge, dass sie keine Betreiberin mehr haben. Wird jedoch eine Bergbahn gelöscht, werden auch alle Masten gelöscht. Das Löschen eines Ganzen entfernt auch alle Bestandteile, die mit ihm über eine Komposition verbunden sind.</p>
+</li>
+<li>
+<p><strong>Kopieren</strong> – Wird eine Bahngesellschaft kopiert (in der Natur natürlich nicht so einfach wie im Computer), werden auch für alle zugeordneten Bergbahnen Kopien erstellt und der neuen Bahngesellschaft zugeordnet. Für jede Bergbahn werden entsprechend wieder Kopien der Masten erstellt. Das Kopieren eines Objekts erzeugt auch Duplikate jener Objekte, die ihm über Aggregationen und Kompositionen zugeordnet sind. Da­gegen entstehen keine Kopien für jene Objekte, die ihm über gewöhnliche Assozia­tionen zugeordnet sind.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image55.png" alt="] image:img/image56.png[] image:img/image57.png[">
+</div>
+<div class="title">Figure 18. Assoziation (links), Aggregation (mitte) und Komposition (rechts) sind verschiedene Arten von Beziehungen. Sie unterscheiden sich in ihrer Bindungsstärke: Ein Mast ist so eng mit seiner Bergbahn verbunden, dass er als Bestandteil der Bahn aufgefasst werden kann. Im Vergleich zur Komposition sind Aggregation und Assoziation schwächer.</div>
+</div>
+<div class="paragraph">
+<p>Die Schreibweise in INTERLIS ist der graphischen Darstellung nachempfunden. Der Rollen­name muss jedoch auch dann geschrieben werden, wenn er sich nicht vom Namen der Klasse unterscheidet.</p>
+</div>
+<div id="listing-06_13-03" class="listingblock">
+<div class="title"><a href="#listing-06_13-03">Listing 06.13-03</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION =
+  Bergbahn -- Bergbahn;
+  Tarifbereich -- Tarifbereich;
+END;
+
+ASSOCIATION =
+  Betreiberin -&lt;&gt; Bahngesellschaft;
+  Bergbahn -- Bergbahn;
+END;
+
+ASSOCIATION =
+  Bergbahn -&lt;#&gt; Bergbahn;
+  Mast -- Mast;
+END;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_3"><a class="anchor" href="#_6_13_3"></a>Beziehungen mit Attributen</h4>
+<div class="paragraph">
+<p>Diverse Billettarten berechtigen zur Fahrt auf Bergbahnen, die von verschiedenen Bahngesellschaften betrieben werden. Damit stellt sich die Frage, wie der mit dem Billettverkauf erzielte Erlös auf die einzelnen Gesellschaften verteilt wird. Zum Beispiel berechtigt das nationale Generalabonnement auch zur Fahrt mit der Ilishornbahn. Gemäss Abmachung erhalten die Ilishornbahnen dafür 0.13% des Umsatzes an Generalabonnements vergütet.</p>
+</div>
+<div class="paragraph">
+<p>Beziehungen können auch Attribute aufweisen und haben so den Charakter von speziellen Klassen.</p>
+</div>
+<div id="listing-06_13-04" class="listingblock">
+<div class="title"><a href="#listing-06_13-04">Listing 06.13-04</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION Anteil =
+  Beteiligter -- {*} Bahngesellschaft;
+  Billettart -- {*} Billettart;
+
+  ATTRIBUTE
+    Anteil: 0.00 .. 100.00 [Units.Percent];
+
+END Anteil;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abbildung 51: Eine Bahngesellschaft ist zu einem festgelegten Prozentsatz am Erlös aus dem Verkauf einer bestimmten Art von Billetten beteiligt. Der vereinbarte Anteil ist weder eine Eigenschaft der Bahngesellschaft noch der Billettart. Stattdessen handelt es sich um eine Eigenschaft ihrer Beziehung. Solche Situationen werden mit Beziehungsklassen modelliert.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_4"><a class="anchor" href="#_6_13_4"></a>Mehrgliedrige Beziehungen</h4>
+<div class="paragraph">
+<p>Um einen besseren Überblick über die Billettverkäufe zu erhalten, möchte der nationale Verband in Zukunft noch festhalten, welche Verkaufsstelle von welcher Billettart in welcher Saison wie viele Exemplare verkauft hat.</p>
+</div>
+<div id="listing-06_13-05" class="listingblock">
+<div class="title"><a href="#listing-06_13-05">Listing 06.13-05</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION Verkauf =
+  Verkaufsstelle -- {*} Verkaufsstelle;
+  Saison -- {*} Saison;
+  Billettart -- {*} Billettart;
+
+  ATTRIBUTE
+    Anzahl: 1 .. 999999 [Units.CountedObjects];
+    Betrag: 0.00 .. 9999999.99 [Ahland.Taler];
+
+END Verkauf;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abbildung 52: Der Verkauf wird pro Verkaufsstelle, Billettart und Saison erfasst. Es handelt sich um eine mehrgliedrige Beziehung zwischen drei gleichberechtigten Partnern (den Klassen Verkaufsstelle, Billettart und Saison). Dagegen ist «Verkauf» eine Beziehungsklasse, welche Eigenschaften der Beziehung (zum Beispiel die Anzahl verkaufter Billette sowie den umgesetzten Betrag) festhält.</p>
+</div>
+<div class="paragraph">
+<p>Verkaufsstelle, Billettart und Saison stehen damit in einer gleichberechtigten Beziehung, auf der zudem noch die Anzahl der verkauften Billette und der umgesetzte Betrag als Attribut festgehalten sind. Diese Beziehung verbindet also nicht mehr zwei, sondern drei Klassen.</p>
+</div>
+<div class="paragraph">
+<p>Was aber bedeuten bei mehrgliedrigen Beziehungen die Kardinalitätsangaben genau? Die Kardinalitätsangabe z.B. bei der Saison (*) sagt aus, dass es für eine bestimmte Kombina­tion von Billettart und Verkaufsstelle beliebig viele Zuordnungen zu Saison-Objekten geben darf. Würde dort die Kardinalität 1 angegeben, würde das bedeuten, dass eine bestimmte Billettart durch eine bestimmte Verkaufsstelle nur während einer Saison verkauft werden kann.</p>
+</div>
+<div class="paragraph">
+<p>Etwas kompliziert. Braucht es wirklich mehrgliedrige Beziehungen, oder könnte man sie auf die üblichen Zweierbeziehungen reduzieren?</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image60.png" alt="image60">
+</div>
+<div class="title">Figure 19. Beziehungen zwischen mehr als zwei Beteiligten lassen sich auf gewöhnliche Zweier­beziehungen reduzieren. Die frühere Beziehungsklasse (hier: Verkauf) wird zum gleich­berechtigten Partner, und die Beteiligten stehen neu nur noch mit der früheren Bezie­hungsklasse in Beziehung.</div>
+</div>
+<div class="paragraph">
+<p>Dieses Modell drückt aber weniger klar aus, dass die drei Klassen Verkaufsstelle, Billettart und Saison als Dreiergruppe miteinander in Beziehung stehen.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_5"><a class="anchor" href="#_6_13_5"></a>Geordnete Beziehungen</h4>
+<div class="paragraph">
+<p>Betrachtet man alle Bergbahnen, die der Bahngesellschaft Ilishorn-Bahnen zugeordnet sind, ist damit keine bestimmte Ordnung verbunden. Die Frage, ob in der Zuordnung die Luftseilbahn vor oder nach der Gondelbahn erscheint, macht eigentlich gar keinen Sinn.</p>
+</div>
+<div class="paragraph">
+<p>Natürlich kann man die Bahnen einer Gesellschaft in alphabetischer Reihenfolge auflisten. Diese Sortierung ist aber nicht eine Eigenschaft der Beziehung zwischen Bahngesellschaft und Bergbahn, sondern eine reine Frage der Darstellung. Für einen anderen Zweck könnte auch eine Sortierung nach Investitionskosten, Fahrzeit usw. interessant sein.</p>
+</div>
+<div class="paragraph">
+<p>Aber wäre es nicht sinnvoll, mit der Ordnung festzuhalten, in welcher Reihenfolge die Beziehung etabliert wurde? Zuerst wurde die Luftseilbahn eröffnet, dann der Skilift, dann die Gondelbahn, usw. In diesem Fall wäre es allerdings besser, die Beziehung mit den Attributen Betriebsanfang und Betriebsende zu versehen. Dann könnte sogar festgehalten werden, welche Betreiberin es über die Zeit hinweg gegeben hat. Es macht in diesem Fall auch keinen Sinn mehr, die Beziehung als Aggregation aufzufassen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image61.png" alt="image61">
+</div>
+<div class="title">Figure 20. Um festzuhalten, in welcher Reihenfolge die Bergbahnen einer Gesellschaft ihren Betrieb aufgenommen haben, könnte man an sich eine geordnete Beziehung ver­wenden. Das Modell der nächsten Abbildung ist jedoch besser.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image62.png" alt="image62">
+</div>
+<div class="title">Figure 21. Das Modell ist mit einer Beziehungsklasse sauberer, weil damit weitere Auswertungen möglich sind. So können hier die Bahnen einer Gesellschaft auch anhand der Betriebs­einstellung sortiert werden, und ein Computerprogramm kann anzeigen, von wem eine Bergbahn in der Vergangenheit betrieben wurde.</div>
+</div>
+<div class="paragraph">
+<p>Ähnliche Überlegungen gelten für die Beziehung zwischen Bergbahn und Masten: Mit der Ordnung der Beziehung könnte man die Reihenfolge von Tal- zu Bergstation ausdrücken. Konzeptuell ist es aber besser, beim Mast ein Lageattribut zu führen und die Reihenfolge dann aus dieser Lage und dem Trasseeverlauf abzuleiten.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Bevor eine Beziehung als geordnet deklariert wird, sollte genau überlegt werden, ob die Ordnung nicht aus Attributen der beteiligten Klassen oder der Beziehung abgeleitet werden kann.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Wo machen geordnete Beziehungen überhaupt einen Sinn? Die Gondelbahn von Ilisbad aufs Ilishorn hat Gondeln, die nicht fix auf dem Transportseil montiert sind. Sie können vielmehr in der Tal- und Bergstation abgestellt und je nach Bedarf ins Seil eingeklinkt werden. Welche Gondeln sind aktuell in welcher Reihenfolge auf das Seil eingeklinkt?</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image63.png" alt="image63">
+</div>
+<div class="title">Figure 22. Zwar besitzt eine Gondel eine Nummer, aber diese sagt nichts über die Reihenfolge auf dem Seil aus. In diesem Fall ist eine geordnete Beziehung sinnvoll.</div>
+</div>
+<div class="paragraph">
+<p>Hier ist die Ordnung gefragt. Die Nummer der Gondel kann nicht für die Ordnung heran­gezogen werden. Diese identifiziert einfach die konkrete Gondel. Über die Reihenfolge, wie sie aktuell auf dem Seil angeordnet sind, sagt sie überhaupt nichts aus.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_6"><a class="anchor" href="#_6_13_6"></a>Beziehungen erweitern</h4>
+<div class="paragraph">
+<p>Eine Bahngesellschaft steht zu einer Reihe von Personen in Beziehung. Die einen sind bei ihr angestellt, die anderen an ihr beteiligt. Ähnlich wie zuvor bei den verschiedenen Arten von Bergbahnen gibt es auch hier verschiedene Möglichkeiten der Modellierung.</p>
+</div>
+<div class="paragraph">
+<p>Eine Möglichkeit besteht darin, zwei unterschiedliche Beziehungen zwischen Bahngesell­schaft und Person zu definieren: eine für die Anstellung, eine für die Beteiligung. Falls diese Unterscheidung einmal nicht wesentlich sein sollte (vielleicht für den weihnachtlichen Versand eines Schoggi-Bähnlis), muss sich eine Anwendung aber um beide Beziehungen kümmern.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image64.png" alt="image64">
+</div>
+<div class="title">Figure 23. Eine Person kann gegenüber einer Bahngesellschaft Angestellter und/oder Beteiligter sein. Hier wird dies mit zwei verschiedenen Beziehungen modelliert. Will nun die Bahn­gesellschaft sowohl ihre Angestellten als auch ihre Teilhaber mit einem weihnachtlichen Schoggiversand beglücken, sind beide Beziehungen auszuwerten.</div>
+</div>
+<div class="paragraph">
+<p>Eine andere Möglichkeit der Modellierung besteht darin, primär eine Beziehung zu definieren (Kontakt) und diese dann zu Anstellung bzw. Beteiligung zu erweitern. Solange es für eine Anwendung nicht relevant ist, in welcher Art des Kontaktes die Person zur Bahngesellschaft steht, nutzt sie die Kontakt-Beziehung und erhält so alle Personen, die in irgendeiner Art und Weise zur Bahngesellschaft in Kontakt stehen. Eine Anwendung, für die nur die Angestellten relevant sind, nutzt die erweiterte Beziehung Anstellung und erhält so nur die angestellten Personen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image65.png" alt="image65">
+</div>
+<div class="title">Figure 24. In dieser Variante ist die Beziehung zwischen Bahngesellschaft und Person allgemein mit der Beziehungsklasse «Kontakt» modelliert. Als Spezialfall eines Kontaktes gibt es auch die Anstellung und die Beteiligung. Wer nach den Kontakten der Gesellschaft fragt, wird automatisch auch die Angestellten und die Beteiligten erhalten. Beziehungsklassen sind also ähnlich wie Objektklassen erweiterbar, was im Diagramm wiederum mit einem weissen Pfeil gezeichnet wird.</div>
+</div>
+<div class="paragraph">
+<p>Man könnte die Anstellungsbeziehung nochmals erweitern und z.B. eine Beziehung «Direk­tion» einführen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image66.png" alt="image66">
+</div>
+<div class="title">Figure 25. Die Beziehung zwischen einer Bahngesellschaft und ihrem Direktor («Direktion») ist ein Spezialfall der Beziehung «Anstellung».</div>
+</div>
+<div class="paragraph">
+<p>Erweiterungen von Beziehungen gehen häufig Hand in Hand mit der Erweiterung von Objektklassen. Statt dass man z.B. von Anfang an sagt, eine Bergbahn weise Masten auf, spricht man zunächst nur von Betriebsmitteln. Diese sind der Bahn locker, also mittels Asso­ziation, zugeordnet. Da Masten eine wichtige Eigenschaft verschiedener Arten von Berg­bahnen sind, wird die Klasse «BahnMitMasten» eingeführt. Diese hat eine Beziehung zu den Masten. Diese wird aber als Erweiterung der Beziehung zwischen Bergbahnen und Be­triebsmitteln geführt. Da die Masten – etwa im Gegensatz zu einem Pistenfahrzeug – un­mittelbar zu Bergbahn gehören, wird diese Beziehung zur Komposition. Die Stärke einer Beziehung darf in einer Erweiterung aber nur verstärkt, nicht aber gelockert werden, da sie sonst im Widerspruch zur Definition in der Basisdefinition stünde.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image67.png" alt="image67">
+</div>
+<div class="title">Figure 26. Bergbahn und Betriebsmittel führen eine allgemeine Beziehung, die von spezialisierten Klassen zur Komposition verstärkt wird.</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_13_7"><a class="anchor" href="#_6_13_7"></a>Ableitbare Beziehungen</h4>
+<div class="paragraph">
+<p>Wenn der Magen knurrt, wählt man lieber eine Skipiste, an der ein Gasthaus liegt. Deswegen müssen aber Pisten und Gasthäuser nicht miteinander in einer ständigen, ausdrücklichen Beziehung stehen. Es genügt zu wissen, dass das Gasthaus in der Nähe der Piste steht. Eine Aussage, die auf Grund von Lage des Gasthauses und Verlauf der Piste (je in Landeskoordinaten) herleitbar ist.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Nicht alles, was im Rahmen von Auswertungen zusammengehört, muss über Bezie­hungen verbunden sein. Gerade bei räumlichen Daten bilden die Koordinaten ein ideales Mittel, um Zusammenhänge bei Bedarf herzustellen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Es macht auch keinen Sinn, sämtliche ableitbaren Beziehungen ins konzeptuelle Modell auf­zunehmen. Darum fehlt die ableitbare Beziehung zwischen Gasthäusern und Pisten im konzeptuellen Modell.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Im konzeptuellen Modell sollen nur diejenigen impliziten Beziehungen beschrieben werden, die von konzeptueller Bedeutung sind. Darüber hinaus können die Programme natürlich weitere Beziehungen herstellen, indem sie die Attribute der Objekte geschickt (nicht zuletzt gemäss ihrer Lage) miteinander vergleichen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Von konzeptueller Bedeutung sind nicht zuletzt Beziehungen, die in einigen Fällen explizit definiert werden müssen und in anderen Fällen ableitbar sind. Die Ableitung kann sich auf die Geographie oder auf andere Eigenschaften abstützen. Beispielsweise führten die Ilistaler einen speziellen Tarifbereich ein, der als Fläche umschrieben ist und alle Bergbahnen umfasst, deren Tal- und Bergstation innerhalb der Fläche liegt.</p>
+</div>
+<div id="listing-06_13-06" class="listingblock">
+<div class="title"><a href="#listing-06_13-06">Listing 06.13-06</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS TarifbereichInGegend EXTENDS NatTour.Billette.Tarifbereich =
+  Gegend: AhlandFlaeche;
+END TarifbereichInGegend;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Beziehung zwischen diesem speziellen Tarifbereich und den Bergbahnen in der zuge­hörigen Gegend kann mit Sichten (vgl. Abschnitt <a href="#_6_17">Tarifbereiche interessieren nicht – Sichten</a>) automatisch etabliert werden.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_14"><a class="anchor" href="#_6_14"></a>Einzigartige Ilishornbahnen – Konsistenzbedingungen</h3>
+<div class="sect3">
+<h4 id="_6_14_1"><a class="anchor" href="#_6_14_1"></a>Grundsätzliches</h4>
+<div class="paragraph">
+<p>Wir erinnern uns, dass die Ilishornbahnen für die einzelnen Bergbahnen jeweils den aktuel­len Zustand erfassen wollen, unter anderem das Wetter bei der Bergstation:</p>
+</div>
+<div id="listing-06_14-01" class="listingblock">
+<div class="title"><a href="#listing-06_14-01">Listing 06.14-01</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+END Zustandsmeldung;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mit dieser Definition wäre auch eine Meldung mit einer undefinierten Windrichtung und einer Windgeschwindigkeit von 60 km/h erlaubt. Das ist aber nicht die Meinung. Eine undefinierte Windrichtung soll Windstille bedeuten. Dann aber ist die Windgeschwindigkeit natürlich 0. Und umgekehrt soll bei einer Windgeschwindigkeit grösser Null immer auch die Windrichtung definiert sein.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Situationen, in denen zwischen verschiedenen Attributen eines Objektes oder gar zwischen verschiedenen Objekten ein bestimmter Zusammenhang bestehen muss, werden mit <strong>Konsistenzbedingungen</strong> beschrieben.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Eine Konsistenzbedingung wird in der Regel mit einer Formel beschrieben, deren Aus­wertung ergibt, ob die Bedingung erfüllt ist oder nicht. Mit einem solchen logischen Ausdruck kann die Windstille geregelt werden:</p>
+</div>
+<div id="listing-06_14-02" class="listingblock">
+<div class="title"><a href="#listing-06_14-02">Listing 06.14-02</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Windrichtung: (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+  MANDATORY CONSTRAINT
+    DEFINED (Windrichtung) == (Windgeschwindigkeit &gt; 0);
+END Zustandsmeldung;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Genau dann wenn die Windrichtung definiert ist, muss die Windgeschwindigkeit grösser Null sein. Ist die Windrichtung nicht definiert, muss die Geschwindigkeit Null sein. Es wird also gefordert, die «Definiertheit» der Windrichtung solle gleich (==) der «Positivheit» der Wind­geschwindigkeit sein.</p>
+</div>
+<div class="paragraph">
+<p>Häufig sind aber Konsistenzbedingungen vermeidbar, wenn das Modell anders aufgebaut wird. Packt man die Windangaben in eine Struktur und sagt, dass diese Struktur als Ganzes fakultativ ist, braucht es keine Konsistenzbedingung. Bei Windstille fehlt das Strukturelement. Windet es, sind zwingend Windrichtung und Windgeschwindigkeit vorhanden.</p>
+</div>
+<div id="listing-06_14-03" class="listingblock">
+<div class="title"><a href="#listing-06_14-03">Listing 06.14-03</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Windangabe =
+  Windrichtung: MANDATORY (N, NE, E, SE, S, SW, W, NW) CIRCULAR;
+  Windgeschwindigkeit: MANDATORY 0 .. 200 [kmh];
+END Wind;
+
+CLASS Zustandsmeldung =
+  Temperatur: MANDATORY –50 .. 50 [oC];
+  Wind: Windangabe;
+  Wartezeit: ZeitdauerInMinuten;
+  Erfasst: MANDATORY ZeitpunktMEZ;
+END Zustandsmeldung;</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Bei Konsistenzbedingungen – insbesondere wenn sie kompliziert sind – besteht immer der Verdacht, dass das optimale Modell noch nicht gefunden wurde. Andererseits macht es auch keinen Sinn, ein an sich einfaches Modell künstlich kompliziert zu machen, nur um eine Konsistenzbedingung zu vermeiden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_14_2"><a class="anchor" href="#_6_14_2"></a>Plausibilitätsbedingungen</h4>
+<div class="paragraph">
+<p>Die Angestellten der Ilishornbahn verdienen allesamt nicht schlecht, aber der Direktor bezieht ein doch deutlich höheres Gehalt.</p>
+</div>
+<div class="paragraph">
+<p>Konsistenzbedingungen gelten üblicherweise für alle Objekte der betreffenden Klasse. In INTERLIS 2 werden sie als MANDATORY CONSTRAINT bezeichnet. Man spricht gelegent­lich von «harten» Bedingungen, weil sie immer erfüllt sein müssen. Nun gibt es aber auch Bedingungen, die in aller Regel, aber eben nicht immer erfüllt sind.</p>
+</div>
+<div class="paragraph">
+<p>Bei Attributen wie Monatssalär oder Körpergrösse muss der grundsätzlich zulässige Bereich relativ gross gewählt werden. Die Werte der meisten Objekte liegen aber unterhalb einer wesentlich tieferen Grenze. Ausnahmen sind dennoch möglich, wie zum Beispiel für den Lohn des Bahndirektors.</p>
+</div>
+<div id="listing-06_14-04" class="listingblock">
+<div class="title"><a href="#listing-06_14-04">Listing 06.14-04</a></div>
+<div class="content">
+<pre class="highlight"><code>ASSOCIATION Anstellung =
+  ...
+  Monatssalaer: MANDATORY 0 .. 20000 [Taler];
+  ...
+  CONSTRAINT &gt;= 95%
+    Monatssalaer &lt; 10000;
+END Anstellung;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Es wird geschätzt, dass das Monatssalär in mindestens (&gt;=) 95% aller Fälle unter 10000 Talern liegt. Umfasst ein Modell solche «weichen» Bedingungen, wird es möglich, Daten bei der Eingabe auf ihre Plausibilität zu prüfen und statistisch zu kontrollieren.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_14_3"><a class="anchor" href="#_6_14_3"></a>Eindeutigkeitsbedingungen</h4>
+<div class="paragraph">
+<p>Wie werden die Personen identifiziert, die bei Bergbahngesellschaften arbeiten oder an ihnen beteiligt sind? Nahe liegend, aber ungeeignet wäre es, hierzu Name und Vorname zu verwenden:</p>
+</div>
+<div id="listing-06_14-05" class="listingblock">
+<div class="title"><a href="#listing-06_14-05">Listing 06.14-05</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  UNIQUE Name, Vorname;
+END Person;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Es wäre dann unzulässig, zwei verschiedene Personen mit der gleichen Kombination von Name und Vorname aufzuführen. Der neue Lokomotivführer Hans Huber darf seine Arbeit also erst antreten, wenn zuvor sein Namensvetter in der Buchhaltung entlassen wird.</p>
+</div>
+<div class="paragraph">
+<p>Was wäre eine bessere Eindeutigkeitsbedingung? Warum überhaupt Eindeutigkeitsbedin­gungen?</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Eine <strong>Eindeutigkeitsbedingung</strong> dient nicht der Identifikation eines Objektes innerhalb eines Programmpakets. Stattdessen beschreibt es, welche Kombina­tionen von Attributen sachlich eindeutig sein müssen.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Programm-intern und beim Datenaustausch ist ein Objekt durch eine technische <strong>Objektidentifikation</strong> gekennzeichnet. Diese hat keinerlei Bedeutung für die Anwendung.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Es braucht also nicht für jede Objektklasse eine Eindeutigkeitsbedingung, nur damit ein Objekt identifizierbar ist. Es reicht, wenn das Datenobjekt, welches der effektiven Person ent­spricht, bei der Eingabe gefunden werden kann. Hierfür können auch Attribute, Beziehungen usw. herangezogen werden, ohne dass eine Kombination eindeutig sein muss.</p>
+</div>
+<div class="paragraph">
+<p>Will man jedoch eine system-externe Identifikation, die zum Beispiel für Menschen verständlich ist, braucht es ein Attribut oder eine Kombination von Attributen, deren Werte über alle Objekte eindeutig sind. Häufig werden dafür künstliche Attribute geschaffen (Versicherungsnummer, Kundennummer, Artikelnummer, usw.)</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Künstliche Identifikatoren sind wo immer möglich zu vermeiden. Wo sie dennoch nötig sind, ist darauf zu achten, dass sie nicht Inhalte anderer Attribute in redundanter Form enthalten.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Bei den Ilishornbahnen wurde dieses Problem auf simple Weise gelöst: Man hat einfach eine Personalnummer eingeführt. Stösst eine Person neu zu den Ilishornbahnen, wird ihr eine Nummer zugewiesen, die noch nicht vergeben ist.</p>
+</div>
+<div id="listing-06_14-06" class="listingblock">
+<div class="title"><a href="#listing-06_14-06">Listing 06.14-06</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Person =
+  Name: TEXT*50;
+  Vorname: TEXT*20;
+  Personalnummer: 1 .. 9999;
+  UNIQUE Personalnummer;
+END Person;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Heikler würde die Sache, wenn die Klasse, durch die Personen beschrieben sind, nicht durch die Ilishornbahnen, sondern durch den nationalen Verband definiert wäre. Die Personal­nummern aller Personen im Rahmen des Verbandes müssten dann eindeutig sein – auch wenn sie dezentral erfasst werden. Gäbe es zwei gleiche Nummern (z.B. eine bei den Ilishornbahnen, eine bei den Blaubergbahnen), wäre die Bedingung verletzt.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Eindeutigkeitsbedingungen gelten immer für alle Objekte, die der Klasse ent­sprechen, für welche die Bedingung gilt – auch wenn die Entsprechung nur indirekt (in Form einer Erweiterung der Klasse) ist.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Eine Bahngesellschaft kann mehrere Namen tragen. Es soll aber pro Sprache nur eine ein­zige Bahnbezeichnung geben können; die Ilishornbahnen dürfen somit keinen zweiten deutschsprachigen Namen führen. Allerdings gilt diese Einschränkung nur lokal, also pro Gesellschaft: Schliesslich besitzen ja auch die Blaubergbahnen einen deutschsprachigen Namen. Über alle Gesellschaften hinweg gesehen gibt es also durchaus mehr als einen Namen in derselben Sprache. Die Sprache von Bahnbezeichnungen muss nur für eine be­stimmte Bahngesellschaft eindeutig sein.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Weist ein Objekt Unterstrukturen auf, soll die Eindeutigkeit – anders als bei den eigentlichen Objekten – in der Regel nicht «global» für die Elemente von sämt­lichen Unterstrukturen gelten. Sie bezieht sich meist nur «lokal» auf die Unter­strukturelemente von einem einzigen Objekt.
+</td>
+</tr>
+</table>
+</div>
+<div id="listing-06_14-07" class="listingblock">
+<div class="title"><a href="#listing-06_14-07">Listing 06.14-07</a></div>
+<div class="content">
+<pre class="highlight"><code>STRUCTURE Bezeichnung =
+  Name: TEXT*100;
+  Sprache: TEXT*2;
+END Bezeichnung;
+
+STRUCTURE Bahnbezeichung EXTENDS Bezeichnung =
+  Kurzbezeichnung: TEXT*10;
+END Bahnbezeichnung;
+
+CLASS Bahngesellschaft =
+  Namen: BAG {1..*} OF Bahnbezeichnung;
+  UNIQUE
+    (LOCAL) Namen : Sprache;
+END Bahngesellschaft;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wie aber erreicht man, dass die Kurzbezeichnungen der verschiedenen Bahnen nicht kolli­die­ren? Sowohl die Blaubergbahnen wie die Buntbergbahnen möchten doch primär einmal BBB heissen. In INTERLIS 2 können Konsistenzbedingungen nicht nur für Objektklassen bzw. lokale Strukturelemente, sondern auch für Sichten (vgl. Abschnitt <a href="#_6_17">Tarifbereiche interessieren nicht – Sichten</a>) formuliert wer­den. Mit einer bestimmten Sicht können aus Strukturelementen quasi eigenständige Objekte gemacht werden. Für diese kann dann wieder eine Eindeutigkeitsbedingung formuliert wer­den.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_14_4"><a class="anchor" href="#_6_14_4"></a>Existenzerfordernis</h4>
+<div class="paragraph">
+<p>Im Gegensatz zu Zahnrad- und Standseilbahnen ist der Trasseeverlauf von Luftseilbahnen, Gondelbahnen, Skiliften usw. nicht einfach beliebig, sondern an die Tal- und Bergstation sowie an die Masten gebunden.</p>
+</div>
+<div class="paragraph">
+<p>Diesen Zusammenhang möchte man ausdrücken. Die Linien von INTERLIS 2 verbinden je­doch Stützpunkte, die primär Koordinaten sind und keinen Bezug zu Modellobjekten wie etwa Masten aufweisen. Der Zusammenhang zwischen dem Trasseeverlauf und anderen Objekten kann aber als Konsistenzbedingung formuliert werden.</p>
+</div>
+<div class="paragraph">
+<p>Mit der folgenden Definition muss sich jeder Punkt des Trasseeverlaufs auf die Lage eines Masts (Mast:Lage), die Lage der Talstation einer Bergbahn (Bergbahn:LageTalstation) oder (OR) die Lage der Bergstation einer Bergbahn (Bergbahn:LageBergstation) abstützen.</p>
+</div>
+<div id="listing-06_14-08" class="listingblock">
+<div class="title"><a href="#listing-06_14-08">Listing 06.14-08</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS BodenunabhaengigeBahn EXTENDS Bergbahn =
+  EXISTENCE CONSTRAINT
+    Trasseeverlauf REQUIRED IN
+      Mast:Lage
+      OR
+      Bergbahn:LageTalstation
+      OR
+      Bergbahn:LageBergstation;
+END BodenunabhaengigeBahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Solche Existenzbedingungen sind nicht nur im Zusammenhang mit Linien, sondern auch bei gewöhnlichen Attributen formulierbar. Konzeptuell können sie immer als eine schwache Form einer Beziehung betrachtet werden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_14_5"><a class="anchor" href="#_6_14_5"></a>Vererbung von Konsistenzbedingungen</h4>
+<div class="paragraph">
+<p>Bereits bei der Bergbahn selbst wurde eine Konsistenzbedingung formuliert: Der Trassee­verlauf muss bei der Talstation beginnen und bei der Bergstation enden. Oder anders gesagt, der erste Punkt des Trasseeverlaufs (Trassee -&gt; Segments[FIRST] -&gt; SegmentEndPoint) muss gleich der Lage der Talstation sein, und (AND) der letzte Punkt des Trasseeverlaufs (Trassee -&gt; Segments[LAST] -&gt; SegmentEndPoint) muss mit der Lage der Bergstation zusammenfallen.</p>
+</div>
+<div class="paragraph">
+<p>Abschnitt <a href="#_7_3">[_7_3]</a> erläutert, wie Linien aufgebaut sind. Dort wird auch das Attribut SegmentEndPoint besprochen, das für den Endpunkt eines Liniensegments steht.</p>
+</div>
+<div id="listing-06_14-09" class="listingblock">
+<div class="title"><a href="#listing-06_14-09">Listing 06.14-09</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Bergbahn =
+  LageTalstation: Ahland.LandesKoord3;
+  LageBergstation: Ahland.LandesKoord3;
+  Trasseeverlauf: Ahland.LinieNormal;
+  MANDATORY CONSTRAINT
+    Trassee -&gt; Segments[FIRST] -&gt; SegmentEndPoint == PARENT == LageTalstation
+    AND
+    Trassee -&gt; Segments[LAST] -&gt; SegmentEndPoint == PARENT == LageBergstation;
+END Bergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Was bedeutet eine solche Definition für allfällige Erweiterungen dieser Klasse?</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Konsistenzbedingungen können durch Klassenerweiterungen nicht ausser Kraft gesetzt werden. Erweiterungen können nur zusätzliche Bedingungen definieren.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_15"><a class="anchor" href="#_6_15"></a>Wie eng gehören Betriebsentscheide zur Bahn? – Unabhängige Themen</h3>
+<div class="sect3">
+<h4 id="_6_15_1"><a class="anchor" href="#_6_15_1"></a>Allgemeines</h4>
+<div class="paragraph">
+<p>Betriebsentscheide beziehen sich jeweils auf eine bestimmte Bergbahn. Entsprechend sind die beiden Klassen durch eine Assoziation verbunden.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image68.png" alt="image68">
+</div>
+<div class="title">Figure 27. Die Klassen IhBBergbahn und Betriebsentscheid sind durch eine Assoziation verbunden.</div>
+</div>
+<div class="paragraph">
+<p>Dennoch sind die Objekte der beiden Klassen recht unterschiedlich. Es braucht einiges, bis eine Bergbahn erstellt ist und bis sich irgendwelche Eigenschaften ändern. Solche Änderun­gen (und auch die der Billette) werden immer durch die Direktion beschlossen. Betriebs­entscheide werden jedoch täglich durch den Betriebsleiter gefällt.</p>
+</div>
+<div class="paragraph">
+<p>Noch extremer ist es mit den Zustandsmeldungen: Bei den wichtigeren Bergbahnen werden sie sogar automatisch alle zwanzig Minuten erzeugt. Zum Erfassen und Bearbeiten der Daten werden teilweise auch unterschiedliche Programmpakete eingesetzt. Diesen Sach­verhalt möchte man im Konzept irgendwie darstellen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<strong>Themen</strong> (Topics) ordnen die Modelldefinition gemäss <strong>Zuständigkeiten und zeitlichem Verhalten</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Damit eröffnet sich die Möglichkeit, dass auf einem bestimmten Computersystem nicht alle Daten vorhanden sein müssen, oder dass bestimmte Themen nur gelesen, nie aber verändert werden.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Zu einem Thema können mehrere <strong>Behälter</strong> existieren, die Daten enthalten, die diesem Thema entsprechen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Das Computersystem der Ilishornbahnen umfasst z.B. je einen Behälter für die Bergbahnen, die Billette und die verschiedenen betrieblichen Aspekte. Der nationale Verband führt auch je einen Behälter für die Bergbahnen und die Billette. Die Ilishornbahnen schicken dem Verband immer die Änderungen, die sich in den Behältern der Bergbahnen und der Billette ergeben haben. Die Blauhornbahnen und alle weiteren Bahngesellschaften schicken dem Verband ebenfalls die Änderungen oder periodisch eine Kopie ihrer Datenbehälter. Der Verband integriert die Daten dieser Behälter dann in die eigenen Behälter.</p>
+</div>
+<div class="paragraph">
+<p>Dank der Gliederung der Modelle in verschiedene Themen können die Daten gezielt geliefert werden. Es brauchen nur die Behälter jener Themen übermittelt werden, die für den Empfän­ger relevant sind.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_15_2"><a class="anchor" href="#_6_15_2"></a>Unabhängigkeit von Themen</h4>
+<div class="paragraph">
+<p>Wird eine Bergbahn abgebrochen, wird als Folge das Datenobjekt gelöscht. Die Änderung wird nun auch dem nationalen Verband mitgeteilt. Wenn dabei aber nur der Behälter der Bergbahnen übermittelt wird, entsteht beim nationalen Verband ein Widerspruch in den Daten: Es gibt noch Tarifbereiche, die mit der Bergbahn verbunden sind, obwohl diese gelöscht wurde. Offensichtlich sind Beziehungen, die über Themengrenzen hinweg gehen, besonders heikel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Themen sollen möglichst wenig voneinander abhängen. Beziehungen, die über Themengrenzen hinwegführen, sind möglichst zu vermeiden. Im Modell sind sie speziell zu kennzeichnen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In grafischen Darstellungen von Modellen sind solche Beziehungen relativ einfach erkenn­bar, wenn die Darstellung die Themen und die Beziehungen klar zeigt. In der textlichen Darstellung von INTERLIS 2 muss der Sachverhalt mit dem Schlüsselwort EXTERNAL gekennzeichnet werden. Sie sind zudem nur zulässig, wenn die Themen als voneinander abhängig deklariert wurden (DEPENDS ON). Gegenseitige Abhängigkeiten (auch indirekte) sind unzulässig.</p>
+</div>
+<div class="paragraph">
+<p>Aber wie sollen Beziehungen über Themengrenzen vermieden werden, ohne als Folge einfach alles im selben Thema zu halten?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_15_3"><a class="anchor" href="#_6_15_3"></a>Die Verantwortung von Sender und Empfänger</h4>
+<div class="paragraph">
+<p>Die Beziehung zwischen Betriebsentscheid und Bergbahn, auf den er sich bezieht, lässt sich nun aber mal nicht vermeiden. Dennoch macht es Sinn, die Bergbahnen und die Betriebsentscheide in verschiedenen Themen zu halten. Und bei dieser Beziehung ist es auch kein Problem, dass die Dinge nicht zusammenpassen. Beide Themen und ihre zugehörigen Behälter werden ja durch die Ilishornbahnen nachgeführt. Vor allem bei schnelllebigen Objekten, die über Beziehungen in verschiedenen Themen angesprochen werden, sind Konflikte aber nicht immer auszuschliessen.</p>
+</div>
+<div class="paragraph">
+<p>INTERLIS 2 legt dabei folgende Regelung fest:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Die Korrektheit der Beziehungen innerhalb eines Behälters liegt in der Verantwortung des Senders. Der Empfänger muss damit fertig werden, dass Ob­jekte, die an einer themenübergreifenden Beziehung beteiligt sind, zu einem be­stimmten Zeitpunkt nicht bekannt sind. Der Empfänger darf aber davon aus­gehen, dass auch die themenübergreifenden Beziehungen stimmen, wenn die Versionen der beteiligten Behälter zusammenpassen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Die erste Regel, wonach ein Behälter in sich korrekt sein muss, ist auch dann zu beachten, wenn ein Behälter aus irgendeinem Grund aufgeteilt wird.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_16"><a class="anchor" href="#_6_16"></a>Alles Gute kommt von oben – Vorhandene Modelle nutzen</h3>
+<div class="paragraph">
+<p>Die Ilistaler haben es gut gemacht: Sie haben nicht alles neu erfunden, sondern vorhandene Modelle (Units, Ahland, Adressen, NatTour) genutzt. Aber ein bisschen gefrevelt haben sie doch. Beispielsweise ist die AhlandLinie sicher nicht typisch für das Ilistal und seine Berg­bahnen, sondern würde eigentlich in das landesweite Datenmodell von Ahland gehören. Auch WGS84Koord und die Tageszeit sind keine Ilistaler Spezialität.</p>
+</div>
+<div class="paragraph">
+<p>Die Ilistaler haben sich insofern normal verhalten, als sie Dinge, die sie nicht anderswo gefunden haben, dem eigenen Modell beigefügt haben. Verständlich – aber nicht optimal.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Fehlende oder falsche Definitionen auf allgemeinerer (höherer) Stufe sollte man nicht einfach hinnehmen, sondern in Zusammenarbeit mit den zuständigen Stellen ver­suchen, diese Modelle zu verbessern.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Es ist darum auch sinnvoll, dass grundlegende Typen auf verschiedenen Stufen vordefiniert werden. INTERLIS selbst stellt einige Basismodelle zur Verfügung. Andere Modelle werden durch Anwendergemeinschaften (z.B. Verbände) bereitgestellt. Nochmals andere sind sehr spezifisch, wie etwa dasjenige der Ilishornbahnen.</p>
+</div>
+<div class="paragraph">
+<p>Abschnitt <a href="#_3_3">[_3_3]</a> nennt einige Bezugsquellen für standardisierte Datenmodelle.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_17"><a class="anchor" href="#_6_17"></a>Tarifbereiche interessieren nicht – Sichten</h3>
+<div class="sect3">
+<h4 id="_6_17_1"><a class="anchor" href="#_6_17_1"></a>Allgemeines</h4>
+<div class="paragraph">
+<p>Wenn im Rahmen der Modellierung von Sichten gesprochen wird, ist natürlich nicht die Aussicht vom Ilishorn mit dem schönen Blick auf das Krummhorn gemeint. Und doch gibt es eine Ähnlichkeit zwischen den beiden Arten von Sichten. Auf der topographischen Karte sind das Ilishorn, das Krummhorn und all die weiteren Berge, Täler und Dörfer eingezeichnet und dabei die Höhe mit Zahlen und Höhenschichtlinien verdeutlicht. Die Karte zeigt die Aussicht vom Ilishorn nicht direkt. Sie enthält aber die nötigen Angaben, aus denen geübte Kartenleser die Aussicht vom Ilishorn ableiten. Auf Grund der Karte ist klar, dass der Spitz, der links hinter dem Krummhorn hervor schaut, der «Schwarze Zahn» ist.</p>
+</div>
+<div class="paragraph">
+<p>In der Analogie entsprechen die Objektklassen, Strukturen und Beziehungen eines Modells der Karte. Sie sind ein sachgerechtes Abbild der Realität, ohne dass ein bestimmter Verwen­dungszweck vorgegeben ist. Die Sichten eines Modells entsprechen der Aussicht vom Ilis­horn. Sie unterstützen einen bestimmten Verwendungszweck. Sie nehmen dazu auf die Grundlagen oder andere Sichten Bezug und formen sie so um, dass der Verwendungszweck möglichst gut unterstützt werden kann.</p>
+</div>
+<div class="paragraph">
+<p>Aber warum sollen dann solche Sichten Bestandteil des Modells sein? Im Modell soll doch nicht vorweggenommen werden, ob die Aussicht quasi vom Ilishorn, dem Krummhorn, vom Schwarzen Zahn oder vom Sprudelbecken im Garten des Kurhauses Ilisbad aus genossen wird.</p>
+</div>
+<div class="paragraph">
+<p>Vor allem für spezielle Konsistenzbedingungen (vgl. Abschnitt <a href="#_6_14_3">Eindeutigkeitsbedingungen</a>) und für ableitbare Be­ziehungen (vgl. Abschnitt <a href="#_6_13_7">Ableitbare Beziehungen</a>) machen Sichten auch im Bereich des Modells Sinn. Sichten sind aber auch nützlich, wenn die Daten für einen bestimmten Zweck in einer aufbereiteten Form geliefert werden müssen, wie das bei der Datenabgabe zuhanden des Ilistaler Web­dienstes der Fall ist. INTERLIS 2 bietet zudem noch die Möglichkeit, Grafiken zu definieren. Die Grundlage für die Grafikdefinition bilden in vielen Fällen nicht die Originaldaten, sondern Sichten.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<strong>Sichten</strong> bauen auf Objektklassen oder anderen Sichten auf und kombinieren die Ausgangsobjekte auf verschiedene Arten zu neuen Sichtobjekten.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Die Sichten von INTERLIS sind mit den Sichten von Datenbank-Systemen vergleichbar.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_17_2"><a class="anchor" href="#_6_17_2"></a>Das Bildungsgesetz von Sichten</h4>
+<div class="paragraph">
+<p>Der detaillierte Trasseeverlauf interessiert vielleicht nicht, wohl aber die Länge. Bei Personen ist man manchmal eher am Alter als am Geburtsjahr interessiert. Diese Eigenschaften können aus anderen abgeleitet werden. Würden derartige «redundante» Eigenschaften als normale Daten erfasst, wäre die Gefahr sehr gross, dass sie nicht immer auf dem aktuellen Stand wären. Das Alter einer Person ändert sich schliesslich jedes Jahr!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Die wesentlichste Eigenschaft einer Sicht ist ihr <strong>Bildungsgesetz.</strong> Es legt fest, wie aus den Ausgangsobjekten abgeleitete Sichtobjekte entstehen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Beispielsweise ist die Sicht «PersonMitAltersangabe» von der Objektklasse «Person» abgeleitet, der so genannten Basis. Eine einzelne PersonMitAltersangabe trägt dieselben Eigenschaften (ALL OF) mit genau denselben Werten wie die ursprüngliche Person. Zusätzlich fügt die Sicht aber noch eine weitere Eigenschaft «Alter» hinzu. Das Alter be­stimmt sich (:=) aus der Differenz von Jahrgang und laufendem Jahr.</p>
+</div>
+<div id="listing-06_17-01" class="listingblock">
+<div class="title"><a href="#listing-06_17-01">Listing 06.17-01</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW PersonMitAltersangabe
+  PROJECTION OF Person;
+=
+  ALL OF Person;
+  Alter: 0 .. 150 [y] := Difference (Person -&gt; Jahrgang,
+    PARAMETER laufendesJahr);
+END PersonMitAltersangabe;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In diesem Beispiel gibt es für jedes Objekt der Basisklasse genau ein virtuelles Sicht-Objekt, also zu jeder Person eine entsprechende PersonMitAltersangabe.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Das einfachste Bildungsgesetz einer Sicht ist die <strong>Projektion (PROJECTION)</strong>. Sie baut auf der Basis auf, übernimmt einzelne (oder auch alle) Attribute in einer beliebigen Reihenfolge und kann weitere, abgeleitete Attribute beifügen. Sie dient damit vor allem dazu, Attribute der bisherigen Objekte in eine nutzungsfreundliche Form zu bringen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Der nationale Tourismusverband hat eine abstrakte Klasse «Tarifbereich» definiert. Im Ilistal will man jedoch nicht einzeln aufzählen, welche Bahnen an welchem Tarifbereich teilnehmen. Stattdessen gibt es dort räumlich umgrenzte Tarifbereiche, die im Modell mit der Klasse «TarifbereichInGegend» beschrieben sind. Diese Klasse besitzt eine Eigenschaft «Gegend» für das geographisch umgrenzte Gültigkeitsgebiet.</p>
+</div>
+<div class="paragraph">
+<p>Eine Bahn, deren Tal- und Bergstation innerhalb der Gegend eines solchen räumlichen Tarif­bereichs liegt, akzeptiert automatisch dessen Billette.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/image69.png" alt="image69">
+</div>
+<div class="title">Figure 28. Welche Bergbahn liegt in der Gegend von welchem Tarifbereich? Die Ilistaler interessieren sich für alle Paare aus Bergbahn Bb und TarifbereichInGegend T, bei denen zwei Bedingungen gelten: Die Talstation von Bb muss in der Gegend von T liegen, und ebenso muss auch die Bergstation von Bb in der Gegend von T liegen.</div>
+</div>
+<div class="paragraph">
+<p>Aber welche Bergbahn liegt nun konkret in der Gegend von welchem Tarifbereich? Auch diese Verbindung von Bergbahn und Tarifbereich kann mit einer Sicht abgeleitet werden.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Das wohl wichtigste Bildungsgesetz einer Sicht ist die <strong>Verbindung (JOIN)</strong>. Sie verbindet mehrere Basisobjekte zu einem Sichtobjekt. Die Verbindung ist insbesondere als Basis für abgeleitete Beziehungen von Bedeutung.
+</td>
+</tr>
+</table>
+</div>
+<div id="listing-06_17-02" class="listingblock">
+<div class="title"><a href="#listing-06_17-02">Listing 06.17-02</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW BergbahnenInGegend
+  JOIN OF Bb ~ Bergbahn,
+    T ~ TarifbereichInGegend;
+  WHERE InSurface(Bb -&gt; LageTalstation, T -&gt; Gegend) AND
+    InSurface(Bb -&gt; LageBergstation, T -&gt; Gegend);
+=
+END BergbahnenInGegend;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mit der Verbindung werden zunächst sämtliche Paare gebildet: Jedes Objekt der Klasse Bergbahn wird mit jedem Objekt der Klasse TarifbereichInGegend zu einem virtuellen Sicht­objekt verbunden.</p>
+</div>
+<div class="paragraph">
+<p>Mit dem WHERE-Teil wird die Menge aller Sichtobjekte auf jene eingeschränkt, bei denen die Bedingungen erfüllt sind. Damit bleiben nur jene Paare aus Bergbahn <em>Bb</em> und Tarifbereich <em>T</em> übrig, wo Tal- und Bergstation von <em>Bb</em> im Gebiet von <em>T</em> liegt. In der obigen Abbildung erfüllen von den sechs möglichen Paaren (drei Bahnen x zwei Tarifbereiche) vier die Bedingung.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 65%;">
+<colgroup>
+<col style="width: 32%;">
+<col style="width: 21%;">
+<col style="width: 47%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Bergbahn <em>Bb</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tarifbereich <em>T</em></p></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>Tal- und Bergstation von <em>Bb</em>
+in der Gegend von <em>T</em>?</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image70.png" alt="image70"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image71.png" alt="image71"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image72.png" alt="image72"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image71.png" alt="image71"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image73.png" alt="image73"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image71.png" alt="image71"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">nein</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image70.png" alt="image70"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image74.png" alt="image74"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">nein</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image72.png" alt="image72"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image74.png" alt="image74"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image73.png" alt="image73"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="img/image74.png" alt="image74"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ja</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Abbildung 63: Betrachtet man in der letzten Abbildung sämtliche Kombinationen aus Bergbahn <em>Bb</em><br>
+und Tarifbereich <em>T,</em> so liegt nur bei vier der sechs Paare die Berg- und Talstation<br>
+von <em>Bb</em> in der Gegend von <em>T.</em></p>
+</div>
+<div class="paragraph">
+<p>In einem letzten Schritt wird wie bei einer Projektion bestimmt, welche Eigenschaften die Sichtobjekte tragen sollen, und wie sich ihre Werte bestimmen. In der obigen INTERLIS-Defi­nition dient hierzu der Teil nach dem Gleichheitszeichen.</p>
+</div>
+<div class="paragraph">
+<p>Gibt es zu einer Bergbahn keinen Tarifbereich, kommt sie in der Sicht nicht vor. Mit einer be­sonderen Verbindung (so genannte «<strong>Outer Join</strong>») wird verlangt, dass auch dann ein Sicht­objekt entstehen soll, wenn zu einer Bergbahn kein Tarifbereich besteht. Für die konkrete Anwendung der Bergbahnen und Tarifbereiche macht dies allerdings kaum einen Sinn.</p>
+</div>
+<div class="paragraph">
+<p>Möchte man ein Verzeichnis aller Koordinaten von Tal- und Bergstationen, steht dem die Tatsache entgegen, dass diese Koordinaten als einzelne Attribute der Bergbahnen aufbewahrt sind. Mit der <strong>Vereinigung (UNION)</strong> können sie aber zu einer Menge von gleichberechtigten Sichtobjekten zusammengefasst werden.</p>
+</div>
+<div id="listing-06_17-03" class="listingblock">
+<div class="title"><a href="#listing-06_17-03">Listing 06.17-03</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW StationsKoordinaten
+  UNION OF Talstation ~ Bergbahn, Bergstation ~ Bergbahn;
+=
+  Koordinaten: Ahland.LandesKoord := Talstation -&gt; LageTalstation,
+    Bergstation -&gt; LageBergstation;
+END StationsKoordinaten;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Menge der Sichtobjekte ist hier gleich der doppelten Menge der Bergbahnen. Einmal werden sie unter dem Aspekt Talstation, einmal unter dem Aspekt Bergstation ausgewertet. Das Attribut wird je nachdem gemäss dem Lageattribut von Tal- bzw. Bergstation gesetzt.</p>
+</div>
+<div class="paragraph">
+<p><strong>Zusammenfassung (AGGREGATION)</strong> und <strong>Aufschlüsselung (INSPECTION)</strong> haben mit Strukturattributen zu tun. Eine Zusammenfassung fasst Objekte, die bestimmte gleiche Eigenschaften aufweisen, zu einem einzigen Objekt zusammen. Im Rahmen des Sichtobjekts stehen die bisherigen Objekte als Elemente eines Strukturattributes zur Verfügung (vgl. Abschnitt <a href="#_6_17_3">Schrittweiser Aufbau von Sichten</a>). Eine Aufschlüsselung sorgt umgekehrt dafür, dass aus Strukturelementen eigenständige Sichtobjekte werden (vgl. Abschnitt <a href="#_6_14_3">Eindeutigkeitsbedingungen</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_17_3"><a class="anchor" href="#_6_17_3"></a>Schrittweiser Aufbau von Sichten</h4>
+<div class="paragraph">
+<p>Für die Billettkontrolle muss man bei jeder Bergbahn wissen, welche Billettarten gültig sind. Man möchte doch ein Verzeichnis aller Bergbahnen, in dem bei jeder Bergbahn die gültigen Billettarten aufgeführt sind. Losgelöst von den Basisdaten möchte man etwa folgendes Modell definieren:</p>
+</div>
+<div id="listing-06_17-04" class="listingblock">
+<div class="title"><a href="#listing-06_17-04">Listing 06.17-04</a></div>
+<div class="content">
+<pre class="highlight"><code>CLASS Billettart =
+  Namen: BAG {1..*} OF Bezeichnung;
+  Preis: 0.00 .. 5000.00 [Ahland.Taler];
+  Gueltigkeitsdauer: Zeitdauer;
+END Billettart;
+
+CLASS Bergbahn =
+  Namen: BAG {1..*} OF Bezeichnung;
+  GueltigeBillettarten: BAG OF Billettart;
+END Bergbahn;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aber wie kann das nun aus den Originaldaten abgeleitet werden? Das ist gar nicht so ein­fach. Einer Bergbahn können mehrere Tarifbereiche zugeordnet sein, welchen ihrerseits wieder mehrere Billettarten zugeordnet sind. Zudem gibt es Tarifbereiche, die alle Berg­bahnen einer Gegend umfassen.</p>
+</div>
+<div class="paragraph">
+<p>Der letzte Aspekt ist zum Glück schon erledigt, weil es eine abstrakte Beziehung zwischen Bergbahn und Tarifbereich gibt, die «Gültigkeit». Sie wird einerseits durch eine explizite Be­ziehung zwischen den beiden Klassen realisiert («GültigkeitExplizit»). Andererseits kann von der Sicht «BergbahnenInGegend» abgeleitet werden, welche Bahnen aufgrund ihrer Lage die Billette eines Tarifbereichs anerkennen.</p>
+</div>
+<div class="paragraph">
+<p>Auf dieser Basis kann eine Sicht definiert werden, welche die Bergbahnen mit den Billett­arten verbindet:</p>
+</div>
+<div id="listing-06_17-05" class="listingblock">
+<div class="title"><a href="#listing-06_17-05">Listing 06.17-05</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW BergbahnUndGueltigeBillettart
+  JOIN OF Bb ~ Bergbahn,
+    T ~ Tarifbereich,
+    Ba ~ Billettart,
+    G ~ Gueltigkeit;
+  WHERE (G -&gt; Bergbahn == Bb) AND (G -&gt; Tarifbereich == T) AND
+    (Ba -&gt; Tarifbereich == T);
+=
+  BahnNamen: BAG {1..*} OF Bezeichnung := Bb -&gt; Namen;
+  BillettNamen: BAG {1..*} OF Bezeichnung := Ba -&gt; Namen;
+  Preis: 0.00 .. 5000.00 [Ahland.Taler] := Ba -&gt; Preis;
+  Gueltigkeitsdauer: Zeitdauer := Ba -&gt; Gueltigkeitsdauer;
+END BergbahnUndGueltigeBillettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diese Verbindung kombiniert Bergbahn und Billettart. Sie berücksichtigt dabei die Gültigkeits­beziehung und dass einer Billettart ein Tarifbereich zugeordnet ist, der mit jenem der Gültigkeits-Beziehung übereinstimmen muss. Damit ist das Ziel schon fast erreicht. Die zulässigen Kombinationen von Bergbahn und Billettart sind als Sichtobjekte verfügbar. Nur möchte man sie noch pro Bergbahn zusammenfassen:</p>
+</div>
+<div id="listing-06_17-06" class="listingblock">
+<div class="title"><a href="#listing-06_17-06">Listing 06.17-06</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW AufBergbahnGueltigeBillettart
+  AGGREGATION OF BuGB ~ BergbahnUndGueltigeBillettart
+    EQUAL (BuGB -&gt; Bb);
+=
+  BahnNamen: BAG {1..*} OF Bezeichnung := BuGB -&gt; Bb -&gt; Namen;
+  Billettarten: BAG OF BergbahnUndGueltigeBillettart := AGGREGATES;
+END AufBergbahnGueltigeBillettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Eine solche Zusammenfassung erfolgt mit einer Aggregation. Damit werden alle Objekte der Basissicht, die eine bestimmte Bedingung erfüllen (nämlich dass sie zur gleichen Bergbahn gehören), zu einem Sichtobjekt zusammengefasst. Die Menge aller ursprünglichen Sicht­objekte, die zu einem Ganzen zusammengefasst wurde, steht dabei für Strukturattribute zur Verfügung (AGGREGATES).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_6_17_4"><a class="anchor" href="#_6_17_4"></a>Sichten erben</h4>
+<div class="paragraph">
+<p>Bereits der nationale Verband hat die Sicht definiert, die alle gültigen Billettarten für jede Bergbahn aufführt (Sicht «AufBergbahnGueltigeBillettart», siehe oben). Die Ilistaler wollen diese Sicht auch benutzen. Sie möchten aber auch in dieser Sicht das Attribut Trasseeverlauf einbeziehen, das sie in der eigenen Erweiterung der Klasse Bergbahn definiert haben.</p>
+</div>
+<div id="listing-06_17-07" class="listingblock">
+<div class="title"><a href="#listing-06_17-07">Listing 06.17-07</a></div>
+<div class="content">
+<pre class="highlight"><code>VIEW IhBBergbahnUndGueltigeBillettart
+  EXTENDS BergbahnUndGueltigeBillettart
+  BASE Bb EXTENDED BY IhBBb ~ IhBBergbahn
+=
+  Trasseeverlauf := IhBBb -&gt; Trasseeverlauf;
+END IhBBergbahnUndGueltigeBillettart;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mit der Definition einer zusätzlichen Basis (muss eine Erweiterung einer bisherigen Basis sein) stehen deren Attribute zur Verfügung. Beruht ein Sichtobjekt nicht auf dieser Erwei­terung (ist es also keine IhBBergbahn), ist das Attribut undefiniert.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Eine Erweiterung einer Sicht ermöglicht es, Erweiterung der Klassen der Basis­sicht zur Kenntnis zu nehmen und damit deren Attribute auszunützen. Das Bil­dungsgesetz der Sicht kann damit aber nicht grundlegend verändert werden. Es ist nur möglich, zusätzliche Selektionen zu definieren.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_18"><a class="anchor" href="#_6_18"></a>Namen sind Schall und Rauch – Schema in einer Fremdsprache</h3>
+<div class="paragraph">
+<p>Eine Bergbahn ist auf Französisch nicht anders als auf Deutsch. Sie besitzt dieselben Eigenschaften, sie steht mit denselben anderen Klassen in Beziehung, usw. Man mag sich zwar darüber streiten, ob wirklich alles in jeder Sprache gleich gut gesagt werden kann, aber für ein Datenmodell gilt: Die eigentlichen Konzepte sind in jeder Sprache dieselben. Was von einer Sprache zur nächsten wechselt, sind nur ihre Namen.</p>
+</div>
+<div class="paragraph">
+<p>Wer ein Modell in eine Fremdsprache übersetzen möchte, braucht daher nur alle Bezeich­nungen und Anmerkungen auszutauschen. Die eigentliche Struktur – im UML-Diagramm also die Kästchen und Linien – bleibt unverändert. Für INTERLIS-Beschreibungen gibt es ein Werkzeug (den so genannten INTERLIS-Compiler), das prüft, ob eine Übersetzung tatsächlich nur andere Namen verwendet, oder ob beim Übersetzen versehentlich auch die Struktur des Modells gewechselt hat.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

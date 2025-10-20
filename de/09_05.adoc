@@ -1,7 +1,0 @@
-[#_9_5]
-=== Das Kurorchester Ilisbad spielt auf – Datenmodellierung ist anspruchsvoll
-
-Wenn sich Pauken und Trompeten, Geigen und Flöten zu einem Ohrenschmaus vereinigen, vergessen wir verständlicherweise, wie viel Aufwand dahinter steckt. Was hat es nur ge­braucht, bis alle nach ersten Blockflötenversuchen in den Kindesjahren so virtuos mit ihrem Instrument umgehen konnten! Aber auch jetzt wird immer wieder geübt, allein und im Orchester.
-
-Es ist zu hoffen, dass bei der Datenmodellierung auch so ernsthaft gearbeitet wird. Wer Modelle verstehen will, muss die verschiedenen Instrumente mindestens passiv kennen. Wer Modelle definieren will, tut gut daran, immer wieder zu üben, bis die Instrumente (Klassen, Attributtypen, Beziehungen, Vererbung, usw.) in ihrer Wirkung klar sind. Auch wenn das Resultat noch so gut erscheint, es lohnt sich, nochmals darüber nachzudenken, das Modell der Kritik anderer Leute auszusetzen und es nochmals aus verschiedenen Richtungen zu beleuchten. Nur so können gute Modelle entstehen, Modelle, die so einfach und verständlich sind, dass sie sich in der Praxis bewähren.
-

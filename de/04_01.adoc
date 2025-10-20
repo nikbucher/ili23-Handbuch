@@ -1,8 +1,0 @@
-[#_4_1]
-=== Das Datenmodell im Überblick
-
-.Das Datenmodell in der UML-Darstellung. Der Übersichtlichkeit halber sind Themen, Strukturen, Wertebereiche und Attribute nicht abgebildet. Hierzu wird auf <<_6>> verwiesen, das auf Einzelheiten näher eingeht.
-image::img/image21.png[]
-
-
-[#_4_2]

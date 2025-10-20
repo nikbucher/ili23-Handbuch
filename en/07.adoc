@@ -1,9 +1,0 @@
-[#_7]
-== Ilis Valley systems in focus
-
-
-include::07_01.adoc[]
-
-include::07_02.adoc[]
-
-include::07_03.adoc[]

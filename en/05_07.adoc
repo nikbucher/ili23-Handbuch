@@ -1,7 +1,0 @@
-[#_5_7]
-=== Simple and multiple inheritance
-
-Some modeling languages permit the simultaneous inheritance of several basic elements. Thus a class may refine several super classes at the same time.
-
-In information technology it is debated as to how useful this really is. Models using multiple inheritance often become more confusing. Hence INTERLIS only applies simple inheritance.
-

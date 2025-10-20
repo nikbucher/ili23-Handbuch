@@ -1,7 +1,0 @@
-[#_5_7]
-=== Einfach- und Mehrfachvererbung
-
-Einige Modellierungssprachen erlauben es, dass von mehreren Grund-Elementen gleichzeitig geerbt wird. Eine Klasse kann so mehrere Oberklassen gleichzeitig verfeinern.
-
-Es ist in der Informatik umstritten, wie zweckmässig dies ist. Modelle mit Mehrfachvererbung sind häufig weniger übersichtlich. INTERLIS kennt daher nur die Einfachvererbung.
-

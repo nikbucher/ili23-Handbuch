@@ -1,7 +1,0 @@
-[#_9_5]
-=== The Kurorchestra of Ilis Bath strikes up – Data modeling is tricky
-
-When drums and trumpets, violins and flutes all combine to offer us a musical treat, we tend to forget all the effort that has been put into this performance. Just imagine all these years of hard work, dating back to the first attempts on a recorder, until finally they reached the stage of virtuosity. And even now daily practice is the order, alone or with the orchestra.
-
-It is to be hoped that as much serious work goes into data modeling. Whoever wants to understand models must at least have a passive knowledge of the different instruments. Whoever wants to define models is well advised to keep on practicing until he or she is quite familiar with the effects of the instruments (classes, attribute types, relationships, inheritance etc.). Even if the result seems perfect it is worthwhile thinking it overt, obtaining other people's opinions and reconsidering it from different angles. This is the only way to achieve good models that are sufficiently simple and comprehensible to stand the test of time.
-

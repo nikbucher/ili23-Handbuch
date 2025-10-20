@@ -1,7 +1,0 @@
-[#_6_18]
-=== Les noms ne sont qu'apparence – Schéma dans une langue étrangère
-
-Désigner une remontée mécanique par une expression dans une autre langue ne change rien à ses propriétés qui restent identiques, ni aux relations qu'elle entretient avec d'autres classes. On peut éventuellement débattre du fait de savoir si toutes les langues permettent de tout exprimer avec la même précision, mais la règle suivante s'applique aux modèles de données : les concepts qui les sous-tendent sont identiques, quelle que soit la langue dans laquelle ils sont formulés. Seuls leurs noms sont différents.
-
-La traduction d'un modèle dans une langue étrangère ne requiert donc qu'une conversion de l'ensemble des désignations et des remarques. La structure sous-jacente – les cases et les lignes du diagramme UML – reste inchangée. Il existe un outil pour les descriptions INTERLIS (le compilateur INTERLIS) contrôlant si une traduction ne fait qu'utiliser des noms différents ou si la structure a subi des modifications involontaires lors de ce processus.
-
