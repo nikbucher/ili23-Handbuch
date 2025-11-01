@@ -18,5 +18,3 @@ https://www.adasys.ch/[www.adasys.ch]
 
 Das zugrunde liegende GitHub-Repository befindet sich https://github.com/nikbucher/ili23-Handbuch[hier]. 
 ****
-
-
