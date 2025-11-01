@@ -17,7 +17,7 @@ ifndef::env-github[:toc: left]
 :section-refsig: Kapitel
 
 = Modellierung raumbezogener Daten
-Joseph Dorfschmid, Sascha Brawer
+Sepp Dorfschmid, Sascha Brawer
 :revdate: 28.07.2009
 :revnumber: 1.0
 :title-page:

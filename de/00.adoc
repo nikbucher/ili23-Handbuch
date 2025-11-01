@@ -3,7 +3,7 @@ Diese Website ist eine Kopie des sogenannten https://www.interlis.ch/download/in
 
 *Autoren des Originaldokuments*
 
-Joseph Dorfschmid · do@adasys.ch +
+Sepp Dorfschmid · do@adasys.ch +
 Sascha Brawer
 
 https://www.adasys.ch/[www.adasys.ch]
