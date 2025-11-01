@@ -45,10 +45,3 @@ include::10.adoc[]
 include::11.adoc[]
 
 endif::[]
-
-// Erklärung und Link auf Website
-ifdef::env-github[]
-In diesem Repository wird die Online-Version des INTERLIS 2.3 Benutzerhandbuches gepflegt. Ergänzungen und Korrekturen bitte als Issue oder allenfalls PR erfassen.
-
-Die aktuelle Website ist unter https://nikbucher.github.io/ili23-handbuch/de/ erreichbar.
-endif::[]
