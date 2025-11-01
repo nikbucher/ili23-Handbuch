@@ -1,33 +1,23 @@
-= INTERLIS 2.3 Benutzerhandbuch
+= Modellierung raumbezogener Daten
 :!toc:
 :icons: font
 
-== Sprachauswahl / Language Selection / Sélection de langue
+Eine Einführung unter Berücksichtigung von UML und INTERLIS
 
 [.language-selection]
 --
-🇩🇪 link:de/[*Deutsch* - INTERLIS 2.3 Benutzerhandbuch]
+🇩🇪 link:de/[*Deutsch* - Modellierung raumbezogener Daten]
 
-🇫🇷 link:fr/[*Français* - Manuel de l'utilisateur INTERLIS 2.3]
+🇫🇷 link:fr/[*Français* - La modélisation de données à référence spatiale]
 
-🇬🇧 link:en/[*English* - INTERLIS 2.3 User Manual]
+🇬🇧 link:en/[*English* - Modeling of Space-Related Data]
 --
-
-'''
-
-_Herausgegeben von / Published by / Publié par:_
-
-*KOGIS* - Koordination, Geo-Information und Services +
-c/o swisstopo, Bundesamt für Landestopografie +
-Seftigenstrasse 264, CH-3084 Wabern
-
-https://www.kogis.ch[www.kogis.ch]
 
 '''
 
 _Autoren / Authors / Auteurs:_
 
-Joseph Dorfschmid · do@adasys.ch +
+Sepp Dorfschmid · do@adasys.ch +
 Sascha Brawer
 
 https://www.adasys.ch/[www.adasys.ch]
