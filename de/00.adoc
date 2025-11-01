@@ -1,13 +1,5 @@
 ****
-Das vorliegende Dokument ist eine Kopie des https://www.interlis.ch/download/interlis2/ili23_handbuch_final_d.pdf[INTERLS 2.3 Benutzerhandbuchs] von KOGIS. Die Bereitstellung als Website erlaubt es, aus anderen Webapplikationen (Forum, GitHub usw.) direkt auf ein Kapitel zu verweisen, wenn daraus zitiert wird. Ein umständliches Nachschlagen in einem zusätzlichen PDF-Dokument entfällt.
-
-*Herausgeber*
-
-Koordination, Geo-Information und Services (KOGIS) +
-c/o swisstopo, Bundesamt für Landestopografie +
-Seftigenstrasse 264, CH – 3084 Wabern
-
-https://www.kogis.ch[www.kogis.ch]
+Diese Website ist eine Kopie des sogenannten https://www.interlis.ch/download/interlis2/ili23_handbuch_final_d.pdf[Benutzerhandbuchs zu INTERLIS 2.3] von KOGIS. Die Bereitstellung als Website erlaubt es, aus anderen Webapplikationen (Forum, GitHub usw.) direkt auf ein Kapitel zu verweisen, wenn daraus zitiert wird. Ein umständliches Nachschlagen in einem zusätzlichen PDF-Dokument entfällt.
 
 *Autoren des Originaldokuments*
 
