@@ -16,11 +16,13 @@ ifndef::env-github[:toc: left]
 :chapter-refsig: Kapitel
 :section-refsig: Kapitel
 
-= INTERLIS 2.3 Benutzerhandbuch
-Joseph Dorfschmid, Sascha Brawer
-:revdate: {docdate}
+= Modellierung raumbezogener Daten
+Sepp Dorfschmid, Sascha Brawer
+:revdate: 28.07.2009
 :revnumber: 1.0
 :title-page:
+
+Eine Einführung unter Berücksichtigung von UML und INTERLIS
 
 [.text-right]
 🌐 Sprache: *Deutsch* | link:../fr/[Français] | link:../en/[English] | link:../[⌂]
@@ -42,11 +44,4 @@ include::09.adoc[]
 include::10.adoc[]
 include::11.adoc[]
 
-endif::[]
-
-// Erklärung und Link auf Website
-ifdef::env-github[]
-In diesem Repository wird die Online-Version des INTERLIS 2.3 Benutzerhandbuches gepflegt. Ergänzungen und Korrekturen bitte als Issue oder allenfalls PR erfassen.
-
-Die aktuelle Website ist unter https://nikbucher.github.io/ili23-handbuch/de/ erreichbar.
 endif::[]
