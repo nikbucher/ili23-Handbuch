@@ -16,9 +16,9 @@ ifndef::env-github[:toc: left]
 :chapter-refsig: Kapitel
 :section-refsig: Kapitel
 
-= INTERLIS 2.3 Benutzerhandbuch
+= Modellierung raumbezogener Daten: Eine Einführung unter Berücksichtigung von UML und INTERLIS
 Joseph Dorfschmid, Sascha Brawer
-:revdate: {docdate}
+:revdate: 28.07.2009
 :revnumber: 1.0
 :title-page:
 

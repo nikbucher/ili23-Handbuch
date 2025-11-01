@@ -1,22 +1,22 @@
+****
+Das vorliegende Dokument ist eine Kopie des https://www.interlis.ch/download/interlis2/ili23_handbuch_final_d.pdf[INTERLS 2.3 Benutzerhandbuchs] von KOGIS. Die Bereitstellung als Website erlaubt es, aus anderen Webapplikationen (Forum, GitHub usw.) direkt auf ein Kapitel zu verweisen, wenn daraus zitiert wird. Ein umständliches Nachschlagen in einem zusätzlichen PDF-Dokument entfällt.
+
 *Herausgeber*
 
 Koordination, Geo-Information und Services (KOGIS) +
 c/o swisstopo, Bundesamt für Landestopografie +
 Seftigenstrasse 264, CH – 3084 Wabern
 
-http://www.kogis.ch[www.kogis.ch]
+https://www.kogis.ch[www.kogis.ch]
 
-*Autoren*
+*Autoren des Originaldokuments*
 
 Joseph Dorfschmid · do@adasys.ch +
-Sascha Brawer · sb@adasys.ch
+Sascha Brawer
 
-Adasys AG, Dörflistrasse 67, CH – 8050 Zürich +
-http://www.adasys.ch/[www.adasys.ch]
+https://www.adasys.ch/[www.adasys.ch]
 
-*Dank*
-
-Die Autoren danken allen, die mit Anregungen, Kritik und präziser Lektüre zu diesem Papier beigetragen haben.
-
+Das zugrunde liegende GitHub-Repository befindet sich https://github.com/nikbucher/ili23-Handbuch[hier]. 
+****
 
 
